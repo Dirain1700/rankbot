@@ -31,13 +31,12 @@ module.exports = (client) => {
     };*/
     if (message.content == ".rn") {
       const embed = new MessageEmbed()
-      .setTitle("Release note Mogi Bot v0.6.2 (beta)")
-      .setDescription("Mogi Bot v0.6.0 (beta) has been released!")
-      .addField("`/mute`", "staffs can mute members with `/mute [user] [hours] [minutes] [reason]`.\nuse `/unmute` to unmute members.")
+      .setTitle("Release note Mogi Bot v0.7.0 (beta)")
+      .setDescription("Mogi Bot v0.7.0 (beta) has been released!")
+      .addField("`/mute`", "staffs can mute members with `/mute [user] [hours] [minutes] [reason]`.\nuse `/unmute` to unmute members. and more new commands.")
       .addField("Ranking system", "Chenged ranking system from [keyv](https://www.npmjs.com/package/keyv) and [@keyv/sqlite](https://www.npmjs.com/package/@kayv/sqlite) to JSON. I can easily edit ranks.\n`/rank [user(optional)]` to see your/target user's rank.")
-      .setURL("https://github.com/Dirain1700/rankbot/tree/dev")
-      .setImage("https://opengraph.githubassets.com/eafd6ccc77e5e7d3dd3fd9143d02a258eb7c88eae5f4d28fe23362c9f7c5e852/Dirain1700/rankbot")
-      .setFooter("More info on [GitHub](https://github.com/Dirain1700/rankbot/tree/dev)");
+      .setURL("https://github.com/Dirain1700/rankbot/")
+      .setImage("https://opengraph.githubassets.com/b35b38d542c4b5690b665224f12d66d0487a740d794e83fce6729e5c3d302c18/Dirain1700/rankbot");
       message.channel.send({ embeds: [embed] });
     }
     /*if (message.content == ".top") {
