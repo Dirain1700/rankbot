@@ -70,7 +70,7 @@ module.exports = {
     description: "特定のユーザーのメッセージを強制的に削除します。",
     options: [
       {
-        type: "INTEGER",
+        type: "STRING",
         name: "user",
         description: "ユーザーIDを指定します。",
         required: true
