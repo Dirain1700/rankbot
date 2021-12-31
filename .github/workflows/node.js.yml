@@ -28,6 +28,5 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm i --no-save eslint
-    - run: npm run test
     - run: npm run eslint main.js
     - run: npm run eslint index.js
