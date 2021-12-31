@@ -223,7 +223,7 @@ module.exports = (client) => {
         // userIDのあるデータ
         const data = db[who.user.id];
         // そのデータの順位
-        // とりあえず１とする
+        // とりあえず1とする
         let rank = 1;
         for (const id in db) {
           // 自分より得点が高い人がいたら、順位を下げる
@@ -231,7 +231,7 @@ module.exports = (client) => {
             rank += 1;
           }
         }
-        interaction.reply(`${who.user.tag} has ${data.points}points now and ${rank}th.`);
+        interaction.reply({ content:`${who.user.tag} has ${data.points}points now and ${rank}th.`, ephemeral: true });
         return;
       }else{
         interaction.reply({ content: `${who.user.tag} has 0points now.`, ephemeral: true });
