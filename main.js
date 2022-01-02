@@ -276,7 +276,7 @@ module.exports = (client) => {
         return;
       }
       // 指定されたメッセージの数を取
-      const who = await interaction.options.getString("user");
+      const who = await interaction.options.getString("userid");
       const how = interaction.options?.getInteger("lines");
       const time = Math.floor(Date.now() / 1000);
       const whotag = await client.users.fetch(who).tag;
@@ -387,7 +387,7 @@ module.exports = (client) => {
         interaction.reply({ content: "/forceban - Access Denied.", ephemeral:true });
         return;
       }
-      const who = interaction.options.getString("user");
+      const who = interaction.options.getString("userid");
       const fetched = await client.users.fetch(who);
       const how = interaction.options.getInteger("deletemsg");
       if (!how) {
@@ -408,7 +408,7 @@ module.exports = (client) => {
       if (!interaction.memberPermissions.has('BAN_MEMBERS')) {
         return interaction.reply({ content: "/forceban - Access Denied.", ephemeral:true });
       }
-      const who = interaction.options.getString("user");
+      const who = interaction.options.getString("userid");
       const fetched = await client.users.fetch(who);
       const reasons = interaction.options?.getString("reason");
       const time = Math.floor(Date.now() / 1000);

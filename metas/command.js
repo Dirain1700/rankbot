@@ -71,7 +71,7 @@ module.exports = {
     options: [
       {
         type: "STRING",
-        name: "user",
+        name: "userid",
         description: "ユーザーIDを指定します。",
         required: true
       },
