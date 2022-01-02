@@ -2,7 +2,7 @@ module.exports = (client) => {
   /* eslint-disable */
   const fs = require("fs");
   const ws = require("ws");
-  const { Discord, MessageAttachment, APIMessage, ClientApplication, MessageEmbed }　= require("discord.js")
+  const { Discord, MessageAttachment, APIMessage, ClientApplication, MessageEmbed } = require("discord.js")
   /* eslint-enable */
   client.on("ready", async () => {
     console.log(`logged in as ${client.user.tag}`);
