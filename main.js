@@ -36,13 +36,14 @@ module.exports = (client) => {
       .addField("`/mute`", "staffs can mute members with `/mute [user] [hours] [minutes] [reason]`.\nuse `/unmute` to unmute members. and more new commands.")
       .addField("Ranking system", "Chenged ranking system from [keyv](https://www.npmjs.com/package/keyv) and [@keyv/sqlite](https://www.npmjs.com/package/@kayv/sqlite) to JSON. I can easily edit ranks.\n`/rank [user(optional)]` to see your/target user's rank.")
       .setURL("https://github.com/Dirain1700/rankbot/")
-      .setImage("https://opengraph.githubassets.com/b35b38d542c4b5690b665224f12d66d0487a740d794e83fce6729e5c3d302c18/Dirain1700/rankbot");
+      .setImage("https://opengraph.githubassets.com/35240437381a862e9eb9b698e8e498316e0fe29d71f9e78c571411b75e327cca/Dirain1700/rankbot");
       message.channel.send({ embeds: [embed] });
     }
-    if (message.content === ".help") {
+    if (message.content == ".help") {
       const embed = new MessageEmbed()
         .setTitle("Mogi Botの使い方")
         .setDescription("詳しくは、[README.md](https://github.com/Dirain1700/rankbot/blob/main/README.md)をご覧ください。\n**English**: [README-en.md](https://github.com/Dirain1700/rankbot/blob/main/README-en.md)")
+      message.channel.send({ embeds: [embed] })
     }
     if (message.content.toLowerCase().startsWith('>runjs')) {
       const path = require('path');
