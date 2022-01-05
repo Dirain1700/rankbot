@@ -39,89 +39,16 @@ module.exports = (client) => {
       .setImage("https://opengraph.githubassets.com/b35b38d542c4b5690b665224f12d66d0487a740d794e83fce6729e5c3d302c18/Dirain1700/rankbot");
       message.channel.send({ embeds: [embed] });
     }
-    /*if (message.content == ".top") {
-      ranksort();
-      const db = Object.entries(JSON.parse(fs.readFileSync("./rank.json")));
-      db.sort((a, b) => b[1].points - a[1].points);
-      console.log(JSON.stringify(Object.fromEntries(db.sort)));
-      //message.channel.send(`**Top 5 of tournament**: 1st:${client.users.cache.get(db[1].userid).tag} (${db[1].points}), 2nd: ${client.users.cache.get(db[2].userid).tag} (${db[2].points}), 3rd: ${client.users.cache.get(db[3].userid).tag} (${db[3].points}), 4th: ${client.users.cache.get(db[4].userid).tag} (${db[4].points}), 5th: ${client.users.cache.get(db[5].userid).tag} (${db[5].points})`);
-    }*/
-    if (message.content.startsWith(".apt")) {
-      //メッセージの数を取得
-      const how = message.content.split(" ")[1];
-      //管理者権限を持っていなかったら拒否
-      if (!message.member.permissions.has("ADMINISTRATOR")){
-        message.channel.send("Access Denied.");
-        return;
-      }
-      //メンションされていない場合は処理を終了
-      if (!how || (message.mentions.members.size !== 1 /*&& message.content.split(" ")[2] != /[0-9]{18}/*/)){
-        message.channel.send("Invalid arguments.");
-          return;
-      }
-      //メンションされたユーザーを特定
-      const member = message.mentions.members.first();
-      const who = member.user.id;
-      //JSONを読み込む
-      const db = JSON.parse(fs.readFileSync("./rank.json"));
-        //ユーザーIDのデータがあるか判定
-        if (JSON.stringify(db).indexOf(who) === -1) {
-          //書き換えデータ
-          const add =  JSON.stringify(db).replace("]","") + `,{"userid": ${who}, "points": ${how}}]`;
-          //書き換え
-          fs.writeFileSync("./rank.json", add);
-          //並び替え
-          ranksort();
-          //ユーザーを検索
-          const data = JSON.parse(fs.readFileSync("./rank.json")).filter(function (item) {
-          // ユーザーの点数を特定
-          return item.userid == who;
-          });
-          data.forEach(function (value){
-            //送信
-            message.channel.send(`Added ${how}points to ${member.user.tag} and having ${value.points}points now.`);
-          });
-          return;
-        }else{
-          const data = db.filter(function (item) {
-            // ユーザーの点数を特定
-            return item.userid == who;
-          });
-          data.forEach(function (value){
-            const edit =  JSON.stringify(db).replace(`{"userid":${who},"points":${value.points}}`,`{"userid":${who},"points":${value.points + Number(how)}}`);
-            fs.writeFileSync("./foo.json", edit);
-            //送信
-            message.channel.send(`Added ${how}points to ${member.user.tag} and having ${value.points + Number(how)}points now.`);
-          });
-          return;
-        }
-      }
-    if (message.content.startsWith('.clm') && message.guild) {
-      if (!message.member.permissions.has("MANAGE_MESSAGES")) {
-        message.channel.send("Access Denied.");
-        return;
-      }
-      // 指定されたメッセージの数を取得
-      const how = Number(message.content.split(" ")[1]);
-      // メンションでユーザーが(指定されていなかったら処理を止める
-      if (!how || message.mentions.members.size == 0) return;
-      // 指定された数のメッセージを取得
-      const messages = await message.channel.messages.fetch({ limit: how });
-      const who = await message.mentions.members.first();
-      // メンションで指定されたユーザーのIDのみを配列に入れる
-      const mentionMembers = await message.mentions.members.map(m => m.user.id);
-      // 指定されたユーザーが発言したメッセージのみを抽出
-      const mentionFilter =  await messages.filter(msg => mentionMembers.some(userID => userID == msg.author.id));
-      // それらのメッセージを一括削除
-      message.channel.bulkDelete(mentionFilter);
-      await message.channel.send(`**${new Date().toLocaleString('ja-jp', {timeZone: 'Asia/Tokyo'})}:** ${how} of ${who.users.tag}'s messages were cleared from ${message.channel.name} by ${message.author.tag}.`);
-      await message.channel.send(`<t:${Math.floor(Date.now() / 1000)}:T> ${how} of ${who.users.tag}'s messages were from ${message.channel.name} by ${message.author.tag}.`);
+    if (message.content === ".help") {
+      const embed = new MessageEmbed()
+        .setTitle("Mogi Botの使い方")
+        .setDescription("詳しくは、[README.md](https://github.com/Dirain1700/rankbot/blob/main/README.md)をご覧ください。\n**English**: [README-en.md](https://github.com/Dirain1700/rankbot/blob/main/README-en.md)")
     }
     if (message.content.toLowerCase().startsWith('>runjs')) {
       const path = require('path');
       const pool = require('workerpool').pool(path.join(__dirname, './metas/worker.js'), {
-  workerType: 'process',
-});
+        workerType: 'process',
+      });
       
       const codeBlockRegex = /^`{3}(?<lang>[a-z]+)\n(?<code>[\s\S]+)\n`{3}$/mu;
       const languages = ['js', 'javascript'];
