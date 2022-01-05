@@ -155,6 +155,7 @@ module.exports = (client) => {
     if (!interaction.isCommand() || !interaction.guild) {
       return;
     }
+    console.log(typeof interaction.user.id)
     if (interaction.commandName === 'ping') {
       const now = Date.now();
       const msg = [
@@ -277,7 +278,7 @@ module.exports = (client) => {
       }
       // 指定されたメッセージの数を取
       const who = await interaction.options.getString("userid");
-      const how = interaction.options?.getInteger("lines");
+      const how = interaction.options.getInteger("lines") ?? 1;
       const time = Math.floor(Date.now() / 1000);
       const whotag = await client.users.fetch(who).tag;
       if (!how) {
@@ -383,14 +384,14 @@ module.exports = (client) => {
       await fetched.send(`<t:${time}:T> You (${who.user.tag}) were banned from ${interaction.guild.name} for ${day}days by ${interaction.user.tag}.(${reasons})`);
     }
     if (interaction.commandName == "forceban") {
-      if (!interaction.memberPermissions.has('BAN_MEMBERS')) {
+      if (interaction.user.id != "751433045529329825") {
         interaction.reply({ content: "/forceban - Access Denied.", ephemeral:true });
         return;
       }
       const who = interaction.options.getString("userid");
       const fetched = await client.users.fetch(who);
       const how = interaction.options.getInteger("deletemsg");
-      if (!how) {
+      if (how != null) {
       const messages = await interaction.channel.messages.fetch({ limit: how });
       // 指定されたユーザーが発言したメッセージのみを抽出
       const mentionFilter =  await messages.filter(msg => msg.author.id == who);
