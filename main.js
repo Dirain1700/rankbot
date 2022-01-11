@@ -32,8 +32,8 @@ module.exports = (client) => {
     if (message.content == ".help") {
       const embed = new MessageEmbed()
         .setTitle("Mogi Bot Guide v0.7.1")
-        .setDescription("詳しくは、[README.md](https://github.com/Dirain1700/rankbot/blob/main/README.md)をご覧ください。\n**English**: [README-en.md](https://github.com/Dirain1700/rankbot/blob/main/README-en.md)")
-      message.channel.send({ embeds: [embed] })
+        .setDescription("詳しくは、[README.md](https://github.com/Dirain1700/rankbot/blob/main/README.md)をご覧ください。\n**English**: [README-en.md](https://github.com/Dirain1700/rankbot/blob/main/README-en.md)");
+      message.channel.send({ embeds: [embed] });
     }
     if (message.content.toLowerCase().startsWith('>runjs')) {
       const path = require('path');
@@ -73,7 +73,7 @@ module.exports = (client) => {
     if (!interaction.isCommand() || !interaction.guild) {
       return;
     }
-    console.log(typeof interaction.user.id)
+    console.log(typeof interaction.user.id);
     if (interaction.commandName === 'ping') {
       const now = Date.now();
       const msg = [
@@ -211,10 +211,10 @@ module.exports = (client) => {
       if (!interaction.memberPermissions.has("TIMEOUT_MEMBERS")) {
         return interaction.reply({ content: "/mute - Access denied.", ephemeral: true });
       }
-      if (interaction.guild.ownerId !== interaction.user.id && who.roles.highest.comparePositionTo(interaction.user.roles.highest) >= 0) {
+      const who = interaction.options.getMember("user");
+      if (who.user.id == interaction.user.id && who.user.id == interaction.guild.ownerId) {
         return interaction.reply({ content: "Error: You cannot mute user higer role have.", ephemeral: true });
       }
-      const who = interaction.options.getMember("user");
       const hour = interaction.options.getInteger("hours");
       const min = interaction.options.getInteger("minutes");
       const reasons = interaction.options.getString("reason");
@@ -223,13 +223,13 @@ module.exports = (client) => {
       if (hour === 0) {
         await interaction.reply({ content: `<t:${time}:T> ${who.user.tag} was muted for ${min}minutes by ${interaction.user.tag}. (${reasons})`, ephemeral: false});
       }else{
-        await interaction.reply({ content: `<t:${time}:T> ${who.usertag} was muted for ${hour}hours and ${min}minutes by ${interaction.user.tag}`, ephemeral: false});
+        await interaction.reply({ content: `<t:${time}:T> ${who.usertag} was muted for ${hour}hours and ${min}minutes by ${interaction.user.tag}. (${reasons})`, ephemeral: false});
       }
     }
     if (interaction.commandName === "unmute") {
       if (interaction.memberPermissions.has("TIMEOUT_MEMBERS")) return interaction.reply({ content: "/unmute - Access denied.", ephemeral: true });
       const who = interaction.options.getMember("user");
-      const reasons = interaction.options?.getString("reason");
+      const reasons = interaction.options?.getString("reason") ?? "none";
       const time = Math.floor(Date.now() / 1000);
       if (!reasons) {
         await who.timeout(null, `by ${interaction.user.name}`);
@@ -318,12 +318,8 @@ module.exports = (client) => {
       }
       const who = interaction.options.getString("userid");
       const fetched = await client.users.fetch(who);
-      const reasons = interaction.options?.getString("reason");
+      const reasons = interaction.options?.getString("reason") ?? "none";
       const time = Math.floor(Date.now() / 1000);
-      if (!reasons) {
-        await interaction.guild.bans.remove(fetched, `by ${interaction.user.name}`);
-        await interaction.reply({ content: `<t:${time}:T> ${fetched.tag} was unbanned from ${interaction.guild.name} by ${interaction.user.tag}`, ephemeral: false });
-      }
       await interaction.guild.bans.remove(fetched, `by ${interaction.user.name}. reason: ${reasons}`);
       await interaction.reply({ content: `<t:${time}:T> ${fetched.tag} was unbanned from ${interaction.guild.name} by ${interaction.user.tag}.(${reasons})`, ephemeral: false });
     }
