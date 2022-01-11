@@ -11,7 +11,7 @@ const client = new Client(options);
 const main = require("./main.js");
 main(client);
 /* eslint-enable */
-http.createServer(function(req, res){
+http.createServer((req, res) => {
   if (req.method == "POST"){
     let data = "";
     req.on("data", function(chunk){
