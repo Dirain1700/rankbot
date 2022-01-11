@@ -13,6 +13,6 @@
       "no-extra-semi": 1
     },
     "parserOptions": {
-        "ecmaVersion": 2020
+        "ecmaVersion": 2021
     }
 }

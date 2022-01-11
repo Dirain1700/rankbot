@@ -13,7 +13,7 @@ main(client);
 /* eslint-enable */
 http.createServer(function(req, res){
   if (req.method == "POST"){
-    var data = "";
+    let data = "";
     req.on("data", function(chunk){
       data += chunk;
     });
@@ -22,10 +22,8 @@ http.createServer(function(req, res){
         res.end("No post data");
         return;
       }
-      var dataObject = querystring.parse(data);
-      //console.log("post:" + dataObject.type);
+      const dataObject = querystring.parse(data);
       if(dataObject.type == "wake"){
-        //console.log("Woke up in post");
         res.end();
         return;
   }
@@ -37,9 +35,4 @@ http.createServer(function(req, res){
  }
 }).listen(3000);
 
-/*if(process.env.DISCORD_BOT_TOKEN == undefined){
-console.log("DISCORD_BOT_TOKEN is undefiend.");
-process.exit(1);
-}*/
-
-client.login( process.env.DISCORD_BOT_TOKEN );
+client.login( process.env.DISCORD );

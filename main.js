@@ -26,22 +26,12 @@ module.exports = (client) => {
       const seconds = Number(message.content.split(" ")[1]);
       message.channel.send(`Timer set to: ${seconds}seconds!`);
       setTimeout(() => {
-        message.reply(`<@${message.author.id}>, Time's up!`)
+        message.channel.send(`<@${message.author.id}>, Time's up!`)
       }, seconds * 1000); // setTimeoutに指定するのはミリ秒なので秒数に1000を掛ける
     };*/
-    if (message.content == ".rn") {
-      const embed = new MessageEmbed()
-      .setTitle("Release note Mogi Bot v0.7.0 (beta)")
-      .setDescription("Mogi Bot v0.7.0 (beta) has been released!")
-      .addField("`/mute`", "staffs can mute members with `/mute [user] [hours] [minutes] [reason]`.\nuse `/unmute` to unmute members. and more new commands.")
-      .addField("Ranking system", "Chenged ranking system from [keyv](https://www.npmjs.com/package/keyv) and [@keyv/sqlite](https://www.npmjs.com/package/@kayv/sqlite) to JSON. I can easily edit ranks.\n`/rank [user(optional)]` to see your/target user's rank.")
-      .setURL("https://github.com/Dirain1700/rankbot/")
-      .setImage("https://opengraph.githubassets.com/35240437381a862e9eb9b698e8e498316e0fe29d71f9e78c571411b75e327cca/Dirain1700/rankbot");
-      message.channel.send({ embeds: [embed] });
-    }
     if (message.content == ".help") {
       const embed = new MessageEmbed()
-        .setTitle("Mogi Botの使い方")
+        .setTitle("Mogi Bot Guide v0.7.1")
         .setDescription("詳しくは、[README.md](https://github.com/Dirain1700/rankbot/blob/main/README.md)をご覧ください。\n**English**: [README-en.md](https://github.com/Dirain1700/rankbot/blob/main/README-en.md)")
       message.channel.send({ embeds: [embed] })
     }
@@ -128,7 +118,6 @@ module.exports = (client) => {
       if (interaction.user.id in db) {
         //ユーザーIDのデータがある場合
         // userIDのあるデータ
-        // userIDのあるデータ
         const data = db[interaction.user.id];
         // そのデータの順位
         // とりあえず1とする
@@ -206,19 +195,9 @@ module.exports = (client) => {
       }
       // 指定されたメッセージの数を取
       const who = await interaction.options.getString("userid");
-      const how = interaction.options.getInteger("lines") ?? 1;
+      const how = interaction.options?.getInteger("lines") ?? 1;
       const time = Math.floor(Date.now() / 1000);
       const whotag = await client.users.fetch(who).tag;
-      if (!how) {
-        // 指定された数のメッセージを取得
-        const messages = await interaction.channel.messages.fetch({ limit: 1 });
-        // 指定されたユーザーが発言したメッセージのみを抽出
-        const mentionFilter =  await messages.filter(msg => msg.author.id == who);
-        // それらのメッセージを一括削除
-        interaction.channel.bulkDelete(mentionFilter);
-        await interaction.reply({ content: `<t:${time}:T> 1 of ${whotag}'s message was cleard from ${interaction.channel.name} by ${interaction.user.tag}.`, ephemeral: false });
-        return;
-      }
       // 指定された数のメッセージを取得
       const messages = await interaction.channel.messages.fetch({ limit: how });
       // 指定されたユーザーが発言したメッセージのみを抽出
