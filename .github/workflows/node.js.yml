@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main, dev ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, dev ]
+    branches: [ main,dev ]
 
 jobs:
   build:
@@ -27,6 +27,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm i --no-save eslint
-    - run: npm run eslint main.js
-    - run: npm run eslint index.js
+    - run: npm run eslint *.js

@@ -8,14 +8,14 @@
     "eslint": "eslint"
   },
   "dependencies": {
-    "discord.js": "^13.5.0",
+    "discord.js": "^13.6.0",
     "vm2": "^3.9.5",
     "workerpool": "^6.1.5",
     "ws": "^8.4.0"
   },
   "devDependencies": {
-    "eslint": "^8.5.0",
-    "node": "^16.13.1"
+    "eslint": "^8.6.0",
+    "node": "^16.13.2"
   },
   "engines": {
     "node": "16.x"

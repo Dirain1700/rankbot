@@ -6,7 +6,9 @@
       "es6": true,
       "browser": true
     },
-    "globals": {},
+    "globals": {
+      "config": true
+    },
     "rules": {
       "no-unused-vars": 0,
       "semi": [1,"always"],
