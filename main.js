@@ -66,7 +66,7 @@ module.exports = (client) => {
           .then(result => message.sendDeleteable(toMessageOptions(result)))
           .catch(error => message.sendDeleteable(error, { code: "js" }))
                    );
-    
+    };
   });
   
   client.on("interactionCreate", async interaction => {
