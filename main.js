@@ -8,7 +8,7 @@ module.exports = (client) => {
     console.log(`logged in as ${client.user.tag}`);
     client.user.setActivity("ウマ娘 プリティーダービー Season2", { type: "WATCHING" }, { status: "offline"});
     ranksort();
-    const cmd = require("./metas/command.js");
+    const cmd = require("./config/command.js");
   });
   
   client.on("messageCreate", async message => {
