@@ -3,9 +3,9 @@
 # 環境
 言語は<b>JavaScript</b>です。
 - Windows10
-- Node.js v16.13.1
+- Node.js v16.13.2
 - Visual Studio Code
-- discord.js v13.3.5
+- discord.js v13.6.0
 
 # 機能
 全部コード書いても長くなるだけなんでGitHub見てください()<br/>
