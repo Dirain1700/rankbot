@@ -1,7 +1,9 @@
 # Test files
 foo*
+fs.js
 
 # Logs
+config/log/*.txt
 logs
 *.log
 npm-debug.log*
