@@ -3,9 +3,9 @@
 # Development Environments
 Using <b>JavaScript</b>.
 - Windows10
-- Node.js v16.13.1
+- Node.js v16.13.2
 - Visual Studio Code
-- discord.js v13.3.5
+- discord.js v13.6.0
 
 # Codes
 All source are on GitHub.<br/>
