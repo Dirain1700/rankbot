@@ -36,4 +36,4 @@ http.createServer((req, res) => {
  }
 }).listen(3000);
 
-client.login( process.env.DISCORD );
+client.login( config.token );
