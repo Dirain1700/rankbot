@@ -8,7 +8,7 @@ module.exports = (client) => {
     console.log(`logged in as ${client.user.tag}`);
     client.user.setActivity("ウマ娘 プリティーダービー Season2", { type: "WATCHING" }, { status: "offline"});
     ranksort();
-    const cmd = require("./metas/command.js");
+    const cmd = require("./config/command.js");
   });
   
   client.on("messageCreate", async message => {
@@ -35,36 +35,36 @@ module.exports = (client) => {
         .setDescription("詳しくは、[README.md](https://github.com/Dirain1700/rankbot/blob/main/README.md)をご覧ください。\n**English**: [README-en.md](https://github.com/Dirain1700/rankbot/blob/main/README-en.md)");
       message.channel.send({ embeds: [embed] });
     }
-    if (message.content.toLowerCase().startsWith('>runjs')) {
-      const path = require('path');
-      const pool = require('workerpool').pool(path.join(__dirname, './metas/worker.js'), {
-        workerType: 'process',
+    if (message.content.toLowerCase().startsWith(">runjs")) {
+      const path = require("path");
+      const pool = require("workerpool").pool(path.join(__dirname, "./config/worker.js"), {
+        workerType: "process",
       });
       
       const codeBlockRegex = /^`{3}(?<lang>[a-z]+)\n(?<code>[\s\S]+)\n`{3}$/mu;
-      const languages = ['js', 'javascript'];
+      const languages = ["js", "javascript"];
       const toMessageOptions = content => {
         if (content.length <= 2000)
-          return APIMessage.transformOptions(content, { code: 'js' });
+          return APIMessage.transformOptions(content, { code: "js" });
         else
           return APIMessage.transformOptions(
-      '実行結果が長すぎるのでテキストファイルに出力しました。',
-          new MessageAttachment(Buffer.from(content), 'result.txt')
+      "実行結果が長すぎるのでテキストファイルに出力しました。",
+          new MessageAttachment(Buffer.from(content), "result.js")
           );
       };
         if (!codeBlockRegex.test(message.content))
-          return message.reply('コードを送信してください。').catch(console.error);
+          return message.reply("コードを送信してください。").catch(console.error);
           
       const codeBlock = message.content.match(codeBlockRegex)?.groups ?? {};
         if (!languages.includes(codeBlock.lang))
           return message
-            .reply(`言語識別子が**${languages.join(', ')}**である必要があります。`)
+            .reply(`言語識別子が**${languages.join(", ")}**である必要があります。`)
             .catch(console.error);
         pool
-          .exec('run', [codeBlock.code])
+          .exec("run", [codeBlock.code])
           .timeout(5000
           .then(result => message.sendDeleteable(toMessageOptions(result)))
-          .catch(error => message.sendDeleteable(error, { code: 'js' }))
+          .catch(error => message.sendDeleteable(error, { code: "js" }))
                    );
     }
   });
