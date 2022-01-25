@@ -6,13 +6,20 @@ module.exports = (client) => {
   /* eslint-enable */
   client.on("ready", async () => {
     console.log(`logged in as ${client.user.tag}`);
-    client.user.setActivity("ウマ娘 プリティーダービー Season2", { type: "WATCHING" }, { status: "offline"});
+    client.user.setActivity("ウマ娘 プリティーダービー Season2", { type: "WATCHING" }, { status: "offline" });
     ranksort();
     const cmd = require("./config/command.js");
+    const server = client.guilds.cache.get("886970564265259029");
+    //const ch = client.channels.cache.get("920606895117578300");
+    //console.log(ch.find(c => c.name == "一般").id)
+    /*await ch.messages.fetch({ limit: 5 })
+      .then(message => console.log(message))
+      .catch(console.error)*/
+    //console.log(ch)
   });
-  
+
   client.on("messageCreate", async message => {
-    if (message.author.bot){
+    if (message.author.bot) {
       return;
     }
     /*if (message.content.startsWith(".foo")) {
@@ -40,7 +47,7 @@ module.exports = (client) => {
       const pool = require("workerpool").pool(path.join(__dirname, "./config/worker.js"), {
         workerType: "process",
       });
-      
+
       const codeBlockRegex = /^`{3}(?<lang>[a-z]+)\n(?<code>[\s\S]+)\n`{3}$/mu;
       const languages = ["js", "javascript"];
       const toMessageOptions = content => {
@@ -48,27 +55,27 @@ module.exports = (client) => {
           return APIMessage.transformOptions(content, { code: "js" });
         else
           return APIMessage.transformOptions(
-      "実行結果が長すぎるのでテキストファイルに出力しました。",
-          new MessageAttachment(Buffer.from(content), "result.js")
+            "実行結果が長すぎるのでテキストファイルに出力しました。",
+            new MessageAttachment(Buffer.from(content), "result.js")
           );
       };
-        if (!codeBlockRegex.test(message.content))
-          return message.reply("コードを送信してください。").catch(console.error);
-          
-      const codeBlock = message.content.match(codeBlockRegex)?.groups ?? {};
-        if (!languages.includes(codeBlock.lang))
-          return message
-            .reply(`言語識別子が**${languages.join(", ")}**である必要があります。`)
-            .catch(console.error);
-        pool
-          .exec("run", [codeBlock.code])
-          .timeout(5000
+      if (!codeBlockRegex.test(message.content))
+        return message.reply("コードを送信してください。").catch(console.error);
+
+      const codeBlock = message.content.match(codeBlockRegex) ?.groups ?? {};
+      if (!languages.includes(codeBlock.lang))
+        return message
+          .reply(`言語識別子が**${languages.join(", ")}**である必要があります。`)
+          .catch(console.error);
+      pool
+        .exec("run", [codeBlock.code])
+        .timeout(5000
           .then(result => message.sendDeleteable(toMessageOptions(result)))
           .catch(error => message.sendDeleteable(error, { code: "js" }))
-                   );
+        );
     };
   });
-  
+
   client.on("interactionCreate", async interaction => {
     if (!interaction.isCommand() || !interaction.guild) {
       return;
@@ -83,11 +90,10 @@ module.exports = (client) => {
       ];
       await interaction.reply({ content: msg.join("\n"), ephemeral: true });
       await interaction.editReply([...msg, `往復: ${Date.now() - now}ms`].join("\n"));
-        return;
+      return;
     }
     if (interaction.commandName === "apt") {
-      interaction.deferReply();
-      if(!interaction.memberPermissions.has("ADMINISTRATOR")) {
+      if (!interaction.memberPermissions.has("ADMINISTRATOR")) {
         await interaction.reply({ content: "/apt - Access Denied.", ephemeral: true });
         return;
       }
@@ -106,7 +112,7 @@ module.exports = (client) => {
       // 書き換え
       fs.writeFileSync("./rank.json", db);
       //送信
-      await interaction.followUp(`Added ${how}points to ${who.user.tag} and having ${db[who.user.id].points}points now.`);
+      await interaction.reply(`Added ${how}points to ${who.user.tag} and having ${db[who.user.id].points}points now.`);
     }
     if (interaction.commandName === "rank") {
       //interaction.deferReply();
@@ -114,63 +120,63 @@ module.exports = (client) => {
       ranksort();
       //JSONを読み込む
       const db = JSON.parse(fs.readFileSync("./rank.json"));
-    if(!who) {
-      if (interaction.user.id in db) {
-        //ユーザーIDのデータがある場合
-        // userIDのあるデータ
-        const data = db[interaction.user.id];
-        // そのデータの順位
-        // とりあえず1とする
-        let rank = 1;
-        for (const id in db) {
-          // 自分より得点が高い人がいたら、順位を下げる
-          if (data.points < db[id].points) {
-            rank += 1;
+      if (!who) {
+        if (interaction.user.id in db) {
+          //ユーザーIDのデータがある場合
+          // userIDのあるデータ
+          const data = db[interaction.user.id];
+          // そのデータの順位
+          // とりあえず1とする
+          let rank = 1;
+          for (const id in db) {
+            // 自分より得点が高い人がいたら、順位を下げる
+            if (data.points < db[id].points) {
+              rank += 1;
+            }
           }
+          interaction.reply({ content: `${interaction.user.tag} has ${data.points}points now and ${rank}th.`, ephemeral: true });
+          return;
+        } else {
+          //送信
+          interaction.reply({ content: `${interaction.user.tag} has 0points now.`, ephemeral: true });
+          return;
         }
-        interaction.reply({ content: `${interaction.user.tag} has ${data.points}points now and ${rank}th.`, ephemeral: true });
-        return;
-      }else{
-        //送信
-        interaction.reply({ content: `${interaction.user.tag} has 0points now.`, ephemeral: true });
-        return;
-        }
-    }else{
-      if (who.user.id in db) {
-        // userIDのあるデータ
-        const data = db[who.user.id];
-        // そのデータの順位
-        // とりあえず1とする
-        let rank = 1;
-        for (const id in db) {
-          // 自分より得点が高い人がいたら、順位を下げる
-          if (data.points < db[id].points) {
-            rank += 1;
+      } else {
+        if (who.user.id in db) {
+          // userIDのあるデータ
+          const data = db[who.user.id];
+          // そのデータの順位
+          // とりあえず1とする
+          let rank = 1;
+          for (const id in db) {
+            // 自分より得点が高い人がいたら、順位を下げる
+            if (data.points < db[id].points) {
+              rank += 1;
+            }
           }
-        }
-        interaction.reply({ content:`${who.user.tag} has ${data.points}points now and ${rank}th.`, ephemeral: true });
-        return;
-      }else{
-        interaction.reply({ content: `${who.user.tag} has 0points now.`, ephemeral: true });
-        return;
+          interaction.reply({ content: `${who.user.tag} has ${data.points}points now and ${rank}th.`, ephemeral: true });
+          return;
+        } else {
+          interaction.reply({ content: `${who.user.tag} has 0points now.`, ephemeral: true });
+          return;
         }
       }
     }
-    if(interaction.commandName === "cleartext") {
+    if (interaction.commandName === "cleartext") {
       if (!interaction.memberPermissions.has("MANAGE_MESSAGES")) {
         //interaction.deleteReply();
         interaction.reply({ content: "/cleartext - Access Denied.", ephemeral: true });
         return;
       }
       // 指定されたメッセージの数を取
-      const how = interaction.options?.getInteger("lines");
+      const how = interaction.options ?.getInteger("lines");
       const time = Math.floor(Date.now() / 1000);
       if (!how) {
         // 指定された数のメッセージを取得
         const messages = await interaction.channel.messages.fetch({ limit: 1 });
         const who = await interaction.options.getMember("user");
         // 指定されたユーザーが発言したメッセージのみを抽出
-        const mentionFilter =  await messages.filter(msg => msg.author.id == who.user.id);
+        const mentionFilter = await messages.filter(msg => msg.author.id == who.user.id);
         // それらのメッセージを一括削除
         interaction.channel.bulkDelete(mentionFilter);
         await interaction.reply({ content: `<t:${time}:T> 1 of ${who.user.id}'s message was cleard from ${interaction.channel.name} by ${interaction.user.tag}.`, ephemeral: false });
@@ -181,13 +187,13 @@ module.exports = (client) => {
       const who = await interaction.options.getUser("user").id;
       const whotag = await client.users.cache.get(who).tag;
       // 指定されたユーザーが発言したメッセージのみを抽出
-      const mentionFilter =  await messages.filter(msg => msg.author.id === who);
+      const mentionFilter = await messages.filter(msg => msg.author.id === who);
       // それらのメッセージを一括削除
       interaction.channel.bulkDelete(mentionFilter);
       await interaction.reply({ content: `<t:${time}:T> ${how} of ${whotag}'s messages were cleard from ${interaction.channel.name} by ${interaction.user.tag}.`, ephemeral: false });
       return;
     }
-    if(interaction.commandName === "forcecleartext") {
+    if (interaction.commandName === "forcecleartext") {
       if (!interaction.memberPermissions.has("MANAGE_MESSAGES")) {
         //interaction.deleteReply();
         interaction.reply({ content: "/forcecleartext - Access Denied.", ephemeral: true });
@@ -195,13 +201,13 @@ module.exports = (client) => {
       }
       // 指定されたメッセージの数を取
       const who = await interaction.options.getString("userid");
-      const how = interaction.options?.getInteger("lines") ?? 1;
+      const how = interaction.options ?.getInteger("lines") ?? 1;
       const time = Math.floor(Date.now() / 1000);
       const whotag = await client.users.fetch(who).tag;
       // 指定された数のメッセージを取得
       const messages = await interaction.channel.messages.fetch({ limit: how });
       // 指定されたユーザーが発言したメッセージのみを抽出
-      const mentionFilter =  await messages.filter(msg => msg.author.id == who);
+      const mentionFilter = await messages.filter(msg => msg.author.id == who);
       // それらのメッセージを一括削除
       interaction.channel.bulkDelete(mentionFilter);
       await interaction.reply({ content: `<t:${time}:T> ${how} of ${whotag}'s messages were cleard from ${interaction.channel.name} by ${interaction.user.tag}.`, ephemeral: false });
@@ -218,18 +224,18 @@ module.exports = (client) => {
       const hour = interaction.options.getInteger("hours");
       const min = interaction.options.getInteger("minutes");
       const reasons = interaction.options.getString("reason");
-      await who.timeout( hour * 60 * 60 * 1000 + min * 60 * 1000, `by ${interaction.user.tag}. reason: ${reasons}`);
+      await who.timeout(hour * 60 * 60 * 1000 + min * 60 * 1000, `by ${interaction.user.tag}. reason: ${reasons}`);
       const time = Math.floor(Date.now() / 1000);
       if (hour === 0) {
-        await interaction.reply({ content: `<t:${time}:T> ${who.user.tag} was muted for ${min}minutes by ${interaction.user.tag}. (${reasons})`, ephemeral: false});
-      }else{
-        await interaction.reply({ content: `<t:${time}:T> ${who.usertag} was muted for ${hour}hours and ${min}minutes by ${interaction.user.tag}. (${reasons})`, ephemeral: false});
+        await interaction.reply({ content: `<t:${time}:T> ${who.user.tag} was muted for ${min}minutes by ${interaction.user.tag}. (${reasons})`, ephemeral: false });
+      } else {
+        await interaction.reply({ content: `<t:${time}:T> ${who.usertag} was muted for ${hour}hours and ${min}minutes by ${interaction.user.tag}. (${reasons})`, ephemeral: false });
       }
     }
     if (interaction.commandName === "unmute") {
       if (interaction.memberPermissions.has("TIMEOUT_MEMBERS")) return interaction.reply({ content: "/unmute - Access denied.", ephemeral: true });
       const who = interaction.options.getMember("user");
-      const reasons = interaction.options?.getString("reason") ?? "none";
+      const reasons = interaction.options ?.getString("reason") ?? "none";
       const time = Math.floor(Date.now() / 1000);
       if (!reasons) {
         await who.timeout(null, `by ${interaction.user.name}`);
@@ -237,11 +243,11 @@ module.exports = (client) => {
         return;
       }
       await who.timeout(null, (`by ${interaction.user.tag}. reason: ${reasons}`));
-      await interaction.reply({ content: `<t:${time}:T> ${who.user.tag} was unmuted by ${interaction.user.tag}.(${reasons})`, ephemeral: false});
+      await interaction.reply({ content: `<t:${time}:T> ${who.user.tag} was unmuted by ${interaction.user.tag}.(${reasons})`, ephemeral: false });
     }
     if (interaction.commandName === "kick") {
       if (!interaction.memberPermissions.has('KICK_MEMBERS')) {
-        interaction.followUp({ content: "/kick - Access Denied.", ephemeral:true });
+        interaction.followUp({ content: "/kick - Access Denied.", ephemeral: true });
         return;
       }
       const who = interaction.options.getMember("user");
@@ -250,24 +256,24 @@ module.exports = (client) => {
       }
       const how = interaction.options.getInteger("deletemsg");
       if (!how) {
-      const messages = await interaction.channel.messages.fetch({ limit: how });
-      // 指定されたユーザーが発言したメッセージのみを抽出
-      const mentionFilter =  await messages.filter(msg => msg.author.id === who.user.id);
-      // それらのメッセージを一括削除
-      interaction.channel.bulkDelete(mentionFilter);
+        const messages = await interaction.channel.messages.fetch({ limit: how });
+        // 指定されたユーザーが発言したメッセージのみを抽出
+        const mentionFilter = await messages.filter(msg => msg.author.id === who.user.id);
+        // それらのメッセージを一括削除
+        interaction.channel.bulkDelete(mentionFilter);
       }
-    const day = interaction.options.getInteger("days");
-    const reasons = interaction.options.getString("reason");
-    await interaction.guild.members.kick(who, { days: day, reason: `by ${interaction.user.tag}. reason: ${reasons}` });
-    const fetched = await client.users.fetch(who.user.id);
-    const time = Math.floor(Date.now() / 1000);
-    await interaction.reply({ content: `<t:${time}:T> ${who.user.tag} was kicked from ${interaction.guild.name} for ${day}days by ${interaction.user.tag}.(${reasons})`, ephemeral: false });
+      const day = interaction.options.getInteger("days");
+      const reasons = interaction.options.getString("reason");
+      await interaction.guild.members.kick(who, { days: day, reason: `by ${interaction.user.tag}. reason: ${reasons}` });
+      const fetched = await client.users.fetch(who.user.id);
+      const time = Math.floor(Date.now() / 1000);
+      await interaction.reply({ content: `<t:${time}:T> ${who.user.tag} was kicked from ${interaction.guild.name} for ${day}days by ${interaction.user.tag}.(${reasons})`, ephemeral: false });
       await fetched.send(`<t:${time}:T> You (${who.user.tag}) were kicked from ${interaction.guild.name} for ${day}days by ${interaction.user.tag}.(${reasons})`);
     }
     if (interaction.commandName === "ban") {
       //interaction.deferReply();
       if (!interaction.memberPermissions.has('BAN_MEMBERS')) {
-        interaction.reply({ content: "/ban - Access Denied.", ephemeral:true });
+        interaction.reply({ content: "/ban - Access Denied.", ephemeral: true });
         return;
       }
       const who = interaction.options.getMember("user");
@@ -276,49 +282,49 @@ module.exports = (client) => {
       }
       const how = interaction.options.getInteger("deletemsg");
       if (!how) {
-      const messages = await interaction.channel.messages.fetch({ limit: how });
-      // 指定されたユーザーが発言したメッセージのみを抽出
-      const mentionFilter =  await messages.filter(msg => msg.author.id == who.user.id);
-      // それらのメッセージを一括削除
-      interaction.channel.bulkDelete(mentionFilter);
+        const messages = await interaction.channel.messages.fetch({ limit: how });
+        // 指定されたユーザーが発言したメッセージのみを抽出
+        const mentionFilter = await messages.filter(msg => msg.author.id == who.user.id);
+        // それらのメッセージを一括削除
+        interaction.channel.bulkDelete(mentionFilter);
       }
-    const day = interaction.options.getInteger("days");
-    const reasons = interaction.options.getString("reason");
-    await interaction.guild.bans.create(who, { days: day, reason: `by ${interaction.user.tag}. reason: ${reasons}` });
-    const fetched = await client.users.fetch(who.user.id);
-    const time = Math.floor(Date.now() / 1000);
-    await interaction.reply({ content: `<t:${time}:T> ${who.user.tag} was banned from ${interaction.guild.name} for ${day}days by ${interaction.user.tag}.(${reasons})`, ephemeral: false });
+      const day = interaction.options.getInteger("days");
+      const reasons = interaction.options.getString("reason");
+      await interaction.guild.bans.create(who, { days: day, reason: `by ${interaction.user.tag}. reason: ${reasons}` });
+      const fetched = await client.users.fetch(who.user.id);
+      const time = Math.floor(Date.now() / 1000);
+      await interaction.reply({ content: `<t:${time}:T> ${who.user.tag} was banned from ${interaction.guild.name} for ${day}days by ${interaction.user.tag}.(${reasons})`, ephemeral: false });
       await fetched.send(`<t:${time}:T> You (${who.user.tag}) were banned from ${interaction.guild.name} for ${day}days by ${interaction.user.tag}.(${reasons})`);
     }
     if (interaction.commandName == "forceban") {
       if (interaction.user.id != "751433045529329825") {
-        interaction.reply({ content: "/forceban - Access Denied.", ephemeral:true });
+        interaction.reply({ content: "/forceban - Access Denied.", ephemeral: true });
         return;
       }
       const who = interaction.options.getString("userid");
       const fetched = await client.users.fetch(who);
       const how = interaction.options.getInteger("deletemsg");
       if (how != null) {
-      const messages = await interaction.channel.messages.fetch({ limit: how });
-      // 指定されたユーザーが発言したメッセージのみを抽出
-      const mentionFilter =  await messages.filter(msg => msg.author.id == who);
-      // それらのメッセージを一括削除
-      interaction.channel.bulkDelete(mentionFilter);
+        const messages = await interaction.channel.messages.fetch({ limit: how });
+        // 指定されたユーザーが発言したメッセージのみを抽出
+        const mentionFilter = await messages.filter(msg => msg.author.id == who);
+        // それらのメッセージを一括削除
+        interaction.channel.bulkDelete(mentionFilter);
       }
-    const day = interaction.options.getInteger("days");
-    const reasons = interaction.options.getString("reason");
-    await interaction.guild.bans.create(fetched, { days: day, reason: `by ${interaction.user.tag}. Force-BAN. reason: ${reasons}` });
-    const time = Math.floor(Date.now() / 1000);
-    await interaction.reply({ content: `<t:${time}:T> ${fetched.tag} was force-banned from ${interaction.guild.name} for ${day}days by ${interaction.user.tag}.(${reasons})`, ephemeral: false });
+      const day = interaction.options.getInteger("days");
+      const reasons = interaction.options.getString("reason");
+      await interaction.guild.bans.create(fetched, { days: day, reason: `by ${interaction.user.tag}. Force-BAN. reason: ${reasons}` });
+      const time = Math.floor(Date.now() / 1000);
+      await interaction.reply({ content: `<t:${time}:T> ${fetched.tag} was force-banned from ${interaction.guild.name} for ${day}days by ${interaction.user.tag}.(${reasons})`, ephemeral: false });
       await fetched.send(`<t:${time}:T> You (${fetched.tag}) were banned from ${interaction.guild.name} for ${day}days by ${interaction.user.tag}.(${reasons})`);
     }
     if (interaction.commandName === "unban") {
       if (!interaction.memberPermissions.has('BAN_MEMBERS')) {
-        return interaction.reply({ content: "/forceban - Access Denied.", ephemeral:true });
+        return interaction.reply({ content: "/forceban - Access Denied.", ephemeral: true });
       }
       const who = interaction.options.getString("userid");
       const fetched = await client.users.fetch(who);
-      const reasons = interaction.options?.getString("reason") ?? "none";
+      const reasons = interaction.options ?.getString("reason") ?? "none";
       const time = Math.floor(Date.now() / 1000);
       await interaction.guild.bans.remove(fetched, `by ${interaction.user.name}. reason: ${reasons}`);
       await interaction.reply({ content: `<t:${time}:T> ${fetched.tag} was unbanned from ${interaction.guild.name} by ${interaction.user.tag}.(${reasons})`, ephemeral: false });

@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "npx node index.js",
-    "eslint": "eslint"
+    "lint": "eslint *js"
   },
   "dependencies": {
     "discord.js": "^13.6.0",
+    "ps-client": "git+https://github.com/Dirain1700/PS-Client.git#dev",
     "vm2": "^3.9.5",
     "workerpool": "^6.1.5",
     "ws": "^8.4.0"

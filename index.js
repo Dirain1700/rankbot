@@ -1,16 +1,19 @@
 /* eslint-disable */
 const http = require("http");
 const querystring = require("querystring");
-const fs = require("fs");
+global.fs = require("fs");
 global.config = require("./config/config");
 const pages = fs.readFileSync("./config/index.html");
 const {Intents,Client,ClientApplication,Discord} = require('discord.js');
-const options = {
-   intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_VOICE_STATES", "GUILD_PRESENCES", "GUILD_MESSAGE_REACTIONS", "GUILD_MEMBERS", "GUILD_BANS","GUILD_MESSAGE_REACTIONS"],
-};
-const client = new Client(options);
+const PSClient = require("ps-client").Client;
+
+let ps = new PSClient(config.ops);
+const client = new Client(config.options);
 const main = require("./main.js");
+const showdown = require("./showdown.js");
 main(client);
+showdown(ps)
+
 /* eslint-enable */
 http.createServer((req, res) => {
   if (req.method == "POST"){
@@ -36,4 +39,5 @@ http.createServer((req, res) => {
  }
 }).listen(3000);
 
-client.login( config.token );
+//client.login( config.token );
+ps.connect();

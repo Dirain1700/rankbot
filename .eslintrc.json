@@ -7,7 +7,8 @@
       "browser": true
     },
     "globals": {
-      "config": true
+      "config": true,
+      "fs": false
     },
     "rules": {
       "no-unused-vars": 0,
