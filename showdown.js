@@ -26,19 +26,22 @@ module.exports = (ps) => {
     function logmsg(message) {
       const rank = message.author.rank;
       const spl = message.raw.split("|")
+      let add;
       switch (["^", "+", "$", "*", "%", "@", "#", "&"].includes(rank)) {
         case false:
-      var add = {
-        "time": spl[2],
-        "user": message.author.id,
-        "content": message.content
-      }
+          add = {
+            "time": spl[2],
+            "user": message.author.id,
+            "content": message.content
+          }
+          break;
         case true:
-          var add = {
-        "time": spl[2],
-        "user": message.author.rank + message.author.id,
-        "content": message.content
-      }
+          add = {
+            "time": spl[2],
+            "user": message.author.rank + message.author.id,
+            "content": message.content
+          }
+          break;
       const json = JSON.parse(fs.readFileSync("./foo.json"))
       json.push(add)
       json.sort((a, b) => b.time - a.time);
