@@ -43,10 +43,10 @@ module.exports = (ps) => {
           }
           break;
       }
-      const json = JSON.parse(fs.readFileSync("./foo.json"))
-      json.push(add)
+      const json = JSON.parse(fs.readFileSync("./foo.json"));
+      json.push(add);
       json.sort((a, b) => b.time - a.time);
-      fs.writeFileSync("./foo.json", JSON.stringify(json, null, 2)
+      fs.writeFileSync("./foo.json", JSON.stringify(json, null, 2));
     };
   
   function whatislog(message) {
