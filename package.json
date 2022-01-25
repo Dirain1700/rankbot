@@ -1,6 +1,6 @@
 {
   "name": "mogi-bot",
-  "version": "0.7.11",
+  "version": "0.7.12",
   "description": "A simple Node app built on Replit, support tournaments.",
   "main": "index.js",
   "scripts": {
@@ -11,11 +11,11 @@
     "discord.js": "^13.6.0",
     "ps-client": "git+https://github.com/Dirain1700/PS-Client.git#dev",
     "vm2": "^3.9.5",
-    "workerpool": "^6.1.5",
-    "ws": "^8.4.0"
+    "workerpool": "^6.2.0",
+    "ws": "^8.4.2"
   },
   "devDependencies": {
-    "eslint": "^8.6.0",
+    "eslint": "^8.7.0",
     "node": "^16.13.2"
   },
   "engines": {
