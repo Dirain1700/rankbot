@@ -1,11 +1,11 @@
 {
   "name": "mogi-bot",
-  "version": "0.7.10",
+  "version": "0.7.11",
   "description": "A simple Node app built on Replit, support tournaments.",
   "main": "index.js",
   "scripts": {
     "start": "npx node index.js",
-    "lint": "eslint *js"
+    "lint": "eslint *.js"
   },
   "dependencies": {
     "discord.js": "^13.6.0",
