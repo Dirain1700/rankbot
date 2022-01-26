@@ -52,7 +52,7 @@ client.on("messageCreate", async msg => {
     let arg;
     if (msg.content.endsWith("config")) return msg.channel.send("hotpatch doesn't support config files.")
     if (msg.content.endsWith("discord")) target = "./main"; arg = client;
-    if (msg.content.endsWith("showdown")) target = "./showdown.js"; arg = ps;
+    if (msg.content.endsWith("showdown")) target = "./showdown"; arg = ps;
     if (!target) return msg.channel.send("ReferenceError: \"target\" is not defiend");
     await delete require.cache[require.resolve(target)];
     const reload = (() => require(target));

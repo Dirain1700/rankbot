@@ -9,7 +9,7 @@ Using <b>JavaScript</b>.
 
 # Codes
 All source are on GitHub.<br/>
-If you have any questions, please feel free to ask them in DM or support channel.
+If you have any questions, feel free to ask them in DM or support channel.
 
 [Dirain1700/rankbot at main](https://github.com/Dirain1700/rankbot)
 

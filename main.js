@@ -81,7 +81,6 @@ module.exports = (client) => {
     if (!interaction.isCommand() || !interaction.guild) {
       return;
     }
-    console.log(typeof interaction.user.id);
     if (interaction.commandName === 'ping') {
       const now = Date.now();
       const msg = [
@@ -101,22 +100,20 @@ module.exports = (client) => {
       const how = interaction.options.getInteger("points");
       const who = interaction.options.getMember("user");
       const db = JSON.parse(fs.readFileSync("./rank.json"));
-      if (who.id in db) { //ユーザーIDのデータがあるか判定
+      if (who.user.id in db) { //ユーザーIDのデータがあるか判定
         // ポイント加算
         db[who.user.id].points += how;
       } else {
         // ポイント設定
         db[who.user.id] = { points: how };
       }
-      // 並び替え
-      ranksort();
       // 書き換え
       fs.writeFileSync("./rank.json", db);
+      ranksort();
       //送信
       await interaction.reply(`Added ${how}points to ${who.user.tag} and having ${db[who.user.id].points}points now.`);
     }
     if (interaction.commandName === "rank") {
-      //interaction.deferReply();
       const who = interaction.options.getMember("user");
       ranksort();
       //JSONを読み込む
@@ -334,8 +331,8 @@ module.exports = (client) => {
 
   function ranksort() {
     const db = JSON.parse(fs.readFileSync("./rank.json"));
-    const raw = Object.entries(db);
-    const tmp = raw.sort((a, b) => b[1].points - a[1].points);
+    const obj = Object.entries(db);
+    obj.sort((a, b) => b[1].points - a[1].points);
     const edit = JSON.stringify(Object.fromEntries(tmp), null, 4);
     fs.writeFileSync("./rank.json", edit);
     return;
