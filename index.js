@@ -21,7 +21,7 @@ http.createServer((req, res) => {
     req.on("data", function(chunk){
       data += chunk;
     });
-    req.on("end", function(){
+    req.on("end", () => {
       if(!data){
         res.end("No post data");
         return;
@@ -30,7 +30,7 @@ http.createServer((req, res) => {
       if(dataObject.type == "wake"){
         res.end();
         return;
-  }
+      }
     });
   }
   else if (req.method == "GET"){
@@ -39,5 +39,24 @@ http.createServer((req, res) => {
  }
 }).listen(3000);
 
-//client.login( config.token );
+client.login( config.token );
 ps.connect();
+
+
+/*hotpatch commands*/
+/*Discord hotpatch commands*/
+client.on("messageCreate", async msg => {
+  if (msg.author.id != config.admin) return;
+  if (msg.content.startsWith("&hotpatch")) {
+    let target;
+    let arg;
+    if (msg.content.endsWith("config")) return msg.channel.send("hotpatch doesn't support config files.")
+    if (msg.content.endsWith("discord")) target = "./main"; arg = client;
+    if (msg.content.endsWith("showdown")) target = "./showdown.js"; arg = ps;
+    if (!target) return msg.channel.send("ReferenceError: \"target\" is not defiend");
+    await delete require.cache[require.resolve(target)];
+    const reload = (() => require(target));
+    await reload(arg);
+    await msg.channel.send(`Sucsessfuly hotpatched: ${target}`);
+  }
+});

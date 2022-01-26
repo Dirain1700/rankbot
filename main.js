@@ -10,6 +10,7 @@ module.exports = (client) => {
     ranksort();
     const cmd = require("./config/command.js");
     const server = client.guilds.cache.get("886970564265259029");
+    console.log("loaded!")
     //const ch = client.channels.cache.get("920606895117578300");
     //console.log(ch.find(c => c.name == "一般").id)
     /*await ch.messages.fetch({ limit: 5 })
@@ -73,7 +74,7 @@ module.exports = (client) => {
           .then(result => message.sendDeleteable(toMessageOptions(result)))
           .catch(error => message.sendDeleteable(error, { code: "js" }))
         );
-    };
+    }
   });
 
   client.on("interactionCreate", async interaction => {
