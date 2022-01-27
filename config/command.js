@@ -25,7 +25,7 @@ module.exports = {
   apt: {
     name: "apt",
     description: "ユーザーに任意のポイントを与えます。",
-    defaultPermission: false,
+    defaultPermission: true,
     options: [
       {
         type: "USER",
