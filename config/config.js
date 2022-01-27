@@ -11,6 +11,7 @@ module.exports = {
   "autoJoin": ["Japanese"]
   },
   logch: "886970564265259032",// Please do not use this without permission from a room owner
+  aptguild: "873211574876241931",
   owner: "dirain",
   admin: ["751433045529329825"], // Array of Discord IDs of administrators
   log: ["was banned", "was warned", "was muted", "was promoted", "was demoted"],

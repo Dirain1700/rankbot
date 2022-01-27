@@ -1,8 +1,8 @@
 module.exports = (client) => {
-  /* eslint-disable */
+  /* eslint-disable no-unused-vars*/
   const fs = require("fs");
   const ws = require("ws");
-  const { Discord, MessageAttachment, APIMessage, ClientApplication, MessageEmbed } = require("discord.js")
+  const { Discord, MessageAttachment, APIMessage, ClientApplication, MessageEmbed } = require("discord.js");
   /* eslint-enable */
   client.on("ready", async () => {
     console.log(`Logged in as ${client.user.tag}`);
@@ -31,7 +31,7 @@ module.exports = (client) => {
     };*/
     if (message.content == ".help") {
       const embed = new MessageEmbed()
-        .setTitle("Mogi Bot Guide v0.7.1")
+        .setTitle("Mogi Bot Guide v0.7.12")
         .setDescription("詳しくは、[README.md](https://github.com/Dirain1700/rankbot/blob/main/README.md)をご覧ください。\n**English**: [README-en.md](https://github.com/Dirain1700/rankbot/blob/main/README-en.md)");
       message.channel.send({ embeds: [embed] });
     }
@@ -62,10 +62,9 @@ module.exports = (client) => {
           .catch(console.error);
       pool
         .exec("run", [codeBlock.code])
-        .timeout(5000
-          .then(result => message.sendDeleteable(toMessageOptions(result)))
-          .catch(error => message.sendDeleteable(error, { code: "js" }))
-        );
+        .setTimeout(() => {
+          (result => message.sendDeleteable(toMessageOptions(result)))
+          .catch(error => message.sendDeleteable(error, { code: "js" }));}, 5000);
     }
   });
 
@@ -100,12 +99,41 @@ module.exports = (client) => {
         // ポイント設定
         db[target.user.id] = { points: how };
       }
-      console.log(db)
       // 書き換え
       fs.writeFileSync("./rank.json", JSON.stringify(db, null, 2));
       ranksort();
       //送信
       await interaction.reply(`Added ${how}points to ${target.user.tag} and having ${db[target.user.id].points}points now.`);
+    }
+    if (interaction.commandName === "rpt") {
+      if (!interaction.memberPermissions.has("ADMINISTRATOR")) {
+        await interaction.reply({ content: "/apt - Access Denied.", ephemeral: true });
+        return;
+      }
+      const how = interaction.options.getInteger("points");
+      const target = interaction.options.getMember("user");
+      const db = JSON.parse(fs.readFileSync("./rank.json"));
+      //const db = Object.entries(rawdb);
+      if (target.user.id in db) { //ユーザーIDのデータがあるか判定
+        // ポイント加算
+        db[target.user.id].points -= how;
+      } /*else {
+        // ポイント設定
+        db[target.user.id] = { points: how };
+      }*/
+      // 書き換え
+      fs.writeFileSync("./rank.json", JSON.stringify(db, null, 2));
+      ranksort();
+      //送信
+      await interaction.reply(`Removed ${how}points to ${target.user.tag} and having ${db[target.user.id].points}points now.`);
+    }
+    if (interaction.commandName === "clearleaderboard") {
+      if (!interaction.user.id !== config.admin) {
+        interaction.reply({ content: "/clearleaderboard - Access denied.", ephemeral: true});
+        return;
+      }
+      fs.writeFileSync("./rank.json", "{}");
+      interaction.reply("Reset successed!");
     }
     if (interaction.commandName === "rank") {
       const target = interaction.options.getMember("user");
