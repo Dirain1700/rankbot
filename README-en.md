@@ -1,4 +1,5 @@
 [![Node.js CI](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml/badge.svg)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml)
+[![Node.js CI](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml/badge.svg?branch=dev&event=push)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml)
 
 # Development Environments
 Using <b>JavaScript</b>.
