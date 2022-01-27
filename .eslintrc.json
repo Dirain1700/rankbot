@@ -11,7 +11,7 @@
       "fs": false
     },
     "rules": {
-      "no-unused-vars": 0,
+      "no-unused-vars": 1,
       "semi": [1,"always"],
       "no-extra-semi": 1
     },

@@ -99,7 +99,7 @@ module.exports = {
       {
         type: "STRING",
         name: "reason",
-        description: "kickの理由",
+        description: "理由",
         required: true
       },
       {
@@ -134,7 +134,7 @@ module.exports = {
       {
         type: "STRING",
         name: "reason",
-        description: "BANの理由",
+        description: "理由",
         required: true
       },
       {
@@ -169,7 +169,7 @@ module.exports = {
       {
         type: "STRING",
         name: "reason",
-        description: "BANの理由",
+        description: "理由",
         required: true
       },
       {
@@ -196,7 +196,7 @@ module.exports = {
       {
         type: "STRING",
         name: "reason",
-        description: "UnBANの理由",
+        description: "理由",
         required: true
       }
     ]

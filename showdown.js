@@ -1,18 +1,19 @@
 module.exports = (ps) => {
   const tool = require("ps-client").Tools;
-  ps.once("ready", async () => {
+  ps.on("ready", async () => {
     console.log("Logged in as " + config.ops.username);
+    ps.send("|/j help");
   });
 
   
   ps.on("message", message => {
     if (message.isIntro || message.type !== "chat" /*|| message.author.name === ps.status.username*/) return;
     logmsg(message);
-    if (message.content.startsWith("/log") && (config.log.includes(message.content) || message.content.indexOf(config.hide) !== -1)) {
-      console.log("event emitted.");
+    if (message.content.startsWith("/log") && config.log.includes(message.content)) {
       const log = message.content.replace("/log ", "");
-      //client.channels.cache.get(config.logch).send(log)
-      console.log(whatislog(message));
+      const msgs = JSON.parse(fs.readFileSync("./foo.json"));
+      const target = msgs.filter(m => m.user == tool.toID(log.split(" was")[0]));
+      console.log(target);
     }
     if (message.author.userid === "dirain") {
       if (message.content.startsWith(".echo")) {
@@ -37,17 +38,9 @@ module.exports = (ps) => {
   
   function whatislog(message) {
     const msgs = JSON.parse(fs.readFileSync("./foo.json"));
-    if (config.log.includes(message.content)) {
-      return msgs.filter(m => m.user == message.content.split(" ")[0]);
-//console.log(target.filter(r => r.time <= spl[2]))
-    }else if (message.content.indexOf(config.hide)) {
-      const first = message.content.split(" ")[0];
-      if (Number.isNaN(first)) {
-        return msgs.filter(m => m.user == message.content.split(" ")[0].replace("'s", ""));
-      }
-      if (!Number.isNaN(first)) {
-        return msgs.filter(m => m.user == message.content.split(" ")[2].replace("'s", ""));
-        }
-      }
+    if (!config.log.includes(message.content)) return;
+    const target = msgs.filter(m => m.user == message.content.split(" ")[0]);
+    console.log(target.filter(r => r.time <= spl[2]))
+    
   }
 };

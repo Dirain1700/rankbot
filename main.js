@@ -5,18 +5,10 @@ module.exports = (client) => {
   const { Discord, MessageAttachment, APIMessage, ClientApplication, MessageEmbed } = require("discord.js")
   /* eslint-enable */
   client.on("ready", async () => {
-    console.log(`logged in as ${client.user.tag}`);
-    client.user.setActivity("ウマ娘 プリティーダービー Season2", { type: "WATCHING" }, { status: "offline" });
+    console.log(`Logged in as ${client.user.tag}`);
+    client.user.setActivity("ウマ娘 プリティーダービー Season2", { type: "WATCHING" }, { status: "busy" });
     ranksort();
     const cmd = require("./config/command.js");
-    const server = client.guilds.cache.get("886970564265259029");
-    console.log("loaded!")
-    //const ch = client.channels.cache.get("920606895117578300");
-    //console.log(ch.find(c => c.name == "一般").id)
-    /*await ch.messages.fetch({ limit: 5 })
-      .then(message => console.log(message))
-      .catch(console.error)*/
-    //console.log(ch)
   });
 
   client.on("messageCreate", async message => {
@@ -99,7 +91,8 @@ module.exports = (client) => {
       }
       const how = interaction.options.getInteger("points");
       const who = interaction.options.getMember("user");
-      const db = JSON.parse(fs.readFileSync("./rank.json"));
+      const rawdb = JSON.parse(fs.readFileSync("./rank.json"));
+      const db = Object.entries(rawdb);
       if (who.user.id in db) { //ユーザーIDのデータがあるか判定
         // ポイント加算
         db[who.user.id].points += how;
@@ -108,7 +101,7 @@ module.exports = (client) => {
         db[who.user.id] = { points: how };
       }
       // 書き換え
-      fs.writeFileSync("./rank.json", db);
+      fs.writeFileSync("./rank.json", JSON.stringify(Object.fromEntries(db)));
       ranksort();
       //送信
       await interaction.reply(`Added ${how}points to ${who.user.tag} and having ${db[who.user.id].points}points now.`);

@@ -1,10 +1,10 @@
-/* eslint-disable */
+/* eslint-disable no-unused-vars*/
 const http = require("http");
 const querystring = require("querystring");
 global.fs = require("fs");
 global.config = require("./config/config");
 const pages = fs.readFileSync("./config/index.html");
-const {Intents,Client,ClientApplication,Discord} = require('discord.js');
+const {Intents,Client,ClientApplication,Discord} = require("discord.js");
 const PSClient = require("ps-client").Client;
 
 let ps = new PSClient(config.ops);
@@ -12,7 +12,7 @@ const client = new Client(config.options);
 const main = require("./main.js");
 const showdown = require("./showdown.js");
 main(client);
-showdown(ps)
+showdown(ps);
 
 /* eslint-enable */
 http.createServer((req, res) => {
@@ -47,16 +47,27 @@ ps.connect();
 /*Discord hotpatch commands*/
 client.on("messageCreate", async msg => {
   if (msg.author.id != config.admin) return;
-  if (msg.content.startsWith("&hotpatch")) {
+  if (msg.content.startsWith(".hotpatch")) {
+    let reload;
     let target;
-    let arg;
-    if (msg.content.endsWith("config")) return msg.channel.send("hotpatch doesn't support config files.")
-    if (msg.content.endsWith("discord")) target = "./main"; arg = client;
-    if (msg.content.endsWith("showdown")) target = "./showdown"; arg = ps;
+    if (msg.content.endsWith("config")) return msg.channel.send("hotpatch doesn't support config files.");
+    if (msg.content.endsWith("discord")){
+      target = "./main"; 
+      reload = (() => {
+        const file = require("./main");
+        file(client);
+      });
+    }
+    if (msg.content.endsWith("showdown")){
+      target = "./showdown";
+      reload = (() => {
+        const file = require("./showdown");
+        file(ps);
+      });
+    }
     if (!target) return msg.channel.send("ReferenceError: \"target\" is not defiend");
     await delete require.cache[require.resolve(target)];
-    const reload = (() => require(target));
-    await reload(arg);
-    await msg.channel.send(`Sucsessfuly hotpatched: ${target}`);
+    await reload();
+    await msg.channel.send(`Sucsessfuly hotpatched: ${target + ".js"}`);
   }
 });
