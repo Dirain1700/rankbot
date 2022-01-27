@@ -7,7 +7,7 @@ on:
   push:
     branches: [ main, dev ]
   pull_request:
-    branches: [ main]
+    branches: [ main ]
 
 jobs:
   build:
@@ -26,5 +26,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm i
+    - run: npm ci
     - run: npm run lint *.js
