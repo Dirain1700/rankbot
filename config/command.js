@@ -60,7 +60,7 @@ module.exports = {
         name: "points",
         description: "点数",
         required: true,
-        maxValue: -1
+        minValue: 1
       }
     ]
   },
