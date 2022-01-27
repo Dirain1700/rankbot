@@ -40,7 +40,7 @@ module.exports = (ps) => {
     const msgs = JSON.parse(fs.readFileSync("./foo.json"));
     if (!config.log.includes(message.content)) return;
     const target = msgs.filter(m => m.user == message.content.split(" ")[0]);
-    console.log(target.filter(r => r.time <= spl[2]))
+    console.log(target.filter(r => r.time <= message.time))
     
   }
 };
