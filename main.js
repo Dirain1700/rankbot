@@ -9,17 +9,24 @@ module.exports = (client) => {
     client.user.setActivity("ウマ娘 プリティーダービー Season2", { type: "WATCHING" }, { status: "busy" });
     ranksort();
     const cmd = require("./config/command.js");
+    /*const ch = client.channels.cache.get(config.logch);
+    const messages = await ch.messages.fetch({limit:5});
+    const mymsg = messages.filter(msg => msg.author.id == config.admin);
+    //const how = 3;
+    const arr = Object.fromEntries(mymsg);
+    console.log(Array.isArray(arr));
+    console.log(arr)
+    setTimeout(() => process.exit(0), 1000)*/
   });
   
   client.on("messageCreate", async message => {
-    if (message.author.bot) {
-      return;
-    }
+    if (message.author.bot) return;
     /*if (message.content.startsWith(".foo")) {
-      const name = message.content.split(" ")[1]
+      const targetName = message.content.split(" ")[1];
       const guild = message.guild;
-      const userrr = await guild.members.fetch({ query: name })
-        console.log(userrr)
+      const targetMember = await guild.members.fetch({ query: name });
+      message.channel.send(targetMember.user.tag);
+        console.log(targetUser);
     }*/
     /*if (message.content.startsWith(".timer")) {
       // 引数から待ち時間を取り出す
@@ -36,8 +43,9 @@ module.exports = (client) => {
       message.channel.send({ embeds: [embed] });
     }
     if (message.content.toLowerCase().startsWith(">runjs")) {
+      require("./vm2/msg.js");
       const path = require("path");
-      const pool = require("workerpool").pool(path.join(__dirname, "./config/worker.js"), {
+      const pool = require("workerpool").pool(path.join(__dirname, "./vm2/worker.js"), {
         workerType: "process",
       });
 
@@ -60,11 +68,18 @@ module.exports = (client) => {
         return message
           .reply(`言語識別子が**${languages.join(", ")}**である必要があります。`)
           .catch(console.error);
-      pool
-        .exec("run", [codeBlock.code])
-        .setTimeout(() => {
-          (result => message.sendDeleteable(toMessageOptions(result)))
-          .catch(error => message.sendDeleteable(error, { code: "js" }));}, 5000);
+      
+          try {
+            pool.exec("run", [codeBlock.code])
+            .then(result => {
+            message.sendDeleteable(toMessageOptions(result));
+            });
+            setTimeout(() => { 
+              throw "It takes too long. The processing time is limited to 5 seconds." 
+            }, 5 * 1000);
+             } catch (error) {
+            message.sendDeleteable(error, { code: "js" });
+                   };
     }
   });
 

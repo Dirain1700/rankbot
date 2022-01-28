@@ -2,9 +2,8 @@ module.exports = (ps) => {
   const tool = require("ps-client").Tools;
   ps.on("ready", async () => {
     console.log("Logged in as " + config.ops.username);
-    ps.send("|/j help");
+    ps.send("|/j botdev")
   });
-
   
   ps.on("message", message => {
     if (message.isIntro || message.type !== "chat" /*|| message.author.name === ps.status.username*/) return;
@@ -19,9 +18,16 @@ module.exports = (ps) => {
       if (message.content.startsWith(".echo")) {
         ps.send(`${message.target.roomid}|${message.content.replace(".echo ", "")}`);
         return;
+      }else if (message.content === ".resetlog") {
+        ps.send(`${message.target.roomid}|ログの削除が完了しました。`)
+        setTimeout(() => {
+          fs.writeFileSync("./foo.json", "[]");
+        }, 500)
+      }
+      if (message.content.startsWith("process.exit")) {
+        process.exit(0)
       }
     }
-    
   });
 
     function logmsg(message) {
