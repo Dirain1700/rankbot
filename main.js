@@ -9,14 +9,6 @@ module.exports = (client) => {
     client.user.setActivity("ウマ娘 プリティーダービー Season2", { type: "WATCHING" }, { status: "busy" });
     ranksort();
     const cmd = require("./config/command.js");
-    /*const ch = client.channels.cache.get(config.logch);
-    const messages = await ch.messages.fetch({limit:5});
-    const mymsg = messages.filter(msg => msg.author.id == config.admin);
-    //const how = 3;
-    const arr = Object.fromEntries(mymsg);
-    console.log(Array.isArray(arr));
-    console.log(arr)
-    setTimeout(() => process.exit(0), 1000)*/
   });
   
   client.on("messageCreate", async message => {
@@ -38,12 +30,12 @@ module.exports = (client) => {
     };*/
     if (message.content == ".help") {
       const embed = new MessageEmbed()
-        .setTitle("Mogi Bot Guide v0.7.12")
+        .setTitle("Mogi Bot Guide v0.7.13")
         .setDescription("詳しくは、[README.md](https://github.com/Dirain1700/rankbot/blob/main/README.md)をご覧ください。\n**English**: [README-en.md](https://github.com/Dirain1700/rankbot/blob/main/README-en.md)");
       message.channel.send({ embeds: [embed] });
     }
     if (message.content.toLowerCase().startsWith(">runjs")) {
-      require("./vm2/msg.js");
+      const { sendDeleteable } = require("./vm2/msg.js");
       const path = require("path");
       const pool = require("workerpool").pool(path.join(__dirname, "./vm2/worker.js"), {
         workerType: "process",
