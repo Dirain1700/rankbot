@@ -45,7 +45,7 @@ async function sendDeleteable(OriginMsg, content, options) {
 
     if (!reaction) return reply.reactions.removeAll();
 
-    const question = await this.channel.send({
+    const question = await OriginMsg.channel.send({
       embeds:
       [
         new MessageEmbed()

@@ -78,8 +78,8 @@ module.exports = (client) => {
               throw "It takes too long. The processing time is limited to 5 seconds."; 
             }, 5 * 1000);
              } catch (error) {
-            message.sendDeleteable(error, { code: "js" });
-                   }
+            sendDeleteable(message, error, { code: "js" });
+          }
     }
   });
 
