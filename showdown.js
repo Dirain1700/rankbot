@@ -2,7 +2,7 @@ module.exports = (ps) => {
   const tool = require("ps-client").Tools;
   ps.on("ready", async () => {
     console.log("Logged in as " + config.ops.username);
-    ps.send("|/j botdev")
+    ps.send("|/j botdev");
   });
   
   ps.on("message", message => {
@@ -19,13 +19,13 @@ module.exports = (ps) => {
         ps.send(`${message.target.roomid}|${message.content.replace(".echo ", "")}`);
         return;
       }else if (message.content === ".resetlog") {
-        ps.send(`${message.target.roomid}|ログの削除が完了しました。`)
+        ps.send(`${message.target.roomid}|ログの削除が完了しました。`);
         setTimeout(() => {
           fs.writeFileSync("./foo.json", "[]");
-        }, 500)
+        }, 500);
       }
       if (message.content.startsWith("process.exit")) {
-        process.exit(0)
+        process.exit(0);
       }
     }
   });

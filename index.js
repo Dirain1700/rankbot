@@ -40,7 +40,7 @@ http.createServer((req, res) => {
 }).listen(3000);
 
 client.login( config.token );
-//ps.connect();
+ps.connect();
 
 
 /*hotpatch commands*/

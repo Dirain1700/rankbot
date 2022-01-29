@@ -75,11 +75,11 @@ module.exports = (client) => {
             message.sendDeleteable(toMessageOptions(result));
             });
             setTimeout(() => { 
-              throw "It takes too long. The processing time is limited to 5 seconds." 
+              throw "It takes too long. The processing time is limited to 5 seconds."; 
             }, 5 * 1000);
              } catch (error) {
             message.sendDeleteable(error, { code: "js" });
-                   };
+                   }
     }
   });
 
