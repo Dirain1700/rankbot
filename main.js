@@ -33,7 +33,7 @@ module.exports = (client) => {
         .setTitle("Mogi Bot Guide v0.7.13")
         .setDescription("詳しくは、[README.md](https://github.com/Dirain1700/rankbot/blob/main/README.md)をご覧ください。\n**English**: [README-en.md](https://github.com/Dirain1700/rankbot/blob/main/README-en.md)");
       message.channel.send({ embeds: [embed] });
-    }
+    }/*Forked from https://github.com/InkoHX/vm2-discordjs*/
     if (message.content.toLowerCase().startsWith(">runjs")) {
       const { sendDeleteable } = require("./vm2/msg.js");
       const path = require("path");
@@ -73,6 +73,7 @@ module.exports = (client) => {
             sendDeleteable(message, error, { code: "js" });
           }
     }
+    /*End of fork*/
   });
 
   client.on("interactionCreate", async interaction => {
