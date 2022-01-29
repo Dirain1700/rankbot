@@ -1,6 +1,6 @@
 {
   "name": "mogi-bot",
-  "version": "0.7.12",
+  "version": "0.7.13",
   "description": "A simple Node app built on Replit, support tournaments.",
   "main": "index.js",
   "scripts": {
