@@ -61,17 +61,11 @@ module.exports = (client) => {
           .reply(`言語識別子が**${languages.join(", ")}**である必要があります。`)
           .catch(console.error);
       
-          try {
-            pool.exec("run", [codeBlock.code])
-            .then(result => {
-            message.sendDeleteable(toMessageOptions(result));
-            });
-            setTimeout(() => { 
-              throw "It takes too long. The processing time is limited to 5 seconds."; 
-            }, 5 * 1000);
-             } catch (error) {
-            sendDeleteable(message, error, { code: "js" });
-          }
+      pool
+        .exec("run", [codeBlock.code])
+        .timeout(5000)
+        .then(result => sendDeleteable(toMessageOptions(result)))
+        .catch(error => sendDeleteable(error, { code: "js" }))
     }
     /*End of fork*/
   });
