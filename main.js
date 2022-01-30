@@ -44,13 +44,15 @@ module.exports = (client) => {
 
       const codeBlockRegex = /^`{3}(?<lang>[a-z]+)\n(?<code>[\s\S]+)\n`{3}$/mu;
       const languages = ["js", "javascript"];
-      const toMessageOptions = contents => {
-        if (contents.length <= 2000)
-          return { content: contents, code: "js" };
+      const toMessageOptions = content => {
+        const { codeBlock } = require("@discordjs/builders")
+        if (content.length <= 2000)
+          //return MessagePayload.create(message.channel, { content: "```js\n" + contents + "\n" + "```"});
+          return codeBlock("js", content)
         else
           return MessagePayload.transformOptions(
             "実行結果が長すぎるのでテキストファイルに出力しました。",
-            new MessageAttachment(Buffer.from(contents), "result.js")
+            new MessageAttachment(Buffer.from(content), "result.js")
           );
       };
       if (!codeBlockRegex.test(message.content))
@@ -64,9 +66,9 @@ module.exports = (client) => {
       
       pool
         .exec("run", [codeBlock.code])
+        .then(result => message.channel.send(toMessageOptions(result)))
+        .then(result => sendDeleteable(message, result))
         .timeout(5000)
-        .then(result => console.log(toMessageOptions(result)))
-        .then(console.log(message.channel))
         .then(result => sendDeleteable(message, toMessageOptions(result)))
         .catch(error => sendDeleteable(message, error, { code: "js" }))
     }
