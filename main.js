@@ -2,7 +2,7 @@ module.exports = (client) => {
   /* eslint-disable no-unused-vars*/
   const fs = require("fs");
   const ws = require("ws");
-  const { Discord, MessageAttachment, APIMessage, ClientApplication, MessageEmbed } = require("discord.js");
+  const { Discord, MessageAttachment, MessagePayload, ClientApplication, MessageEmbed } = require("discord.js");
   /* eslint-enable */
   client.on("ready", async () => {
     console.log(`Logged in as ${client.user.tag}`);
@@ -12,7 +12,7 @@ module.exports = (client) => {
   });
   
   client.on("messageCreate", async message => {
-    if (message.author.bot) return;
+    //if (message.author.bot) return;
     /*if (message.content.startsWith(".foo")) {
       const targetName = message.content.split(" ")[1];
       const guild = message.guild;
@@ -35,6 +35,7 @@ module.exports = (client) => {
       message.channel.send({ embeds: [embed] });
     }/*Forked from https://github.com/InkoHX/vm2-discordjs*/
     if (message.content.toLowerCase().startsWith(">runjs")) {
+      console.log("emited!")
       const { sendDeleteable } = require("./vm2/msg.js");
       const path = require("path");
       const pool = require("workerpool").pool(path.join(__dirname, "./vm2/worker.js"), {
@@ -43,13 +44,13 @@ module.exports = (client) => {
 
       const codeBlockRegex = /^`{3}(?<lang>[a-z]+)\n(?<code>[\s\S]+)\n`{3}$/mu;
       const languages = ["js", "javascript"];
-      const toMessageOptions = content => {
-        if (content.length <= 2000)
-          return APIMessage.transformOptions(content, { code: "js" });
+      const toMessageOptions = contents => {
+        if (contents.length <= 2000)
+          return { content: contents, code: "js" };
         else
-          return APIMessage.transformOptions(
+          return MessagePayload.transformOptions(
             "実行結果が長すぎるのでテキストファイルに出力しました。",
-            new MessageAttachment(Buffer.from(content), "result.js")
+            new MessageAttachment(Buffer.from(contents), "result.js")
           );
       };
       if (!codeBlockRegex.test(message.content))
@@ -64,8 +65,10 @@ module.exports = (client) => {
       pool
         .exec("run", [codeBlock.code])
         .timeout(5000)
-        .then(result => sendDeleteable(toMessageOptions(result)))
-        .catch(error => sendDeleteable(error, { code: "js" }))
+        .then(result => console.log(toMessageOptions(result)))
+        .then(console.log(message.channel))
+        .then(result => sendDeleteable(message, toMessageOptions(result)))
+        .catch(error => sendDeleteable(message, error, { code: "js" }))
     }
     /*End of fork*/
   });

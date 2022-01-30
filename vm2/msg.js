@@ -5,7 +5,8 @@ const { MessageEmbed } = require('discord.js');
  * @param {import('discord.js').StringResolvable|import('discord.js').APIMessage} content
  * @param {import('discord.js').MessageOptions|import('discord.js').MessageAdditions} options
  */
-async function sendDeleteable(OriginMsg, content, options) {
+module.exports = {
+async sendDeleteable(OriginMsg, content, options) {
   const replies = await OriginMsg.reply(content, options);
   const reply = Array.isArray(replies)
     ? replies[replies.length - 1]
@@ -92,5 +93,6 @@ async function sendDeleteable(OriginMsg, content, options) {
   };
   run().catch(console.error);
 }
+}
 
-exports.sendDeleteable = sendDeleteable;
+//exports.sendDeleteable = sendDeleteable();
