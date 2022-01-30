@@ -39,9 +39,8 @@ http.createServer((req, res) => {
  }
 }).listen(3000);
 
-client.login( config.token )
+client.login( config.token );
 ps.connect();
-
 
 /*hotpatch commands*/
 /*Discord hotpatch commands*/

@@ -35,8 +35,7 @@ module.exports = (client) => {
       message.channel.send({ embeds: [embed] });
     }/*Forked from https://github.com/InkoHX/vm2-discordjs*/
     if (message.content.toLowerCase().startsWith(">runjs")) {
-      console.log("emited!")
-      const { sendDeleteable } = require("./vm2/msg.js");
+      const { sendDeletable } = require("./vm2/msg");
       const path = require("path");
       const pool = require("workerpool").pool(path.join(__dirname, "./vm2/worker.js"), {
         workerType: "process",
@@ -45,10 +44,10 @@ module.exports = (client) => {
       const codeBlockRegex = /^`{3}(?<lang>[a-z]+)\n(?<code>[\s\S]+)\n`{3}$/mu;
       const languages = ["js", "javascript"];
       const toMessageOptions = content => {
-        const { codeBlock } = require("@discordjs/builders")
+        const { codeBlock } = require("@discordjs/builders");
         if (content.length <= 2000)
           //return MessagePayload.create(message.channel, { content: "```js\n" + contents + "\n" + "```"});
-          return codeBlock("js", content)
+          return codeBlock("js", content);
         else
           return MessagePayload.transformOptions(
             "実行結果が長すぎるのでテキストファイルに出力しました。",
@@ -66,11 +65,11 @@ module.exports = (client) => {
       
       pool
         .exec("run", [codeBlock.code])
-        .then(result => message.channel.send(toMessageOptions(result)))
-        .then(result => sendDeleteable(message, result))
+        //.then(result => message.channel.send(toMessageOptions(result)))
+        .then(result => sendDeletable(message, result))
         .timeout(5000)
-        .then(result => sendDeleteable(message, toMessageOptions(result)))
-        .catch(error => sendDeleteable(message, error, { code: "js" }))
+        .then(result => sendDeletable(message, toMessageOptions(result)))
+        .catch(error => sendDeletable(message, error, { code: "js" }));
     }
     /*End of fork*/
   });
