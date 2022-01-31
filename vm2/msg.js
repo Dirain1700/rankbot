@@ -8,7 +8,7 @@ const { Message, MessageEmbed } = require('discord.js');
 
 Message.prototype.sendDeletable = async function(content, options){
   const replies = await this.reply(content, options);
-  console.log(replies.size)
+  console.log(replies.size);
   //Expected output: Number
   //but got undefiend
   const reply = Array.isArray(replies)
@@ -93,6 +93,6 @@ Message.prototype.sendDeletable = async function(content, options){
   run()
     .then(console.log)
     .catch(console.error);
-}
+};
 
 module.exports = Message;

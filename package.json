@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npx node index.js",
     "lint": "eslint *.js",
-    "full-lint": "eslint *.js && eslint vm2/msg.js"
+    "full-lint": "eslint *.js vm2/msg.js",
+    "lint-fix": "eslint --fix *.js vm2/msg.js"
   },
   "dependencies": {
     "@discordjs/builders": "^0.12.0",
