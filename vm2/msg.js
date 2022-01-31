@@ -1,13 +1,13 @@
-const { MessageEmbed } = require('discord.js');
+const { Message, MessageEmbed } = require('discord.js');
 
 
 /**
  * @param {import('discord.js').StringResolvable|import('discord.js').APIMessage} content
  * @param {import('discord.js').MessageOptions|import('discord.js').MessageAdditions} options
  */
-
-async function sendDeletable(OriginMsg, content, options){
-  const replies = await OriginMsg.reply(content, options);
+module.exports = {
+Message.prototype.sendDeletable = async function(content, options){
+  const replies = await this.reply(content, options);
   console.log(replies.size)
   //Expected output: Number
   //but got undefiend
@@ -16,7 +16,7 @@ async function sendDeletable(OriginMsg, content, options){
     : replies;
   const wastebasket = '🗑️';
   const reactionFilter = (reaction, user) =>
-    reaction.emoji.name === wastebasket && user.id === OriginMsg.author.id;
+    reaction.emoji.name === wastebasket && user.id === this.author.id;
   const messageFilter = receiveMessage => {
     const num = parseInt(receiveMessage.content.trim());
     if (Number.isNaN(num)) return false;
@@ -33,7 +33,7 @@ async function sendDeletable(OriginMsg, content, options){
       .then(collection => collection.first());
 
   const awaitOptionInput = () =>
-    OriginMsg.channel
+    this.channel
       .awaitMessages(messageFilter, {
         max: 1,
         time: 60000,
@@ -45,10 +45,10 @@ async function sendDeletable(OriginMsg, content, options){
   const run = async () => {
     const reaction = await awaitReaction().catch(() => null);
     //test
-await console.log(reaction == null);
+    await console.log(reaction == null);
     if (!reaction) return reply.reactions.removeAll();
 
-    const question = await OriginMsg.channel.send({
+    const question = await this.channel.send({
       embeds:
       [
         new MessageEmbed()
@@ -80,11 +80,11 @@ await console.log(reaction == null);
           : reply.delete(),
         question.delete(),
         input.delete(),
-        OriginMsg.delete(),
+        this.delete(),
       ]);
 
     await Promise.all([
-      reaction.users.remove(OriginMsg.author),
+      reaction.users.remove(this.author),
       question.delete(),
       input.delete(),
     ]);
@@ -94,5 +94,4 @@ await console.log(reaction == null);
     .then(console.log)
     .catch(console.error);
 }
-
-exports.sendDeletable = ((OriginMsg, content, options) => sendDeletable(OriginMsg, content, options));
+}
