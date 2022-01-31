@@ -36,7 +36,7 @@ module.exports = (client) => {
     }/*Forked from https://github.com/InkoHX/vm2-discordjs*/
     if (message.content.toLowerCase().startsWith(">runjs")) {
       const { codeBlock } = require("@discordjs/builders");
-      const { sendDeletable } = require("./vm2/msg");
+      require("./vm2/msg");
       const path = require("path");
       const pool = require("workerpool").pool(path.join(__dirname, "./vm2/worker.js"), {
         workerType: "process",
@@ -48,10 +48,10 @@ module.exports = (client) => {
         if (content.length <= 2000)
           return codeBlock("js", content);
         else
-          return MessagePayload.transformOptions(
-            "実行結果が長すぎるのでテキストファイルに出力しました。",
-            new MessageAttachment(Buffer.from(content), "result.js")
-          );
+          return MessagePayload.resolveFile({
+            content: "実行結果が長すぎるのでテキストファイルに出力しました。",
+            attachment: [new MessageAttachment(codeBlock("js", Buffer.from(content)), "result.js")]
+      });
       };
       if (!BlockRegex.test(message.content))
         return message.reply("コードを送信してください。").catch(console.error);
@@ -65,8 +65,8 @@ module.exports = (client) => {
       pool
         .exec("run", [Blockcontent.code])
         .timeout(5000)
-        .then(result => sendDeletable(message, toMessageOptions(result)))
-        .catch(error => sendDeletable(message, codeBlock("js", error)));
+        .then(result => message.sendDeletable(toMessageOptions(result)))
+        .catch(error => message.sendDeletable(codeBlock("js", error)));
     }
     /*End of fork*/
   });
