@@ -8,8 +8,11 @@ const { MessageEmbed } = require('discord.js');
 
 async function sendDeletable(OriginMsg, content, options){
   const replies = await OriginMsg.reply(content, options);
+  console.log(replies.size)
+  //Expected output: Number
+  //but got undefiend
   const reply = Array.isArray(replies)
-    ? replies[replies.length - 1]
+    ? replies[replies.size - 1]
     : replies;
   const wastebasket = '🗑️';
   const reactionFilter = (reaction, user) =>
@@ -41,6 +44,7 @@ async function sendDeletable(OriginMsg, content, options){
   await reply.react(wastebasket);
   const run = async () => {
     const reaction = await awaitReaction().catch(() => null);
+    //test
 await console.log(reaction == null);
     if (!reaction) return reply.reactions.removeAll();
 
@@ -60,9 +64,7 @@ await console.log(reaction == null);
       ]
     });
     const input = await awaitOptionInput().catch(() => 0);
-console.log(input);
     const option = parseInt(input.content.trim());
-console.log(option);
     if (option === 1)
       return Promise.all([
         Array.isArray(replies)
@@ -86,11 +88,10 @@ console.log(option);
       question.delete(),
       input.delete(),
     ]);
-    console.log("running...");
     return run();
   };
   run()
-    .then(console.log("completed"))
+    .then(console.log)
     .catch(console.error);
 }
 

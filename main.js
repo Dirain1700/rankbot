@@ -35,18 +35,17 @@ module.exports = (client) => {
       message.channel.send({ embeds: [embed] });
     }/*Forked from https://github.com/InkoHX/vm2-discordjs*/
     if (message.content.toLowerCase().startsWith(">runjs")) {
+      const { codeBlock } = require("@discordjs/builders");
       const { sendDeletable } = require("./vm2/msg");
       const path = require("path");
       const pool = require("workerpool").pool(path.join(__dirname, "./vm2/worker.js"), {
         workerType: "process",
       });
 
-      const codeBlockRegex = /^`{3}(?<lang>[a-z]+)\n(?<code>[\s\S]+)\n`{3}$/mu;
+      const BlockRegex = /^`{3}(?<lang>[a-z]+)\n(?<code>[\s\S]+)\n`{3}$/mu;
       const languages = ["js", "javascript"];
       const toMessageOptions = content => {
-        const { codeBlock } = require("@discordjs/builders");
         if (content.length <= 2000)
-          //return MessagePayload.create(message.channel, { content: "```js\n" + contents + "\n" + "```"});
           return codeBlock("js", content);
         else
           return MessagePayload.transformOptions(
@@ -54,22 +53,20 @@ module.exports = (client) => {
             new MessageAttachment(Buffer.from(content), "result.js")
           );
       };
-      if (!codeBlockRegex.test(message.content))
+      if (!BlockRegex.test(message.content))
         return message.reply("コードを送信してください。").catch(console.error);
 
-      const codeBlock = message.content.match(codeBlockRegex) ?.groups ?? {};
-      if (!languages.includes(codeBlock.lang))
+      const Blockcontent = message.content.match(BlockRegex) ?.groups ?? {};
+      if (!languages.includes(Blockcontent.lang))
         return message
           .reply(`言語識別子が**${languages.join(", ")}**である必要があります。`)
           .catch(console.error);
       
       pool
-        .exec("run", [codeBlock.code])
-        //.then(result => message.channel.send(toMessageOptions(result)))
-        .then(result => sendDeletable(message, result))
+        .exec("run", [Blockcontent.code])
         .timeout(5000)
         .then(result => sendDeletable(message, toMessageOptions(result)))
-        .catch(error => sendDeletable(message, error, { code: "js" }));
+        .catch(error => sendDeletable(message, codeBlock("js", error)));
     }
     /*End of fork*/
   });
