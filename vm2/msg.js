@@ -89,8 +89,9 @@ console.log(option);
     console.log("running...");
     return run();
   };
-  console.log("completed!");
-  run().catch(console.error);
+  run()
+    .then(console.log("completed"))
+    .catch(console.error);
 }
 
 exports.sendDeletable = ((OriginMsg, content, options) => sendDeletable(OriginMsg, content, options));
