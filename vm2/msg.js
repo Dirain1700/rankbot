@@ -1,10 +1,5 @@
 const { Message, MessageEmbed } = require('discord.js');
 
-
-/**
- * @param {import('discord.js').StringResolvable|import('discord.js').APIMessage} content
- */
-
 Message.prototype.sendDeletable = async function(content){
   const replies = await this.reply(content);
   console.log(replies.size);
