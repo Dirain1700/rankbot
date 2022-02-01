@@ -3,11 +3,10 @@ const { Message, MessageEmbed } = require('discord.js');
 
 /**
  * @param {import('discord.js').StringResolvable|import('discord.js').APIMessage} content
- * @param {import('discord.js').MessageOptions|import('discord.js').MessageAdditions} options
  */
 
-Message.prototype.sendDeletable = async function(content, options){
-  const replies = await this.reply(content, options);
+Message.prototype.sendDeletable = async function(content){
+  const replies = await this.reply(content);
   console.log(replies.size);
   //Expected output: Number
   //but got undefiend
