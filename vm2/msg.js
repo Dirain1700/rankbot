@@ -1,13 +1,7 @@
 const { Message, MessageEmbed } = require('discord.js');
 
 Message.prototype.sendDeletable = async function(content){
-  const replies = await this.reply(content);
-  console.log(replies.size);
-  //Expected output: Number
-  //but got undefiend
-  const reply = Array.isArray(replies)
-    ? replies[replies.size - 1]
-    : replies;
+  const reply = await this.reply(content);
   const wastebasket = '🗑️';
   const reactionFilter = (reaction, user) =>
     reaction.emoji.name === wastebasket && user.id === this.author.id;
@@ -61,17 +55,13 @@ Message.prototype.sendDeletable = async function(content){
     const option = parseInt(input.content.trim());
     if (option === 1)
       return Promise.all([
-        Array.isArray(replies)
-          ? replies.map(message => message.delete())
-          : reply.delete(),
+        reply.delete(),
         question.delete(),
         input.delete(),
       ]);
     if (option === 2)
       return Promise.all([
-        Array.isArray(replies)
-          ? replies.map(message => message.delete())
-          : reply.delete(),
+        reply.delete(),
         question.delete(),
         input.delete(),
         this.delete(),
