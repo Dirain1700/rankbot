@@ -4,7 +4,7 @@ const querystring = require("querystring");
 global.fs = require("fs");
 global.config = require("./config/config");
 const pages = fs.readFileSync("./config/index.html");
-const {Intents,Client,ClientApplication,Discord} = require("discord.js");
+const { Intents,Client,ClientApplication } = require("discord.js");
 const PSClient = require("ps-client").Client;
 
 let ps = new PSClient(config.ops);
