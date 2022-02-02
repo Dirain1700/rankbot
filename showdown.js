@@ -3,11 +3,10 @@ module.exports = (client, ps) => {
   ps.on("ready", async () => {
     console.log("Logged in as " + config.ops.username);
     ps.send("|/j botdev");
-    ps.send("|/j groupchat-japanese-71940624");
   });
   
   ps.on("message", message => {
-    if (message.isIntro || message.type !== "chat" /*|| message.author.name === ps.status.username*/) return;
+    if (message.isIntro || message.type !== "chat" || message.author.name === ps.status.username) return;
     if (message.target.roomid == "japanese") logmsg(message);
     if (message.content.startsWith("/log")) {
       const log = message.content.replace("/log ", "");
