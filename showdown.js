@@ -19,11 +19,11 @@ module.exports = (client, ps) => {
         target = msgs.filter(m => m.user == tool.toID(log.split("'s messages")[0]));
       if (message.content.indexOf("was promoted")) {
         const targetUser = message.content.split(" was promoted")[0];
-        client.channels.cache.get(config.logch).send(`${message.content.replace("/log ", "")}\nおめでとう、 ${targetUser}!`);
+        client.channels.cache.get(config.logch).send(`${log}\nおめでとう、 ${targetUser}!`);
         return;
       }
       const sendlog = target.map(i => `<t:${i.time}:T> ${i.user} : ${i.content}`);
-        client.channels.cache.get(config.logch).send(message.content.replace("/log ", "") + "\n" + sendlog.join("\n"));
+        client.channels.cache.get(config.logch).send(log + "\n" + sendlog.join("\n"));
     }
     if (message.author.userid === "dirain") {
       if (message.content.startsWith(".echo")) {
