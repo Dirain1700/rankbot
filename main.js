@@ -192,27 +192,17 @@ module.exports = (client) => {
         return;
       }
       // 指定されたメッセージの数を取
-      const how = interaction.options ?.getInteger("lines");
+      const targetCount = interaction.options?.getInteger("lines") ?? 1;
       const time = Math.floor(Date.now() / 1000);
-      if (!how) {
-        // 指定された数のメッセージを取得
-        const messages = await interaction.channel.messages.fetch({ limit: 1 });
-        const target = await interaction.options.getMember("user");
-        // 指定されたユーザーが発言したメッセージのみを抽出
-        const mentionFilter = await messages.filter(msg => msg.author.id == target.user.id);
-        // それらのメッセージを一括削除
-        interaction.channel.bulkDelete(mentionFilter);
-        await interaction.reply({ content: `<t:${time}:T> 1 of ${target.user.id}'s message was cleard from ${interaction.channel.name} by ${interaction.user.tag}.`, ephemeral: false });
-        return;
-      }
       // 指定された数のメッセージを取得
-      const messages = await interaction.channel.messages.fetch({ limit: how });
-      const target = await interaction.options.getUser("user");
+      const messages = await interaction.channel.messages.fetch({ limit: 100 });
+      const targetUser = await interaction.options.getUser("user");
       // 指定されたユーザーが発言したメッセージのみを抽出
-      const mentionFilter = await messages.filter(msg => msg.author.id === target.user.id);
+      const collector = await messages.filter(msg => msg.author.id === targetUser.id);
+      const msg = collector.first(targetCount)
       // それらのメッセージを一括削除
-      interaction.channel.bulkDelete(mentionFilter);
-      await interaction.reply({ content: `<t:${time}:T> ${how} of ${target.user.id}'s messages were cleard from ${interaction.channel.name} by ${interaction.user.tag}.`, ephemeral: false });
+      interaction.channel.bulkDelete(msg);
+      await interaction.reply({ content: `<t:${time}:T> ${targetCount} of ${targetUser.id}'s messages were cleard from ${interaction.channel.name} by ${interaction.user.tag}.`, ephemeral: false });
       return;
     }
     if (interaction.commandName === "forcecleartext") {
@@ -220,18 +210,19 @@ module.exports = (client) => {
         interaction.reply({ content: "/forcecleartext - Access Denied.", ephemeral: true });
         return;
       }
-      // 指定されたメッセージの数を取
+      // 指定されたメッセージの数を取得
       const targetID = await interaction.options.getString("userid");
-      const how = interaction.options ?.getInteger("lines") ?? 1;
+      const targetCount = interaction.options?.getInteger("lines") ?? 1;
       const time = Math.floor(Date.now() / 1000);
       const targetUser = await client.users.fetch(targetID);
       // 指定された数のメッセージを取得
-      const messages = await interaction.channel.messages.fetch({ limit: how });
+      const messages = await interaction.channel.messages.fetch({ limit: 100 });
       // 指定されたユーザーが発言したメッセージのみを抽出
-      const mentionFilter = await messages.filter(msg => msg.author.id == targetID);
+      const collector = await messages.filter(msg => msg.author.id == targetID);
+      const msg = collector.first(targetCount)
       // それらのメッセージを一括削除
-      interaction.channel.bulkDelete(mentionFilter);
-      await interaction.reply({ content: `<t:${time}:T> ${how} of ${targetUser.tag}'s messages were cleard from ${interaction.channel.name} by ${interaction.user.tag}.`, ephemeral: false });
+      interaction.channel.bulkDelete(msg);
+      await interaction.reply({ content: `<t:${time}:T> ${targetCount} of ${targetUser.tag}'s messages were cleard from ${interaction.channel.name} by ${interaction.user.tag}.`, ephemeral: false });
       return;
     }
     if (interaction.commandName === "mute") {
@@ -300,13 +291,14 @@ module.exports = (client) => {
       if (interaction.guild.ownerId !== interaction.user.id && targetMember.roles.highest.comparePositionTo(interaction.user.roles.highest) >= 0) {
         return interaction.reply({ content: "Error: You cannot BAN user higer role have.", ephemeral: true });
       }
-      const how = interaction.options.getInteger("deletemsg");
-      if (!how) {
-        const messages = await interaction.channel.messages.fetch({ limit: how });
+      const targetCount = interaction.options?.getInteger("deletemsg");
+      if (targetCount) {
+        const messages = await interaction.channel.messages.fetch({ limit: 100 });
         // 指定されたユーザーが発言したメッセージのみを抽出
-        const mentionFilter = await messages.filter(msg => msg.author.id == targetMember.user.id);
+        const collector = await messages.filter(msg => msg.author.id == targetMember.user.id);
+        const msg = collector.first(targetCount)
         // それらのメッセージを一括削除
-        interaction.channel.bulkDelete(mentionFilter);
+        interaction.channel.bulkDelete(msg);
       }
       const day = interaction.options.getInteger("days");
       const reasons = interaction.options.getString("reason");
@@ -317,19 +309,20 @@ module.exports = (client) => {
       await targetUser.send(`<t:${time}:T> You (${targetUser.tag}) were banned from ${interaction.guild.name} for ${day}days by ${interaction.user.tag}.(${reasons})`);
     }
     if (interaction.commandName == "forceban") {
-      if (interaction.user.id != "751433045529329825") {
+      if (interaction.user.id != config.admin) {
         interaction.reply({ content: "/forceban - Access Denied.", ephemeral: true });
         return;
       }
       const targetID = interaction.options.getString("userid");
       const targetUser = await client.users.fetch(targetID);
-      const how = interaction.options.getInteger("deletemsg");
-      if (how != null) {
-        const messages = await interaction.channel.messages.fetch({ limit: how });
+      const targetCount = interaction.options?.getInteger("deletemsg");
+      if (how) {
+        const messages = await interaction.channel.messages.fetch({ limit: 100 });
         // 指定されたユーザーが発言したメッセージのみを抽出
-        const mentionFilter = await messages.filter(msg => msg.author.id == targetID);
-        // それらのメッセージを一括削除
-        interaction.channel.bulkDelete(mentionFilter);
+        const collector = await messages.filter(msg => msg.author.id == targetID);
+        const msg = collector.first(targetCount)
+        //それらのメッセージを一括削除
+        interaction.channel.bulkDelete(msg);
       }
       const day = interaction.options.getInteger("days");
       const reasons = interaction.options.getString("reason");
