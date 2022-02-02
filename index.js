@@ -11,8 +11,8 @@ let ps = new PSClient(config.ops);
 const client = new Client(config.options);
 const main = require("./main.js");
 const showdown = require("./showdown.js");
-main(client);
-showdown(ps);
+main(client, ps);
+showdown(client, ps);
 
 /* eslint-enable */
 http.createServer((req, res) => {

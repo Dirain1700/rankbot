@@ -2,6 +2,7 @@
 foo*
 
 # Logs
+config/log/*
 logs
 *.log
 npm-debug.log*

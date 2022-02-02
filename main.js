@@ -1,4 +1,4 @@
-module.exports = (client) => {
+module.exports = (client, ps) => {
   /* eslint-disable no-unused-vars*/
   const fs = require("fs");
   const ws = require("ws");
@@ -199,7 +199,7 @@ module.exports = (client) => {
       const targetUser = await interaction.options.getUser("user");
       // 指定されたユーザーが発言したメッセージのみを抽出
       const collector = await messages.filter(msg => msg.author.id === targetUser.id);
-      const msg = collector.first(targetCount)
+      const msg = collector.first(targetCount);
       // それらのメッセージを一括削除
       interaction.channel.bulkDelete(msg);
       await interaction.reply({ content: `<t:${time}:T> ${targetCount} of ${targetUser.tag}'s messages were cleard from ${interaction.channel.name} by ${interaction.user.tag}.`, ephemeral: false });
@@ -219,7 +219,7 @@ module.exports = (client) => {
       const messages = await interaction.channel.messages.fetch({ limit: 100 });
       // 指定されたユーザーが発言したメッセージのみを抽出
       const collector = await messages.filter(msg => msg.author.id == targetID);
-      const msg = collector.first(targetCount)
+      const msg = collector.first(targetCount);
       // それらのメッセージを一括削除
       interaction.channel.bulkDelete(msg);
       await interaction.reply({ content: `<t:${time}:T> ${targetCount} of ${targetUser.tag}'s messages were cleard from ${interaction.channel.name} by ${interaction.user.tag}.`, ephemeral: false });
@@ -296,7 +296,7 @@ module.exports = (client) => {
         const messages = await interaction.channel.messages.fetch({ limit: 100 });
         // 指定されたユーザーが発言したメッセージのみを抽出
         const collector = await messages.filter(msg => msg.author.id == targetMember.user.id);
-        const msg = collector.first(targetCount)
+        const msg = collector.first(targetCount);
         // それらのメッセージを一括削除
         interaction.channel.bulkDelete(msg);
       }
@@ -320,7 +320,7 @@ module.exports = (client) => {
         const messages = await interaction.channel.messages.fetch({ limit: 100 });
         // 指定されたユーザーが発言したメッセージのみを抽出
         const collector = await messages.filter(msg => msg.author.id == targetID);
-        const msg = collector.first(targetCount)
+        const msg = collector.first(targetCount);
         //それらのメッセージを一括削除
         interaction.channel.bulkDelete(msg);
       }

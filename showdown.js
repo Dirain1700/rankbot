@@ -1,27 +1,38 @@
-module.exports = (ps) => {
+module.exports = (client, ps) => {
   const tool = require("ps-client").Tools;
   ps.on("ready", async () => {
     console.log("Logged in as " + config.ops.username);
     ps.send("|/j botdev");
+    ps.send("|/j groupchat-japanese-71940624");
   });
   
   ps.on("message", message => {
     if (message.isIntro || message.type !== "chat" /*|| message.author.name === ps.status.username*/) return;
-    logmsg(message);
-    if (message.content.startsWith("/log") && config.log.includes(message.content)) {
+    if (message.target.roomid == "japanese") logmsg(message);
+    if (message.content.startsWith("/log")) {
       const log = message.content.replace("/log ", "");
-      const msgs = JSON.parse(fs.readFileSync("./foo.json"));
-      const target = msgs.filter(m => m.user == tool.toID(log.split(" was")[0]));
-      console.log(target);
+      const msgs = JSON.parse(fs.readFileSync("./config/log/chatlog.json"));
+      let target;
+      if (config.log.incluedes(message.content))
+        target = msgs.filter(m => m.user == tool.toID(log.split(" was")[0]));
+      if (message.contnt.indexOf("'s messages") != -1)
+        target = msgs.filter(m => m.user == tool.toID(log.split("'s messages")[0]));
+      if (message.content.indexOf("was promoted")) {
+        const targetUser = message.content.split(" was promoted")[0];
+        client.channels.cache.get(config.logch).send(`${message.content.replace("/log ", "")}\nおめでとう、 ${targetUser}!`);
+        return;
+      }
+      const sendlog = target.map(i => `<t:${i.time}:T> ${i.user} : ${i.content}`);
+        client.channels.cache.get(config.logch).send(message.content.replace("/log ", "") + "\n" + sendlog.join("\n"));
     }
     if (message.author.userid === "dirain") {
       if (message.content.startsWith(".echo")) {
         ps.send(`${message.target.roomid}|${message.content.replace(".echo ", "")}`);
         return;
-      }else if (message.content === ".resetlog") {
-        ps.send(`${message.target.roomid}|ログの削除が完了しました。`);
+      }else if (message.content === ".resetlog" && message.target.roomid === "japanese") {
+        ps.send(`japanese|ログの削除が完了しました。`);
         setTimeout(() => {
-          fs.writeFileSync("./foo.json", "[]");
+          fs.writeFileSync("./config/log/chatlog.json", "[]");
         }, 500);
       }
       if (message.content.startsWith("process.exit")) {
@@ -31,22 +42,16 @@ module.exports = (ps) => {
   });
 
     function logmsg(message) {
+      const msgtime = Math.floor(message.time / 1000);
       const add = {
-        "time": message.time,
+        "time": msgtime,
         "user": message.author.userid,
         "content": message.content
       };
-      const json = JSON.parse(fs.readFileSync("./foo.json"));
+      const json = JSON.parse(fs.readFileSync("./config/log/chatlog.json"));
       json.push(add);
       json.sort((a, b) => b.time - a.time);
       fs.writeFileSync("./foo.json", JSON.stringify(json, null, 2));
     }
   
-  function whatislog(message) {
-    const msgs = JSON.parse(fs.readFileSync("./foo.json"));
-    if (!config.log.includes(message.content)) return;
-    const target = msgs.filter(m => m.user == message.content.split(" ")[0]);
-    console.log(target.filter(r => r.time <= message.time));
-    
-  }
 };
