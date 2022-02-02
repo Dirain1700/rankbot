@@ -34,8 +34,6 @@ Message.prototype.sendDeletable = async function(content){
   await reply.react(wastebasket);
   const run = async () => {
     const reaction = await awaitReaction().catch(() => null);
-    //test
-    await console.log(reaction == null);
     if (!reaction) return reply.reactions.removeAll();
 
     const question = await this.channel.send({
@@ -43,7 +41,7 @@ Message.prototype.sendDeletable = async function(content){
       [
         new MessageEmbed()
           .setColor('YELLOW')
-          .setTitle('削除方法を選択してください（数字）')
+          .setTitle('削除方法を選択してください(数字)')
           .setDescription(
             [
               '0: キャンセル',
@@ -66,7 +64,7 @@ Message.prototype.sendDeletable = async function(content){
         reply.delete(),
         question.delete(),
         input.delete(),
-        this.delete(),
+        this.delete()
       ]);
 
     await Promise.all([
@@ -77,7 +75,6 @@ Message.prototype.sendDeletable = async function(content){
     return run();
   };
   run()
-    .then(console.log)
     .catch(console.error);
 };
 
