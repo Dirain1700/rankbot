@@ -202,7 +202,7 @@ module.exports = (client) => {
       const msg = collector.first(targetCount)
       // それらのメッセージを一括削除
       interaction.channel.bulkDelete(msg);
-      await interaction.reply({ content: `<t:${time}:T> ${targetCount} of ${targetUser.id}'s messages were cleard from ${interaction.channel.name} by ${interaction.user.tag}.`, ephemeral: false });
+      await interaction.reply({ content: `<t:${time}:T> ${targetCount} of ${targetUser.tag}'s messages were cleard from ${interaction.channel.name} by ${interaction.user.tag}.`, ephemeral: false });
       return;
     }
     if (interaction.commandName === "forcecleartext") {
