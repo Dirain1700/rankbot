@@ -33,7 +33,8 @@ module.exports = (client) => {
         .setTitle("Mogi Bot Guide v0.7.13")
         .setDescription("詳しくは、[README.md](https://github.com/Dirain1700/rankbot/blob/main/README.md)をご覧ください。\n**English**: [README-en.md](https://github.com/Dirain1700/rankbot/blob/main/README-en.md)");
       message.channel.send({ embeds: [embed] });
-    }/*Forked from https://github.com/InkoHX/vm2-discordjs*/
+    }
+    /*Forked from https://github.com/InkoHX/vm2-discordjs*/
     if (message.content.toLowerCase().startsWith(">runjs")) {
       const { codeBlock } = require("@discordjs/builders");
       require("./vm2/msg");
@@ -48,7 +49,7 @@ module.exports = (client) => {
         if (content.length <= 2000)
           return codeBlock("js", content);
         else
-          return MessagePayload.resolveFile({
+          return MessagePayload.create(message.channel, {
             content: "実行結果が長すぎるのでテキストファイルに出力しました。",
             attachment: [new MessageAttachment(codeBlock("js", Buffer.from(content)), "result.js")]
       });
@@ -75,7 +76,7 @@ module.exports = (client) => {
     if (!interaction.isCommand() || !interaction.guild) {
       return;
     }
-    if (interaction.commandName === 'ping') {
+    if (interaction.commandName === "ping") {
       const now = Date.now();
       const msg = [
         "pong!",
