@@ -13,7 +13,8 @@ Message.prototype.sendDeletable = async function(content){
   };
   const awaitReaction = () =>
     reply
-      .awaitReactions(reactionFilter, {
+      .awaitReactions({
+        reactionFilter,
         max: 1,
         time: 60000,
         errors: ['time'],
@@ -22,7 +23,8 @@ Message.prototype.sendDeletable = async function(content){
 
   const awaitOptionInput = () =>
     this.channel
-      .awaitMessages(messageFilter, {
+      .awaitMessages({
+        messageFilter,
         max: 1,
         time: 60000,
         errors: ['time'],
