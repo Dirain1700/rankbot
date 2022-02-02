@@ -316,7 +316,7 @@ module.exports = (client) => {
       const targetID = interaction.options.getString("userid");
       const targetUser = await client.users.fetch(targetID);
       const targetCount = interaction.options?.getInteger("deletemsg");
-      if (how) {
+      if (targetCount) {
         const messages = await interaction.channel.messages.fetch({ limit: 100 });
         // 指定されたユーザーが発言したメッセージのみを抽出
         const collector = await messages.filter(msg => msg.author.id == targetID);
