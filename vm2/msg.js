@@ -29,7 +29,7 @@ Message.prototype.sendDeletable = async function(content){
         time: 60000,
         errors: ['time'],
       })
-      .then(collection => collection.first());
+      .then(collection => collection.first())
 
   await reply.react(wastebasket);
   const run = async () => {
@@ -52,6 +52,7 @@ Message.prototype.sendDeletable = async function(content){
       ]
     });
     const input = await awaitOptionInput().catch(() => 0);
+    if (!input) return;
     const option = parseInt(input.content.trim());
     if (option === 1)
       return Promise.all([
