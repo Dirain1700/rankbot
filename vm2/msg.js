@@ -15,7 +15,7 @@ Message.prototype.sendDeletable = async function(content){
     reply
       .awaitReactions({
         reactionFilter,
-        max: 1,
+        max: 2,
         time: 60000,
         errors: ['time'],
       })
