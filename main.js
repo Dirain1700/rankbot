@@ -61,7 +61,7 @@ module.exports = (client, ps) => {
         return message.reply("コードを送信してください。").catch(console.error);
 
       const BlockContent = message.content.match(BlockRegex) ?.groups ?? {};
-      if (!languages.includes(Blockcontent.lang))
+      if (!languages.includes(BlockContent.lang))
         return message
           .reply(`言語識別子が**${languages.join(", ")}**である必要があります。`)
           .catch(console.error);
