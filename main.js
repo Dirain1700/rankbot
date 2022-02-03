@@ -50,25 +50,24 @@ module.exports = (client, ps) => {
         if (content.length <= 2000)
           return codeBlock("js", content);
         else{
-          const file = new MessageAttachment()
-            .setFile(Buffer.from(content), "result.js");
+          const File = new MessageAttachment(Buffer.from(content), "result.txt");
           return MessagePayload.create(message.channel, {
             content: "実行結果が長すぎるのでテキストファイルに出力しました。",
-            files: [file]
+            files: [File]
           });
         }
       };
       if (!BlockRegex.test(message.content))
         return message.reply("コードを送信してください。").catch(console.error);
 
-      const Blockcontent = message.content.match(BlockRegex) ?.groups ?? {};
+      const BlockContent = message.content.match(BlockRegex) ?.groups ?? {};
       if (!languages.includes(Blockcontent.lang))
         return message
           .reply(`言語識別子が**${languages.join(", ")}**である必要があります。`)
           .catch(console.error);
       
       pool
-        .exec("run", [Blockcontent.code])
+        .exec("run", [BlockContent.code])
         .timeout(5000)
         .then(result => message.sendDeletable(toMessageOptions(result)))
         .catch(error => message.sendDeletable(codeBlock("js", error)));
