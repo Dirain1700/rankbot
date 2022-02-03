@@ -1,6 +1,6 @@
-const { worker } = require('workerpool');
-const { VM } = require('vm2');
-const { inspect } = require('util');
+const { worker } = require("workerpool");
+const { VM } = require("vm2");
+const { inspect } = require("util");
 
 const run = async code => {
   const vm = new VM({
@@ -26,14 +26,14 @@ const run = async code => {
       BigUint64Array,
     },
   });
-  const vmRegExpPrototype = vm.run('RegExp').prototype,
+  const vmRegExpPrototype = vm.run("RegExp").prototype,
     vmRegExpProtoToString = vmRegExpPrototype.toString;
   const primitiveTypes = [
-    'Number',
-    'String',
-    'Boolean',
-    'Symbol',
-    'BigInt',
+    "Number",
+    "String",
+    "Boolean",
+    "Symbol",
+    "BigInt",
   ].map(type => {
     const { prototype } = vm.run(type);
     return [type, prototype, prototype.valueOf];

@@ -1,4 +1,4 @@
-const { Message, MessageEmbed } = require('discord.js');
+const { Message, MessageEmbed } = require("discord.js");
 
 Message.prototype.sendDeletable = async function (content) {
   const reply = await this.reply(content);
