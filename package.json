@@ -1,7 +1,7 @@
 {
   "name": "mogi-bot",
-  "version": "0.7.13",
-  "description": "A simple Node app built on Replit, support tournaments.",
+  "version": "0.8.0",
+  "description": "To moderation, manage poins",
   "main": "index.js",
   "scripts": {
     "start": "npx node index.js",

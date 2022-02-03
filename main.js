@@ -13,7 +13,7 @@ module.exports = (client, ps) => {
   });
   
   client.on("messageCreate", async message => {
-    //if (message.author.bot) return;
+    if (message.author.bot) return;
     /*if (message.content.startsWith(".foo")) {
       const targetName = message.content.split(" ")[1];
       const guild = message.guild;
@@ -26,12 +26,12 @@ module.exports = (client, ps) => {
       const seconds = Number(message.content.split(" ")[1]);
       message.channel.send(`Timer set to: ${seconds}seconds!`);
       setTimeout(() => {
-        message.channel.send(`<@${message.author.id}>, Time's up!`)
+        message.channel.send("Time's up!")
       }, seconds * 1000); // setTimeoutに指定するのはミリ秒なので秒数に1000を掛ける
     };*/
     if (message.content == ".help") {
       const embed = new MessageEmbed()
-        .setTitle("Mogi Bot Guide v0.7.13")
+        .setTitle("Mogi Bot Guide v0.8.0")
         .setDescription("詳しくは、[README.md](https://github.com/Dirain1700/rankbot/blob/main/README.md)をご覧ください。\n**English**: [README-en.md](https://github.com/Dirain1700/rankbot/blob/main/README-en.md)");
       message.channel.send({ embeds: [embed] });
     }
@@ -49,11 +49,14 @@ module.exports = (client, ps) => {
       const toMessageOptions = content => {
         if (content.length <= 2000)
           return codeBlock("js", content);
-        else
+        else{
+          const file = new MessageAttachment()
+            .setFile(Buffer.from(content), "result.js");
           return MessagePayload.create(message.channel, {
             content: "実行結果が長すぎるのでテキストファイルに出力しました。",
-            attachment: [new MessageAttachment(codeBlock("js", Buffer.from(content)), "result.js")]
-      });
+            files: [file]
+          });
+        }
       };
       if (!BlockRegex.test(message.content))
         return message.reply("コードを送信してください。").catch(console.error);

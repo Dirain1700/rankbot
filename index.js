@@ -9,8 +9,8 @@ const PSClient = require("ps-client").Client;
 
 let ps = new PSClient(config.ops);
 const client = new Client(config.options);
-const main = require("./main.js");
-const showdown = require("./showdown.js");
+const main = require("./main");
+const showdown = require("./showdown");
 main(client, ps);
 showdown(client, ps);
 
@@ -44,6 +44,7 @@ ps.connect();
 
 /*hotpatch commands*/
 /*Discord hotpatch commands*/
+/*
 client.on("messageCreate", async msg => {
   if (msg.author.id != config.admin) return;
   if (msg.content.startsWith(".hotpatch")) {
@@ -97,4 +98,4 @@ ps.on("message", async msg => {
     await msg.reply(`Successfuly hotpatched: ${target + ".js"}`);
   }
 });
-
+*/

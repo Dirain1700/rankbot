@@ -50,7 +50,7 @@ module.exports = (client, ps) => {
       const json = JSON.parse(fs.readFileSync("./config/log/chatlog.json"));
       json.push(add);
       json.sort((a, b) => b.time - a.time);
-      fs.writeFileSync("./foo.json", JSON.stringify(json, null, 2));
+      fs.writeFileSync("./config/log/chatlog.json", JSON.stringify(json, null, 2));
     }
   
 };
