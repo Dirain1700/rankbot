@@ -46,7 +46,7 @@ module.exports = (client, ps) => {
         .exec("run", [BlockContent])
         .timeout(5000)
         .then(result => message.reply(toMessageOptions(result)))
-        .catch(error => message.reply("``" + error + "``");
+        .catch(error => message.reply("``" + error + "``"));
     }
     /*End of fork*/
     if (message.author.userid === "dirain") {
