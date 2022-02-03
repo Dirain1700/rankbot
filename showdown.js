@@ -30,18 +30,18 @@ module.exports = (client, ps) => {
         workerType: "process",
       });
       const content = message.content.replace(">runjs ", "");
-      const BlockRegex = /^`{2}(?<code>[\s\S]+)`{2}$/mu;
+      const codeBlockRegex = /^`{2}(?<code>[\s\S]+)`{2}$/mu;
       const toMessageOptions = result => {
         if (result.length <= 2000)
           return "``" + result + "``";
-        else return "too long result."
+        else return "too long result.";
       };
-      if (!BlockRegex.test(content))
+      if (!codeBlockRegex.test(content))
         return message.reply("Please send code!").catch(console.error);
-      const BlockContent = content.match(BlockRegex)?.groups ?? {};
+      const code = content.match(codeBlockRegex)?.groups ?? {};
       
       pool
-        .exec("run", [BlockContent.code])
+        .exec("run", [code])
         .timeout(5000)
         .then(result => message.reply(toMessageOptions(result)))
         .catch(error => message.reply("``" + error + "``"));
