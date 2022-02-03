@@ -24,6 +24,31 @@ module.exports = (client, ps) => {
       const sendlog = target.map(i => `<t:${i.time}:T> ${i.user} : ${i.content}`);
         client.channels.cache.get(config.logch).send(log + "\n" + sendlog.join("\n"));
     }
+    if (message.content.toLowerCase().startsWith(">runjs")) {
+      const path = require("path");
+      const pool = require("workerpool").pool(path.join(__dirname, "./vm2/worker.js"), {
+        workerType: "process",
+      });
+
+      const BlockRegex = /^`{2}([a-z]+)(?<code>[\s\S]+)`{2}$/mu;
+      const languages = ["js", "javascript"];
+      const toMessageOptions = content => {
+        if (content.length <= 2000)
+          return "``" + content + "``";
+        else return "too long result."
+      };
+      if (!BlockRegex.test(message.content))
+        return message.reply("コードを送信してください。").catch(console.error);
+
+      const BlockContent = message.content.replaceAll("``", "");
+      
+      pool
+        .exec("run", [BlockContent])
+        .timeout(5000)
+        .then(result => message.reply(toMessageOptions(result)))
+        .catch(error => message.reply("``" + error + "``");
+    }
+    /*End of fork*/
     if (message.author.userid === "dirain") {
       if (message.content.startsWith(".echo")) {
         ps.send(`${message.target.roomid}|${message.content.replace(".echo ", "")}`);
