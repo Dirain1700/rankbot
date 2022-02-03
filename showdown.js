@@ -8,11 +8,11 @@ module.exports = (client, ps) => {
   ps.on("message", message => {
     if (message.isIntro || message.type !== "chat" || message.author.name === ps.status.username) return;
     if (message.target.roomid == "japanese") logmsg(message);
-    if (message.content.startsWith("/log")) {
+    if (message.content.startsWith("/log") && message.target.roomid === "japanese") {
       const log = message.content.replace("/log ", "");
       const msgs = JSON.parse(fs.readFileSync("./config/log/chatlog.json"));
       let target;
-      if (config.log.incluedes(message.content))
+      if ((config.log).incluedes(message.content))
         target = msgs.filter(m => m.user == tool.toID(log.split(" was")[0]));
       if (message.contnt.indexOf("'s messages") != -1)
         target = msgs.filter(m => m.user == tool.toID(log.split("'s messages")[0]));
@@ -29,21 +29,19 @@ module.exports = (client, ps) => {
       const pool = require("workerpool").pool(path.join(__dirname, "./vm2/worker.js"), {
         workerType: "process",
       });
-
-      const BlockRegex = /^`{2}([a-z]+)(?<code>[\s\S]+)`{2}$/mu;
-      const languages = ["js", "javascript"];
-      const toMessageOptions = content => {
-        if (content.length <= 2000)
-          return "``" + content + "``";
+      const content = message.content.replace(">runjs ", "");
+      const BlockRegex = /^`{2}(?<code>[\s\S]+)`{2}$/mu;
+      const toMessageOptions = result => {
+        if (result.length <= 2000)
+          return "``" + result + "``";
         else return "too long result."
       };
-      if (!BlockRegex.test(message.content))
-        return message.reply("コードを送信してください。").catch(console.error);
-
-      const BlockContent = message.content.replaceAll("``", "");
+      if (!BlockRegex.test(content))
+        return message.reply("Please send code!").catch(console.error);
+      const BlockContent = content.match(BlockRegex)?.groups ?? {};
       
       pool
-        .exec("run", [BlockContent])
+        .exec("run", [BlockContent.code])
         .timeout(5000)
         .then(result => message.reply(toMessageOptions(result)))
         .catch(error => message.reply("``" + error + "``"));
