@@ -9,12 +9,16 @@ Looking for English version? visit [README-en.md](https://github.com/Dirain1700/
 - Node.js v16.13.2
 - Visual Studio Code
 - discord.js v13.6.0
+- PS-Client v1.4.1
 
 # 実装済み
 
+## Discord
 ### 雑用
 
 - `/ping` (ping値を測定する。)
+- `>runjs ```js ` <br> `JavaScriptをここに` <br> ` ``` ` <br >JavaScriptを実行し、結果を返信します。一部使用できない機能があります。
+
 
 ### サーバー管理
 
