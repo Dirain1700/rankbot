@@ -1,4 +1,4 @@
-[![Node.js CI](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml/badge.svg)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml)
+[![Node.js CI (full)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml/badge.svg?branch=main&event=push)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml) [![Node.js CI (full)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml/badge.svg?branch=dev&event=push)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml)
 
 # Development Environments
 Using <b>JavaScript</b>.
@@ -9,16 +9,18 @@ Using <b>JavaScript</b>.
 
 # Codes
 All source are on GitHub.<br/>
-If you have any questions, please feel free to ask them in DM or support channel.
+If you have any questions, feel free to ask them in DM or support channel.
 
-[Dirain1700/rankbot at main](https://github.com/Dirain1700/rankbot)
+[Dirain1700/rankbot](https://github.com/Dirain1700/rankbot)
 
 
 # Functions
 
+# Discord
 ### No classification
 
 - `/ping` (Measuring the Ping values)
+- `>runjs ```js ` <br> `JavaScript code here` <br> ` ``` ` <br >Run JavaScript and reply the result. Some functions are not available.
 
 ### Manage server
 
@@ -37,6 +39,13 @@ If you have any questions, please feel free to ask them in DM or support channel
 - `/apt [points] [user]` (for moderation team)<br />
 - `/rank [user(optional, default to your rank)]`
 
+## Pokémon Showdown
+
+
 # Futures
 
 None
+
+# LICENSE
+
+[MIT LICENSE](https://github.com/Dirain1700/rankbot/blob/main/LICENSE)

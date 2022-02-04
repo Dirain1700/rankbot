@@ -1,4 +1,7 @@
-[![Node.js CI](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml/badge.svg)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml)
+[![Node.js CI (full)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml/badge.svg?branch=main&event=push)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml) [![Node.js CI (full)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml/badge.svg?branch=dev&event=push)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml)
+
+
+Looking for English version? visit [README-en.md](https://github.com/Dirain1700/rankbot/blob/main/README-en.md)!
 
 # 環境
 言語は<b>JavaScript</b>です。
@@ -6,19 +9,16 @@
 - Node.js v16.13.2
 - Visual Studio Code
 - discord.js v13.6.0
-
-# 機能
-全部コード書いても長くなるだけなんでGitHub見てください()<br/>
-DMかサポートチャンネルで質問を受け付けますので、なんかあったら聞いてください。
-
-[Dirain1700/rankbot at main](https://github.com/Dirain1700/rankbot)
-
+- PS-Client v1.4.1
 
 # 実装済み
 
+## Discord
 ### 雑用
 
 - `/ping` (ping値を測定する。)
+- `>runjs ```js ` <br> `JavaScriptをここに` <br> ` ``` ` <br >JavaScriptを実行し、結果を返信します。一部使用できない機能があります。
+
 
 ### サーバー管理
 
@@ -40,3 +40,7 @@ DMかサポートチャンネルで質問を受け付けますので、なんか
 # 実装予定
 
 上位数人の出力
+
+# LICENSE
+
+[MIT LICENSE](https://github.com/Dirain1700/rankbot/blob/main/LICENSE)

@@ -25,18 +25,18 @@ module.exports = {
   apt: {
     name: "apt",
     description: "ユーザーに任意のポイントを与えます。",
-    defaultPermission: false,
+    defaultPermission: true,
     options: [
       {
         type: "USER",
         name: "user",
-        description: "ユーザーを特定します。",
+        description: "ユーザー",
         required: true
       },
       {
         type: "INTEGER",
         name: "points",
-        description: "ユーザーに与えるポイントを指定します。半角数字で入力してください。",
+        description: "点数",
         required: true,
         minValue: 1,
         maxValue: 12
@@ -44,6 +44,32 @@ module.exports = {
     ]
   },
   aptid: "916920839054688317",
+  rpt: {
+    name: "rpt",
+    description: "ユーザーから任意のポイントを剥奪します。",
+    defaultPermission: true,
+    options: [
+      {
+        type: "USER",
+        name: "user",
+        description: "ユーザー",
+        required: true
+      },
+      {
+        type: "INTEGER",
+        name: "points",
+        description: "点数",
+        required: true,
+        minValue: 1
+      }
+    ]
+  },
+  rptid: "936238168674549832",
+  resetboard: {
+    name: "resetleaderboard",
+    description: "リーダーボードをリセットします。"
+  },
+  resetboardid: "936238169689563216",
   cleartext: {
     name: "cleartext",
     description: "特定のユーザーのメッセージを削除します。",
@@ -99,7 +125,7 @@ module.exports = {
       {
         type: "STRING",
         name: "reason",
-        description: "kickの理由",
+        description: "理由",
         required: true
       },
       {
@@ -134,7 +160,7 @@ module.exports = {
       {
         type: "STRING",
         name: "reason",
-        description: "BANの理由",
+        description: "理由",
         required: true
       },
       {
@@ -169,7 +195,7 @@ module.exports = {
       {
         type: "STRING",
         name: "reason",
-        description: "BANの理由",
+        description: "理由",
         required: true
       },
       {
@@ -196,7 +222,7 @@ module.exports = {
       {
         type: "STRING",
         name: "reason",
-        description: "UnBANの理由",
+        description: "理由",
         required: true
       }
     ]
