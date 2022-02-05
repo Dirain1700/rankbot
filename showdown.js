@@ -3,12 +3,24 @@ module.exports = (client, ps) => {
   ps.on("ready", async () => {
     console.log("Logged in as " + config.ops.username);
     ps.send("|/j botdev");
+    ps.send("|/j lobby");
+  });
+
+  ps.on("message", async message => {
+    if (message.type !== "pm" || message.author.name === ps.status.username) return;
+    if (message.author.userid !== "dirain" || message.author.group !== " "){
+      if (message.content.startsWith("/invite")) {
+        const targetRoom = message.content.replace("/invite ", "");
+        ps.send("|/j " + targetRoom);
+        await message.reply(`Joined room "${targetRoom}"`)
+      }
+    }
   });
   
-  ps.on("message", message => {
+  ps.on("message", async message => {
     if (message.isIntro || message.type !== "chat" || message.author.name === ps.status.username) return;
     if (message.target.roomid == "japanese") logmsg(message);
-    if (message.content.startsWith("/log") && message.target.roomid === "japanese") {
+    if (message.content.startsWith("/log") && (message.target.roomid).includes("japanese")){
       const log = message.content.replace("/log ", "");
       const msgs = JSON.parse(fs.readFileSync("./config/log/chatlog.json"));
       let target;
