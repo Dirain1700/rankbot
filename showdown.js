@@ -17,9 +17,12 @@ module.exports = (client, ps) => {
       if (message.contnt.indexOf("'s messages") != -1)
         target = msgs.filter(m => m.user == tool.toID(log.split("'s messages")[0]));
       if (message.content.indexOf("was promoted")) {
-        const targetUser = message.content.split(" was promoted")[0];
+        const targetUser = log.split(" was promoted")[0];
         client.channels.cache.get(config.logch).send(`${log}\nおめでとう、 ${targetUser}!`);
         return;
+      }
+      if (message.content.indexOf("was demoted")) {
+        return client.channels.cache.get(config.logch).send(log);
       }
       const sendlog = target.map(i => `<t:${i.time}:T> ${i.user} : ${i.content}`);
         client.channels.cache.get(config.logch).send(log + "\n" + sendlog.join("\n"));
@@ -41,7 +44,7 @@ module.exports = (client, ps) => {
       const code = content.match(codeBlockRegex)?.groups ?? {};
       
       pool
-        .exec("run", [code])
+        .exec("run", [code.code])
         .timeout(5000)
         .then(result => message.reply(toMessageOptions(result)))
         .catch(error => message.reply("``" + error + "``"));
