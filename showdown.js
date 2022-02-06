@@ -27,17 +27,18 @@ module.exports = (client, ps) => {
       if ((config.log).includes(message.content)) {
         target = messages.filter(m => m.user == tool.toID(log.split(" was")[0]));
       }
-      if (message.content.indexOf("'s messages") !== -1) {
+      else if (message.content.indexOf("'s messages") !== -1) {
         target = messages.filter(m => m.user == tool.toID(log.split("'s messages")[0]));
       }
-      if (message.content.indexOf("was promoted") !== -1 ) {
+      else if (message.content.indexOf("was promoted") !== -1 ) {
         const targetUser = log.split(" was promoted")[0];
         client.channels.cache.get(config.logch).send(`${log}\nおめでとう、 ${targetUser}!`);
         return;
       }
-      if (message.content.indexOf("was demoted") !== -1) {
+      else if (message.content.indexOf("was demoted") !== -1) {
         return client.channels.cache.get(config.logch).send(log);
       }
+      else return;
       console.log(target);
       const sendlog = target.map(i => `<t:${i.time}:T> ${i.user} : ${i.content}`);
         client.channels.cache.get(config.logch).send(log + "\n" + sendlog.join("\n"));
