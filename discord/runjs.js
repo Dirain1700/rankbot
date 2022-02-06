@@ -1,5 +1,6 @@
 module.exports = (client, message) => {
   /*Forked from https://github.com/InkoHX/vm2-discordjs*/
+  const { MessageAttachment, MessagePayload } = require("discord.js");
   const { codeBlock } = require("@discordjs/builders");
   require(".../vm2/msg");
   const path = require("path");
@@ -32,5 +33,5 @@ module.exports = (client, message) => {
     .exec("run", [code])
     .timeout(5000).then(result => message.sendDeletable(toMessageOptions(result)))
     .catch(error => message.sendDeletable(codeBlock("js", error)));
-}
+};
 /*End of fork*/
