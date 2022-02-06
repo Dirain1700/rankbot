@@ -1,4 +1,4 @@
-module.exports = (client, message) => {
+module.exports = message => {
   /*Forked from https://github.com/InkoHX/vm2-discordjs*/
   const { MessageAttachment, MessagePayload } = require("discord.js");
   const { codeBlock } = require("@discordjs/builders");
