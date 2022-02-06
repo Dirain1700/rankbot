@@ -3,7 +3,6 @@ module.exports = (client, ps) => {
   ps.on("ready", async () => {
     console.log("Logged in as " + config.ops.username);
     ps.send("|/j botdev");
-    ps.send("|/j lobby");
   });
 
   ps.on("message", async message => {
@@ -12,7 +11,7 @@ module.exports = (client, ps) => {
       if (message.content.startsWith("/invite")) {
         const targetRoom = message.content.replace("/invite ", "");
         ps.send("|/j " + targetRoom);
-        await message.reply(`Joined room "${targetRoom}"`)
+        await message.reply(`Joined room "${targetRoom}"`);
       }
     }
   });

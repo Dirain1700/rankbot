@@ -1,11 +1,11 @@
 {
   "name": "mogi-bot",
-  "version": "0.8.0",
-  "description": "To moderation, manage poins",
+  "version": "0.8.1",
+  "description": "To moderation, manage poins.",
   "main": "index.js",
   "scripts": {
     "start": "npx node index.js",
-    "lint": "eslint *.js",
+    "lint": "eslint *.js vm2/msg.js"
     "full-lint": "eslint *.js vm2/msg.js",
     "lint-fix": "eslint --fix *.js vm2/msg.js"
   },
