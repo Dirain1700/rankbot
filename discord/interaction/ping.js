@@ -1,4 +1,4 @@
-module.exports = interaction => {
+module.exports = async interaction => {
   const now = Date.now();
   const msg = [
     "pong!",
