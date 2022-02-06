@@ -4,12 +4,13 @@ module.exports = (client, ps) => {
     console.log("Logged in as " + config.ops.username);
     ps.send("|/j botdev");
   });
-
+  
   ps.on("message", async message => {
     if (message.type !== "pm" || message.author.name === ps.status.username) return;
-    if (message.author.userid !== "dirain" || message.author.group !== " "){
+    if (message.author.userid === "dirain" || message.author.group === " "){
       if (message.content.startsWith("/invite")) {
         const targetRoom = message.content.replace("/invite ", "");
+        console.log(targetRoom);
         ps.send("|/j " + targetRoom);
         await message.reply(`Joined room "${targetRoom}"`);
       }
@@ -21,13 +22,15 @@ module.exports = (client, ps) => {
     if (message.target.roomid == "japanese") logmsg(message);
     if (message.content.startsWith("/log") && (message.target.roomid).includes("japanese")){
       const log = message.content.replace("/log ", "");
-      const msgs = JSON.parse(fs.readFileSync("./config/log/chatlog.json"));
+      const messages = JSON.parse(fs.readFileSync("./config/log/chatlog.json"));
       let target;
-      if ((config.log).incluedes(message.content))
-        target = msgs.filter(m => m.user == tool.toID(log.split(" was")[0]));
-      if (message.contnt.indexOf("'s messages") != -1)
-        target = msgs.filter(m => m.user == tool.toID(log.split("'s messages")[0]));
-      if (message.content.indexOf("was promoted")) {
+      if ((config.log).includes(message.content)) {
+        target = messages.filter(m => m.user == tool.toID(log.split(" was")[0]));
+      }
+      if (message.content.indexOf("'s messages") !== -1) {
+        target = messages.filter(m => m.user == tool.toID(log.split("'s messages")[0]));
+      }
+      if (message.content.indexOf("was promoted") !== -1 ) {
         const targetUser = log.split(" was promoted")[0];
         client.channels.cache.get(config.logch).send(`${log}\nおめでとう、 ${targetUser}!`);
         return;
@@ -35,6 +38,7 @@ module.exports = (client, ps) => {
       if (message.content.indexOf("was demoted")) {
         return client.channels.cache.get(config.logch).send(log);
       }
+      console.log(target);
       const sendlog = target.map(i => `<t:${i.time}:T> ${i.user} : ${i.content}`);
         client.channels.cache.get(config.logch).send(log + "\n" + sendlog.join("\n"));
     }
