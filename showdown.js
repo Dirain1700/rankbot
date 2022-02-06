@@ -35,7 +35,7 @@ module.exports = (client, ps) => {
         client.channels.cache.get(config.logch).send(`${log}\nおめでとう、 ${targetUser}!`);
         return;
       }
-      if (message.content.indexOf("was demoted")) {
+      if (message.content.indexOf("was demoted") !== -1) {
         return client.channels.cache.get(config.logch).send(log);
       }
       console.log(target);
