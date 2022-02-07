@@ -1,4 +1,4 @@
-module.exports = (client, interaction) => {
+module.exports = async (client, interaction) => {
   if (!interaction.memberPermissions.has('BAN_MEMBERS')) {
     return interaction.reply({ content: "/forceban - Access Denied.", ephemeral: true });
   }
