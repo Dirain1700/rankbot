@@ -15,6 +15,6 @@ module.exports = interaction => {
   fs.writeFileSync("./../../config/rank.json", JSON.stringify(db, null, 2));
   //送信
   interaction.reply(`Removed ${score}points from ${targetUser.tag} and having ${db[targetUser.id].points}points now.`);
-  const { ranksort } = require("./../../ranksort");
-  ranksort();
+  const sort = require("./../../ranksort");
+  sort();
 };
