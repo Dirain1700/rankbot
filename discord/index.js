@@ -1,6 +1,11 @@
 module.exports = async client => {
   global.time = require("@discordjs/builders").time;
 
+  client.on("ready", async () => {
+    const run = require("./ready");
+    run(client);
+  });
+  
   client.on("messageCreate", message => {
     if (message.content.startsWith(">runjs")) {
       const run = require("./message/runjs");
