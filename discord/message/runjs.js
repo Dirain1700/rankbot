@@ -2,9 +2,9 @@ module.exports = message => {
   /*Forked from https://github.com/InkoHX/vm2-discordjs*/
   const { MessageAttachment, MessagePayload } = require("discord.js");
   const { codeBlock } = require("@discordjs/builders");
-  require(".../vm2/msg");
+  require("../../vm2/msg");
   const path = require("path");
-  const pool = require("workerpool").pool(path.join(__dirname, ".../vm2/worker.js"), {
+  const pool = require("workerpool").pool(path.join(__dirname, "../../vm2/worker.js"), {
     workerType: "process",
   });
   
