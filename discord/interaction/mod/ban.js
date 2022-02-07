@@ -1,17 +1,10 @@
-module.exports = interaction => {
+module.exports = async interaction => {
   if (!interaction.memberPermissions.has('BAN_MEMBERS')) {
     return interaction.reply({ content: "/ban - Access Denied.", ephemeral: true });
   }
   const targetMember = interaction.options.getMember("user");
   if (interaction.guild.ownerId !== interaction.user.id && targetMember.roles.highest.comparePositionTo(interaction.user.roles.highest) >= 0) {
     return interaction.reply({ content: "Error: You cannot BAN user higer role have.", ephemeral: true });
-  }
-  const targetCount = interaction.options?.getInteger("lines");
-  if (targetCount) {
-    const messages = await interaction.channel.messages.fetch({ limit: 100 });
-    const collector = await messages.filter(msg => msg.author.id == targetMember.user.id);
-    const msg = collector.first(targetCount);
-    interaction.channel.bulkDelete(msg);
   }
   const day = interaction.options.getInteger("days");
   const reasons = interaction.options.getString("reason");
