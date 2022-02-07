@@ -1,4 +1,4 @@
-module.exports = interaction => {
+module.exports = ( interaction => {
   if (!interaction.memberPermissions.has("ADMINISTRATOR")) {
     interaction.reply({ content: "/apt - Access Denied.", ephemeral: true });
     return;
@@ -19,4 +19,4 @@ module.exports = interaction => {
   interaction.reply(`Added ${score}points to ${targetUser.tag} and having ${db[targetUser.id].points}points now.`);
   const { ranksort } = require("../ranksort");
   ranksort();
-}
+});
