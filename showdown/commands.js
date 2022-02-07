@@ -4,7 +4,7 @@ module.exports = message => {
   }else if (message.content === ".resetlog" && message.target.roomid === "japanese") {
     message.reply(`japanese|ログの削除が完了しました。`);
     setTimeout(() => {
-      fs.writeFileSync("./config/log/chatlog.json", "[]");
+      fs.writeFileSync("./../config/log/chatlog.json", "[]");
     }, 500);
   }else if (message.content.startsWith("process.exit")) {
     process.exit(0);
