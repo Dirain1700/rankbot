@@ -30,9 +30,9 @@ module.exports = async client => {
       run(interaction);
     }
     
-      if (interaction.commandName === "clearleaderboard") {
-        const run = require("./interaction/points/clearleaderboard");
-        run(interaction);
+    if (interaction.commandName === "clearleaderboard") {
+      const run = require("./interaction/points/clearleaderboard");
+      run(interaction);
     }
 
     if (interaction.commandName === "rank") {
