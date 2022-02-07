@@ -1,6 +1,6 @@
 module.exports = interaction => {  
-  require("./../../ranksort");
-  ranksort();
+  const sort = require("./../../ranksort");
+  sort();
   //JSONを読み込む
   const db = JSON.parse(fs.readFileSync("./../../config/rank.json"));
   let targetUser = interaction.options?.getUser("user");
