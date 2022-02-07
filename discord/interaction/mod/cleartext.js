@@ -11,7 +11,6 @@ module.exports = async interaction => {
   
   await interaction.channel.bulkDelete(msg);
   
-  const { time } = require("@discordjs/builders");
   const log = `${time(new Date(), "T")} ${targetCount} of ${targetUser.tag}'s messages were cleard from ${interaction.channel.name} by ${interaction.user.tag}.`;
   
   await interaction.reply({ content: log, ephemeral: false });
