@@ -11,7 +11,6 @@ module.exports = async interaction => {
   const reasons = interaction.options.getString("reason");
   
   await target.timeout(hour * 60 * 60 * 1000 + min * 60 * 1000, `by ${interaction.user.tag}. reason: ${reasons}`);
-  const { time } = require("@discordjs/builders");
   let log;
   if (hour === 0) {
     log = `${time(new Date(), "T")} ${target.user.tag} was muted for ${min}minutes by ${interaction.user.tag}. (${reasons})`;
