@@ -1,5 +1,5 @@
 module.exports = interaction => {  
-  const { ranksort } = require("./../../ranksort");
+  require("./../../ranksort");
   ranksort();
   //JSONを読み込む
   const db = JSON.parse(fs.readFileSync("./../../config/rank.json"));
