@@ -4,7 +4,7 @@ module.exports = interaction => {
   }
   const targetMember = interaction.options.getMember("user");
   const reasons = interaction.options ?.getString("reason") ?? "none";
-  const { time } = require("@discordjs/builders");
   
   targetMember.timeout(null, `by ${interaction.user.tag}. reason: ${reasons}`);
   interaction.reply({ content: `${time(new Date(), "T")} ${targetMember.user.tag} was unmuted by ${interaction.user.tag}.(${reasons})`, ephemeral: false });
+};
