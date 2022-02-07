@@ -1,4 +1,4 @@
-module.exports = ps => {
+module.exports = message => {
   const path = require("path");
   const pool = require("workerpool").pool(path.join(__dirname, "./../../vm2/worker.js"), {
     workerType: "process",
