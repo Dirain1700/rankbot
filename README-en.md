@@ -16,7 +16,7 @@ If you have any questions, feel free to ask them in DM or support channel.
 
 # Functions
 
-# Discord
+## Discord
 ### No classification
 
 - `/ping` (Measuring the Ping values)
