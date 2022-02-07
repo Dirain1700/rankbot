@@ -14,7 +14,7 @@ module.exports = interaction => {
   // 書き換え
   fs.writeFileSync(".../rank.json", JSON.stringify(db, null, 2));
   //送信
-  interaction.reply(`Added ${score}points to ${targetUser.tag} and having ${db[targetUser.id].points}points now.`);
+  interaction.reply(`Removed ${score}points from ${targetUser.tag} and having ${db[targetUser.id].points}points now.`);
   const { ranksort } = require("../ranksort");
   ranksort();
 };
