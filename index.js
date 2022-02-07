@@ -9,9 +9,9 @@ const PSClient = require("ps-client").Client;
 
 let ps = new PSClient(config.ops);
 const client = new Client(config.options);
-const main = require("./main");
+const discord = require("./discord/index");
 const showdown = require("./showdown");
-main(client, ps);
+discord(client);
 showdown(client, ps);
 
 /* eslint-enable */
