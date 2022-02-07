@@ -4,7 +4,6 @@ module.exports = async interaction => {
   }
   const targetID = await interaction.options.getString("userid");
   const targetCount = interaction.options?.getInteger("lines") ?? 1;
-  const time = Math.floor(Date.now() / 1000);
   const targetUser = await client.users.fetch(targetID);
   
   const messages = await interaction.channel.messages.fetch({ limit: 100 });
