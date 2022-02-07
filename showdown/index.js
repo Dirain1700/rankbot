@@ -10,6 +10,8 @@ module.exports = (client, ps) => {
     if (message.content.startsWith("/invite") {
       const run = require("./pm/invite");
       run(message);
-    }
+    }else{
+      const run = require("./commands");
+      run(message);
   });
 };
