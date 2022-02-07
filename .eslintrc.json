@@ -8,7 +8,8 @@
     },
     "globals": {
       "config": true,
-      "fs": false
+      "fs": false,
+      "time": false
     },
     "rules": {
       "no-unused-vars": 1,
