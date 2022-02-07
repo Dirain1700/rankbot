@@ -1,4 +1,4 @@
-module.exports = interaction => {
+module.exports = async interaction => {
   if (!interaction.memberPermissions.has("MANAGE_MESSAGES")) {
     return interaction.reply({ content: "/cleartext - Access Denied.", ephemeral: true });
   }
@@ -9,9 +9,10 @@ module.exports = interaction => {
   const collector = await messages.filter(msg => msg.author.id === targetUser.id);
   const msg = collector.first(targetCount);
   
-  interaction.channel.bulkDelete(msg);
+  await interaction.channel.bulkDelete(msg);
   
   const { time } = require("@discordjs/builders");
   const log = `${time(new Date(), "T")} ${targetCount} of ${targetUser.tag}'s messages were cleard from ${interaction.channel.name} by ${interaction.user.tag}.`;
-  interaction.reply({ content: log, ephemeral: false });
+  
+  await interaction.reply({ content: log, ephemeral: false });
 };
