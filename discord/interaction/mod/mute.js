@@ -15,7 +15,7 @@ module.exports = async interaction => {
   if (hour === 0) {
     log = `${time(new Date(), "T")} ${target.user.tag} was muted for ${min}minutes by ${interaction.user.tag}. (${reasons})`;
   } else {
-    log = `${time(new Date(), "T")} ${target.user.tag} was muted for ${hour} and ${min}minutes by ${interaction.user.tag}. (${reasons})`
+    log = `${time(new Date(), "T")} ${target.user.tag} was muted for ${hour} and ${min}minutes by ${interaction.user.tag}. (${reasons})`;
   }
   interaction.reply({ content: log, ephemeral: false });
-}
+};

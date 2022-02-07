@@ -9,7 +9,7 @@ module.exports = interaction => {
   const data = db[targetUser.id];
   if (!data) {
    return interaction.reply({ content: `${targetUser.tag} has 0points now.`, ephemeral: true });
-  };
+  }
   // そのデータの順位
   // とりあえず1とする
   let rank = 1;
@@ -18,6 +18,6 @@ module.exports = interaction => {
     if (data.points < db[id].points) {
       rank += 1;
     }
-  };
+  }
   interaction.reply({ content: `${targetUser.tag} has ${data.points}points now and ${rank}th.`, ephemeral: true });
 };

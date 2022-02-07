@@ -20,4 +20,4 @@ module.exports = async (client, interaction) => {
   const log = `${time(new Date(), "T")} ${lines} of ${targetMember.user.tag}'s messages were cleard from ${interaction.channel.name} by ${interaction.user.tag}.`;
   
   interaction.reply({ content: log, ephemeral: false });
-}
+};
