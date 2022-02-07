@@ -1,4 +1,4 @@
-module.exports = async interaction => {
+module.exports = async (client, interaction) => {
   if (!interaction.memberPermissions.has("MANAGE_MESSAGES")) {
     return interaction.reply({ content: "/forcecleartext - Access Denied.", ephemeral: true });
   }
