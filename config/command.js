@@ -130,7 +130,7 @@ module.exports = {
       },
       {
         type: "INTEGER",
-        name: "deletemsg",
+        name: "lines",
         description: "メッセージを削除する場合は数を指定してください。",
         required: false,
         minValue: 1,
@@ -165,7 +165,7 @@ module.exports = {
       },
       {
         type: "INTEGER",
-        name: "deletemsg",
+        name: "lines",
         description: "メッセージを削除する場合は数を指定してください。",
         required: false,
         minValue: 1,
@@ -200,7 +200,7 @@ module.exports = {
       },
       {
         type: "INTEGER",
-        name: "deletemsg",
+        name: "lines",
         description: "メッセージを削除する場合は数を指定してください。",
         required: false,
         minValue: 1,
