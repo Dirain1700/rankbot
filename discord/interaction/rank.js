@@ -2,7 +2,7 @@ module.exports = interaction => {
   const { ranksort } = require("../ranksort");
   ranksort();
   //JSONを読み込む
-  const db = JSON.parse(fs.readFileSync("./rank.json"));
+  const db = JSON.parse(fs.readFileSync(".../rank.json"));
   let targetUser = interaction.options?.getUser("user");
   if (!targetUser) targetUser = interaction.user.id;
   // userIDのあるデータ
