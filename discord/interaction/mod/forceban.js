@@ -1,6 +1,6 @@
 module.exports = async (client, interaction) => {
   if (interaction.user.id != config.admin) {
-    retun interaction.reply({ content: "/forceban - Access Denied.", ephemeral: true });
+    return interaction.reply({ content: "/forceban - Access Denied.", ephemeral: true });
   }
   const targetID = interaction.options.getString("userid");
   const targetUser = await client.users.fetch(targetID);
