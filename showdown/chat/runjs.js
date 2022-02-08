@@ -20,4 +20,4 @@ module.exports = message => {
     .timeout(5000)
     .then(result => message.reply(toMessageOptions(result)))
     .catch(error => message.reply("``" + error + "``"));
-}
+};

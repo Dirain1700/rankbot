@@ -1,5 +1,5 @@
 module.exports = (client, ps) => {
-  const tool = require("ps-client").Tools;
+  global.tool = require("ps-client").Tools;
   ps.on("ready", async () => {
     console.log("Logged in as " + config.ops.username);
     ps.send("|/j botdev");
@@ -9,7 +9,7 @@ module.exports = (client, ps) => {
     if (message.type !== "pm" || message.author.name === ps.status.username) return;
     if (message.content.startsWith("/invite")) {
       const run = require("./pm/invite");
-      run(message);
+      run(ps, message);
     }
     else if (message.author.userid === config.owner) {
       const run = require("./commands");
@@ -22,14 +22,14 @@ module.exports = (client, ps) => {
     if (message.target.roomid === "japanese") logmsg(message);
     if (message.content.startsWith("/log") && (message.target.roomid).includes("japanese")) {
       const run = require("./chat/sendlog");
-      run(client, message);
+      run(client, ps, message);
     }
     if (message.content.startsWith(">runjs")) {
       const run = require("./chat/runjs");
       run(message);
     }
     else if (message.author.userid === config.owner) {
-      const run = require("./commands")
+      const run = require("./commands");
       run(message);
     }
   });

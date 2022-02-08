@@ -1,4 +1,4 @@
-module.exports = (client, ps) => {
+module.exports = (client, ps, message) => {
   const log = message.content.replace("/log ", "");
   const messages = JSON.parse(fs.readFileSync("./../../config/log/chatlog.json"));
   let target;
@@ -20,4 +20,4 @@ module.exports = (client, ps) => {
   else return;
   const sendlog = target.map(i => `<t:${i.time}:T> ${i.user} : ${i.content}`);
   client.channels.cache.get(config.logch).send(log + "\n" + sendlog.join("\n"));
-}
+};
