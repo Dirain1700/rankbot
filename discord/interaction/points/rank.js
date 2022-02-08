@@ -3,8 +3,7 @@ module.exports = interaction => {
   sort();
   //JSONを読み込む
   const db = JSON.parse(fs.readFileSync("./../../config/rank.json"));
-  let targetUser = interaction.options?.getUser("user");
-  if (!targetUser) targetUser = interaction.user.id;
+  const targetUser = interaction.options?.getUser("user") ?? interaction.user.id;
   // userIDのあるデータ
   const data = db[targetUser.id];
   if (!data) {
