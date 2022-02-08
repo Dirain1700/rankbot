@@ -9,7 +9,8 @@
     "globals": {
       "config": true,
       "fs": false,
-      "time": false
+      "time": false,
+      "tool": false
     },
     "rules": {
       "no-unused-vars": 1,

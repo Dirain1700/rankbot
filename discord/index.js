@@ -1,5 +1,7 @@
 module.exports = async client => {
   global.time = require("@discordjs/builders").time;
+  const ranksort = require("./ranksort");
+  ranksort();
 
   client.on("ready", async () => {
     const run = require("./ready");
@@ -11,7 +13,7 @@ module.exports = async client => {
       const run = require("./message/runjs");
       run(message);
     }
-  })
+  });
   
   client.on("interactionCreate", interaction => {
     
