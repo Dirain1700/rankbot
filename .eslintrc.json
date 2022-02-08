@@ -9,6 +9,7 @@
     "globals": {
       "config": true,
       "fs": false,
+      "path": false,
       "time": false,
       "tool": false
     },

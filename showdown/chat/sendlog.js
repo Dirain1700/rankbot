@@ -1,6 +1,7 @@
 module.exports = (client, ps, message) => {
   const log = message.content.replace("/log ", "");
-  const messages = JSON.parse(fs.readFileSync("./../../config/log/chatlog.json"));
+  const file = path.resolve(__dirname, "./../../config/log/chatlog.json");
+  const messages = JSON.parse(fs.readFileSync(file));
   let target;
   
   if ((config.log).includes(message.content)) {

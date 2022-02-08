@@ -41,9 +41,10 @@ module.exports = (client, ps) => {
         "user": message.author.userid,
         "content": message.content
       };
-      const json = JSON.parse(fs.readFileSync("./config/log/chatlog.json"));
+      const file = path.resolve(__dirname, "./../config/log/chatlog.json");
+      const json = JSON.parse(fs.readFileSync(file));
       json.push(add);
       json.sort((a, b) => b.time - a.time);
-      fs.writeFileSync("./../config/log/chatlog.json", JSON.stringify(json, null, 2));
+      fs.writeFileSync(file, JSON.stringify(json, null, 2));
   }
 };
