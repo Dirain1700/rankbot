@@ -14,7 +14,7 @@
       "no-unused-vars": 1,
       "semi": [1,"always"],
       "no-extra-semi": 1,
-      "no-vars": 2
+      "no-var": 2
     },
     "parserOptions": {
         "ecmaVersion": 2021
