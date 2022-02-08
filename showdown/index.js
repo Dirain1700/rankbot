@@ -10,7 +10,8 @@ module.exports = (client, ps) => {
     if (message.content.startsWith("/invite")) {
       const run = require("./pm/invite");
       run(message);
-    }else{
+    }
+    else if (message.author.userid === config.owner) {
       const run = require("./commands");
       run(message);
     }
@@ -27,7 +28,7 @@ module.exports = (client, ps) => {
       const run = require("./chat/runjs");
       run(message);
     }
-    else {
+    else if (message.author.userid === config.owner) {
       const run = require("./commands")
       run(message);
     }
