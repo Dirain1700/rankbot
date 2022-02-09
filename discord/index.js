@@ -14,7 +14,7 @@ module.exports = async client => {
   });
   
   client.on("interactionCreate", interaction => {
-    
+    if (!interaction.isCommand()) return;
     if (interaction.commandName === "ping") {
       const run = require("./interaction/ping");
       run(interaction);
