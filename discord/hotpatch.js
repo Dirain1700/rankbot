@@ -1,7 +1,7 @@
 module.exports = fileName => {
   const toFilePath = () => {
     let filePath;
-    switch (arg) {
+    switch (fileName) {
       case "ranksort": case "sort": 
         filePath = "./ranksort";
         fileName = "ranksort"
