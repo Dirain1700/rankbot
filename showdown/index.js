@@ -1,4 +1,5 @@
 module.exports = (client, ps) => {
+  require("./structures");
   global.tool = require("ps-client").Tools;
   ps.on("ready", async () => {
     console.log("Logged in as " + config.ops.username);
@@ -6,7 +7,7 @@ module.exports = (client, ps) => {
   });
   
   ps.on("message", async message => {
-    if (message.type !== "pm" || message.author.name === ps.status.username) return;
+    if (message.isIntro || message.type !== "pm" || message.author.name === ps.status.username) return;
     if (message.content.startsWith("/invite")) {
       const run = require("./pm/invite");
       run(ps, message);
