@@ -5,7 +5,7 @@ module.exports = (fileName, target) => {
     switch (fileName) {
       case "ranksort": case "sort": 
         filePath = "./ranksort";
-        fileName = "ranksort"
+        fileName = "ranksort";
         break;
       case "ping":
         filePath = "./interaction/ping";
@@ -15,14 +15,14 @@ module.exports = (fileName, target) => {
         break;
       case "forceban": case "fban":
         filePath = "./interaction/mod/forceban";
-        fileName = "forceban"
+        fileName = "forceban";
         break;
       case "unban": 
         filePath = "./interaction/mod/unban";
         break;
       case "cleartext": case "hidetext": case "ct": case "clear": case "hide":
         filePath = "./interaction/mod/cleartext";
-        fileName = "cleartext"
+        fileName = "cleartext";
         break;
       case "forcecleartext": case "fct": case "forceclear": case "forcetext":
         filePath = "./interaction/mod/forcecleartext";
@@ -51,7 +51,7 @@ module.exports = (fileName, target) => {
         break;
       case "runjs": case "vm2":
         filePath = "./message/runjs";
-        fileName = "runjs"
+        fileName = "runjs";
         break;
       case "sendlog": case "log":
         filePath = "./../showdown/chat/sendlog";
@@ -64,11 +64,16 @@ module.exports = (fileName, target) => {
       "name": fileName
     };
   };
+
+  if (!isExist(toFile.filePath)) {
+    return target.reply(`Error: ${path.resolve(__dirname, toFile.filePath)} does not exist.`);
+  }
   
   const run = async () => {
     const sleep = t => new Promise((r) => setTimeout(r, t));
     delete require.cache[require.resolve(toFile.filePath)];
     await sleep(1000);
+    target.reply(`Hotpatch successed: ${toFile.fileName}`);
   };
   run();
   
@@ -82,5 +87,5 @@ module.exports = (fileName, target) => {
       return false;
       else return;
     }
-  };
+  }
 };

@@ -1,4 +1,17 @@
 module.exports = {
+  hotpatch: {
+    name: "hotpatch",
+    description: "再起動せずに再読み込みをします。",
+    options: [
+      {
+        type: "STRING",
+        name: "module",
+        description: "モジュールを指定します。",
+        required: true
+      }
+    ]
+  },
+  hotpatchid: "940917030943621150",
   ping: {
     name: "ping",
     description: "ping値を測定します。",
@@ -15,7 +28,7 @@ module.exports = {
     defaultPermission: true,
     options: [
       {
-        type:"USER",
+        type: "USER",
         name: "user",
         description: "ユーザーを指定します。指定されていない場合は自分のものが表示されます。"
       }
