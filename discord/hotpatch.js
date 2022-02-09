@@ -1,5 +1,6 @@
-module.exports = fileName => {
-  const toFilePath = () => {
+/** @type {string} fileName */
+module.exports = (fileName, target) => {
+  const toFile = () => {
     let filePath;
     switch (fileName) {
       case "ranksort": case "sort": 
@@ -56,15 +57,21 @@ module.exports = fileName => {
         filePath = "./../showdown/chat/sendlog";
         fileName = "sendlog";
         break;
-      default: return "Invalid argument.";
-    };
+      default: return target.reply("Error: Invalid argument");
+    }
     return {
       "path": filePath,
       "name": fileName
     };
   };
-      
-        
+  
+  const run = async () => {
+    const sleep = t => new Promise((r) => setTimeout(r, t));
+    delete require.cache[require.resolve(toFile.filePath)];
+    await sleep(1000);
+  };
+  run();
+  
   /** @type {string} filePath */
   function isExist(filePath){
     try {
