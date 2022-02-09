@@ -12,7 +12,7 @@ module.exports = async (client, interaction) => {
   await targetUser.send(`${time(new Date(), "T")} You (${targetUser.tag}) were banned from ${interaction.guild.name} for ${day}days by ${interaction.user.tag}.(${reasons})`);
   
   const targetCount = interaction.options?.getInteger("lines");
-  if (targetCount) return;
+  if (!targetCount) return;
   const messages = await interaction.channel.messages.fetch({ limit: 100 });
   const collector = await messages.filter(msg => msg.author.id == targetID);
   const msg = collector.first(targetCount);
