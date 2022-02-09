@@ -42,7 +42,7 @@ module.exports = fileName => {
         filePath = "./interaction/points/rpt";
         break;
       case "rank":
-        filePath = "./interaction/points/rank;
+        filePath = "./interaction/points/rank";
         break;
       case "clearleaderboard": case "clearboard": case "resetleaderboards": case "resetboard":
         filePath = "./interaction/points/clearboard";
