@@ -4,7 +4,7 @@ module.exports = interaction => {
   }
   const score = interaction.options.getInteger("points");
   const targetUser = interaction.options.getUser("user");
-  const file = path.resolve(__dirname, "./config/rank.json");
+  const file = path.resolve(__dirname, "./../../config/rank.json");
   const db = JSON.parse(fs.readFileSync(file));
   if (targetUser.id in db) { //ユーザーIDのデータがあるか判定
     // ポイント加算
