@@ -57,7 +57,7 @@ module.exports = async (fileName, interaction) => {
         filePath = "./../showdown/chat/sendlog";
         fileName = "sendlog";
         break;
-      default: return target.reply("Error: Invalid argument");
+      default: return interaction.reply("Error: Invalid argument");
     }
     return {
       "path": filePath,
