@@ -1,5 +1,5 @@
 /** @type {string} fileName */
-module.exports = (fileName, target) => {
+module.exports = async (fileName, interaction) => {
   const toFile = () => {
     let filePath;
     switch (fileName) {
@@ -66,14 +66,14 @@ module.exports = (fileName, target) => {
   };
 
   if (!isExist(toFile.filePath)) {
-    return target.reply(`Error: ${path.resolve(__dirname, toFile.filePath)} does not exist.`);
+    return interaction.reply(`Error: ${path.resolve(__dirname, toFile.filePath)} does not exist.`);
   }
   
   const run = async () => {
     const sleep = t => new Promise((r) => setTimeout(r, t));
     delete require.cache[require.resolve(toFile.filePath)];
     await sleep(1000);
-    target.reply(`Hotpatch successed: ${toFile.fileName}`);
+    interaction.followUp(`Hotpatch successed: ${toFile.fileName}`);
   };
   run();
   
