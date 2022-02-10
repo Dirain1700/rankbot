@@ -6,7 +6,6 @@ module.exports = async (fileName, interaction) => {
       switch (fileName) {
         case "ranksort": case "sort": 
           filePath = "./ranksort";
-          fileName = "ranksort";
           resolve();
           break;
         case "ping":
@@ -19,7 +18,6 @@ module.exports = async (fileName, interaction) => {
           break;
         case "forceban": case "fban":
           filePath = "./interaction/mod/forceban";
-          fileName = "forceban";
           resolve();
           break;
         case "unban": 
@@ -28,7 +26,6 @@ module.exports = async (fileName, interaction) => {
           break;
         case "cleartext": case "hidetext": case "ct": case "clear": case "hide":
           filePath = "./interaction/mod/cleartext";
-          fileName = "cleartext";
           resolve();
           break;
         case "forcecleartext": case "fct": case "forceclear": case "forcetext":
@@ -61,17 +58,22 @@ module.exports = async (fileName, interaction) => {
           break;
         case "clearleaderboard": case "clearboard": case "resetleaderboards": case "resetboard":
           filePath = "./interaction/points/clearboard";
-          fileName = "clearleaderboard";
           resolve();
           break;
         case "runjs": case "vm2":
           filePath = "./message/runjs";
-          fileName = "runjs";
           resolve();
           break;
         case "sendlog": case "log":
           filePath = "./../showdown/chat/sendlog";
-          fileName = "sendlog";
+          resolve();
+          break;
+        case "showdown":
+          filePath = "./../showdown/index";
+          resolve():
+          break;
+        case "index": case "discord": case "self":
+          filePath = "./index";
           resolve();
           break;
         default:  return reject(`TypeError: Invalid argument "${fileName}"`);
