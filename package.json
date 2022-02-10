@@ -1,6 +1,6 @@
 {
   "name": "mogi-bot",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "To moderation, manage poins.",
   "main": "index.js",
   "scripts": {
