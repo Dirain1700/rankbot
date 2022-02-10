@@ -10,8 +10,9 @@ module.exports = async interaction => {
       execSync("git pull", { stdio: 'inherit' });
       await interaction.reply(result);
       return;
-    }catch(e){
-      interaction.reply(e);
+    }catch{
+      const result = execSync("git pull", { stdio: 'inherit' }).toString("utf-8");
+      interaction.reply(result);
       return;
     }
   }
