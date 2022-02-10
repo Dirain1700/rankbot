@@ -57,25 +57,19 @@ module.exports = async (fileName, interaction) => {
         filePath = "./../showdown/chat/sendlog";
         fileName = "sendlog";
         break;
-      default: return interaction.reply("Error: Invalid argument");
+      default: throw (`TypeError: Invalid argument "${toFile(fileName)}"`);
     }
-    return {
-      "path": filePath,
-      "name": fileName
-    };
+    return filePath;
   };
 
-  if (!isExist(toFile.filePath)) {
-    return interaction.reply(`Error: ${path.resolve(__dirname, toFile.filePath)} does not exist.`);
-  }
-  
+  await interaction.deferReply({ ephemeral: false });
   const run = async () => {
     const sleep = t => new Promise((r) => setTimeout(r, t));
-    delete require.cache[require.resolve(toFile.filePath)];
+    delete require.cache[require.resolve(toFile(fileName))];
     await sleep(1000);
-    interaction.followUp(`Hotpatch successed: ${toFile.fileName}`);
+    interaction.followUp(`Hotpatch successed: ${toFile(fileName)}.js`);
   };
-  run();
+  await run().catch(e => interaction.followUp(e));
   
   /** @type {string} filePath */
   function isExist(filePath){
