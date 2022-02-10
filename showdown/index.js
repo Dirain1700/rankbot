@@ -12,10 +12,6 @@ module.exports = (client, ps) => {
       const run = require("./pm/invite");
       run(ps, message);
     }
-    else if (message.author.userid === config.owner) {
-      const run = require("./commands");
-      run(message);
-    }
   });
   
   ps.on("message", async message => {
@@ -27,10 +23,6 @@ module.exports = (client, ps) => {
     }
     if (message.content.startsWith(">runjs")) {
       const run = require("./chat/runjs");
-      run(message);
-    }
-    else if (message.author.userid === config.owner) {
-      const run = require("./commands");
       run(message);
     }
   });
