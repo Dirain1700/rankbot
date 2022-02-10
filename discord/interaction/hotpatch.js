@@ -4,17 +4,16 @@ module.exports = async interaction => {
   }
   const fileName = interaction.options.getString("module");
   if (fileName === "git") {
-    const { execSync } = require("child_process");
-    try {
-      const result = execSync("git pull", { stdio: 'inherit' }).toString("utf-8");
-      execSync("git pull", { stdio: 'inherit' });
-      await interaction.reply(result);
-      return;
-    }catch{
-      const result = execSync("git pull", { stdio: 'inherit' }).toString("utf-8");
-      interaction.reply(result);
-      return;
-    }
+    const { exec } = require("child_process");
+      exec("git pull", { stdio: "inherit" }, async (error, stdout, stderr) => {
+        if (error) {
+          console.error("error: " + error);
+          interaction.reply(error);
+        }
+        interaction.reply(stdout);
+        return;
+      });
+    return;
   }
   const run = require("./../hotpatch");
   run(fileName, interaction);
