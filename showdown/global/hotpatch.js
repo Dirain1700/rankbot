@@ -1,6 +1,6 @@
 module.exports = async message => {
   if (message.author.userid !== config.owner) {
-    return interaction.reply({ content: "Access denied.", ephemeral: true });
+    return message.reply({ content: "Access denied.", ephemeral: true });
   }
   const fileName = message.content.split(" ")[1];
   if (fileName === "git") {
