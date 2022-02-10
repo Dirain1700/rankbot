@@ -70,7 +70,7 @@ module.exports = async (fileName, interaction) => {
           break;
         case "showdown":
           filePath = "./../showdown/index";
-          resolve():
+          resolve();
           break;
         case "index": case "discord": case "self":
           filePath = "./index";
