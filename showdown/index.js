@@ -6,6 +6,18 @@ module.exports = (client, ps) => {
     ps.send("|/j botdev");
   });
   
+  ps.on("message", message => {
+    if (message.isIntro || message.author.name === ps.status.username) return;
+    if (message.content === ".resetlog") {
+      const run = require("./global/resetlog");
+      run(message);
+    }
+    if (message.content.startsWith(".hotpatch")) {
+      const run = require("./global/hotpatch");
+      run(message);
+    }
+  });
+  
   ps.on("message", async message => {
     if (message.isIntro || message.type !== "pm" || message.author.name === ps.status.username) return;
     if (message.content.startsWith("/invite")) {
