@@ -1,19 +1,28 @@
 module.exports = (client, ps) => {
+  require("./structures");
   global.tool = require("ps-client").Tools;
   ps.on("ready", async () => {
     console.log("Logged in as " + config.ops.username);
     ps.send("|/j botdev");
   });
   
+  ps.on("message", message => {
+    if (message.isIntro || message.author.name === ps.status.username) return;
+    if (message.content === ".resetlog") {
+      const run = require("./global/resetlog");
+      run(message);
+    }
+    if (message.content.startsWith(".hotpatch")) {
+      const run = require("./global/hotpatch");
+      run(message);
+    }
+  });
+  
   ps.on("message", async message => {
-    if (message.type !== "pm" || message.author.name === ps.status.username) return;
+    if (message.isIntro || message.type !== "pm" || message.author.name === ps.status.username) return;
     if (message.content.startsWith("/invite")) {
       const run = require("./pm/invite");
       run(ps, message);
-    }
-    else if (message.author.userid === config.owner) {
-      const run = require("./commands");
-      run(message);
     }
   });
   
@@ -26,10 +35,6 @@ module.exports = (client, ps) => {
     }
     if (message.content.startsWith(">runjs")) {
       const run = require("./chat/runjs");
-      run(message);
-    }
-    else if (message.author.userid === config.owner) {
-      const run = require("./commands");
       run(message);
     }
   });
