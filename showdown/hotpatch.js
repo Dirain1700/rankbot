@@ -13,8 +13,8 @@ module.exports = async (fileName, message) => {
         case "invite":
           filePath = "./pm/invite";
           break;
-        case "commands":
-          filePath = "./commands";
+        case "resetlog":
+          filePath = "./global/resetlog";
           break;
         case "message": case "structures":
           filePath = "./structures";
@@ -39,7 +39,7 @@ module.exports = async (fileName, message) => {
     const sleep = t => new Promise((r) => setTimeout(r, t));
     delete require.cache[require.resolve(toFile(fileName))];
     await sleep(1000);
-    message.reply("Hotpatch successed: ``"+ toFile(fileName) + "``.js");
+    message.reply("Hotpatch successed: ``"+ toFile(fileName) + ".js``");
   };
   await run();
   
