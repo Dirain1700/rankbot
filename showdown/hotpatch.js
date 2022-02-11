@@ -1,43 +1,36 @@
 /** @type {string} fileName */
 module.exports = async (fileName, message) => {
   const toFile = () => {
-    new Promise((resolve, reject) => {
-      let filePath;
+    let filePath;
+    try{
       switch (fileName) {
         case "runjs": case "vm2": 
           filePath = "./chat/runjs";
-          resolve();
           break;
         case "ping":
           filePath = "./chat/sendlog";
-          resolve();
           break;
         case "invite":
           filePath = "./pm/invite";
-          resolve();
           break;
         case "commands":
           filePath = "./commands";
-          resolve();
           break;
         case "message": case "structures":
           filePath = "./structures";
-          resolve();
           break;
         case "index": case "showdown": case "self":
           filePath = "./index";
-          resolve();
           break;
         case "discord":
           filePath = "./../discord/index.js";
-          resolve();
           break;
-        default:  return reject(`TypeError: Invalid argument "${fileName}"`);
+        default:  throw (`TypeError: Invalid argument "${fileName}"`);
       }
-      return filePath;
-    }).catch(e => { 
-      return message.reply(e);
-    });
+    }catch(e){
+      return message.reply("``" + e + "``");
+    }
+    return filePath;
   };
 
   if (!toFile(fileName)) return;
@@ -46,7 +39,7 @@ module.exports = async (fileName, message) => {
     const sleep = t => new Promise((r) => setTimeout(r, t));
     delete require.cache[require.resolve(toFile(fileName))];
     await sleep(1000);
-    message.reply(`Hotpatch successed: ${toFile(fileName)}.js`);
+    message.reply("Hotpatch successed: ``"+ toFile(fileName) + "``.js");
   };
   await run();
   
