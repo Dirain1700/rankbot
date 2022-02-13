@@ -10,7 +10,10 @@ module.exports = async message => {
           console.error("error: " + error);
           message.reply(error);
         }
-        message.reply(stdout);
+        if (stdout === "Already up-to-date.") {
+          return message.reply("``" + stdout + "``");
+        }
+        message.reply("!code " + stdout);
         return;
       });
     return;

@@ -1,7 +1,7 @@
 [![Node.js CI (full)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml/badge.svg?branch=main&event=push)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml) [![Node.js CI (full)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml/badge.svg?branch=dev&event=push)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml)
 
 
-Looking for English version? visit [README-en.md](https://github.com/Dirain1700/rankbot/blob/main/README-en.md)!
+Looking for English version? visit [README-en.md](./README-en.md)!
 
 # 環境
 言語は<b>JavaScript</b>です。
@@ -37,10 +37,16 @@ Looking for English version? visit [README-en.md](https://github.com/Dirain1700/
 - `/apt [点数] [ユーザー名]` (運営向け)<br />
 - `/rank [ユーザー名(任意)]`
 
+## PS
+### トーナメント
+
+- `.ct [options]` 指定したオプションでトーナメントを作成します。
+#### オプション
+- `random` [フォーマット](./showdown/tour/formatnames.js)一覧の中からランダムに選び、トーナメントを開催します。
 # 実装予定
 
 上位数人の出力
 
 # LICENSE
 
-[MIT LICENSE](https://github.com/Dirain1700/rankbot/blob/main/LICENSE)
+[MIT LICENSE](./LICENSE)

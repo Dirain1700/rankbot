@@ -37,6 +37,11 @@ module.exports = (client, ps) => {
       const run = require("./chat/runjs");
       run(message);
     }
+    if (message.content.startsWith(".ct")) {
+      if (message.getRoomAuth() === " ") return;
+      const run = require("./tour/tourmanager");
+      run(message);
+    }
   });
 
   function logmsg(message) {
