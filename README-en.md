@@ -6,6 +6,7 @@ Using <b>JavaScript</b>.
 - Node.js v16.13.2
 - Visual Studio Code
 - discord.js v13.6.0
+- PS-Client v1.4.1
 
 # Codes
 All source are on GitHub.<br/>
@@ -40,8 +41,12 @@ If you have any questions, feel free to ask them in DM or support channel.
 - `/rank [user(optional, default to your rank)]`
 
 ## Pokémon Showdown
-
-
+### No classification
+- `>runjs ```js ` <br> `JavaScript code here` <br> ` ``` ` <br >Run JavaScript and reply the result. Some functions are not available.
+### Tournament
+- `.ct [options]` Create a tournament with option what you chose.
+ #### option
+ - `random` Bot will choose format randomly from [formatList](./showdown/tour/formatnames.js) and create a tour.
 # Futures
 
 None
