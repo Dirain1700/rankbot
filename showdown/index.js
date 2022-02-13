@@ -28,7 +28,7 @@ module.exports = (client, ps) => {
   
   ps.on("message", async message => {
     if (message.isIntro || message.type !== "chat" || message.author.name === ps.status.username) return;
-    if (message.target.roomid === "japanese") logmsg(message);
+    if (message.target.roomid.includes("japanese")) logmsg(message);
     if (message.content.startsWith("/log") && (message.target.roomid).includes("japanese")) {
       const run = require("./chat/sendlog");
       run(client, ps, message);

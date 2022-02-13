@@ -73,7 +73,7 @@ module.exports = async (fileName, interaction) => {
     const sleep = t => new Promise((r) => setTimeout(r, t));
     await delete require.cache[require.resolve(toFile(fileName))];
     await sleep(1000);
-    interaction.followUp(`Hotpatch successed: ${inlineCode(toFile(fileName))}.js`);
+    interaction.followUp(`Hotpatch successed: ${inlineCode(toFile(fileName) + ".js")}`);
   };
   await run();
   
