@@ -16,6 +16,9 @@ module.exports = async (fileName, message) => {
         case "resetlog":
           filePath = "./global/resetlog";
           break;
+        case "tour":
+          filePath = "./tour/tourmanager";
+          break;
         case "message": case "structures":
           filePath = "./structures";
           break;

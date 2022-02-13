@@ -1,9 +1,7 @@
 module.exports = message => {
   let run;
-  switch (message.content.split(" ")[1]) {
-    case "random":
+  const option = message.content.toLowerCase().split(" ")[1];
+  if (option === "random")
       run = require("./random");
-      break;
-  };
   run(message);
 };

@@ -38,6 +38,7 @@ module.exports = (client, ps) => {
       run(message);
     }
     if (message.content.startsWith(".ct")) {
+      if (message.getRoomAuth() === " ") return;
       const run = require("./tour/tourmanager");
       run(message);
     }
