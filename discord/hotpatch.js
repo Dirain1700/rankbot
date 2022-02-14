@@ -66,14 +66,16 @@ module.exports = async (fileName, interaction) => {
     }
     return filePath;
   };
-  if(!toFile(fileName)) return;
+  const filePath = toFile(fileName);
+  
+  if(!filePath || !isExist(filePath)) return;
 
   await interaction.deferReply({ ephemeral: false });
   const run = async () => {
     const sleep = t => new Promise((r) => setTimeout(r, t));
-    await delete require.cache[require.resolve(toFile(fileName))];
+    await delete require.cache[require.resolve(filePath)];
     await sleep(1000);
-    interaction.followUp(`Hotpatch successed: ${inlineCode(toFile(fileName) + ".js")}`);
+    interaction.followUp(`Hotpatch successed: ${inlineCode(filePath + ".js")}`);
   };
   await run();
   
