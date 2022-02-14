@@ -35,14 +35,15 @@ module.exports = async (fileName, message) => {
     }
     return filePath;
   };
-
-  if (!toFile(fileName)) return;
+  const filePath = toFile(fileName);
+  
+  if (!filePath || !isExist(filePath)) return;
   
   const run = async () => {
     const sleep = t => new Promise((r) => setTimeout(r, t));
-    delete require.cache[require.resolve(toFile(fileName))];
+    delete require.cache[require.resolve(filePath)];
     await sleep(1000);
-    message.reply("Hotpatch successed: ``"+ toFile(fileName) + ".js``");
+    message.reply("Hotpatch successed: ``"+ filePath + ".js``");
   };
   await run();
   
