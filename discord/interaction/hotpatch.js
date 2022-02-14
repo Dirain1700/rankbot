@@ -4,14 +4,19 @@ module.exports = async interaction => {
   }
   const fileName = interaction.options.getString("module");
   if (fileName === "git") {
+    const { codeBlock, inlineCode } = require("@discordjs/builders");
     const { exec } = require("child_process");
       exec("git pull", { stdio: "inherit" }, async (error, stdout, stderr) => {
         if (error) {
           console.error("error: " + error);
-          interaction.reply(error);
+          interaction.reply(inlineCode(error));
         }
-        interaction.reply(stdout);
-        return;
+        if (stderr) {
+          interaction.reply(codeBlock("bash", stderr));
+        };
+        if (stdout) {
+          interaction.reply(codeBlock("diff", stdout));
+        };
       });
     return;
   }
