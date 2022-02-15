@@ -10,17 +10,27 @@ module.exports = message => {
   
   const codeBlockRegex = /^`{3}(?<language>[a-z]+)\n(?<code>[\s\S]+)\n`{3}$/mu;
   const languages = ["js", "javascript"];
-  const toMessageOptions = content => {
-    if (content.length <= 2000)
-      return codeBlock("js", content);
-    else{
-      const file = new MessageAttachment(Buffer.from(content), "result.txt");
-      return MessagePayload.create(message.channel, {
-        content: "実行結果が長すぎるのでテキストファイルに出力しました。",
-        files: [file]
-      });
-    }
+  const toMessageOptions = (consoleOutput, result) => {
+  const wrapped = [
+    Formatters.bold("コンソール"),
+    Formatters.codeBlock(
+      "js",
+      consoleOutput.replaceAll("`", "`\u200b") || "出力無し"
+    ),
+    Formatters.bold("結果"),
+    Formatters.codeBlock("js", result.replaceAll("`", "`\u200b")),
+  ].join("\n");
+  if (wrapped.length <= 2000) return wrapped;
+  const files = [new MessageAttachment(Buffer.from(result), "result.txt")];
+  if (consoleOutput)
+    files.unshift(
+      new MessageAttachment(Buffer.from(consoleOutput), "console.txt");
+    );
+  return {
+    content: "実行結果が長すぎるのでテキストファイルに出力しました。",
+    files,
   };
+    
   if (!codeBlockRegex.test(message.content))
     return message.reply("コードを送信してください。").catch(console.error);
   
@@ -31,7 +41,10 @@ module.exports = message => {
       .catch(console.error);
   pool
     .exec("run", [code])
-    .timeout(5000).then(result => message.sendDeletable(toMessageOptions(result)))
-    .catch(error => message.sendDeletable(codeBlock("js", error)));
+    .timeout(5000)
+    .then(([consoleOutput, result]) =>
+      message.sendDeletable(toMessageOptions(consoleOutput, result))
+    )
+    .catch(error => message.sendDeletable(Formatters.codeBlock("js", error)));
 };
 /*End of fork*/
