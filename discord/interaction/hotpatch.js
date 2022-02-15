@@ -10,12 +10,15 @@ module.exports = async interaction => {
         if (error) {
           console.error("error: " + error);
           interaction.reply(inlineCode(error));
+          return;
         }
         if (stderr) {
           interaction.reply(codeBlock("bash", stderr));
+          return;
         };
         if (stdout) {
           interaction.reply(codeBlock("diff", stdout));
+          return;
         };
       });
     return;
