@@ -10,25 +10,27 @@ module.exports = message => {
   
   const codeBlockRegex = /^`{3}(?<language>[a-z]+)\n(?<code>[\s\S]+)\n`{3}$/mu;
   const languages = ["js", "javascript"];
+  
   const toMessageOptions = (consoleOutput, result) => {
-  const wrapped = [
-    Formatters.bold("console"),
-    Formatters.codeBlock(
-      "js",
-      consoleOutput.replaceAll("`", "`\u200b") || "出力無し"
-    ),
-    Formatters.bold("stdout"),
-    Formatters.codeBlock("js", result.replaceAll("`", "`\u200b")),
-  ].join("\n");
-  if (wrapped.length <= 2000) return wrapped;
-  const files = [new MessageAttachment(Buffer.from(result), "result.txt")];
-  if (consoleOutput)
-    files.unshift(
-      new MessageAttachment(Buffer.from(consoleOutput), "console.txt")
-    );
-  return {
-    content: "実行結果が長すぎるのでテキストファイルに出力しました。",
-    files,
+    const wrapped = [
+      Formatters.bold("console"),
+      Formatters.codeBlock(
+        "js",
+        consoleOutput.replaceAll("`", "`\u200b") || "出力無し"
+      ),
+      Formatters.bold("stdout"),
+      Formatters.codeBlock("js", result.replaceAll("`", "`\u200b")),
+    ].join("\n");
+    if (wrapped.length <= 2000) return wrapped;
+    const files = [new MessageAttachment(Buffer.from(result), "result.txt")];
+    if (consoleOutput)
+      files.unshift(
+        new MessageAttachment(Buffer.from(consoleOutput), "console.txt")
+      );
+    return {
+      content: "実行結果が長すぎるのでテキストファイルに出力しました。",
+      files,
+    }
   };
     
   if (!codeBlockRegex.test(message.content))
@@ -39,6 +41,7 @@ module.exports = message => {
     return message
       .reply(`言語識別子が**${languages.join(", ")}**である必要があります。`)
       .catch(console.error);
+    
   pool
     .exec("run", [code])
     .timeout(5000)
