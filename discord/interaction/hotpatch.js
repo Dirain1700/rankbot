@@ -4,6 +4,7 @@ module.exports = async interaction => {
   }
   const fileName = interaction.options.getString("module");
   if (fileName === "git") {
+    interaction.deferReply();
     const { codeBlock, inlineCode } = require("@discordjs/builders");
     const { exec } = require("child_process");
       exec("git pull", { stdio: "inherit" }, async (error, stdout, stderr) => {
