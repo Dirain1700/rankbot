@@ -1,30 +1,4 @@
-const { worker } = require("workerpool");
-const { VM } = require("vm2");
-const { inspect } = require("util");
-
-const run = async code => {
-  const vm = new VM({
-    sandbox: {
-      Set,
-      Map,
-      Date,
-      WeakSet,
-      WeakMap,
-      Buffer,
-      ArrayBuffer,
-      SharedArrayBuffer,
-      Int8Array,
-      Uint8Array,
-      Uint8ClampedArray,
-      Int16Array,
-      Uint16Array,
-      Int32Array,
-      Uint32Array,
-      Float32Array,
-      Float64Array,
-      BigInt64Array,
-      BigUint64Array,
-const { worker } = require("workerpool");
+const { worker } = require('workerpool');
 const { VM } = require("vm2");
 const { inspect } = require("util");
 const { Console } = console;
@@ -76,13 +50,13 @@ const run = async code => {
       value() {
         try {
           return `[${type}: ${toString(valueOf(this))}]`;
-        } catch {}
+        } catch {};
         return this;
       },
     });
-  }
+  };
 
-  const vmRegExpPrototype = vm.run("RegExp").prototype,
+  const vmRegExpPrototype = vm.run('RegExp').prototype,
     vmRegExpProtoToString = call.bind(vmRegExpPrototype.toString);
   Object.defineProperty(vmRegExpPrototype, inspect.custom, {
     value() {
@@ -95,15 +69,15 @@ const run = async code => {
 
   let result;
   try {
-    result = await vm.run(code);
+    result = await vm.run(code)
   } catch (ex) {
-    return [consoleOutput.join(""), Error.prototype.toString.call(ex)];
-  }
+    return [consoleOutput.join(""), Error.prototype.toString.call(ex)]
+  };
 
   return [
     consoleOutput.join(""),
     inspect(result, { depth: null, maxArrayLength: null }),
-  ];
+  ]
 };
 
 worker({ run });
