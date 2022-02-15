@@ -12,19 +12,19 @@ module.exports = message => {
   const languages = ["js", "javascript"];
   const toMessageOptions = (consoleOutput, result) => {
   const wrapped = [
-    Formatters.bold("コンソール"),
+    Formatters.bold("console"),
     Formatters.codeBlock(
       "js",
       consoleOutput.replaceAll("`", "`\u200b") || "出力無し"
     ),
-    Formatters.bold("結果"),
+    Formatters.bold("stdout"),
     Formatters.codeBlock("js", result.replaceAll("`", "`\u200b")),
   ].join("\n");
   if (wrapped.length <= 2000) return wrapped;
   const files = [new MessageAttachment(Buffer.from(result), "result.txt")];
   if (consoleOutput)
     files.unshift(
-      new MessageAttachment(Buffer.from(consoleOutput), "console.txt");
+      new MessageAttachment(Buffer.from(consoleOutput), "console.txt")
     );
   return {
     content: "実行結果が長すぎるのでテキストファイルに出力しました。",
