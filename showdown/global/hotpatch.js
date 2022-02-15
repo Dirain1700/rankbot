@@ -21,6 +21,8 @@ module.exports = async message => {
       });
     return;
   }
-  const run = require("./../hotpatch");
-  run(fileName, message);
+  else {
+    const run = require("./../hotpatch");
+    run(fileName, message);
+  };
 };
