@@ -14,6 +14,7 @@ module.exports = message => {
       "stdout:",
       result.replaceAll("`", "`\u200b"),
     ].join("\n");
+    return wrapped;
   };
   
   if (!codeBlockRegex.test(content))
