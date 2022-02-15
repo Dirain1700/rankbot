@@ -5,10 +5,15 @@ module.exports = message => {
   });
   const content = message.content.replace(">runjs ", "");
   const codeBlockRegex = /^`{2}(?<code>[\s\S]+)`{2}$/mu;
-  const toMessageOptions = result => {
-    if (result.length <= 2000)
-      return "``" + result + "``";
-    else return "too long result.";
+  
+  const toMessageOptions = (consoleOutput, result) => {
+    const wrapped = [
+      "!code console:",
+       consoleOutput.replaceAll("`", "`\u200b") || "No console output."
+      ,
+      "stdout:",
+      result.replaceAll("`", "`\u200b"),
+    ].join("\n");
   };
   
   if (!codeBlockRegex.test(content))
@@ -18,6 +23,8 @@ module.exports = message => {
   pool
     .exec("run", [code.code])
     .timeout(5000)
-    .then(result => message.reply(toMessageOptions(result)))
-    .catch(error => message.reply("``" + error + "``"));
+    .then(([consoleOutput, result]) =>
+      message.reply(toMessageOptions(consoleOutput, result))
+    )
+    .catch(error => message.reply("!code " + error));
 };
