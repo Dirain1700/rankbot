@@ -10,15 +10,15 @@ module.exports = async interaction => {
       exec("git pull", { stdio: "inherit" }, async (error, stdout, stderr) => {
         if (error) {
           console.error("error: " + error);
-          interaction.reply(inlineCode(error));
+          interaction.followUp(inlineCode(error));
           return;
         }
         if (stderr) {
-          interaction.reply(codeBlock("bash", stderr));
+          interaction.followUp(codeBlock("bash", stderr));
           return;
         };
         if (stdout) {
-          interaction.reply(codeBlock("diff", stdout));
+          interaction.followUp(codeBlock("diff", stdout));
           return;
         };
       });
