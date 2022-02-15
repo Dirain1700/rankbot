@@ -30,7 +30,7 @@ module.exports = message => {
     return {
       content: "実行結果が長すぎるのでテキストファイルに出力しました。",
       files,
-    }
+    };
   };
     
   if (!codeBlockRegex.test(message.content))

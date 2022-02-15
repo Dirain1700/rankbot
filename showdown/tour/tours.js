@@ -7,5 +7,5 @@ module.exports = (message, option) => {
     ];
     message.reply(commands.join("\n"));
     return;
-  };
+  }
 };

@@ -8,6 +8,6 @@ module.exports = message => {
     default:
       run = require("./tours");
       break;
-  };
+  }
   run(message, option);
 };

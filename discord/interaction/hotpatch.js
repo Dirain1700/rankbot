@@ -16,11 +16,11 @@ module.exports = async interaction => {
         if (stderr) {
           interaction.followUp(codeBlock("bash", stderr));
           return;
-        };
+        }
         if (stdout) {
           interaction.followUp(codeBlock("diff", stdout));
           return;
-        };
+        }
       });
     return;
   }
