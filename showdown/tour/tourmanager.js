@@ -5,9 +5,9 @@ module.exports = message => {
     case "random": 
       run = require("./random");
       break;
-    case "bsss9":
-      run = require("./bsss9");
+    default:
+      run = require("./tours");
       break;
   };
-  run(message);
+  run(message, option);
 };
