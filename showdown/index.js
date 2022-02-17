@@ -24,6 +24,10 @@ module.exports = (client, ps) => {
       const run = require("./pm/invite");
       run(ps, message);
     }
+    if (message.content.starsWith(">runjs")) {
+      const run = require("./chat/runjs");
+      run(message);
+    }
   });
   
   ps.on("message", async message => {
