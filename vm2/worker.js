@@ -6,15 +6,16 @@ const { Writable } = require("stream");
 
 const errorToString = err => {
    if (typeof err === "object" && err instanceof Error) {
-     return Error.prototype.toString.call(err)
+     return Error.prototype.toString.call(err);
    }
-   return "Thrown: " + inspect(err, { depth: null, maxArrayLength: null })
+   return "Thrown: " + inspect(err, { depth: null, maxArrayLength: null });
 };
 const run = async code => {
   const consoleOutput = [];
   const outStream = Object.defineProperty(new Writable(), "write", {
     value: chunk => consoleOutput.push(chunk),
   });
+  /* eslint-disable no-undef */
   const vm = new VM({
     sandbox: {
       Set,
@@ -45,6 +46,7 @@ const run = async code => {
       }),
     },
   });
+  /* eslint-enable */
 
   const { call } = Function.prototype;
 
@@ -55,11 +57,12 @@ const run = async code => {
       value() {
         try {
           return `[${type}: ${inspect(valueOf(this))}]`;
-        } catch {};
+          //eslint-disable-next-line no-empty
+        } catch {}
         return this;
       },
     });
-  };
+  }
 
   const vmRegExpPrototype = vm.run('RegExp').prototype,
     vmRegExpProtoToString = call.bind(vmRegExpPrototype.toString);
@@ -67,6 +70,7 @@ const run = async code => {
     value() {
       try {
         return vmRegExpProtoToString(this);
+        //eslint-disable-next-line no-empty
       } catch {}
       return this;
     },
@@ -74,15 +78,15 @@ const run = async code => {
 
   let result;
   try {
-    result = await vm.run(code)
+    result = await vm.run(code);
   } catch (ex) {
-    return [consoleOutput.join("").trim(), errorToString(ex)]
-  };
+    return [consoleOutput.join("").trim(), errorToString(ex)];
+  }
 
   return [
     consoleOutput.join("").trim(),
     inspect(result, { depth: null, maxArrayLength: null }),
-  ]
+  ];
 };
 
 worker({ run });
