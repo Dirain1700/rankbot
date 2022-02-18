@@ -12,16 +12,18 @@ module.exports = message => {
   const languages = ["js", "javascript"];
   
   const toMessageOptions = (consoleOutput, result) => {
-    const wrapped = [
-      Formatters.bold("console"),
-      Formatters.codeBlock(
-        "js",
-        consoleOutput.replaceAll("`", "`\u200b") || "出力無し"
-      ),
-      Formatters.bold("stdout"),
-      Formatters.codeBlock("js", result.replaceAll("`", "`\u200b")),
-    ].join("\n");
-    if (wrapped.length <= 2000) return wrapped;
+    if (consoleOutput.split('\n').length <= 100) {
+      let wrapped = Formatters.codeBlock('js', result.replaceAll('`', '`\u200b'))
+      if (consoleOutput) {
+        wrapped =
+          Formatters.bold("console:") +
+          Formatters.codeBlock("js", consoleOutput.replaceAll("`", "`\u200b")) +
+         '\n' +
+         Formatters.bold("stdout:") +
+         wrapped
+      }
+      if (wrapped.length <= 2000) return wrapped
+    }
     const files = [new MessageAttachment(Buffer.from(result), "result.txt")];
     if (consoleOutput)
       files.unshift(
