@@ -12,13 +12,13 @@ module.exports = message => {
   const languages = ["js", "javascript"];
   
   const toMessageOptions = (consoleOutput, result) => {
-    if (consoleOutput.split('\n').length <= 100) {
-      let wrapped = Formatters.codeBlock('js', result.replaceAll('`', '`\u200b'));
+    if (consoleOutput.split("\n").length <= 100) {
+      let wrapped = Formatters.codeBlock("js", result.replaceAll("`", "`\u200b"));
       if (consoleOutput) {
         wrapped =
           Formatters.bold("console:") +
           Formatters.codeBlock("js", consoleOutput.replaceAll("`", "`\u200b")) +
-         '\n' +
+         "\n" +
          Formatters.bold("stdout:") +
          wrapped;
       }

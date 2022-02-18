@@ -1,4 +1,4 @@
-const { worker } = require('workerpool');
+const { worker } = require("workerpool");
 const { VM } = require("vm2");
 const { inspect } = require("util");
 const { Console } = console;
@@ -64,7 +64,7 @@ const run = async code => {
     });
   }
 
-  const vmRegExpPrototype = vm.run('RegExp').prototype,
+  const vmRegExpPrototype = vm.run("RegExp").prototype,
     vmRegExpProtoToString = call.bind(vmRegExpPrototype.toString);
   Object.defineProperty(vmRegExpPrototype, inspect.custom, {
     value() {
