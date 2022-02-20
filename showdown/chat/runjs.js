@@ -7,14 +7,16 @@ module.exports = message => {
   const codeBlockRegex = /^`{2}(?<code>[\s\S]+)`{2}$/mu;
   
   const toMessageOptions = (consoleOutput, result) => {
-    const wrapped = [
-      "!code console:",
-       consoleOutput.replaceAll("`", "`\u200b") || "No console output."
-      ,
-      "stdout:",
-      result.replaceAll("`", "`\u200b"),
-    ].join("\n");
-    return wrapped;
+    let wrapped = result.replaceAll("`", "`\u200b");
+    if (consoleOutput) {
+      wrapped =
+        "!code console:\n" +
+        consoleOutput.replaceAll("`", "`\u200b") +
+        "\n" +
+        "stdout:\n" +
+        wrapped;
+    }
+    if (wrapped.length <= 100) return "``" + wrapped + "``";
   };
   
   if (!codeBlockRegex.test(content))

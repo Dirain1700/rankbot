@@ -14,10 +14,10 @@
       "tool": false
     },
     "rules": {
-      "no-unused-vars": 1,
-      "semi": [1,"always"],
-      "no-extra-semi": 1,
-      "no-var": 2
+      "no-unused-vars": "error",
+      "semi": ["warn","always"],
+      "no-extra-semi": "warn",
+      "no-var": "error"
     },
     "parserOptions": {
         "ecmaVersion": 2021
