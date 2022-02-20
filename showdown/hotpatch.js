@@ -40,14 +40,15 @@ module.exports = async (fileName, message) => {
   if (!filePath || !isExist(filePath)) return;
   
   const run = async () => {
-    const sleep = t => new Promise((r) => setTimeout(r, t));
     delete require.cache[require.resolve(filePath)];
-    await sleep(1000);
     message.reply("Hotpatch successed: ``"+ filePath + ".js``");
   };
   await run();
   
-  /** @type {string} filePath */
+  /*
+   * @type {string} filePath
+   * @returns {boolean} 
+  */
   function isExist(filePath){
     try {
       require(filePath);
