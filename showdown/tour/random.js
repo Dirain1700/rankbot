@@ -9,7 +9,7 @@ module.exports = message => {
       "/tour rules -Restricted Legendary, vgctimer",
       "/tour name [Gen 8] Battle Stadium Singles S9"
       ];
-    message.reply(cmd.join("\n");
+    message.reply(cmd.join("\n"));
     return;
   }
   
@@ -19,6 +19,6 @@ module.exports = message => {
       "/tour rules vgctimer",
       "/tour name [Gen 8] Battle Stadium Singles"
       ];
-    message.reply(cmd.join("\n");
+    message.reply(cmd.join("\n"));
   }
 };
