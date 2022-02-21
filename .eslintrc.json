@@ -15,8 +15,9 @@
     },
     "rules": {
       "no-unused-vars": "error",
-      "semi": ["warn","always"],
-      "no-extra-semi": "warn",
+      "semi": ["error","always"],
+      "no-extra-semi": "error",
+      "quote": ["error", "double"],
       "no-var": "error"
     },
     "parserOptions": {
