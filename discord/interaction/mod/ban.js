@@ -1,5 +1,5 @@
 module.exports = async interaction => {
-  if (!interaction.memberPermissions.has('BAN_MEMBERS')) {
+  if (!interaction.memberPermissions.has("BAN_MEMBERS")) {
     return interaction.reply({ content: "/ban - Access Denied.", ephemeral: true });
   }
   const targetMember = interaction.options.getMember("user");

@@ -1,5 +1,5 @@
 module.exports = async (client, interaction) => {
-  if (!interaction.memberPermissions.has('KICK_MEMBERS')) {
+  if (!interaction.memberPermissions.has("KICK_MEMBERS")) {
     return interaction.reply({ content: "/kick - Access Denied.", ephemeral: true });
   }
   const targetMember = interaction.options.getMember("user");
