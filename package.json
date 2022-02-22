@@ -4,7 +4,7 @@
   "description": "To moderation, manage poins.",
   "main": "index.js",
   "scripts": {
-    "start": "npx node index.js",
+    "start": "node index.js",
     "lint": "eslint *.js vm2/**/*.js 'discord/**/*.js' 'showdown/**/*.js'",
     "lint-fix": "eslint --fix *.js vm2/**/*.js 'discord/**/*.js' 'showdown/**/*.js'"
   },

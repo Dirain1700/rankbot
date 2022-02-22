@@ -53,4 +53,4 @@ None
 
 # LICENSE
 
-[MIT LICENSE](https://github.com/Dirain1700/rankbot/blob/main/LICENSE)
+[MIT LICENSE](./LICENSE)

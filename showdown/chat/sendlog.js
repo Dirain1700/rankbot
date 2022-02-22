@@ -7,15 +7,15 @@ module.exports = (client, ps, message) => {
   if ((config.log).includes(message.content)) {
     target = messages.filter(m => m.user == tool.toID(log.split(" was")[0]));
   }
-  else if (message.content.indexOf("'s messages") !== -1) {
+  else if (~message.content.indexOf("'s messages")) {
     target = messages.filter(m => m.user == tool.toID(log.split("'s messages")[0]));
   }
-  else if (message.content.indexOf("was promoted") !== -1 ) {
+  else if (~message.content.indexOf("was promoted")) {
     const targetUser = log.split(" was promoted")[0];
     client.channels.cache.get(config.logch).send(`${log}\nおめでとう、 ${targetUser}!`);
     return;
   }
-  else if (message.content.indexOf("was demoted") !== -1) {
+  else if (~message.content.indexOf("was demoted")) {
     return client.channels.cache.get(config.logch).send(log);
   }
   else return;
