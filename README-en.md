@@ -44,7 +44,7 @@ If you have any questions, feel free to ask them in DM or support channel.
 ### No classification
 - `>runjs ```js ` <br> `JavaScript code here` <br> ` ``` ` <br >Run JavaScript and reply the result. Some functions are not available.
 ### Tournament
-- `.ct [options]` Create a tournament with option what you chose.
+- `.nt [options]` Create a tournament with option what you chose.
  #### option
  - `random` Bot will choose format randomly from [formatList](./showdown/tour/formatnames.js) and create a tour.
 # Futures
