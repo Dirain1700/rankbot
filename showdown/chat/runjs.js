@@ -9,22 +9,24 @@ module.exports = message => {
   const toMessageOptions = (consoleOutput, result) => {
     let wrapped = result.replaceAll("`", "`\u200b");
     if (consoleOutput) {
-      wrapped =
-        "!code console:\n" +
-        consoleOutput.replaceAll("`", "`\u200b") +
-        "\n" +
-        "stdout:\n" +
-        wrapped;
+      wrapped = [
+        "!code console:",
+        consoleOutput.replaceAll("`", "`\u200b"),
+        "stdout:",
+        wrapped
+      ].join("\n");
+      
+      return wrapped;
     }
-    if (wrapped.length <= 100) return "``" + wrapped + "``";
+    if (!consoleOutput && wrapped.length <= 150) return "``" + wrapped + "``";
   };
   
   if (!codeBlockRegex.test(content))
     return message.reply("Please send code!").catch(console.error);
-  const code = content.match(codeBlockRegex)?.groups ?? {};
+  const { code } = content.match(codeBlockRegex)?.groups ?? {};
   
   pool
-    .exec("run", [code.code])
+    .exec("run", [code])
     .timeout(5000)
     .then(([consoleOutput, result]) =>
       message.reply(toMessageOptions(consoleOutput, result))
