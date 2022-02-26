@@ -9,18 +9,14 @@ module.exports = async interaction => {
     const { exec } = require("child_process");
       exec("git pull", { stdio: "inherit" }, async (error, stdout, stderr) => {
         if (error) {
-          console.error("error: " + error);
           interaction.followUp(inlineCode(error));
           return;
         }
-        if (stderr) {
-          interaction.followUp(codeBlock("diff", stderr));
-          return;
+        if (stdout === "Already up-to-date.") {
+          return interaction.followUp(inlineCode(stdout));
         }
-        if (stdout) {
-          interaction.followUp(codeBlock("bash", stdout));
-          return;
-        }
+        else 
+          interaction.followUp(codeBlock("diff", stderr + stdout));
       });
     return;
   }

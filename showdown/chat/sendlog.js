@@ -12,13 +12,13 @@ module.exports = (client, ps, message) => {
   }
   else if (~message.content.indexOf("was promoted")) {
     const targetUser = log.split(" was promoted")[0];
-    client.channels.cache.get(config.logch).send(`${log}\nおめでとう、 ${targetUser}!`);
+    client.channels.cache.get(config.logch).send(`${log}\nおめでとう、${targetUser}!`);
     return;
   }
   else if (~message.content.indexOf("was demoted")) {
     return client.channels.cache.get(config.logch).send(log);
   }
   else return;
-  const sendlog = target.map(i => `<t:${i.time}:T> ${i.user} : ${i.content}`);
-  client.channels.cache.get(config.logch).send(log + "\n" + sendlog.join("\n"));
+  const chatLog = target.map(i => `<t:${i.time}:T> ${i.user}: ${i.content}`);
+  client.channels.cache.get(config.logch).send(log + "\n" + chatLog.join("\n"));
 };

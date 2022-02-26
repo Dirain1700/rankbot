@@ -5,7 +5,7 @@ global.fs = require("fs");
 global.config = require("./config/config");
 global.path = require("path");
 const pages = fs.readFileSync("./config/index.html");
-const { Intents,Client,ClientApplication } = require("discord.js");
+const { Client } = require("discord.js");
 const PSClient = require("ps-client").Client;
 
 let ps = new PSClient(config.ops);
@@ -40,5 +40,5 @@ http.createServer((req, res) => {
  }
 }).listen(3000);
 
-client.login( config.token );
+//client.login( config.token );
 ps.connect();

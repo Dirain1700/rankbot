@@ -8,16 +8,13 @@ module.exports = async message => {
       exec("git pull", { stdio: "inherit" }, async (error, stdout, stderr) => {
         if (error) {
           message.reply("!code error:\n" + error);
+          return;
         }
         if (stdout === "Already up-to-date.") {
           return message.reply("``" + stdout + "``");
         }
-        if (stderr) {
-          message.reply("!code stderr:\n" + stderr);
-        }
-        if (stdout) {
-          message.reply("!code stdout:\n" + stdout);
-        }
+        else
+        message.reply(stderr + stdout);
       });
     return;
   }

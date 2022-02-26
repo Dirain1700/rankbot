@@ -3,7 +3,7 @@ module.exports = (client, ps) => {
   global.tool = require("ps-client").Tools;
   ps.on("ready", async () => {
     console.log("Logged in as " + config.ops.username);
-    ps.send("|/j botdev");
+    ps.send("|/j lobby");
   });
   
   ps.on("message", message => {
@@ -42,7 +42,7 @@ module.exports = (client, ps) => {
       run(message);
     }
     if (message.content.startsWith(".nt")) {
-      if (message.getRoomAuth() === " ") return;
+      if (!message.isStaff()) return;
       const run = require("./tour/tourmanager");
       run(message);
     }
