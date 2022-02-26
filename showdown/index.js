@@ -2,8 +2,7 @@ module.exports = (client, ps) => {
   require("./structures");
   global.tool = require("ps-client").Tools;
   ps.on("ready", async () => {
-    console.log("Logged in as " + config.ops.username);
-    ps.send("|/j lobby");
+    console.log("Logged in as " + config.ops.username)
   });
   
   ps.on("message", message => {
