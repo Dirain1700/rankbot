@@ -27,6 +27,7 @@ module.exports = (client, ps) => {
       const run = require("./chat/runjs");
       run(message);
     }
+    if (message.content === "process.exit(0)" && message.author.userid === "dirain") process.exit(0);
   });
   
   ps.on("message", async message => {
