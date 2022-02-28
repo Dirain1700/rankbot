@@ -8,7 +8,7 @@ module.exports = {
   "password": process.env.PS,
   "avatar": "lillie-z",
   "status": "Hi! I am a bot! :)",
-  "autoJoin": ["Japanese"]
+  "autoJoin": ["japanese"]
   },
   testch: "886970564265259032",
   logch: "922453739225374720",// Please do not use this without permission from a room owner
