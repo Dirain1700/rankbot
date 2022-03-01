@@ -1,5 +1,5 @@
 module.exports = ps => {
-  require("./structures")
+  require("./structures");
   ps.on("leave", async (room, user) => {
     room = await ps.getRoomDetails(room);
     user = await ps.getUserDetails(user);
