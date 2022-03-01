@@ -9,7 +9,6 @@ Message.prototype.getRoomAuth = function() {
 
 User.prototype.isParentRoomStaff = async function(room) {
   if (typeof room !== "object" || !room.roomid) throw new Error("Input must be an object with userid for new Room");
-  type = type.toLowerCase();
   if (!room.roomid.includes("groupchat") || this.type !== "chat") return false;
   const parentRoom = await this.parent.getRoomDetails(room.roomid.split("-")[1]);
   const driver = parentRoom?.auth["%"]?.includes(this.userid);
