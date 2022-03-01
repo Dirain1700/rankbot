@@ -42,11 +42,13 @@ module.exports = (client, ps) => {
       run(message);
     }
     if (message.content.startsWith(".nt")) {
-      if (!message.isStaff()) return;
+      if (!message.author.isStaff("chat", message.target)) return;
       const run = require("./tour/tourmanager");
       run(message);
     }
   });
+
+  () => require("./modchat")(ps);
 
   function logmsg(message) {
       const msgtime = Math.floor(message.time / 1000);
