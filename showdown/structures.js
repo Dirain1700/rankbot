@@ -10,7 +10,6 @@ Message.prototype.getRoomAuth = function() {
 User.prototype.isParentRoomStaff = async function(room) {
   if (typeof room !== "object" || !room.roomid) throw new Error("Input must be an object with userid for new Room");
   type = type.toLowerCase();
-  if (!["room", "global"].includes(type)) throw new Error("Input must be \"chat\" or \"global\"")
   if (!room.roomid.includes("groupchat") || this.type !== "chat") return false;
   const parentRoom = await this.parent.getRoomDetails(room.roomid.split("-")[1]);
   const driver = parentRoom?.auth["%"]?.includes(this.userid);
@@ -22,9 +21,9 @@ User.prototype.isParentRoomStaff = async function(room) {
 User.prototype.isStaff = function(type, room) {
   if (typeof room !== "object" || !room.roomid || room.type !== "chat") throw new Error("Input must be a Class Room");
   type = type.toLowerCase();
-  if (!["room", "global"].includes(type)) throw new Error("Input must be \"chat\" or \"global\"")
+  if (!["room", "global"].includes(type)) throw new Error("Input must be \"chat\" or \"global\"");
   if (type === "global") {
-    if (room) throw new Error("Do not input room when chose type: global")
+    if (room) throw new Error("Do not input room when chose type: global");
     return ["%", "@", "&"].includes(this.group) ? true : false;
   }
   const driver = room?.auth["%"]?.includes(this.userid);
