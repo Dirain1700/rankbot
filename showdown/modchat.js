@@ -4,8 +4,8 @@ module.exports = ps => {
     const targetRoom = await ps.getRoomDetails(room);
     const targetUser = tool.toID(user);
     //if (room.visibility === "hidden") return;
-    console.log(targetRoom)
-    console.log(targetUser)
+    console.log(targetRoom);
+    console.log(targetUser);
     const onlineStaffs = room.users.filter(user.isStaff("chat", room));
     if (!onlineStaffs.length) room.send("/modchat trusted");
   });
@@ -13,8 +13,8 @@ module.exports = ps => {
     const targetRoom = await ps.getRoomDetails(room);
     const targetUser = tool.toID(user);
     //if (room.visibility === "hidden") return;
-    console.log(targetRoom)
-    console.log(targetUser)
+    console.log(targetRoom);
+    console.log(targetUser);
     const onlineStaffs = room.users.filter(user.isStaff("chat", room));
     if (onlineStaffs.length > 0) room.send("/modchat ac");
   });
