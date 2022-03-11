@@ -17,7 +17,7 @@ module.exports = (client, ps) => {
       run(message);
     }
     if (message.content.startsWith("echo") && message.author.userid === config.owner)
-      ps.send(message.content.substring(4))
+      ps.send(message.content.substring(4));
   });
   
   ps.on("message", async message => {
