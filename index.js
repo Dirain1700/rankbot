@@ -1,10 +1,7 @@
-/* eslint-disable no-unused-vars*/
-const http = require("http");
-const querystring = require("querystring");
 global.fs = require("fs");
 global.config = require("./config/config");
 global.path = require("path");
-const pages = fs.readFileSync("./config/index.html");
+const html = fs.readFileSync("./config/index.html");
 const { Client } = require("discord.js");
 const PSClient = require("ps-client").Client;
 
@@ -15,8 +12,7 @@ const showdown = require("./showdown/index");
 discord(client);
 showdown(client, ps);
 
-/* eslint-enable */
-http.createServer((req, res) => {
+require("http").createServer((req, res) => {
   if (req.method == "POST"){
     let data = "";
     req.on("data", function(chunk){
@@ -27,7 +23,7 @@ http.createServer((req, res) => {
         res.end("No post data");
         return;
       }
-      const dataObject = querystring.parse(data);
+      const dataObject = require("querystring").parse(data);
       if(dataObject.type == "wake"){
         res.end();
         return;
@@ -36,7 +32,7 @@ http.createServer((req, res) => {
   }
   else if (req.method == "GET"){
    res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
-   res.end(pages);
+   res.end(html);
  }
 }).listen(3000);
 
