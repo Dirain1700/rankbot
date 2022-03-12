@@ -1,16 +1,18 @@
+"use strict";
+
 global.fs = require("fs");
 global.config = require("./config/config");
 global.path = require("path");
 const html = fs.readFileSync("./config/index.html");
-const { Client } = require("discord.js");
+const DiscordClient = require("discord.js").Client;
 const PSClient = require("ps-client").Client;
 
-let ps = new PSClient(config.ops);
-const client = new Client(config.options);
+const ps = new PSClient(config.ops);
+const client = new DiscordClient(config.options);
 const discord = require("./discord/index");
 const showdown = require("./showdown/index");
 discord(client);
-showdown(client, ps);
+showdown(ps, client);
 
 require("http").createServer((req, res) => {
   if (req.method == "POST"){

@@ -1,4 +1,4 @@
-module.exports = (client, ps) => {
+module.exports = (ps, client) => {
   require("./structures");
   global.tool = require("ps-client").Tools;
   
