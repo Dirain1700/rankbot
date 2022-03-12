@@ -11,7 +11,8 @@ module.exports = {
   "autoJoin": ["japanese", "botdev"],
   },
   testch: "886970564265259032",
-  logch: "922453739225374720",// Please do not use this without permission from a room owner
+  logch: "922453739225374720",
+  // Please do not use this without permission from a room owner
   aptguild: "873211574876241931",
   owner: "dirain",
   admin: ["751433045529329825"], // Array of Discord IDs of administrators

@@ -26,7 +26,10 @@ module.exports = async (fileName, message) => {
           filePath = "./index";
           break;
         case "discord":
-          filePath = "./../discord/index.js";
+          filePath = "./../discord/index";
+          break;
+        case "output":
+          filePath = "./global/output";
           break;
         default:  throw (`TypeError: Invalid argument "${fileName}"`);
       }

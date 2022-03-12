@@ -18,6 +18,10 @@ module.exports = (client, ps) => {
     }
     if (message.content.startsWith("echo") && message.author.userid === config.owner)
       ps.send(message.content.substring(4));
+    if (message.content.startsWith(".output")) {
+      const run = require("./global/output");
+      run(message);
+    }
   });
   
   ps.on("message", async message => {
