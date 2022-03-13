@@ -4,14 +4,13 @@ module.exports = (ps, client) => {
   
   ps.on("loggedin", async () => {
     console.log("Logged in as " + config.ops.username);
-    console.log(await ps.fetchRoom("toursplaza"))
   });
   
   ps.on("message", message => {
     if (message.isIntro || message.author.userid === ps.status.userid) return;
     if (message.content === "help?"){
       if (message.type === "chat" && !message.author.isStaff("room", message.target)) return;
-      message.reply("Dirain1700~! Guide: https://github.com/Dirain1700/rankbot#readme")
+      message.reply("Dirain1700~! Guide: https://github.com/Dirain1700/rankbot#readme");
     }
     if (message.content === ".resetlog") {
       const run = require("./global/resetlog");
@@ -58,7 +57,6 @@ module.exports = (ps, client) => {
       const run = require("./tour/tourmanager");
       run(message);
     }
-    //if (message.raw)
   });
 
 
@@ -69,7 +67,7 @@ module.exports = (ps, client) => {
         "user": message?.author?.userid ?? "&",
         "content": message.content
       };
-      const file = path.resolve(__dirname, "./../config/log/chatlog.json");
+      const file = path.resolve(__dirname, "./../config/chatlog.json");
       const json = JSON.parse(fs.readFileSync(file));
       json.unshift(add);
       fs.writeFileSync(file, JSON.stringify(json, null, 2));

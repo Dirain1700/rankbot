@@ -3,7 +3,7 @@ foo*
 fs.js
 
 # Logs
-config/log/*
+config/chatlog.json
 logs
 *.log
 npm-debug.log*

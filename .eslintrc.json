@@ -3,11 +3,10 @@
     "plugins": [],
     "env": {
       "node": true,
-      "es6": true,
-      "browser": true
+      "es2021": true
     },
     "globals": {
-      "config": true,
+      "config": false,
       "fs": false,
       "path": false,
       "time": false,
@@ -15,7 +14,8 @@
     },
     "rules": {
       "no-unused-vars": "error",
-      "semi": ["error","always"],
+      "semi": ["error", "always"],
+      "comma-spacing": "error",
       "no-extra-semi": "error",
       "quotes": ["error", "double"],
       "no-var": "error"
