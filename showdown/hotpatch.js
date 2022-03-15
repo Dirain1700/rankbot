@@ -49,9 +49,9 @@ module.exports = async (fileName, message) => {
   await run();
   
   /*
-   * @type {string} filePath
+   * @param {string} filePath
    * @returns {boolean} 
-  */
+   */
   function isExist(filePath){
     try {
       require(filePath);

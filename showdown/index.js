@@ -57,19 +57,26 @@ module.exports = (ps, client) => {
       const run = require("./tour/tourmanager");
       run(message);
     }
+		if (message.content.startsWith("/raw")) {
+			const run = require("./chat/raw.js");
+			run(message);
+		}
   });
-
-
+/*
+	ps.on("raw", (room, message, args, isIntro) => {
+	})
+*/
   function logmsg(message) {
-      const msgtime = Math.floor((message?.time ?? Date.now()) / 1000);
-      const add = {
-        "time": msgtime,
-        "user": message?.author?.userid ?? "&",
-        "content": message.content
-      };
-      const file = path.resolve(__dirname, "./../config/chatlog.json");
-      const json = JSON.parse(fs.readFileSync(file));
-      json.unshift(add);
-      fs.writeFileSync(file, JSON.stringify(json, null, 2));
+    const msgtime = Math.floor((message?.time ?? Date.now()) / 1000);
+    const add = {
+      "time": msgtime,
+      "user": message?.author?.userid ?? "&",
+      "content": message.content
+    };
+    const file = path.resolve(__dirname, "./../config/chatlog.json");
+    let json = JSON.parse(fs.readFileSync(file));
+		if (json.length > 500) json.length = 50;
+		json.unshift(add);
+		fs.writeFileSync(file, JSON.stringify(json, null, 2));
   }
 };
