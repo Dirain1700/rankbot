@@ -1,10 +1,10 @@
-module.exports = (client, ps, message) => {
+module.exports = (client, message) => {
   const log = message.content.replace("/log ", "");
   const file = path.resolve(__dirname, "./../../config/chatlog.json");
   const messages = JSON.parse(fs.readFileSync(file));
   let target;
   
-  if ((config.log).includes(message.content)) {
+  if (config.log.some(e => message.content.includes(e))) {
     target = messages.filter(m => m.user == tool.toID(log.split(" was")[0]));
   }
   else if (~message.content.indexOf("'s messages")) {

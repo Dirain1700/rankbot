@@ -3,7 +3,7 @@ module.exports = message => {
   const pool = require("workerpool").pool(path.join(__dirname, "./../../vm2/worker.js"), {
     workerType: "process",
   });
-  const content = message.content.replace(">runjs ", "");
+  const content = message.content.substring(7);
   const codeBlockRegex = /^`{2}(?<code>[\s\S]+)`{2}$/mu;
   
   const toMessageOptions = (consoleOutput, result) => {
@@ -31,5 +31,5 @@ module.exports = message => {
     .then(([consoleOutput, result]) =>
       message.reply(toMessageOptions(consoleOutput, result))
     )
-    .catch(error => message.reply("!code " + error));
+    .catch(error => message.reply("``" + error + "``"));
 };

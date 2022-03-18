@@ -10,4 +10,9 @@ module.exports = message => {
       break;
   }
   run(message, option);
+	const commands = [
+		"autostart 5",
+		"autodq 2"
+	];
+	commands.forEach(e => message.reply("/tour " + e));
 };

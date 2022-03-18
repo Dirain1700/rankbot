@@ -19,7 +19,7 @@ module.exports = message => {
       "/tour rules vgctimer",
       "/tour name [Gen 8] Battle Stadium Singles"
       ];
-    message.target.sendHTML(`<div class="infobox"><em>We randomly picked:</em> ${result}</div>`);
+    message.target.send(`!htmlbox <div class="infobox"><em>We randomly picked:</em> ${result}</div>`);
     message.reply(cmd.join("\n"));
   }
 };

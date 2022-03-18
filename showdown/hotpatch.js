@@ -31,6 +31,9 @@ module.exports = async (fileName, message) => {
         case "output":
           filePath = "./global/output";
           break;
+				case "raw": 
+					filePath = "./chat/raw";
+					break;
         default:  throw (`TypeError: Invalid argument "${fileName}"`);
       }
     }catch(e){
