@@ -34,7 +34,7 @@ module.exports = async (fileName, message) => {
 				case "raw": 
 					filePath = "./chat/raw";
 					break;
-        default:  throw (`TypeError: Invalid argument "${fileName}"`);
+        default: throw (`TypeError: Invalid argument "${fileName}"`);
       }
     }catch(e){
       return message.reply("``" + e + "``");

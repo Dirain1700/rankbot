@@ -3,7 +3,7 @@
     "plugins": [],
     "env": {
       "node": true,
-      "es2021": true
+      "es2022": true
     },
     "globals": {
       "config": false,
@@ -21,6 +21,6 @@
       "no-var": "error"
     },
     "parserOptions": {
-        "ecmaVersion": 2021
+        "ecmaVersion": 2022
     }
 }

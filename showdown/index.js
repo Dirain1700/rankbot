@@ -2,8 +2,8 @@ module.exports = (ps, client) => {
   require("./structures");
   global.tool = require("ps-client").Tools;
   
-  ps.on("loggedin", async () => {
-    console.log("Logged in as " + config.ops.username);
+  ps.on("loggedin", async function (name) {
+    console.log("Logged in as" + name);
   });
   
   ps.on("message", message => {
@@ -47,10 +47,10 @@ module.exports = (ps, client) => {
     }
     if (message.content.startsWith(".nt")) {
       if (!message.author.isStaff("room", message.target)) return;
-      require("./tour/tourmanager")(message);
+      require("./tour/tourmanager").createTour(message);
     }
   });
-
+/*
 	ps.on("raw", function(room, html, isIntro) {
 		const { Message } = require("ps-client").classes;
 		const message = new Message({
@@ -66,19 +66,17 @@ module.exports = (ps, client) => {
 		if (message.isIntro) return;
 		require("./chat/raw")(message);
 	});
-
+*/
 	ps.on("tournament", function (room, msg, isIntro) {
-		if (isIntro || !room.indexOf("japanese")) return;
-		const event = msg.split("|")[0];
-		if (event === "create") {
-			["autostart 5", "autodq 2", "scouting disallow"].forEach(e => ps.send(`${room}|/tour ${e}`));
-		}
-		if (event === "end")
-			ps.send("!code " + JSON.parse(msg.split("|").slice(1).join("|")));
+		require("./tour/tourmanager").setTourSettings(this, room, msg, isIntro);
+	});
+
+	ps.on("leave", function (room, user, isIntro) {
+		require("./chat/modchat")(this, this.getRoom(room), this.getUser(user), isIntro);
 	});
 
   function logmsg(message) {
-    const msgtime = Math.floor((message?.time ?? Date.now()) / 1000);
+    const msgtime = Math.floor((message.time ?? Date.now()) / 1000);
     const add = {
       "time": msgtime,
       "user": message.author?.userid ?? "&",

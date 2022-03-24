@@ -5,6 +5,6 @@ module.exports = (message) => {
     const result = fs.readFileSync(targetFilePath);
     message.reply("!code " + new String(result));
   } catch (e) {
-    if (e.code === "ENOENT") message.reply("MODULE_NOT_FOUND");
+    if (e.code === "ENOENT") message.reply("``MODULE_NOT_FOUND``");
   }
 };

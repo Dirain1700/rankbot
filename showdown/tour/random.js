@@ -14,12 +14,12 @@ module.exports = message => {
   }
   
   message.reply(`/tour new ${result}, elim`);
+	message.target.send(`/adduhtml pickedtour, <div class="infobox"><em>We randomly picked:</em> ${result}</div>`);
   if (result === "[Gen 8] Battle Stadium Singles") {
     const cmd = [
       "/tour rules vgctimer",
       "/tour name [Gen 8] Battle Stadium Singles"
       ];
-    message.target.send(`!htmlbox <div class="infobox"><em>We randomly picked:</em> ${result}</div>`);
     message.reply(cmd.join("\n"));
   }
 };
