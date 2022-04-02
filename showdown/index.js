@@ -5,8 +5,7 @@ module.exports = (ps, client) => {
   
   ps.on("loggedin", async function (name) {
     console.log("Logged in as" + name);
-		
-  });
+	});
   
   ps.on("message", message => {
     if (message.isIntro || message.author.userid === ps.status.userid) return;
@@ -61,7 +60,10 @@ module.exports = (ps, client) => {
 		require("./chat/modchat")(this, this.getRoom(room), this.getUser(user), isIntro);
 	});
 
-	scheduleJob("* * 13 * * *", require("./tour/official")(ps, "japanese"));
+	scheduleJob("0 0 13 * * *", () => {
+		const run = require("./tour/official");
+		run(ps, "japanese");
+	});
 
   function logmsg(message) {
     const msgtime = Math.floor((message.time ?? Date.now()) / 1000);
