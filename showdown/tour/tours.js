@@ -4,7 +4,7 @@ module.exports = (message, option) => {
     case "bsss9":
       commands = [
         "/tour new bss, elim",
-        "/tour rules -Restricted Legendary, vgctimer",
+        "/tour rules -Restricted Legendary, VGC Timer",
         "/tour name [Gen 8] Battle Stadium Singles S9"
       ];
       break;

@@ -1,9 +1,11 @@
 module.exports = (ps, client) => {
   require("./structures");
+	const { scheduleJob } = require("node-schedule");
   global.tool = require("ps-client").Tools;
   
   ps.on("loggedin", async function (name) {
     console.log("Logged in as" + name);
+		
   });
   
   ps.on("message", message => {
@@ -12,15 +14,15 @@ module.exports = (ps, client) => {
       if (message.type === "chat" && !message.author.isStaff("room", message.target)) return;
       message.reply("Dirain1700~! Guide: https://github.com/Dirain1700/rankbot#readme");
     }
-    if (message.content === ".resetlog") {
+    if (message.content === "?resetlog") {
        require("./global/resetlog")(message);
     }
-    if (message.content.startsWith(".hotpatch")) {
+    if (message.content.startsWith("?hotpatch")) {
       require("./global/hotpatch")(message);
     }
     if (message.content.startsWith("echo") && message.author.userid === config.owner)
       ps.send(message.content.substring(4));
-    if (message.content.startsWith(".output")) {
+    if (message.content.startsWith("?export")) {
       require("./global/output")(message);
     }
   });
@@ -45,28 +47,12 @@ module.exports = (ps, client) => {
     if (message.content.startsWith(">runjs")) {
       require("./chat/runjs")(message);
     }
-    if (message.content.startsWith(".nt")) {
+    if (message.content.startsWith("?nt")) {
       if (!message.author.isStaff("room", message.target)) return;
       require("./tour/tourmanager").createTour(message);
     }
   });
-/*
-	ps.on("raw", function(room, html, isIntro) {
-		const { Message } = require("ps-client").classes;
-		const message = new Message({
-			by: "~",
-			text: html,
-			type: "chat",
-			target: room,
-			raw: "|raw|" + html,
-			isIntro: isIntro,
-			parent: this,
-			time: Date.now()
-		});
-		if (message.isIntro) return;
-		require("./chat/raw")(message);
-	});
-*/
+	
 	ps.on("tournament", function (room, msg, isIntro) {
 		require("./tour/tourmanager").setTourSettings(this, room, msg, isIntro);
 	});
@@ -74,6 +60,8 @@ module.exports = (ps, client) => {
 	ps.on("leave", function (room, user, isIntro) {
 		require("./chat/modchat")(this, this.getRoom(room), this.getUser(user), isIntro);
 	});
+
+	scheduleJob("* * 13 * * *", require("./tour/official")(ps, "japanese"));
 
   function logmsg(message) {
     const msgtime = Math.floor((message.time ?? Date.now()) / 1000);

@@ -5,7 +5,7 @@ module.exports = message => {
 
   if (result === "[Gen 8] Battle Stadium Singles Series 9") {
     const cmd = [
-      "/tour new bss",
+      "/tour new bss, elim",
       "/tour rules -Restricted Legendary, vgctimer",
       "/tour name [Gen 8] Battle Stadium Singles S9"
       ];
@@ -17,7 +17,7 @@ module.exports = message => {
 	message.target.send(`/adduhtml pickedtour, <div class="infobox"><em>We randomly picked:</em> ${result}</div>`);
   if (result === "[Gen 8] Battle Stadium Singles") {
     const cmd = [
-      "/tour rules vgctimer",
+      "/tour rules VGC Timer",
       "/tour name [Gen 8] Battle Stadium Singles"
       ];
     message.reply(cmd.join("\n"));

@@ -40,5 +40,3 @@ require("http").createServer((req, res) => {
 
 client.login( config.token );
 ps.connect();
-
-//setTimeout(() => ps.emit('loggedin', ps.status.username), 100 * ((ps.opts.autoJoin?.length || 0) + (ps.opts.avatar ? 1 : 0) + (ps.opts.status ? 1 : 0)) + 100);
