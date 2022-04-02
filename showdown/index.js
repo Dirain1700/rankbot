@@ -5,7 +5,7 @@ module.exports = (ps, client) => {
   
   ps.on("loggedin", async function (name) {
     console.log("Logged in as" + name);
-	});
+  });
   
   ps.on("message", message => {
     if (message.isIntro || message.author.userid === ps.status.userid) return;
