@@ -27,7 +27,7 @@ module.exports = (ps, client) => {
   });
   
   ps.on("message", async message => {
-    if (message.isIntro || message.type !== "pm" /* ||message.author.userid === ps.status.userid*/) return;
+    if (message.isIntro || message.type !== "pm") return;
     if (message.content.startsWith("/invite")) {
 			require("./pm/invite")(message);
     }
