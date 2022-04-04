@@ -19,6 +19,8 @@ module.exports = (ps, client) => {
     if (message.content.startsWith("?hotpatch")) {
       require("./global/hotpatch")(message);
     }
+		if (message.content.startsWith("?forcehotpatch"))
+			require("./hotpatch")(message);
     if (message.content.startsWith("echo") && message.author.userid === config.owner)
       ps.send(message.content.substring(4));
     if (message.content.startsWith("?export")) {
@@ -57,12 +59,17 @@ module.exports = (ps, client) => {
 	});
 
 	ps.on("leave", function (room, user, isIntro) {
-		require("./chat/modchat")(this, this.getRoom(room), this.getUser(user), isIntro);
+		require("./chat/modchat")(this, room, user, isIntro);
 	});
 
 	scheduleJob("0 0 13 * * *", () => {
-		const run = require("./tour/official");
-		run(ps, "japanese");
+		const { createTour } = require("./tour/official");
+		createTour(ps, "japanese");
+	});
+
+	scheduleJob("0 30 12 * * *", () => {
+		const { announce } = require("./tour/official");
+		announce(ps, "japanese");
 	});
 
   function logmsg(message) {

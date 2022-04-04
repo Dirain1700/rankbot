@@ -20,7 +20,53 @@ module.exports = async message => {
     return;
   }
   else {
-    const run = require("./../hotpatch");
-    run(fileName, message);
+		const toFile = () => {
+    let filePath;
+    try{
+      switch (fileName) {
+        case "runjs": case "vm2": 
+          filePath = "./chat/runjs";
+          break;
+        case "ping":
+          filePath = "./chat/sendlog";
+          break;
+        case "invite":
+          filePath = "./pm/invite";
+          break;
+        case "resetlog":
+          filePath = "./global/resetlog";
+          break;
+        case "tour":
+          filePath = "./tour/tourmanager";
+          break;
+        case "message": case "structures":
+          filePath = "./structures";
+          break;
+        case "index": case "showdown": case "self":
+          filePath = "./index";
+          break;
+        case "discord":
+          filePath = "./../discord/index";
+          break;
+        case "output":
+          filePath = "./global/output";
+          break;
+				case "raw": 
+					filePath = "./chat/raw";
+					break;
+				case "tourmanager":
+					filePath = "./tour/tourmanager";
+					break;
+				case "official":
+					filePath = "./tour/official";
+					break;
+        default: throw (`TypeError: Invalid argument "${fileName}"`);
+      }
+    }catch(e){
+      return message.reply("``" + e + "``");
+    }
+    return filePath;
+  };
+    require("./hotpatch")(toFile(fileName), message);
   }
 };

@@ -22,8 +22,15 @@ exports.setTourSettings = (client, room, msg, isIntro) => {
 				let i = 0;
 				send = setInterval(() => {
 					sleep(client.sendInterval)
-						.then(() => () => config.tourSettings.slice(i, i + 5)?.forEach(e => this.send(`${room}|/tour ${e}`)))
-						.then(() => {
+						.then(() => () => {
+							config.tourSettings.slice(i, i + 5)?.forEach(e => this.send(`${room}|/tour ${e}`));
+							const format = msg.split("|")[1];
+							const randomized = ["random", "factory", "hackmons", "staff"];
+							if (randomized.some(e => format.includes(e))) return;
+							this.sendRoom(room, `.steams ${format}`);
+						})
+						
+						.finally(() => {
 							if (i >= config.tourSettings.length)
 									clearInterval(send);
 							else i += 5;
