@@ -1,7 +1,6 @@
 module.exports = (ps, client) => {
 	require("./structures");
 	const { scheduleJob } = require("node-schedule");
-<<<<<<< HEAD
 	global.tool = require("ps-client").Tools;
 	
 	ps.on("loggedin", async function (name) {
@@ -32,36 +31,6 @@ module.exports = (ps, client) => {
 	ps.on("message", async message => {
 		if (message.isIntro || message.type !== "pm") return;
 		if (message.content.startsWith("/invite")) {
-=======
-  global.tool = require("ps-client").Tools;
-  
-  ps.on("loggedin", async function (name) {
-    console.log("Logged in as" + name);
-  });
-  
-  ps.on("message", message => {
-    if (message.isIntro || message.author.userid === ps.status.userid) return;
-    if (message.content === "help?"){
-      if (message.type === "chat" && !message.author.isStaff("room", message.target)) return;
-      message.reply("Dirain1700~! Guide: https://github.com/Dirain1700/rankbot#readme");
-    }
-    if (message.content === "?resetlog") {
-       require("./global/resetlog")(message);
-    }
-    if (message.content.startsWith("?hotpatch")) {
-      require("./global/hotpatch")(message);
-    }
-    if (message.content.startsWith("echo") && message.author.userid === config.owner)
-      ps.send(message.content.substring(4));
-    if (message.content.startsWith("?export")) {
-      require("./global/output")(message);
-    }
-  });
-  
-  ps.on("message", async message => {
-    if (message.isIntro || message.type !== "pm") return;
-    if (message.content.startsWith("/invite")) {
->>>>>>> origin/dev
 			require("./pm/invite")(message);
 		}
 		if (message.content.startsWith(">runjs")) {
