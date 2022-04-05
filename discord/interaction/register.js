@@ -24,3 +24,5 @@ module.exports = async (client, interaction, PSClient) => {
                 .catch(console.error);
             reject();
         }, 10 * 60 * 1000);
+    });
+};
