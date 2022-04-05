@@ -27,6 +27,7 @@ module.exports = (client, PSClient) => {
     if (interaction.commandName === "register") {
       const run = rewuire("./interaction/register");
       run(client, interaction, PSClient);
+    }
     
     if (interaction.commandName === "apt") {
       const run = require("./interaction/points/apt");
