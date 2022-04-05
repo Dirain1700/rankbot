@@ -25,7 +25,7 @@ module.exports = (client, PSClient) => {
     }
     
     if (interaction.commandName === "register") {
-      const run = rewuire("./interaction/register");
+      const run = require("./interaction/register");
       run(client, interaction, PSClient);
     }
     
