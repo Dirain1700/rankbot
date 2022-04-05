@@ -11,7 +11,7 @@ const ps = new PSClient(config.ops);
 const client = new DiscordClient(config.options);
 const discord = require("./discord/index");
 const showdown = require("./showdown/index");
-discord(client);
+discord(client, ps);
 showdown(ps, client);
 
 require("http").createServer((req, res) => {
