@@ -1,12 +1,12 @@
-module.exports = async message => {
-  if (message.author.userid !== config.owner) {
-    return message.reply({ content: "Access denied.", ephemeral: true });
-  }
-  const fileName = message.content.split(" ")[1];
-	if (!fileName?.length) return;
-  if (fileName === "git") {
+module.exports = message => {
+	if (message.author?.userid !== config.owner) {
+		return void message.reply({ content: "Access denied.", ephemeral: true });
+	}
+	const fileName = message.content.split(" ")[1].toLowerCase().replace(/[^a-z]/g, "");
+	if (!fileName) return;
+	if (fileName === "git") {
     const { exec } = require("child_process");
-      exec("git pull", { stdio: "inherit" }, async (error, stdout, stderr) => {
+    exec("git pull", { stdio: "inherit" }, async (error, stdout, stderr) => {
         if (error) {
           message.reply("!code error:\n" + error);
           return;
@@ -16,57 +16,57 @@ module.exports = async message => {
         }
         else
         message.reply(stderr + stdout);
-      });
+	});
     return;
-  }
-  else {
+	}
+	else {
 		const toFile = () => {
-    let filePath;
-    try{
-      switch (fileName) {
-        case "runjs": case "vm2": 
-          filePath = "./chat/runjs";
-          break;
-        case "ping":
-          filePath = "./chat/sendlog";
-          break;
-        case "invite":
-          filePath = "./pm/invite";
-          break;
-        case "resetlog":
-          filePath = "./global/resetlog";
-          break;
-        case "tour":
-          filePath = "./tour/tourmanager";
-          break;
-        case "message": case "structures":
-          filePath = "./structures";
-          break;
-        case "index": case "showdown": case "self":
-          filePath = "./index";
-          break;
-        case "discord":
-          filePath = "./../discord/index";
-          break;
-        case "output":
-          filePath = "./global/output";
-          break;
-				case "raw": 
-					filePath = "./chat/raw";
-					break;
-				case "tourmanager":
-					filePath = "./tour/tourmanager";
-					break;
-				case "official":
-					filePath = "./tour/official";
-					break;
-        default: throw (`TypeError: Invalid argument "${fileName}"`);
-      }
-    }catch(e){
-      return message.reply("``" + e + "``");
-    }
-    return filePath;
-  };
-    require("./hotpatch")(toFile(fileName), message);
-  }
+			let filePath;
+			try{
+				switch (fileName) {
+					case "runjs": case "vm2":
+						filePath = "./chat/runjs";
+						break;
+					case "ping":
+						filePath = "./chat/sendlog";
+						break;
+					case "invite":
+						filePath = "./pm/invite";
+						break;
+					case "resetlog":
+						filePath = "./global/resetlog";
+						break;
+					case "tour":
+						filePath = "./tour/tourmanager";
+						break;
+					case "message": case "structures":
+						filePath = "./structures";
+						break;
+					case "index": case "showdown": case "self":
+						filePath = "./index";
+						break;
+					case "discord":
+						filePath = "./../discord/index";
+						break;
+					case "output": case "export":
+						filePath = "./global/output";
+						break;
+					case "raw":
+						filePath = "./chat/raw";
+						break;
+					case "tourmanager":
+						filePath = "./tour/tourmanager";
+						break;
+					case "official":
+						filePath = "./tour/official";
+						break;
+					default: throw (`TypeError: Invalid argument "${fileName}"`);
+				}
+			}catch(e){
+				return message.reply("``" + e + "``");
+			}
+			return filePath;
+		};
+		require("./hotpatch")(toFile(fileName), message);
+	}
 };
