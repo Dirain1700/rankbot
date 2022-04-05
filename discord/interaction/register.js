@@ -5,6 +5,7 @@ module.exports = async (client, interaction, PSClient) => {
     PSClient.pending.set(userid, interaction.user.id);
     interaction.reply({ content: `Waiting for you to send the ?register command in Pokémon Showdown. PM to Dirain1700 with the content "?register ${interaction.user.id}" in 10 minutes!`, fetchReply: true, ephmeral: true });
     return void new Promise((resolve, reject) => {
+        // eslint-disable-next-line no-unused-vars
         PSClient.on("message", function (message) {
             if (this.isIntro || this.author.id !== userid || !this.content.startsWith("?register ")) return;
             const inputUserid = this.content.substring(10);
