@@ -43,6 +43,6 @@ exports.announce = (client, room) => {
 	client.sendRoom(room, `/announce 30分後から${format}のOfficial Tournamentを開催します!奮ってご参加ください!`);
 	client.sendRoom(room, `/announce After 30 minutes , we will open an Official Tournament in ${format}! Please join with us!`);
 	const randomized = ["Random", "Factory", "Hackmons", "Staff"];
-	if (randomized.some(e => format.includes(e)))
+	if (!randomized.some(e => format.includes(e)))
 		client.sendRoom(room, `.steams ${format}`);
 };

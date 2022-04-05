@@ -24,10 +24,6 @@ exports.setTourSettings = (client, room, msg, isIntro) => {
 					sleep(client.sendInterval)
 						.then(() => () => {
 							config.tourSettings.slice(i, i + 5)?.forEach(e => this.send(`${room}|/tour ${e}`));
-							const format = msg.split("|")[1];
-							const randomized = ["random", "factory", "hackmons", "staff"];
-							if (randomized.some(e => format.includes(e))) return;
-							this.sendRoom(room, `.steams ${format}`);
 						})
 						
 						.finally(() => {
@@ -37,8 +33,17 @@ exports.setTourSettings = (client, room, msg, isIntro) => {
 						});
 				}, client.sendInterval + 50);
 			}
-			sleep(client.sendInterval)
-				.then(() => config.tourSettings?.forEach(e => client.sendRoom(room, `/tour ${e}`)));
+			else
+				sleep(client.sendInterval)
+					.then(() => config.tourSettings?.forEach(e => client.sendRoom(room, `/tour ${e}`)));
+			const format = msg.split("|")[1];
+			const randomized = ["random", "factory", "hackmons", "staff"];
+			if (!randomized.some(e => format.includes(e))) {
+				sleep(client.sendInterval).then(() => {
+					this.sendRoom(room, "/tour scouting disallow");
+					this.sendRoom(room, `.steams ${format}`);
+				});
+			}
 		}
 	/*
 		if (event === "end")
