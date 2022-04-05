@@ -11,6 +11,18 @@ module.exports = {
       }
     ]
   },
+  register: {
+    name: "register",
+    description: "Register an account of Pokémon Showdown.",
+    options: [
+      {
+        type: "STRING",
+        name: "userid",
+        description: "Input an userid of Pokémon showdown. Type your name only Alphabet or Number(a-z, 0-9)!",
+        required: true
+      }
+    ]
+  },
   hotpatchid: "940917030943621150",
   ping: {
     name: "ping",
