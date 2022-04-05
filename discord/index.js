@@ -1,4 +1,4 @@
-module.exports = async client => {
+module.exports = (client, PSClient) => {
   global.time = require("@discordjs/builders").time;
 
   client.on("ready", async () => {
@@ -23,6 +23,10 @@ module.exports = async client => {
       const run = require("./interaction/ping");
       run(interaction);
     }
+    
+    if (interaction.commandName === "register") {
+      const run = rewuire("./interaction/register");
+      run(client, interaction, PSClient);
     
     if (interaction.commandName === "apt") {
       const run = require("./interaction/points/apt");
