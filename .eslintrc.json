@@ -18,7 +18,8 @@
       "comma-spacing": "error",
       "no-extra-semi": "error",
       "quotes": ["error", "double"],
-      "no-var": "error"
+      "no-var": "error",
+			"no-empty": "error"
     },
     "parserOptions": {
         "ecmaVersion": 2022

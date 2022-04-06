@@ -40,8 +40,8 @@ exports.setTourSettings = (client, room, msg, isIntro) => {
 			const randomized = ["random", "factory", "hackmons", "staff"];
 			if (!randomized.some(e => format.includes(e))) {
 				sleep(client.sendInterval).then(() => {
-					this.sendRoom(room, "/tour scouting disallow");
-					this.sendRoom(room, `.steams ${format}`);
+					client.sendRoom(room, "/tour scouting disallow");
+					client.sendRoom(room, `.steams ${format}`);
 				});
 			}
 		}

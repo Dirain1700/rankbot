@@ -13,7 +13,7 @@ exports.createTour = (client, room) => {
 	}
 	const format = tourSchedule[new Date().getDate()];
 	let command;
-	switch (!!format?.indexOf("1v1")) {
+	switch (!format?.indexOf("1v1")) {
 		case true:
 			command = `/tour new ${format}, rr`;
 			break;

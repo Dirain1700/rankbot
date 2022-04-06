@@ -17,5 +17,6 @@ module.exports = {
   owner: "dirain",
   admin: ["751433045529329825"], // Array of Discord IDs of administrators
   log: ["was banned", "was warned", "was muted", "was locked"],
-	tourSettings: ["autostart 5", "autodq 3", "scouting disallow"]
+	tourSettings: ["autostart 5", "autodq 3", "scouting disallow"],
+	acRole: "888013264355749928"
 }
