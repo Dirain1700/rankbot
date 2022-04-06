@@ -11,6 +11,7 @@ const ps = new PSClient(config.ops);
 const client = new DiscordClient(config.options);
 const discord = require("./discord/index");
 const showdown = require("./showdown/index");
+ps.pending = new Map();
 discord(client, ps);
 showdown(ps, client);
 
