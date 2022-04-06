@@ -26,6 +26,6 @@ module.exports = async (client, interaction, PSClient) => {
     }).catch(() => {
         interaction.fetchReply()
             .then(m => m.edit("Failed to Registration: Timeout!"))
-            .catch(console.error)
+            .catch(console.error);
     }).finally(() => PSClient.pending.delete(userid));
 };
