@@ -40,7 +40,7 @@ Looking for English version? visit [README-en.md](./README-en.md)!
 ## PS
 ### トーナメント
 
-- `.nt [options]` 指定したオプションでトーナメントを作成します。
+- `?nt [options]` 指定したオプションでトーナメントを作成します。
 #### オプション
 - `random` [フォーマット](./showdown/tour/formatnames.js)一覧の中からランダムに選び、トーナメントを開催します。
 # 実装予定
