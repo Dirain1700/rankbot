@@ -8,7 +8,7 @@ module.exports = message => {
     const { exec } = require("child_process");
     exec("git pull", { stdio: "inherit" }, async (error, stdout, stderr) => {
         if (error) {
-          message.reply("!code error:\n" + error);
+          message.reply("!code error:\n" + error).catch();
           return;
         }
         if (stdout === "Already up-to-date.") {
@@ -16,7 +16,7 @@ module.exports = message => {
         }
         else
         message.reply(stderr + stdout);
-	});
+	}).catch();
     return;
 	}
 	else {
