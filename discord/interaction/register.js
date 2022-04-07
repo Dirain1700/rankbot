@@ -2,7 +2,7 @@ module.exports = async (client, interaction, PSClient) => {
     const UserRegex = /\d{17,19}/g;
     const userid = interaction.options.getString("userid", true).toLowerCase().replace(/[^a-z0-9]/g, "");
     if (!userid) return void interaction.reply({ content: `${interaction.options.getString("userid", true)} is an invalid userid.`, ephemeral: true });
-	if ([...PSClient.pending.values()].includes(interaction.user.id)) return void interaction.reply({ content: "You are already in pending list!", ephemeral: true })
+	if ([...PSClient.pending.values()].includes(interaction.user.id)) return void interaction.reply({ content: "You are already in pending list!", ephemeral: true });
     PSClient.pending.set(userid, interaction.user.id);
     interaction.reply({ content: `Waiting for you to send the ?register command in Pokémon Showdown. PM to Dirain1700 with the content \`?register ${interaction.user.id}\` in 10 minutes!`, fetchReply: true, ephemeral: true });
     return new Promise((resolve, reject) => {
