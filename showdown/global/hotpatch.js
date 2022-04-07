@@ -12,11 +12,11 @@ module.exports = message => {
           return;
         }
         if (stdout === "Already up-to-date.") {
-          return message.reply("``" + stdout + "``");
+          return void message.reply("``" + stdout + "``").catch();
         }
         else
-        message.reply(stderr + stdout);
-	}).catch();
+					message.reply(stderr + stdout).catch();
+	});
     return;
 	}
 	else {
