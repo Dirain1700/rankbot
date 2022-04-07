@@ -3,11 +3,8 @@ module.exports = async (filePath, message) => {
   if (!filePath || !isExist(filePath))
 		message.reply("!code " + new Error(`Module not found: ${filePath} `));
   
-  const run = async () => {
-    await delete require.cache[require.resolve(filePath)];
-    message.reply("Hotpatch successed: ``"+ filePath + ".js``");
-  };
-  run();
+  delete require.cache[require.resolve(filePath)];
+  message.reply("Hotpatch successed: ``"+ filePath + ".js``");
   
   /*
    * @param {string} filePath

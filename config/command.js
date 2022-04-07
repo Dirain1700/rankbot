@@ -12,6 +12,19 @@ module.exports = {
 		]
 	},
 	hotpatchid: "940917030943621150",
+	forcehotpatch: {
+		name: "forcehotpatch",
+		description: "再起動せずに再読み込みをします。",
+		options: [
+			{
+				type: "STRING",
+				name: "module",
+				description: "モジュールを指定します。",
+				required: true
+			}
+		]
+	},
+	forcehotpatchid: "961666038087417876",
 	register: {
 		name: "register",
 		description: "Register an account of Pokémon Showdown.",

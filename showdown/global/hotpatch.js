@@ -1,7 +1,12 @@
-module.exports = message => {
-	if (message.author?.userid !== config.owner) {
-		return void message.reply({ content: "Access denied.", ephemeral: true });
-	}
+exports.getRelative = message => {
+	if (message.author?.userid !== config.owner)
+		return void message.reply("Access denied.");
+	require("./../hotpatch")(path.relative(__dirname, message.content.substring(15)), message);
+};
+
+exports.getFile = message => {
+	if (message.author?.userid !== config.owner)
+		return void message.reply("Access denied.");
 	const fileName = message.content.split(" ")[1].toLowerCase().replace(/[^a-z]/g, "");
 	if (!fileName) return;
 	if (fileName === "git") {
@@ -67,6 +72,6 @@ module.exports = message => {
 			}
 			return filePath;
 		};
-		require("./hotpatch")(toFile(fileName), message);
+		require("./../hotpatch")(toFile(fileName), message);
 	}
 };

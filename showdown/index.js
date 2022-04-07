@@ -17,10 +17,10 @@ module.exports = (ps, client) => {
 			require("./global/resetlog")(message);
 		}
 		if (message.content.startsWith("?hotpatch")) {
-			require("./global/hotpatch")(message);
+			require("./global/hotpatch").getFile(message);
 		}
 		if (message.content.startsWith("?forcehotpatch"))
-			require("./hotpatch")(message);
+			require("./hotpatch").getRelative(message);
 		if (message.content.startsWith("echo") && message.author.userid === config.owner)
 			ps.send(message.content.substring(4));
 		if (message.content.startsWith("?export")) {

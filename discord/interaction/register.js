@@ -4,7 +4,7 @@ module.exports = async (client, interaction, PSClient) => {
     if (!userid) return void interaction.reply({ content: `${interaction.options.getString("userid", true)} is an invalid userid.`, ephemeral: true });
 	if ([...PSClient.pending.values()].includes(interaction.user.id)) return void interaction.reply({ content: "You are already in pending list!", ephemeral: true });
     PSClient.pending.set(userid, interaction.user.id);
-    interaction.reply({ content: `Waiting for you to send the ?register command in Pokémon Showdown. PM to Dirain1700 with the content \`?register ${interaction.user.id}\` in 10 minutes!`, fetchReply: true, ephemeral: true });
+    interaction.reply({ content: `Waiting for you to send the ?register command in Pokémon Showdown. PM to Dirain1700 with the content \`?register ${interaction.user.id}\` in 10 minutes!`, fetchReply: true, ephemeral: false });
     return new Promise((resolve, reject) => {
         PSClient.on("message", function (message) {
             if (message.isIntro || message.type !== "pm" || message.author.id !== userid || !message.content.startsWith("?register ")) return;

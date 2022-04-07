@@ -16,8 +16,10 @@ module.exports = (client, PSClient) => {
   client.on("interactionCreate", interaction => {
     if (!interaction.isCommand()) return;
     if (interaction.commandName === "hotpatch") {
-      const run = require("./interaction/hotpatch");
-      run(interaction);
+      require("./interaction/hotpatch").getFile(interaction);
+    }
+		if (interaction.commandName === "forcehotpatch") {
+      require("./interaction/hotpatch").getRelative(interaction);
     }
     if (interaction.commandName === "ping") {
       const run = require("./interaction/ping");
