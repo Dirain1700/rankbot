@@ -3,7 +3,7 @@
 # Development Environments
 Using <b>JavaScript</b>.
 - Windows10
-- Node.js v16.13.2
+- Node.js v16.14.2
 - Visual Studio Code
 - discord.js v13.6.0
 - PS-Client v1.4.1
@@ -22,6 +22,7 @@ If you have any questions, feel free to ask them in DM or support channel.
 
 - `/ping` (Measuring the Ping values)
 - `>runjs ```js ` <br> `JavaScript code here` <br> ` ``` ` <br >Run JavaScript and reply the result. Some functions are not available.
+- `/register` see [Registring Guide](https://gist.github.com/Dirain1700/f2c01cebe77dc495b6453dbdfa9d23df)
 
 ### Manage server
 
@@ -44,9 +45,10 @@ If you have any questions, feel free to ask them in DM or support channel.
 ### No classification
 - `>runjs ```js ` <br> `JavaScript code here` <br> ` ``` ` <br >Run JavaScript and reply the result. Some functions are not available.
 ### Tournament
-- `.nt [options]` Create a tournament with option what you chose.
+- `?nt [options]` Create a tournament with option what you chose.
  #### option
  - `random` Bot will choose format randomly from [formatList](./showdown/tour/formatnames.js) and create a tour.
+ - `bss9` Bot will open tour with a format: [Gen 8] Battle Stadium Singles Series 9.
 # Futures
 
 None
