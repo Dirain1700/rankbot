@@ -6,7 +6,7 @@ Looking for English version? visit [README-en.md](./README-en.md)!
 # 環境
 言語は<b>JavaScript</b>です。
 - Windows10
-- Node.js v16.13.2
+- Node.js v16.14.2
 - Visual Studio Code
 - discord.js v13.6.0
 - PS-Client v1.4.1
@@ -18,6 +18,7 @@ Looking for English version? visit [README-en.md](./README-en.md)!
 
 - `/ping` (ping値を測定する。)
 - `>runjs ```js ` <br> `JavaScriptをここに` <br> ` ``` ` <br >JavaScriptを実行し、結果を返信します。一部使用できない機能があります。
+- `/resgister` [Registering Guide](https://gist.github.com/Dirain1700/f2c01cebe77dc495b6453dbdfa9d23df)
 
 
 ### サーバー管理
