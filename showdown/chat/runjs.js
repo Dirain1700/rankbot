@@ -25,7 +25,7 @@ module.exports = message => {
     return message.reply("Please send code!").catch(console.error);
   const { code } = content.match(codeBlockRegex)?.groups ?? {};
   
-  pool
+  pool //prettier-ignore
     .exec("run", [code])
     .timeout(5000)
     .then(([consoleOutput, result]) =>

@@ -40,11 +40,11 @@ module.exports = message => {
   
   const { language, code } = message.content.match(codeBlockRegex)?.groups ?? {};
   if (!languages.includes(language))
-    return message
+    return message //prettier-ignore
       .reply(`言語識別子が**${languages.join(", ")}**である必要があります。`)
       .catch(console.error);
     
-  pool
+  pool //prettier-ignore
     .exec("run", [code])
     .timeout(5000)
     .then(([consoleOutput, result]) =>
