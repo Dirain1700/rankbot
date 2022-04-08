@@ -1,5 +1,5 @@
 exports.getRelative = interaction => {
-	if (config.admin.includes(interaction.user.id))
+	if (!config.admin.includes(interaction.user.id))
     return void interaction.reply({ content: "Access denied.", ephemeral: true });
 	require("./../hotpatch")(path.relative(__dirname, interaction.options.getString("module", true)), interaction);
 };
@@ -23,7 +23,7 @@ exports.getFile = interaction => {
         else 
           interaction.followUp(codeBlock("diff", stderr + stdout));
       });
-    return;
+		return;
   }
   const toFile = () => {
     let filePath;
