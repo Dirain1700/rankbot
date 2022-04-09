@@ -1,6 +1,5 @@
 package.json
 package-lock.json
 node_modules/*
-config/*
-!config/index.html
-!config/command.js
+config/*.json
+.upm/*
