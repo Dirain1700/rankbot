@@ -30,7 +30,7 @@ module.exports = async (client, interaction, PSClient) => {
                 return void message.reply("Your account is not autoconfirmed account. Try after you got autoconfirmed!\n!faq ac");
             interaction.member.roles.add(interaction.guild.roles.cache.get(config.acRole));
             message.reply("Registration sucessed!");
-            interaction.member.setNickname(message.author.username, `Register UserName: ${message.author.username}`);
+            interaction.member.setNickname(message.author.name, `Register UserName: ${message.author.username}`);
             resolve();
         });
         setTimeout(reject, 10 * 60 * 1000);
