@@ -1,4 +1,36 @@
 module.exports = {
+    send: {
+        name: "send",
+        description: "Send a message via a bot.",
+        options: [
+            {
+                type: "CHANNEL",
+                name: "channel",
+                description: "A channel to send content",
+                required: "true"
+            },
+            {
+                type: "BOOLEAN",
+                name: "type",
+                description: "A type of content to send",
+                required: true,
+                choices: [
+                    {
+                        name: "string",
+                        value: "string",
+                    },
+                    {
+                        name: "embeds",
+                        value: "embeds",
+                    },
+                    {
+                        name: "string with content",
+                        value: "string with content",
+                    },
+                ],
+            },
+        ],
+    },        
     hotpatch: {
         name: "hotpatch",
         description: "再起動せずに再読み込みをします。",
