@@ -7,10 +7,10 @@ module.exports = {
                 type: "CHANNEL",
                 name: "channel",
                 description: "A channel to send content",
-                required: "true"
+                required: "true",
             },
             {
-                type: "BOOLEAN",
+                type: "STRING",
                 name: "type",
                 description: "A type of content to send",
                 required: true,
@@ -30,7 +30,8 @@ module.exports = {
                 ],
             },
         ],
-    },        
+    },
+    sendid: "962586850416021584",
     hotpatch: {
         name: "hotpatch",
         description: "再起動せずに再読み込みをします。",

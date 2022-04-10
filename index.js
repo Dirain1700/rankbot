@@ -38,7 +38,7 @@ require("http")
             res.end(html);
         }
     })
-    .listen(3000);
+    .listen(8000);
 
 client.login(config.token);
 ps.connect();

@@ -26,6 +26,10 @@ module.exports = (client, PSClient) => {
             run(interaction);
         }
 
+        if (interaction.commandName === "send") {
+            const run = require("./interaction/send");
+            run(interaction);
+        }
         if (interaction.commandName === "register") {
             const run = require("./interaction/register");
             run(client, interaction, PSClient);
