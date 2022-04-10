@@ -17,9 +17,9 @@ showdown(ps, client);
 
 require("http")
     .createServer((req, res) => {
-        if (req.method == "POST") {
+        if (req.method === "POST") {
             let data = "";
-            req.on("data", function (chunk) {
+            req.on("data", (chunk) => {
                 data += chunk;
             });
             req.on("end", () => {
@@ -28,12 +28,12 @@ require("http")
                     return;
                 }
                 const dataObject = require("querystring").parse(data);
-                if (dataObject.type == "wake") {
+                if (dataObject.type === "wake") {
                     res.end();
                     return;
                 }
             });
-        } else if (req.method == "GET") {
+        } else if (req.method === "GET") {
             res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
             res.end(html);
         }

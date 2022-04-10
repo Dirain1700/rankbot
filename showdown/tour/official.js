@@ -12,18 +12,8 @@ exports.createTour = (client, room) => {
     }
     const format = tourSchedule[new Date().getDate()];
     let command;
-    switch (!format?.includes("1v1")) {
-        case true:
-            command = `/tour new ${format}, rr`;
-            break;
-        case false:
-            command = `/tour new ${format}, elim`;
-            break;
-        default: {
-            const e = new TypeError("Cannot read properties of undefined (reading 'indexOf')", __filename, 16);
-            return client.sendRoom(room, "!code " + e);
-        }
-    }
+    if (format?.includes("1v1")) command = `/tour new ${format}, rr`;
+    else command = `/tour new ${format}, elim`;
     client.sendRoom(room, command);
 };
 

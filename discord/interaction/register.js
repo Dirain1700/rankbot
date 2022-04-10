@@ -35,17 +35,7 @@ module.exports = async (client, interaction, PSClient) => {
         });
         setTimeout(reject, 10 * 60 * 1000);
     })
-        .then(() => {
-            interaction
-                .fetchReply()
-                .then((m) => m.edit(`Sucessfully registerd your account as "${userid}" and added <@&${config.acRole}> role.`))
-                .catch(console.error);
-        })
-        .catch(() => {
-            interaction
-                .fetchReply()
-                .then((m) => m.edit("Failed to Registration: Timed out!"))
-                .catch(console.error);
-        })
+        .then(() => interaction.editReply(`Sucessfully registerd your account as "${userid}" and added <@&${config.acRole}> role.`).catch(console.error))
+        .catch(() => interaction.editReply("Failed to Registration: Timed out!").catch(console.error))
         .finally(() => PSClient.pending.delete(userid));
 };
