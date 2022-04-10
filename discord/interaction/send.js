@@ -55,7 +55,6 @@ module.exports = async (interaction) => {
             break;
         }
     }
-    interaction.channel.send(typeof message);
     if (!message) return void interaction.channel.send("Can't send empty message!");
     channel.send(message);
 };
