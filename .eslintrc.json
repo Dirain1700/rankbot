@@ -2,25 +2,25 @@
     "extends": ["eslint:recommended"],
     "plugins": [],
     "env": {
-      "node": true,
-      "es6": true,
-      "browser": true
+        "node": true,
+        "es2022": true
     },
     "globals": {
-      "config": true,
-      "fs": false,
-      "path": false,
-      "time": false,
-      "tool": false
+        "config": false,
+        "fs": false,
+        "path": false,
+        "time": false,
+        "tool": false
     },
     "rules": {
-      "no-unused-vars": "error",
-      "semi": ["error","always"],
-      "no-extra-semi": "error",
-      "quotes": ["error", "double"],
-      "no-var": "error"
+        "no-unused-vars": "error",
+        "semi": ["error", "always"],
+        "comma-spacing": "error",
+        "no-extra-semi": "error",
+        "quotes": ["error", "double"],
+        "no-var": "error"
     },
     "parserOptions": {
-        "ecmaVersion": 2021
+        "ecmaVersion": 2022
     }
 }
