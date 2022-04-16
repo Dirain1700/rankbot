@@ -9,9 +9,8 @@ module.exports = (ps, client) => {
 
     ps.on("message", (message) => {
         if (message.isIntro || message.author.userid === ps.status.userid) return;
-        if (message.content === "help?") {
-            if (message.type === "chat" && !message.author.isStaff("room", message.target)) return;
-            message.reply("Dirain1700~! Guide: https://github.com/Dirain1700/rankbot#readme");
+        if (message.content.startsWith("help?")) {
+            require("./global/help")(message);
         }
         if (message.content === "?resetlog") {
             require("./global/resetlog")(message);

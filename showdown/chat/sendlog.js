@@ -18,6 +18,7 @@ module.exports = (client, message) => {
         return client.channels.cache.get(config.logch).send(log);
     }
     if (!target) return;
+    target.sort((a, b) => a.time - b.time);
     const chatLog = target.map((i) => `<t:${i.time}:T> ${i.user}: ${i.content}`);
     client.channels.cache.get(config.logch).send(log + "\n" + chatLog.join("\n"));
 };
