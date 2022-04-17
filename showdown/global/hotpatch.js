@@ -72,10 +72,11 @@ exports.getFile = (message) => {
                         throw `TypeError: Invalid argument "${fileName}"`;
                 }
             } catch (e) {
-                return message.reply("``" + e + "``");
+                return void message.reply("``" + e + "``");
             }
             return filePath;
         };
-        require("./../hotpatch")(toFile(fileName), message);
+        if (!toFile(fileName)) return;
+        require("./../hotpatch")(path.resolve(__dirname, toFile(fileName)), message);
     }
 };
