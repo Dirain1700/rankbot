@@ -9,7 +9,7 @@ module.exports = (ps, client) => {
 
     ps.on("message", (message) => {
         if (message.isIntro || message.author.userid === ps.status.userid) return;
-        if (message.content.startsWith("help?")) {
+        if (message.content.startsWith("?help")) {
             require("./global/help")(message);
         }
         if (message.content === "?resetlog") {
