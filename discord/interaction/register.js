@@ -16,26 +16,29 @@ module.exports = async (client, interaction, PSClient) => {
             repliedUser: true,
         },
     });
+    //prettier-ignore
     return new Promise((resolve, reject) => {
-        PSClient.on("message", function (message) {
-            if (message.isIntro || message.type !== "pm" || message.author.id !== userid || !message.content.startsWith("?register ")) return;
-            const inputUserid = message.content.substring(10).trim().replace(/\D/g, "");
-            if (!UserRegex.test(inputUserid) || !client.users.cache.has(inputUserid))
-                return void message.reply("Error: The id of Discord that you input was invalid.");
-            if (interaction.user.id !== this.pending.get(message.author.userid))
-                return void message.reply(
-                    `Error: The id of Discord that you input was not found in registering list. Type "/register ${message.author.userid}" in Discord.`
-                );
-            if (!message.author.autoconfirmed)
-                return void message.reply("Your account is not autoconfirmed account. Try after you got autoconfirmed!\n!faq ac");
-            interaction.member.roles.add(interaction.guild.roles.cache.get(config.acRole));
-            message.reply("Registration sucessed!");
-            interaction.member.setNickname(message.author.name, `Register UserName: ${message.author.username}`);
-            resolve();
-        });
-        setTimeout(reject, 10 * 60 * 1000);
-    })
-        .then(() => interaction.editReply(`Sucessfully registerd your account as "${userid}" and added <@&${config.acRole}> role.`).catch(console.error))
-        .catch(() => interaction.editReply("Failed to Registration: Timed out!").catch(console.error))
-        .finally(() => PSClient.pending.delete(userid));
+            PSClient.on("message", function (message) {
+                if (message.isIntro || message.type !== "pm" || message.author.id !== userid || !message.content.startsWith("?register ")) return;
+                const inputUserid = message.content.substring(10).trim().replace(/\D/g, "");
+                if (!UserRegex.test(inputUserid) || !client.users.cache.has(inputUserid))
+                    return void message.reply("Error: The id of Discord that you input was invalid.");
+                if (interaction.user.id !== this.pending.get(message.author.userid))
+                    return void message.reply(
+                        `Error: The id of Discord that you input was not found in registering list. Type "/register ${message.author.userid}" in Discord.`
+                    );
+                if (!message.author.autoconfirmed)
+                    return void message.reply("Your account is not autoconfirmed account. Try after you got autoconfirmed!\n!faq ac");
+                interaction.member.roles.add(interaction.guild.roles.cache.get(config.acRole));
+                message.reply("Registration sucessed!");
+                interaction.member.setNickname(message.author.name, `Register UserName: ${message.author.username}`);
+                resolve();
+            });
+            setTimeout(reject, 10 * 60 * 1000);
+        })
+            //eslint-disable-next-line no-empty
+            .then(() => interaction.editReply(`Sucessfully registerd your account as "${userid}" and added <@&${config.acRole}> role.`).catch())
+            //eslint-disable-next-line no-empty
+            .catch(() => interaction.editReply("Failed to Registration: Timed out!").catch())
+            .finally(() => PSClient.pending.delete(userid));
 };

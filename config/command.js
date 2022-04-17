@@ -70,7 +70,7 @@ module.exports = {
             },
         ],
     },
-    registerid: "961073227763953674",
+    registerid: "965266863326101504",
     ping: {
         name: "ping",
         description: "ping値を測定します。",
