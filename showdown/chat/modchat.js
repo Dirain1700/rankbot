@@ -1,6 +1,6 @@
 module.exports = (client, room, user, isIntro) => {
     if (isIntro || room !== "japanese") return;
-    if (new Date().getHour() < 13) return;
+    if (new Date().getHours() < 13) return;
     const targetUser = client.getUser(tool.toID(user));
     const targetRoom = client.getRoom(room);
     if (!targetUser || !targetRoom) return;
