@@ -5,7 +5,7 @@ module.exports = async (filePath, interaction) => {
     if (!filePath || !isExist(filePath)) return;
 
     interaction.deferReply({ ephemeral: false });
-    delete require.cache[require.resolve(filePath)];
+    delete require.cache[filePath];
     interaction.followUp(`Hotpatch successed: ${inlineCode(filePath + ".js")}`);
 
     /** @type {string} filePath */

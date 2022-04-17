@@ -1,11 +1,11 @@
 exports.getRelative = (interaction) => {
     if (!config.admin.includes(interaction.user.id)) return void interaction.reply({ content: "Access denied.", ephemeral: true });
-    require("./../hotpatch")(path.relative(__dirname, interaction.options.getString("module", true)), interaction);
+    require("./../hotpatch")(interaction.options.getString("module", true), interaction);
 };
 
 exports.getFile = (interaction) => {
     if (config.admin.includes(interaction.user.id)) return void interaction.reply({ content: "Access denied.", ephemeral: true });
-    const fileName = interaction.options.getString("module");
+    const fileName = interaction.options.getString("module", true);
     if (fileName === "git") {
         interaction.deferReply();
         const { codeBlock, inlineCode } = require("@discordjs/builders");
@@ -103,5 +103,6 @@ exports.getFile = (interaction) => {
         }
         return filePath;
     };
-    require("./../hotpatch")(toFile(fileName), interaction);
+    if (!toFile(fileName)) return;
+    require("./../hotpatch")(path.resolve(toFile(fileName)), interaction);
 };
