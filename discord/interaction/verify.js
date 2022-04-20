@@ -9,7 +9,7 @@ module.exports = async (client, interaction, PSClient) => {
         return void interaction.reply({ content: "You are already in pending list!", ephemeral: true });
     PSClient.pending.set(userid, interaction.user.id);
     interaction.reply({
-        content: `Waiting for you to send the ?register command in Pokémon Showdown. PM to Dirain1700 with the content \`?register ${interaction.user.id}\` in 10 minutes!`,
+        content: `Waiting for you to send the ?verify command in Pokémon Showdown. PM to Dirain1700 with the content \`?register ${interaction.user.id}\` in 10 minutes!`,
         fetchReply: true,
         ephemeral: false,
         allowedMentions: {
@@ -30,14 +30,14 @@ module.exports = async (client, interaction, PSClient) => {
                 if (!message.author.autoconfirmed)
                     return void message.reply("Your account is not autoconfirmed account. Try after you got autoconfirmed!\n!faq ac");
                 interaction.member.roles.add(interaction.guild.roles.cache.get(config.acRole));
-                message.reply("Registration sucessed!");
+                message.reply("Verifycation sucessed!");
                 interaction.member.setNickname(message.author.name, `Register UserName: ${message.author.username}`);
                 resolve();
             });
             setTimeout(reject, 10 * 60 * 1000);
         })
             //eslint-disable-next-line no-empty
-            .then(() => interaction.editReply(`Sucessfully registerd your account as "${userid}" and added <@&${config.acRole}> role.`).catch())
+            .then(() => interaction.editReply(`Sucessfully verified your account as "${userid}" and added <@&${config.acRole}> role.`).catch())
             //eslint-disable-next-line no-empty
             .catch(() => interaction.editReply("Failed to Registration: Timed out!").catch())
             .finally(() => PSClient.pending.delete(userid));
