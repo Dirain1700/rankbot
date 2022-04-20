@@ -58,9 +58,9 @@ module.exports = {
         ],
     },
     forcehotpatchid: "961666038087417876",
-    register: {
-        name: "register",
-        description: "Register an account of Pokémon Showdown.",
+    verify: {
+        name: "verify",
+        description: "Verify your account of Pokémon Showdown.",
         options: [
             {
                 type: "STRING",
@@ -70,7 +70,7 @@ module.exports = {
             },
         ],
     },
-    registerid: "965266863326101504",
+    verifyid: "961073227763953674",
     ping: {
         name: "ping",
         description: "ping値を測定します。",
