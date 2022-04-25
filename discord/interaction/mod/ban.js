@@ -20,10 +20,4 @@ module.exports = async (interaction) => {
             interaction.user.tag
         }.(${reasons})`
     );
-    const targetCount = interaction.options?.getInteger("lines");
-    if (!targetCount) return;
-    const messages = await interaction.channel.messages.fetch({ limit: 100 });
-    const collector = await messages.filter((msg) => msg.author.id == targetMember.user.id);
-    const msg = collector.first(targetCount);
-    interaction.channel.bulkDelete(msg);
 };

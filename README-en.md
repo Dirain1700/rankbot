@@ -29,10 +29,10 @@ If you have any questions, feel free to ask them in DM or support channel.
 
 ### Manage server
 
--   `/ban [user] [days] [reason] [message count (If you wish delete messages, optional)]` (for moderation team)
--   `/forceban [user ID] [days] [reason] [message count (If you wish delete messages, optional)]` (for moderation team, to BAN users if a user isn't on server.)
+-   `/ban [user] [days] [reason]` (for moderation team)
+-   `/forceban [user ID] [days] [reason]` (for moderation team, to BAN users if a user isn't on server.)
 -   `/unban [user ID] [reason(optional)]` (for moderation team)
--   `/kick [user] [reason] [message count (If you wish delete messages, optional)]` (for moderation team)
+-   `/kick [user] [reason]` (for moderation team)
 -   `/mute [user] [hour(0-23)] [minutes(0-60)] [reason]` (for moderation team)
 -   `/unmute [user] [reason]` (for moderation team)
 -   `/cleartext [user] [message count(optional, default: 1)]` (for moderation team)
