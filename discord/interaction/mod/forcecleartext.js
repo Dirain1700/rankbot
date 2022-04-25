@@ -6,10 +6,7 @@ module.exports = async (client, interaction) => {
     const targetCount = interaction.options?.getInteger("lines") ?? 1;
     const targetUser = await client.users.fetch(targetID);
 
-    const messages = await interaction.channel.messages.fetch({ limit: 100 });
-    const collector = await messages.filter((msg) => msg.author.id == targetID);
-    const msg = collector.first(targetCount);
-    interaction.channel.bulkDelete(msg);
+    const messages = await interaction.channel.messages.fetch({ limit: 100 }).then((m) => m.filter((msg) => msg.author.id == targetID).first(targetCount));
 
     const log = `${time(new Date(), "T")} ${targetCount} of ${targetUser.tag}'s messages were cleard from ${interaction.channel.name} by ${
         interaction.user.tag
