@@ -1,7 +1,11 @@
 "use strict";
 
 module.exports = async (interaction) => {
-    const { MessageEmbed } = require("discord.js");
+    const { MessageEmbed, Permissions } = require("discord.js");
+
+    if (!interaction.memberPermissions.has(Permissions.FLAGS.MODERATE_MEMBERS))
+        return void interaction.reply({ content: "/send - Access denied.", ephemeral: true });
+    
     const type = interaction.options.getString("type", true);
     const channel = interaction.options.getChannel("channel", true);
 
