@@ -14,5 +14,29 @@ module.exports = async (client, interaction) => {
     const log = `${time(new Date(), "T")} ${targetCount} of ${targetUser.tag}'s messages were cleard from ${interaction.channel.name} by ${
         interaction.user.tag
     }.`;
-    interaction.reply({ content: log, ephemeral: false });
+
+    interaction.channel
+        .bulkDelete(messages)
+        .then(() =>
+            interaction.reply({
+                content: log,
+                ephemeral: false,
+            })
+        )
+        .catch(() => {
+            const deleteMessages = messages.map((m) => m.delete());
+            Promise.all([deleteMessages])
+                .then(() => {
+                    interaction.reply({
+                        content: log,
+                        ephemeral: false,
+                    });
+                })
+                .catch(() => {
+                    interaction.reply({
+                        content: "Error: Couldn't delete messages.",
+                        ephemeral: true,
+                    });
+                });
+        });
 };
