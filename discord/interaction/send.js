@@ -59,6 +59,6 @@ module.exports = async (interaction) => {
             break;
         }
     }
-    if (!message?.content?.length || !message?.embeds?.length) return void interaction.channel.send("Can't send empty message!");
+    if (!message?.content?.length && !message?.embeds?.length) return void interaction.channel.send("Can't send empty message!");
     channel.send(message);
 };
