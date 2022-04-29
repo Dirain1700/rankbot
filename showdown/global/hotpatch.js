@@ -14,16 +14,14 @@ exports.getFile = (message) => {
         const { exec } = require("child_process");
         exec("git pull", { stdio: "inherit" }, async (error, stdout, stderr) => {
             let result = "";
-            if (error)
-                result += (error + "\n");
+            if (error) result += error + "\n";
             if (stdout === "Already up-to-date.") {
                 return void message.reply("``" + stdout + "``").catch();
             } else {
                 result += stdout;
                 result += stderr;
             }
-            if (result)
-                message.reply("!code " + result).catch();
+            if (result) message.reply("!code " + result).catch();
         });
         return;
     } else {
