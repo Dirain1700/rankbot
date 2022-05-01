@@ -78,7 +78,7 @@ module.exports = (ps, client) => {
         };
         const file = path.resolve(__dirname, "./../config/chatlog.json");
         let json = JSON.parse(fs.readFileSync(file));
-        if (json.length > 500) json.length = 50;
+        if (json.length > 100) json.length = 100;
         json.unshift(add);
         fs.writeFileSync(file, JSON.stringify(json, null, 2));
     }
