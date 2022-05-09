@@ -24,7 +24,7 @@ module.exports = async (client, interaction, PSClient) => {
         const inputUserid = message.content.substring(10).trim().replace(/\D/g, "");
         if (!UserRegex.test(inputUserid) || !client.users.cache.has(inputUserid))
             return void message.reply("Error: The id of Discord that you input was invalid.");
-        if (interaction.user.id !== this.pending.get(message.author.userid))
+        if (interaction.user.id !== PSClient.pending.get(message.author.userid))
             return void message.reply(
                 `Error: The id of Discord that you input was not found in registering list. Type "/register ${message.author.userid}" in Discord.`
             );
@@ -38,7 +38,7 @@ module.exports = async (client, interaction, PSClient) => {
 
     //prettier-ignore
     return new Promise((resolve, reject) => {
-            PSClient.on("message", (message) => onMessage.bind(this)(message, resolve, reject));
+            PSClient.on("message", (message) => onMessage(message, resolve, reject));
         })
             .then(() => interaction.editReply(`Sucessfully verified your account as "${userid}" and added <@&${config.acRole}> role.`).catch())
             //eslint-disable-next-line no-empty
