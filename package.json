@@ -16,7 +16,7 @@
         "node-schedule": "^2.1.0",
         "ps-client": "git+https://github.com/Dirain1700/PS-Client.git#log",
         "vm2": "^3.9.9",
-        "workerpool": "^6.2.0"
+        "workerpool": "^6.2.1"
     },
     "devDependencies": {
         "eslint": "^8.15.0",
