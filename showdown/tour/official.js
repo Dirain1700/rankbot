@@ -4,7 +4,7 @@ const forEachSend = (array, func, time) => {
     let send;
     let i = 0;
     send = setInterval(async () => {
-        array.slice(i, i + 5)?.forEach(func);
+        array.slice(i, i + 5)?.forEach((e) => func(e));
         if (i >= array.length) clearInterval(send);
         else i += 5;
     }, time);
@@ -49,7 +49,8 @@ exports.announce = (client, room) => {
     const randomized = ["Random", "Factory", "Hackmons", "Staff"];
     if (!randomized.some((e) => format.includes(e))) client.sendRoom(room, `!tier ${format}`);
     if (rules) {
-        if (rules.length > 5) forEachSend(rules.map((e) => `${room}|!tier ${e}`), client.send, client.messageInterval);
+        if (rules.length > 5)
+            forEachSend(rules.map((e) => `${room}|!tier ${e}`), client.send, client.messageInterval);
         else rules.forEach((e) => client.sendRoom(room, e));
     }
 };
