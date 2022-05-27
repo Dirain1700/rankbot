@@ -4,7 +4,7 @@ const forEachSend = (array, func, time) => {
     let send;
     let i = 0;
     send = setInterval(async () => {
-        array.slice(i, i + 5)?.forEach((e) => func(`${room}|/tour ${e}`));
+        array.slice(i, i + 5)?.forEach(func);
         if (i >= array.length) clearInterval(send);
         else i += 5;
     }, time);
