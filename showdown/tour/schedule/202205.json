@@ -1,33 +1,97 @@
 {
-    "1": "[Gen 8] Monotype",
-    "2": "[Gen 7] Anything Goes",
-    "3": "[Gen 8] VGC 2022",
-    "4": "[Gen 8] RU",
-    "5": "[Gen 8 BDSP] 3v3 Singles",
-    "6": "[Gen 8] Random Battle",
-    "7": "[Gen 8] National Dex",
-    "8": "[Gen 7] Doubles OU",
-    "9": "[Gen 8] 1v1",
-    "10": "[Gen 8] LC",
-    "11": "[Gen 8] OU",
-    "12": "[Gen 8] Doubles OU",
-    "13": "[Gen 6] Battle Spot Singles",
-    "14": "[Gen 8 BDSP] Random Battle",
-    "15": "[Gen 8] Battle Stadium Singles Series 9",
-    "16": "[Gen 8] National Dex AG",
-    "17": "[Gen 8] BSS Factory",
-    "18": "[Gen 6] Random Battle",
-    "19": "[Gen 8] Battle Stadium Singles",
-    "20": "[Gen 8] UU",
-    "21": "[Gen 7] OU",
-    "22": "[Gen 7] Battle Spot Singles",
-    "23": "[Gen 8] Anything Goes",
-    "24": "[Gen 8] Random Doubles Battle",
-    "25": "[Gen 8] Random Battle Mayhem",
-    "26": "[Gen 7] BSS Factory",
-    "27": "[Gen 8] Ubers",
-    "28": "[Gen 8] VGC 2021",
-    "29": "[Gen 6] Battle Spot Triples",
-    "30": "[Gen 7 Let's Go] Random Battle",
-    "31": "[Gen 7] Random Battle"
+    "1": {
+        "format": "[Gen 8] Monotype"
+    },
+    "2": {
+        "format": "[Gen 7] Anything Goes"
+    },
+    "3": {
+        "format": "[Gen 8] VGC 2022"
+    },
+    "4": {
+        "format": "[Gen 8] RU"
+    },
+    "5": {
+        "format": "[Gen 8 BDSP] 3v3 Singles"
+    },
+    "6": {
+        "format": "[Gen 8] Random Battle"
+    },
+    "7": {
+        "format": "[Gen 8] National Dex"
+    },
+    "8": {
+        "format": "[Gen 7] Doubles OU"
+    },
+    "9": {
+        "format": "[Gen 8] 1v1"
+    },
+    "10": {
+        "format": "[Gen 8] LC"
+    },
+    "11": {
+        "format": "[Gen 8] OU"
+    },
+    "12": {
+        "format": "[Gen 8] Doubles OU"
+    },
+    "13": {
+        "format": "[Gen 6] Battle Spot Singles"
+    },
+    "14": {
+        "format": "[Gen 8 BDSP] Random Battle"
+    },
+    "15": {
+        "format": "[Gen 8] Battle Stadium Singles",
+        "rules": ["-Restricted Legendary", "VGC Timer"],
+        "name": "[Gen 8] Battle Stadium Singles Series 9"
+    },
+    "16": {
+        "format":  "[Gen 8] National Dex AG"
+    },
+    "17": {
+        "format": "[Gen 8] BSS Factory"
+    },
+    "18": {
+        "format": "[Gen 6] Random Battle"
+    },
+    "19": {
+        "format": "[Gen 8] Battle Stadium Singles"
+    },
+    "20": {
+        "format": "[Gen 8] UU"
+    },
+    "21": {
+        "format": "[Gen 7] OU"
+    },
+    "22": {
+        "format": "[Gen 7] Battle Spot Singles"
+    },
+    "23": {
+        "format": "[Gen 8] Anything Goes"
+    },
+    "24": {
+        "format": "[Gen 8] Random Doubles Battle"
+    },
+    "25": {
+        "format": "[Gen 8] Random Battle Mayhem"
+    },
+    "26": {
+        "format": "[Gen 7] BSS Factory"
+    },
+    "27": {
+        "format": "[Gen 8] Ubers"
+    },
+    "28": {
+        "format": "[Gen 8] VGC 2021"
+    },
+    "29": {
+        "format": "[Gen 6] Battle Spot Triples"
+    },
+    "30": {
+        "format": "[Gen 7 Let's Go] Random Battle"
+    },
+    "31": {
+        "format": "[Gen 7] Random Battle"
+    }
 }
