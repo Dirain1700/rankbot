@@ -8,7 +8,7 @@ const forEachSend = (array, func, time) => {
         if (i >= array.length) clearInterval(send);
         else i += 5;
     }, time);
-});
+};
 
 exports.createTour = (client, room) => {
     let month = new String(new Date().getMonth() + 1);
