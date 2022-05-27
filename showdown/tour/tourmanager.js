@@ -22,7 +22,7 @@ exports.setTourSettings = async (client, room, msg, isIntro) => {
             let i = 0;
             send = setInterval(async () => {
                 await sleep(client.sendInterval);
-                config.tourSettings.slice(i, i + 5)?.forEach((e) => this.send(`${room}|/tour ${e}`));
+                config.tourSettings.slice(i, i + 5)?.forEach((e) => client.send(`${room}|/tour ${e}`));
                 if (i >= config.tourSettings.length) clearInterval(send);
                 else i += 5;
             }, client.sendInterval + 50);
