@@ -15,10 +15,10 @@ exports.createTour = (client, room) => {
     const command = [];
     if (format.format.includes("1v1")) command.push(`/tour new ${format.format}, rr`);
     else command.push(`/tour new ${format.format}, elim`);
-    
+
     if (format.rules) format.rules.map((e) => "/tour rules " + e).forEach(command.push);
     if (format.name) command.push(format.name);
-    
+
     if (command.length > 5) {
             let send;
             let i = 0;
