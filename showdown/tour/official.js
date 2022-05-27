@@ -50,7 +50,11 @@ exports.announce = (client, room) => {
     if (!randomized.some((e) => format.includes(e))) client.sendRoom(room, `!tier ${format}`);
     if (rules) {
         if (rules.length > 5)
-            forEachSend(rules.map((e) => `${room}|!tier ${e}`), client.send, client.messageInterval);
+            forEachSend(
+                rules.map((e) => `${room}|!tier ${e}`),
+                client.send,
+                client.messageInterval
+            );
         else rules.forEach((e) => client.sendRoom(room, e));
     }
 };
