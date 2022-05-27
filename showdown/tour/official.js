@@ -22,14 +22,14 @@ exports.createTour = (client, room) => {
     if (command.length > 5) {
         let send;
         let i = 0;
-         send = setInterval(async () => {
-             command.slice(i, i + 5)?.forEach((e) => client.send(`${room}|/tour ${e}`));
-             if (i >= command.length) clearInterval(send);
-             else i += 5;
-         }, client.sendInterval + 50);
-     } else {
-         command.forEach((e) => client.sendRoom(room, e));
-     }
+        send = setInterval(async () => {
+            command.slice(i, i + 5)?.forEach((e) => client.send(`${room}|/tour ${e}`));
+            if (i >= command.length) clearInterval(send);
+            else i += 5;
+        }, client.sendInterval + 50);
+    } else {
+        command.forEach((e) => client.sendRoom(room, e));
+    }
 };
 
 exports.announce = (client, room) => {
