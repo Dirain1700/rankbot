@@ -1,0 +1,97 @@
+{
+    "1": {
+        "format": "[Gen 8] RU"
+    },
+    "2": {
+        "format": "[Gen 8] UU"
+    },
+    "3": {
+        "format": "[Gen 7] OU"
+    },
+    "4": {
+        "format": "[Gen 8] Doubles OU"
+    },
+    "5": {
+        "format": "[Gen 8] Random Battle"
+    },
+    "6": {
+        "format": "[Gen 8] National Dex"
+    },
+    "7": {
+        "format": "[Gen 8] 1v1"
+    },
+    "8": {
+        "format": "[Gen 8] VGC 2022"
+    },
+    "9": {
+        "format": "[Gen 8] Random Battle Mayhem"
+    },
+    "10": {
+        "format": "[Gen 6] Random Battle"
+    },
+    "11": {
+        "format": "[Gen 7] Anything Goes"
+    },
+    "12": {
+        "format": "[Gen 8 BDSP] 3v3 Singles"
+    },
+    "13": {
+        "format": "[Gen 7 Let's Go] Random Battle"
+    },
+    "14": {
+        "format": "[Gen 6] Battle Spot Singles"
+    },
+    "15": {
+        "format": "[Gen 8] OU"
+    },
+    "16": {
+        "format": "[Gen 7] Doubles OU"
+    },
+    "17": {
+        "format": "[Gen 8 BDSP] Random Battle"
+    },
+    "18": {
+        "format": "[Gen 8] Single Battle Cup",
+        "rules": ["VGC Timer"],
+        "name": "[Gen 8] Battle Spot Singles Series 9"
+    },
+    "19": {
+        "format": "[Gen 8] LC"
+    },
+    "20": {
+        "format": "[Gen 7] Random Battle"
+    },
+    "21": {
+        "format": "[Gen 8] Monotype"
+    },
+    "22": {
+        "format": "[Gen 6] Battle Spot Triples"
+    },
+    "23": {
+        "format": "[Gen 8] Random Doubles Battle"
+    },
+    "24": {
+        "format": "[Gen 7] Battle Spot Singles"
+    },
+    "25": {
+        "format": "[Gen 8] Ubers"
+    },
+    "26": {
+        "format": "[Gen 7] BSS Factory"
+    },
+    "27": {
+        "format": "[Gen 8] Anything Goes"
+    },
+    "28": {
+        "format": "[Gen 8] Battle Stadium Singles"
+    },
+    "29": {
+        "format": "[Gen 8] National Dex AG"
+    },
+    "30": {
+        "format": "[Gen 7] BSS Factory"
+    },
+    "31": {
+        "format": "[Gen 8] VGC 2021"
+    }
+}
