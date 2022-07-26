@@ -14,7 +14,7 @@ module.exports = (client, PSClient) => {
     });
 
     client.on("interactionCreate", (interaction) => {
-        if (!interaction.isCommand()) return;
+        if (!interaction.isChatInputCommand() || !interaction.inCachedGuild()) return;
         if (interaction.commandName === "hotpatch") {
             require("./interaction/hotpatch").getFile(interaction);
         }
