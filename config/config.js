@@ -1,16 +1,11 @@
+const {
+    GatewayIntentBits: { Guilds, GuildMessages, MessageContent, GuildMessageReactions, GuildMembers, GuildPresences, GuildBans },
+} = require("discord.js");
+
 module.exports = {
     token: process.env.DISCORD, //leave blank to disable Discord
     options: {
-        intents: [
-            "GUILDS",
-            "GUILD_MESSAGES",
-            "GUILD_VOICE_STATES",
-            "GUILD_PRESENCES",
-            "GUILD_MESSAGE_REACTIONS",
-            "GUILD_MEMBERS",
-            "GUILD_BANS",
-            "GUILD_MESSAGE_REACTIONS",
-        ],
+        intents: [Guilds, GuildMessages, MessageContent, GuildMessageReactions, GuildMembers, GuildPresences, GuildBans],
     },
     ops: {
         username: "Dirain1700~!",
