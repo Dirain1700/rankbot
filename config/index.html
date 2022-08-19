@@ -12,7 +12,16 @@
  *--------------------------------------------------------------------------------------------*/
 
             body {
-                font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+                font-family: var(
+                    --vscode-markdown-font-family,
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe WPC",
+                    "Segoe UI",
+                    "Ubuntu",
+                    "Droid Sans",
+                    sans-serif
+                );
                 font-size: var(--vscode-markdown-font-size, 14px);
                 padding: 0 26px;
                 line-height: var(--vscode-markdown-line-height, 22px);
@@ -366,26 +375,31 @@
         <script>
             mermaid.initialize({
                 startOnLoad: true,
-                theme: document.body.classList.contains("vscode-dark") || document.body.classList.contains("vscode-high-contrast") ? "dark" : "default",
+                theme:
+                    document.body.classList.contains("vscode-dark") || document.body.classList.contains("vscode-high-contrast")
+                        ? "dark"
+                        : "default",
             });
         </script>
         <p>
             <a href="https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml"
-                ><img src="https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml/badge.svg?branch=main&amp;event=push" alt="Node.js CI (full)"
+                ><img
+                    src="https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml/badge.svg?branch=main&amp;event=push"
+                    alt="Node.js CI (full)"
             /></a>
             <a href="https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml"
-                ><img src="https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml/badge.svg?branch=dev&amp;event=push" alt="Node.js CI (full)"
+                ><img
+                    src="https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml/badge.svg?branch=dev&amp;event=push"
+                    alt="Node.js CI (full)"
             /></a>
         </p>
         <p>Looking for English version? visit <a href="https://github.com/Dirain1700/rankbot/blob/main/README-en.md">README-en.md</a>!</p>
         <h1>環境</h1>
-        <p>言語は<b>JavaScript</b>です。</p>
+        <p>言語は<b>TypeScript</b>です。</p>
         <ul>
             <li>Windows10</li>
-            <li>Node.js v16.13.2</li>
+            <li>Node.js v18.6.0</li>
             <li>Visual Studio Code</li>
-            <li>discord.js v13.6.0</li>
-            <li>PS-Client v1.4.1</li>
         </ul>
         <h1>機能</h1>
         <p>

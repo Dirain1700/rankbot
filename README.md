@@ -4,13 +4,11 @@ Looking for English version? visit [README-en.md](./README-en.md)!
 
 # 環境
 
-言語は<b>JavaScript</b>です。
+言語は<b>TypeScript</b>です。
 
 -   Windows10
--   Node.js v16.14.2
+-   Node.js v18.6.0
 -   Visual Studio Code
--   discord.js v13.6.0
--   PS-Client v1.4.1
 
 # 実装済み
 
