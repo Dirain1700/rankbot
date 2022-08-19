@@ -14,9 +14,10 @@
         "check": "prettier --check ."
     },
     "dependencies": {
-        "@dirain/client": "^0.0.2-3",
+        "@dirain/client": "^0.0.3-2",
         "@discordjs/builders": "^1.1.0",
         "@typescript-eslint/parser": "^5.33.1",
+        "@typescript-eslint/eslint-plugin": "5.33.1",
         "discord.js": "^14.2.0",
         "node-schedule": "^2.1.0",
         "vm2": "^3.9.9",

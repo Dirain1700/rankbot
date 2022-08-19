@@ -52,5 +52,5 @@ createServer((req, res) => {
     }
 }).listen(3000);
 
-DiscordClient.login();
+DiscordClient.login(process.env.DISCORD!);
 PSClient.connect();
