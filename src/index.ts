@@ -1,10 +1,8 @@
-"use strict";
-
-import "../types/global";
+///<reference types="../types/global"/>
 
 import * as fs from "fs";
 import { createServer } from "http";
-import { config } from "../config/config";
+import * as config from "../config/config";
 import { Tools } from "@dirain/client";
 import { parse } from "querystring";
 

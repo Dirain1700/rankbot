@@ -7,7 +7,7 @@
         "start": "node dist/src/index.js",
         "tsc": "tsc -p tsconfig.json",
         "build": "npm run write && npm run lint-fix && npm run tsc",
-        "ci": "npm run check && npm run lint && npm run tsc",
+        "ci": "npm run check && npm run lint && npm run tsc --noEmit",
         "lint": "eslint \"src/**/*.ts\"",
         "lint-fix": "eslint --fix \"src/**/*.ts\"",
         "write": "prettier --write .",
