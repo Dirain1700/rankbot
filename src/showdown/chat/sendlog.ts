@@ -6,7 +6,7 @@ import type { GuildTextBasedChannel } from "discord.js";
 export default (message: Message<Room>): void => {
     if (message.target.roomid !== "japanese") return;
     const log = message.content.replace("/log ", "");
-    const file = "../../../config/chatlog.json";
+    const file = "./config/chatlog.json";
     interface chatLogType {
         content: string;
         user: string;
