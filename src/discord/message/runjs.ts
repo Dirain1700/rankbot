@@ -3,7 +3,7 @@ import type { Message, ReplyMessageOptions } from "discord.js";
 import workerpool = require("workerpool");
 
 export default (message: Message): void => {
-    const pool = workerpool.pool("../../../../vm2/worker.js", {
+    const pool = workerpool.pool("../../../../src/vm2/worker.js", {
         workerType: "process",
     });
 

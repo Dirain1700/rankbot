@@ -7,7 +7,7 @@ export const createTour = (room: Room): void => {
     month = month.length === 1 ? "0" + month : month;
     let tourSchedule: { [day: string]: { format: string; name?: string; rules?: string[] } } = {};
     try {
-        tourSchedule = JSON.parse(fs.readFileSync(`./schedule/${new Date().getFullYear()}${month}.json`, "utf-8"));
+        tourSchedule = JSON.parse(fs.readFileSync(`./src/showdown/tour/schedule/${new Date().getFullYear()}${month}.json`, "utf-8"));
     } catch (e: unknown) {
         room.send("!code " + (e as Error).toString());
         return;
@@ -30,7 +30,7 @@ export const announce = (room: Room): void => {
     month = month.length === 1 ? "0" + month : month;
     let tourSchedule: { [day: string]: { format: string; name?: string; rules?: string[] } } = {};
     try {
-        tourSchedule = JSON.parse(fs.readFileSync(`./schedule/${new Date().getFullYear()}${month}.json`, "utf-8"));
+        tourSchedule = JSON.parse(fs.readFileSync(`./src/showdown/tour/schedule/${new Date().getFullYear()}${month}.json`, "utf-8"));
     } catch (e: unknown) {
         room.send("!code " + (e as Error).toString());
         return;

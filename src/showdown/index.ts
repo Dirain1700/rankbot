@@ -78,7 +78,7 @@ export default () => {
             user: message.author?.userid ?? "&",
             time: message.time,
         };
-        const file = "./config/chatlog.json"
+        const file = "./config/chatlog.json";
         const json: { content: string; user: string; time: number }[] = JSON.parse(fs.readFileSync(file, "utf-8"));
         if (json.length >= 100) json.length = 100;
         json.unshift(add);
