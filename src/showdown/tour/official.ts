@@ -20,7 +20,7 @@ export const createTour = (room: Room): void => {
     else command.push(`${room.id}|/tour new ${format}, elim`);
 
     if (rules) command.push(`${room.id}|/tour rules ${rules.join(",")}`);
-    if (name) command.push(`${room}|/tour name ${name}`);
+    if (name) command.push(`${room.id}|/tour name ${name}`);
 
     if (command.length > 5) PS.sendArray(command);
 };
