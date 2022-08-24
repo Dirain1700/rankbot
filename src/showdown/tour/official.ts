@@ -22,7 +22,7 @@ export const createTour = (room: Room): void => {
     if (rules) command.push(`${room.id}|/tour rules ${rules.join(",")}`);
     if (name) command.push(`${room.id}|/tour name ${name}`);
 
-    if (command.length > 5) PS.sendArray(command);
+    PS.sendArray(command);
 };
 
 export const announce = (room: Room): void => {
