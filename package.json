@@ -5,31 +5,31 @@
     "main": "index.js",
     "scripts": {
         "start": "node dist/src/index.js",
+        "pre-tsc": "tsc -p tsconfig.json --noEmit",
         "tsc": "tsc -p tsconfig.json",
         "build": "npm run write && npm run lint-fix && npm run tsc",
-        "ci": "npm run check && npm run lint && npm run tsc --noEmit",
+        "ci": "npm run check && npm run lint && npm run pre-tsc",
         "lint": "eslint \"src/**/*.ts\"",
         "lint-fix": "eslint --fix \"src/**/*.ts\"",
         "write": "prettier --write .",
         "check": "prettier --check ."
     },
     "dependencies": {
-        "@dirain/client": "^0.0.4-1",
-        "@discordjs/builders": "^1.1.0",
-        "@typescript-eslint/eslint-plugin": "5.33.1",
-        "@typescript-eslint/parser": "^5.33.1",
-        "discord.js": "^14.2.0",
+        "@dirain/client": "^0.0.5-2",
+        "@typescript-eslint/eslint-plugin": "5.36.0",
+        "@typescript-eslint/parser": "^5.36.0",
+        "discord.js": "^14.3.0",
         "node-schedule": "^2.1.0",
         "vm2": "^3.9.9",
         "workerpool": "^6.2.1"
     },
     "devDependencies": {
-        "@types/node": "^18.7.2",
+        "@types/node": "^18.7.14",
         "@types/node-schedule": "^2.1.0",
         "@types/workerpool": "^6.1.0",
         "@typescript-eslint/eslint-plugin": "^5.33.1",
-        "eslint": "^8.21.0",
-        "node": "^16.14.2",
+        "eslint": "^8.23.0",
+        "node": "^18.7.0",
         "prettier": "^2.7.1"
     },
     "engines": {

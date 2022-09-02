@@ -38,22 +38,19 @@ export default () => {
             runjs(message);
         }
         if (message.content === "process.exit(0)" && message.author.userid === config.owner) process.exit(0);
-    });
-
-    PS.on("message", async (message: Message<unknown>) => {
-        if (!message.isUserMessage()) return;
-        if (message.content.startsWith("/invite")) {
-            invite(message);
+        if (message.isUserMessage()) {
+            if (message.content.startsWith("/invite")) {
+                invite(message);
+            }
         }
-    });
 
-    PS.on("messageCreate", (message: Message<unknown>): void => {
-        if (!message.isRoomMessage()) return;
-        if (message.target.id === "japanese") logmsg(message);
-        if (message.content.startsWith("/log") && message.target.id === "japanese") {
-            sendlog(message);
+        if (message.isRoomMessage()) {
+            if (message.target.id === "japanese") logmsg(message);
+            if (message.content.startsWith("/log") && message.target.id === "japanese") {
+                sendlog(message);
+            }
+            if (message.content.toLowerCase() === "?randtour") random(message);
         }
-        if (message.content.toLowerCase() === "?randtour") random(message);
     });
 
     PS.on("tourCreate", (room: Room, format: string) => {
