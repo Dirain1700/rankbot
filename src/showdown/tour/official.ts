@@ -37,9 +37,10 @@ export const announce = (room: Room): void => {
     }
     if (!tourSchedule[new Date().getDate()]) return void room.send("No tournament data found.");
     const { format, name, rules } = tourSchedule[new Date().getDate()]!;
-    room.send(`/announce 30分後から${name ?? format}のOfficial Tournamentを開催します!奮ってご参加ください!`);
-    room.send(`/announce After 30 minutes , we will open an Official Tournament in ${name ?? format}! Please join with us!`);
+    const messages: string[] = [];
+    messages.push(`/announce 30分後から${name ?? format}のOfficial Tournamentを開催します!奮ってご参加ください!`);
+    messages.push(`/announce After 30 minutes , we will open an Official Tournament in ${name ?? format}! Please join with us!`);
     const randomized = ["Random", "Factory", "Hackmons", "Staff"];
-    if (!randomized.some((e) => format.includes(e))) room.send(`!tier ${format}`);
-    if (rules) PS.sendArray(rules.map((e) => `${room}|!tier ${e}`));
+    if (!randomized.some((e) => format.includes(e))) messages.push(`!tier ${format}`);
+    PS.sendArray(messages);
 };
