@@ -1,6 +1,6 @@
 "use strict";
 
-import type { Room } from "@dirain/client";
+import type { Room, RankHTMLBoxOptions } from "@dirain/client";
 
 export const createTour = (room: Room): void => {
     let month = new String(new Date().getMonth() + 1);
@@ -43,4 +43,28 @@ export const announce = (room: Room): void => {
     const randomized = ["Random", "Factory", "Hackmons", "Staff"];
     if (!randomized.some((e) => format.includes(e))) messages.push(`!tier ${format}`);
     PS.sendArray(messages);
+};
+
+export const configure = (room: Room): void => {
+    let month = new String(new Date().getMonth() + 1);
+    month = month.length === 1 ? "0" + month : month;
+    let tourSchedule: { [day: string]: { format: string; name?: string; rules?: string[] } } = {};
+    try {
+        tourSchedule = JSON.parse(fs.readFileSync(`./src/showdown/tour/schedule/${new Date().getFullYear()}${month}.json`, "utf-8"));
+    } catch (e: unknown) {
+        room.send("!code " + (e as Error).toString());
+        return;
+    }
+    if (!tourSchedule[new Date().getDate()]) return void room.send("No tournament data found.");
+    const { format, name, rules } = tourSchedule[new Date().getDate()]!;
+    const html: RankHTMLBoxOptions = {
+        content: `今日のトーナメントの内容は以下の通りです。<br>フォーマット: ${format}<br>${name ? "名前: " + name + "<br>" : ""}${
+            rules?.length ? "ルール: " + rules.join("、") + "<br>" : ""
+        }<br>Raw:<br><code>${JSON.stringify(tourSchedule[new Date().getDate()]!, null, 4)}</code>`,
+        edit: false,
+        box: true,
+        allowedDisplay: "%",
+    };
+
+    room.sendHTML(html);
 };

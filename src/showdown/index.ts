@@ -12,7 +12,7 @@ import hotpatch from "./global/hotpatch";
 import output from "./global/output";
 import resetlog from "./global/resetlog";
 import invite from "./pm/invite";
-import { createTour, announce } from "./tour/official";
+import { createTour, announce, configure } from "./tour/official";
 import random from "./tour/random";
 import setTourConfigs from "./tour/tourmanager";
 
@@ -67,6 +67,10 @@ export default () => {
 
     scheduleJob("0 30 12 * * *", () => {
         announce(PS.rooms.get("japanese")!);
+    });
+
+    scheduleJob("0 0 14 * * *", () => {
+        configure(PS.rooms.get("japanese")!);
     });
 
     function logmsg(message: Message<Room>): void {
