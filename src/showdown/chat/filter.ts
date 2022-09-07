@@ -13,7 +13,6 @@ export default (message: Message<Room>): void => {
     const noMeaningFilter: (str: string) => boolean = (str: string) => {
         if (str.length > 16) return false;
         str = str.toLowerCase();
-        if (stretchFilter(str)) return true;
         const strings: string[] = str.split(" ");
         if (/\w/.test(str) && strings.length >= 5) return true;
         // includes Hiragana
@@ -30,7 +29,7 @@ export default (message: Message<Room>): void => {
         if (strings.length >= 5) return true;
         if (strings.length === 4 && str.length <= 13) return true;
         if (strings.length === 3 && str.length <= 8) return true;
-        if (strings.length === 2 && str.length <= 5) return true;
+        if (strings.length === 2 && str.length < 5) return true;
         return false;
     };
 
@@ -39,13 +38,13 @@ export default (message: Message<Room>): void => {
             content: "Caught by stretchFilter: " + message.content,
         });
 
-    if (stretchFilter(message.content))
-        return void (discord.channels.cache.get(config.testCh) as GuildTextBasedChannel)?.send?.({
-            content: "Caught by stretchFilter: " + message.content,
-        });
+    let content: string = "Caught by ";
 
-    if (noMeaningFilter(message.content))
-        return void (discord.channels.cache.get(config.testCh) as GuildTextBasedChannel)?.send?.({
-            content: "Caught by noMeaningFilter: " + message.content,
-        });
+    if (stretchFilter(message.content)) content += "stretchFilter: " + message.content;
+
+    if (noMeaningFilter(message.content)) content += "noMeaningFilter: " + message.content;
+
+    if (content === "Caught by ") return;
+    message.reply(content);
+    (discord.channels.cache.get(config.testCh) as GuildTextBasedChannel)?.send?.(content);
 };

@@ -15,6 +15,7 @@ import invite from "./pm/invite";
 import { createTour, announce, configure } from "./tour/official";
 import random from "./tour/random";
 import setTourConfigs from "./tour/tourmanager";
+import chatFilter from "./chat/filter";
 
 export default () => {
     PS.on("ready", () => console.log("Logged in as", PS.user!.name));
@@ -45,6 +46,7 @@ export default () => {
         }
 
         if (message.isRoomMessage()) {
+            chatFilter(message);
             if (message.target.id === "japanese") logmsg(message);
             if (message.content.startsWith("/log") && message.target.id === "japanese") {
                 sendlog(message);
