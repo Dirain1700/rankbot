@@ -14,7 +14,7 @@ export const PSOptions: PSClientOptions = {
     status: "Hi! I am a bot! :)",
     autoJoin: ["japanese", "botdev"],
 };
-export const testch: Snowflake = "886970564265259032";
+export const testCh: Snowflake = "1016979734988591104";
 export const logch: Snowflake = "922453739225374720";
 export const aptguild: Snowflake = "873211574876241931";
 export const owner: string = "dirain";
