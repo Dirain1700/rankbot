@@ -30,5 +30,5 @@ export default (message: Message<Room>): void => {
     if (!target.length) return;
     target.sort((a, b) => a.time - b.time);
     const chatLog = target.map((i) => `<t:${i.time}:T> ${i.user}: ${i.content}`);
-    (discord.channels.cache.get(config.logch) as GuildTextBasedChannel).send(log + "\n" + chatLog.join("\n"));
+    (discord.channels.cache.get(config.logch) as GuildTextBasedChannel)?.send?.(log + "\n" + chatLog.join("\n"));
 };
