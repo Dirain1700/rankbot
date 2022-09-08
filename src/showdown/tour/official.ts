@@ -42,7 +42,7 @@ export const announce = (room: Room): void => {
     messages.push(`/announce After 30 minutes , we will open an Official Tournament in ${name ?? format}! Please join with us!`);
     const randomized = ["Random", "Factory", "Hackmons", "Staff"];
     if (!randomized.some((e) => format.includes(e))) messages.push(`!tier ${format}`);
-    PS.sendArray(messages.map((e) => `${room.id}|e`);
+    PS.sendArray(messages.map((e) => `${room.id}|e`));
 };
 
 export const configure = (room: Room): void => {
