@@ -11,7 +11,7 @@ export default async (room: Room, format: string) => {
         config.tourSettings?.forEach((e) => PS.sendRoom(room.id, `/tour ${e}`));
     }
     const randomized = ["random", "factory", "hackmons", "staff"];
-    if (!randomized.some((e) => format.includes(e))) {
+    if (randomized.some((e) => format.includes(e))) {
         await Tools.sleep(PS.messageInterval);
         PS.sendRoom(room.id, "/tour scouting allow");
     }
