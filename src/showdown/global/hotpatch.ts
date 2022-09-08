@@ -20,6 +20,7 @@ export default (message: Message<unknown>): void => {
             if (result) message.reply("!code " + result);
         });
     } else if (filePath === "tsc") {
+        message.reply("Compiling...");
         exec("npm run build", (error: ExecException | null, stdout: string): void => {
             let result = "";
             if (error) {
@@ -29,9 +30,11 @@ export default (message: Message<unknown>): void => {
             message.reply((error ? "!code " : "") + result);
         });
     } else {
-        if (!filePath || !fs.existsSync(filePath)) return;
+        if (!filePath || !fs.existsSync(filePath)) return void message.reply("Error: The file does not exist.");
 
-        delete require.cache[`./${path.relative(__dirname, filePath)}`];
-        message.reply(`Hotpatch successed: ${filePath}`);
+        const resolvedPath = Object.keys(require.cache).find((e) => e.includes(e));
+        if (!resolvedPath) return void message.reply("Error: The file does not exist");
+        delete require.cache[resolvedPath];
+        message.reply(`Hotpatch successed: ${resolvedPath}`);
     }
 };

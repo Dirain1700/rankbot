@@ -35,7 +35,9 @@ export default (interaction: ChatInputCommandInteraction<"cached">): void => {
         });
         return;
     }
-    interaction.deferReply({ ephemeral: false });
-    delete require.cache[`./${path.relative(__dirname, filePath)}`];
-    interaction.followUp(`Hotpatch successed: ${inlineCode(filePath + ".js")}`);
+    const resolvedPath = Object.keys(require.cache).find((e) => e.includes(e));
+    if (!resolvedPath) return void interaction.reply("Error: The file does not exist");
+    interaction.followUp({ ephemeral: false });
+    delete require.cache[resolvedPath];
+    interaction.followUp(`Hotpatch successed: ${inlineCode(resolvedPath)}`);
 };
