@@ -4,7 +4,7 @@ import type { Room, Message } from "@dirain/client";
 import type { GuildTextBasedChannel } from "discord.js";
 
 export default (message: Message<Room>): void => {
-    const stretchRegex: RegExp = /(.)\1{4,}/gisu;
+    const stretchRegex: RegExp = /(.)\1{4,}/gimsu;
     const stretchFilter: (str: string) => boolean = (str: string) => {
         const result = str.match(stretchRegex);
         if (Array.isArray(result)) return !str.toLowerCase().startsWith("w".repeat(5));

@@ -71,7 +71,7 @@ export default () => {
         announce(PS.rooms.get("japanese")!);
     });
 
-    scheduleJob("0 0 14 * * *", () => {
+    scheduleJob("0 0 12 * * *", () => {
         configure(PS.rooms.get("japanese")!);
     });
 
