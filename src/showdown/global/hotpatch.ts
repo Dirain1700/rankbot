@@ -5,7 +5,7 @@ import type { Message } from "@dirain/client";
 
 export default (message: Message<unknown>): void => {
     if (message.author.userid !== config.owner || !message.isNotUnknown()) return void message.reply("Access denied.");
-    const filePath = message.content.substring(9);
+    const filePath = message.content.substring(10);
     if (!filePath) return;
     if (filePath === "git") {
         exec("git pull", (error: ExecException | null, stdout: string, stderr: string): void => {
