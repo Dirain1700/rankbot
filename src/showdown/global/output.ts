@@ -9,6 +9,5 @@ export default (message: Message<unknown>): void => {
     if (!fs.existsSync(targetFilePath)) return void message.reply("Module not found. Check spelling?");
 
     const result = fs.readFileSync(targetFilePath, "utf-8");
-    //eslint-disable-next-line no-empty
     message.reply("!code " + result);
 };
