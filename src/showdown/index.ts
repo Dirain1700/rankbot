@@ -59,7 +59,7 @@ export default () => {
         setTourConfigs(room, format);
     });
 
-    PS.on("roomUserRemove", (room, user): void => setModChat(room, user));
+    PS.on("roomUserRemove", (room: Room, user: User): void => setModChat(room, user));
 
     PS.on("rawData", (message: Message<Room>): void => announceModChat(message));
 
