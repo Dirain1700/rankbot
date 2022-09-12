@@ -1,7 +1,7 @@
 "use strict";
 
 import { scheduleJob } from "node-schedule";
-import type { Message, Room } from "@dirain/client";
+import type { Message, Room, User } from "@dirain/client";
 
 import setModChat from "./chat/modchat";
 import announceModChat from "./chat/raw";
