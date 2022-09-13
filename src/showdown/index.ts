@@ -61,7 +61,7 @@ export default () => {
 
     PS.on("roomUserRemove", (room: Room, user: User): void => setModChat(room, user));
 
-    PS.on("rawData", (message: Message<Room>): void => announceModChat(message));
+    PS.on("rawData", (message: string, room: Room): void => announceModChat(message, room));
 
     scheduleJob("0 0 13 * * *", () => {
         createTour(PS.rooms.get("japanese")!);

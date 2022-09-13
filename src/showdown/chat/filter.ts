@@ -4,6 +4,7 @@ import type { Room, Message } from "@dirain/client";
 import type { GuildTextBasedChannel } from "discord.js";
 
 export default (message: Message<Room>): void => {
+    if (message.target.isStaff(message.author)) return;
     const stretchRegex: RegExp = /(.)\1{4,}/gimsu;
     const stretchFilter: (str: string) => boolean = (str: string) => {
         const result = str.match(stretchRegex);
@@ -27,9 +28,14 @@ export default (message: Message<Room>): void => {
         )
             return false;
         if (strings.length >= 5) return true;
-        if (strings.length === 4 && str.length <= 13) return true;
-        if (strings.length === 3 && str.length <= 8) return true;
-        if (strings.length === 2 && str.length < 5) return true;
+        if (strings.length === 4 && str.length <= 8) return true;
+        if (strings.length === 3 && str.length <= 6) return true;
+        if (strings.length === 2 && str.length < 4) return true;
+        const set = new Set();
+        for (const strs of str.split("")) {
+            set.add(strs);
+        }
+        if (str.split("").length === set.size) return true;
         return false;
     };
 

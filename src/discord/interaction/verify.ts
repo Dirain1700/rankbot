@@ -1,6 +1,6 @@
 "use strict";
 
-import type { Message, User } from "@dirain/client";
+import type { Message } from "@dirain/client";
 import type { ChatInputCommandInteraction, Role } from "discord.js";
 
 export default async (interaction: ChatInputCommandInteraction<"cached">) => {
@@ -28,7 +28,8 @@ export default async (interaction: ChatInputCommandInteraction<"cached">) => {
         },
     });
 
-    function onMessage(message: Message<User>, resolve: (value: void) => void, reject: (value: void) => void): void {
+    function onMessage(message: Message<unknown>, resolve: (value: void) => void, reject: (value: void) => void): void {
+        if (!message.isUserMessage()) return;
         if (message.type === "Room" || message.author.id !== userid || !message.content.startsWith("?register ")) return;
         const inputUserid = message.content.substring(10).trim().replace(/\D/g, "");
         if (!UserRegex.test(inputUserid) || !discord.users.cache.has(inputUserid))
@@ -48,7 +49,7 @@ export default async (interaction: ChatInputCommandInteraction<"cached">) => {
 
     //prettier-ignore
     return new Promise((resolve, reject) => {
-            PS.on("messageCreate", (message: Message<User>) => onMessage(message, resolve, reject));
+            PS.on("messageCreate", (message: Message<unknown>) => onMessage(message, resolve, reject));
         })
             .then(() => interaction.editReply(`Sucessfully verified your account as "${userid}" and added <@&${config.acRole}> role.`).catch())
             //eslint-disable-next-line no-empty
