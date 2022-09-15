@@ -6,8 +6,14 @@ import type { GuildTextBasedChannel } from "discord.js";
 export default (message: Message<Room>): void => {
     if (message.target.isStaff(message.author)) return;
     const stretchRegex: RegExp = /(.)\1{4,}/gimsu;
+    const wordStretchRegex: RegExp = /(\S+?)\1+\1+\1+/gimsu;
     const stretchFilter: (str: string) => boolean = (str: string) => {
         const result = str.match(stretchRegex);
+        if (Array.isArray(result)) return !str.toLowerCase().startsWith("w".repeat(5));
+        else return false;
+    };
+    const wordStretchFilter: (str: string) => boolean = (str: string) => {
+        const result = str.match(wordStretchRegex);
         if (Array.isArray(result)) return !str.toLowerCase().startsWith("w".repeat(5));
         else return false;
     };
@@ -47,6 +53,8 @@ export default (message: Message<Room>): void => {
     let content: string = "Caught by ";
 
     if (stretchFilter(message.content)) content += "stretchFilter: " + message.content;
+
+    if (wordStretchFilter(message.content)) content += "wordStretchFilter: " + message.content;
 
     if (noMeaningFilter(message.content)) content += "noMeaningFilter: " + message.content;
 
