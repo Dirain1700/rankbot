@@ -12,7 +12,7 @@ export const PSOptions: PSClientOptions = {
     pass: process.env.PS!,
     avatar: "elaine",
     status: "Hi! I am a bot! :)",
-    autoJoin: ["japanese", "botdev"],
+    autoJoin: ["japanese"],
 };
 export const testCh: Snowflake = "1016979734988591104";
 export const logch: Snowflake = "922453739225374720";

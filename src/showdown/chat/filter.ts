@@ -41,7 +41,7 @@ export default (message: Message<Room>): void => {
         for (const strs of str.split("")) {
             set.add(strs);
         }
-        if (str.split("").length === set.size) return true;
+        if (str.split("").length === set.size && str.length >= 13) return true;
         return false;
     };
 
