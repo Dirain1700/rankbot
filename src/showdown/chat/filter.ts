@@ -21,25 +21,31 @@ export default (message: Message<Room>): void => {
     };
 
     const wordStretchWithBlankFilter: (str: string) => boolean = (str: string) => {
-        const arr = str.split(" ");
-        let latestWord = "";
-        const set = new Set();
-        const duplicatedWords: { [word: string]: number } = {};
-        let i = 1;
-        let count = 0;
+        let hasStretchSentence: boolean = false;
+        for (const sentence of str.split(". ")) {
+            const arr = sentence.split(" ");
+            let latestWord = "";
+            const set = new Set();
+            const duplicatedWords: { [word: string]: number } = {};
+            let i = 1;
+            let count = 0;
 
-        for (const word of arr) {
-            set.add(word);
-            if (set.size !== arr.length) {
-                duplicatedWords[word] ? duplicatedWords[word]++ : (duplicatedWords[word] = 1);
-                arr.slice(i);
-            } else i++;
-            if (latestWord === word) count++;
+            for (const word of arr) {
+                set.add(word);
+                if (latestWord === word) count++;
+                else if (set.size !== arr.length) {
+                    duplicatedWords[word] ? duplicatedWords[word]++ : (duplicatedWords[word] = 1);
+                    arr.slice(i);
+                    i--;
+                }
 
-            latestWord = word;
+                latestWord = word;
+                i++;
+            }
+            if (count > 3) hasStretchSentence = true;
+            else if (Object.values(duplicatedWords).filter((e) => e >= 6).length) hasStretchSentence = true;
         }
-        if (count > 3) return true;
-        else return false;
+        return hasStretchSentence;
     };
 
     const noMeaningFilter: (str: string) => boolean = (str: string) => {
