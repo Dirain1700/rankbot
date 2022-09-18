@@ -31,7 +31,7 @@ export default () => {
         if (message.content.startsWith("?hotpatch")) {
             hotpatch(message);
         }
-        if (message.content.startsWith("echo") && message.author.userid === config.owner) PS.send(message.content.substring(4));
+        if (message.content.startsWith("echo") && message.author.userid === config.owner) PS.send(message.content.substring(5));
         if (message.content.startsWith("?export")) {
             output(message);
         }
@@ -59,7 +59,7 @@ export default () => {
         setTourConfigs(room, format);
     });
 
-    PS.on("roomUserRemove", (room: Room, user: User): void => setModChat(room, user));
+    PS.on("roomUserRemove", (room: Room, user: User): Promise<void> => setModChat(room, user));
 
     PS.on("rawData", (message: string, room: Room): void => announceModChat(message, room));
 

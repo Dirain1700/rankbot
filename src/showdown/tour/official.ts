@@ -61,7 +61,6 @@ export const configure = (room: Room): void => {
         content: `今日のトーナメントの内容は以下の通りです。<br>フォーマット: ${format}<br>${name ? "名前: " + name + "<br>" : ""}${
             rules?.length ? "ルール: " + rules.join("、") + "<br>" : ""
         }<br>Raw:<br><code>${JSON.stringify(tourSchedule[new Date().getDate()]!, null, 4)}</code>`,
-        edit: false,
         box: true,
         allowedDisplay: "%",
     };
