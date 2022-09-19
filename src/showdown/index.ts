@@ -1,9 +1,10 @@
 "use strict";
 
 import { scheduleJob } from "node-schedule";
-import type { Message, Room, User } from "@dirain/client";
+import { Room } from "@dirain/client";
+import type { Message, User } from "@dirain/client";
 
-import setModChat from "./chat/modchat";
+import { enableModchat, disableModchat } from "./chat/modchat";
 import announceModChat from "./chat/raw";
 import runjs from "./global/runjs";
 import sendlog from "./chat/sendlog";
@@ -59,9 +60,23 @@ export default () => {
         setTourConfigs(room, format);
     });
 
-    PS.on("roomUserRemove", (room: Room, user: User): Promise<void> => setModChat(room, user));
+    PS.on("roomUserAdd", (room: Room, user: User): Promise<void> => disableModchat(room, user));
+
+    PS.on("roomUserRemove", (room: Room, user: User): Promise<void> => enableModchat(room, user));
 
     PS.on("rawData", (message: string, room: Room): void => announceModChat(message, room));
+
+    PS.on("userRename", async (NewU) => {
+        const room = new Room(
+            {
+                id: "japanese",
+                roomid: "japanese",
+                type: "chat",
+            },
+            PS
+        );
+        enableModchat(room, NewU);
+    });
 
     scheduleJob("0 0 13 * * *", () => {
         createTour(PS.rooms.get("japanese")!);
