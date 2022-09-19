@@ -6,6 +6,7 @@ export const enableModchat = async (targetRoom: Room, targetUser: User) => {
     if (targetRoom.id !== "japanese") return;
     targetRoom = await PS.fetchRoom(targetRoom.id, false).catch(() => PS.getRoom(targetRoom.id)!);
 
+    if (!targetRoom.modchat || !["off", "autoconfirmed"].includes(targetRoom.modchat)) return;
     if (new Date().getHours() < 13) return;
     if (!targetRoom.isStaff(targetUser)) return;
     const users: User[] = (targetRoom.users as string[]).map((u) => PS.getUser(Tools.toId(u)) as User);
