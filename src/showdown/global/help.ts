@@ -18,7 +18,7 @@ export default (message: Message<unknown>): void => {
             url = "README-en";
             break;
         default:
-            return void message.reply(`The document file That written in ${lang} does not exist!`);
+            return void message.reply(`The document file written in language "${lang}" does not exist!`);
     }
     if (!url) return;
     message.reply(`Dirain1700's Guide: https://github.com/Dirain1700/rankbot/blob/main/${url}.md`);
