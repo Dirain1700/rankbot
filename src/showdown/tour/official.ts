@@ -67,7 +67,7 @@ export const configure = (room: Room): void => {
             tourSchedule[date.getDate()]!,
             null,
             4
-        )}</code><br><br><form data-submitsend="/botmsg ${PS.status.id},.fixTourData ${
+        )}</code><br><br><form data-submitsend="/msg ${PS.status.id},.fixTourData ${
             room.id
         } ${date.getFullYear()}${month}${date.getDate()} format&#061;{format}${rules ? "&rules&#061;{rules}" : ""}${
             name ? "&name&#061;name" : ""
@@ -110,7 +110,7 @@ export const fixTourData = async (message: Message<User>): Promise<void> => {
             return;
         }
     }
-    const rawData = message.content.split(" ")[2]!;
+    const rawData = message.content.split(" ").slice(3).join(" ")!;
     interface RawParsedData {
         format?: string;
         name?: string;
@@ -156,7 +156,7 @@ export const fixTourData = async (message: Message<User>): Promise<void> => {
         tourSchedule[date] = fixedData as ParsedData;
         fs.writeFileSync(filePath, JSON.stringify(tourSchedule, null, 4));
         message.reply("Successfuly fixed tournament data!");
-    }
+    } else return void message.reply("!code Error occured:\n" + JSON.stringify(fixedData, null, 4));
 
     configure(room);
 };

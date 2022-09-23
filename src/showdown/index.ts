@@ -46,7 +46,7 @@ export default () => {
             }
 
             // eslint-disable-next-line no-useless-escape
-            if (/\.fixTourData \d{8} \w+ [\[\]a-zA-Z0-9 ]+/.test(message.content)) {
+            if (/\.fixTourData \w+ \d{8} [\[\]a-zA-Z0-9 ]+/.test(message.content)) {
                 fixTourData(message);
             }
         }
