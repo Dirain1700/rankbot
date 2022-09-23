@@ -7,8 +7,8 @@ export const enableModchat = async (targetRoom: Room, targetUser: User) => {
     targetRoom = await PS.fetchRoom(targetRoom.id, false).catch(() => PS.getRoom(targetRoom.id)!);
 
     if (!targetRoom.modchat || !["off", "autoconfirmed"].includes(targetRoom.modchat)) return;
-    const hour = new Date().getHours();
-    if (hour < 13 || (hour > 22 && hour <= 23)) return;
+    const hour = new Date(Date.now() + 9 * 60 * 60 * 1000).getHours();
+    if (hour < 22 && hour > 6) return;
     if (!targetRoom.isStaff(targetUser)) return;
     const users: User[] = (targetRoom.users as string[]).map((u) => PS.getUser(Tools.toId(u)) as User);
     const Staffs = users.filter((u) => targetRoom.isStaff(u) && !targetRoom.isBot(u.id) && !u.isGlobalBot);
@@ -24,8 +24,8 @@ export const disableModchat = async (targetRoom: Room, targetUser: User) => {
     if (!targetRoom.modchat || targetRoom.modchat === "autoconfirmed") return;
     targetRoom = await PS.fetchRoom(targetRoom.id, false).catch(() => PS.getRoom(targetRoom.id)!);
 
-    const hour = new Date().getHours();
-    if (hour > 13 && hour < 22) return;
+    const hour = new Date(Date.now() + 9 * 60 * 60 * 1000).getHours();
+    if (hour > 21 || hour < 7) return;
     if (!targetRoom.isStaff(targetUser)) return;
     const users: User[] = (targetRoom.users as string[]).map((u) => PS.getUser(Tools.toId(u)) as User);
     const Staffs = users.filter((u) => targetRoom.isStaff(u) && !targetRoom.isBot(u.id) && !u.isGlobalBot);
