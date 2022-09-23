@@ -13,7 +13,7 @@ import hotpatch from "./global/hotpatch";
 import output from "./global/output";
 import resetlog from "./global/resetlog";
 import invite from "./pm/invite";
-import { createTour, announce, configure } from "./tour/official";
+import { createTour, announce, configure, fixTourData } from "./tour/official";
 import random from "./tour/random";
 import setTourConfigs from "./tour/tourmanager";
 import chatFilter from "./chat/filter";
@@ -43,6 +43,11 @@ export default () => {
         if (message.isUserMessage()) {
             if (message.content.startsWith("/invite")) {
                 invite(message);
+            }
+
+            // eslint-disable-next-line no-useless-escape
+            if (/\.fixTourData \d{8} \w+ [\[\]a-zA-Z0-9 ]+/.test(message.content)) {
+                fixTourData(message);
             }
         }
 
