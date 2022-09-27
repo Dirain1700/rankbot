@@ -54,3 +54,32 @@ createServer((req, res) => {
 
 DiscordClient.login(process.env.DISCORD!);
 PSClient.connect();
+
+const UNCAUGHT_ERR_PATH = "./logs/uncaught";
+const UNHANDLED_ERR_PATH = "./logs/unhandled";
+
+process.on("uncaughtException", (err, origin) => {
+    const date = new Date(Date.now() + 9 * 60 * 60 * 1000);
+    const year = date.getFullYear();
+    const month = date.getMonth() > 8 ? String(date.getMonth() + 1) : "0" + String(date.getMonth() + 1);
+    const day = date.getDate() > 9 ? String(date.getDate()) : "0" + String(date.getDate());
+    const hour = date.getHours() > 9 ? String(date.getHours()) : "0" + String(date.getHours());
+    const min = date.getMinutes() > 9 ? String(date.getMinutes()) : "0" + String(date.getMinutes());
+    const sec = date.getSeconds() > 9 ? String(date.getSeconds()) : "0" + String(date.getSeconds());
+    const dirTime = `/${year}/${month}/${day}`;
+    if (origin === "uncaughtException") {
+        const dirName = UNCAUGHT_ERR_PATH + dirTime;
+        if (!fs.existsSync(dirName)) fs.mkdirSync(dirName, { recursive: true });
+        const file = dirName + `/${hour}${min}${sec}.log`;
+
+        fs.writeFileSync(file, err.stack ?? err.toString());
+    } else if (origin === "unhandledRejection") {
+        const dirName = UNHANDLED_ERR_PATH + dirTime;
+        if (!fs.existsSync(dirName)) fs.mkdirSync(dirName, { recursive: true });
+        const file = dirName + `/${hour}${min}${sec}.log`;
+
+        fs.writeFileSync(file, err.stack ?? err.toString());
+    }
+
+    process.exit(1);
+});

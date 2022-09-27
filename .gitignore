@@ -6,7 +6,8 @@ foo*
 
 # Logs
 config/chatlog.json
-logs
+logs/*
+!logs/README.md
 *.log
 npm-debug.log*
 yarn-debug.log*
