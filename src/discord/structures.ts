@@ -1,17 +1,17 @@
 "use strict";
 
 import { Message, EmbedBuilder } from "discord.js";
-import type { MessageReaction, User, ReplyMessageOptions } from "discord.js";
+import type { MessageReaction, User, MessageReplyOptions } from "discord.js";
 
 export {};
 
 declare module "discord.js" {
     interface Message {
-        sendDeletable: (content: string | ReplyMessageOptions) => Promise<void>;
+        sendDeletable: (content: string | MessageReplyOptions) => Promise<void>;
     }
 }
 
-Message.prototype.sendDeletable = async function (content: string | ReplyMessageOptions) {
+Message.prototype.sendDeletable = async function (content: string | MessageReplyOptions) {
     const reply = await this.reply(content);
     const wastebasket = "🗑️";
     const reactionFilter = (reaction: MessageReaction, user: User) => reaction.emoji.name === wastebasket && user.id === this.author.id;

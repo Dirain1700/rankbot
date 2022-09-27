@@ -1,5 +1,5 @@
 import { AttachmentBuilder, bold, codeBlock } from "discord.js";
-import type { Message, ReplyMessageOptions } from "discord.js";
+import type { Message, MessageReplyOptions } from "discord.js";
 import workerpool = require("workerpool");
 
 export default (message: Message): void => {
@@ -9,7 +9,7 @@ export default (message: Message): void => {
 
     const codeBlockRegex = /^`{3}(?<language>[a-z]+)\n(?<code>[\s\S]+)\n`{3}$/mu;
     const languages = ["js", "javascript"];
-    const toMessageOptions = (consoleOutput: string, result: string): ReplyMessageOptions => {
+    const toMessageOptions = (consoleOutput: string, result: string): MessageReplyOptions => {
         if (consoleOutput.split("\n").length <= 100) {
             let wrapped: string = codeBlock("js", result.replaceAll("`", "`\u200b"));
             if (consoleOutput) {
