@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        // module settings
+        "module": "commonjs",
+        "outDir": "./dist",
+        "moduleResolution": "node",
+
+        // emit settings
+        "target": "esnext",
+        "rootDir": "./",
+        "importsNotUsedAsValues": "error",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+
+        // type checks
+        "strict": true,
+        "noImplicitReturns": true,
+        "noImplicitAny": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedIndexedAccess": true,
+        "strictBindCallApply": true,
+        "noPropertyAccessFromIndexSignature": false,
+        "typeRoots": ["node_modules/@types", "types", "types/Class"]
+    },
+    "include": ["src/**/*.ts", "config/*.ts"]
+}

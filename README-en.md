@@ -2,13 +2,11 @@
 
 # Development Environments
 
-Using <b>JavaScript</b>.
+Using <b>TypeScript</b>.
 
 -   Windows10
--   Node.js v16.14.2
+-   Node.js v18.6.0
 -   Visual Studio Code
--   discord.js v13.6.0
--   PS-Client v1.4.1
 
 # Codes
 

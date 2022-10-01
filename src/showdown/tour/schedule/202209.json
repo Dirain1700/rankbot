@@ -1,0 +1,94 @@
+{
+    "1": {
+        "format": "[Gen 8] National Dex AG"
+    },
+    "2": {
+        "format": "[Gen 8] VGC 2021"
+    },
+    "3": {
+        "format": "[Gen 8] Battle Stadium Singles"
+    },
+    "4": {
+        "format": "[Gen 8] Battle Stadium Singles",
+        "rules": ["-Restricted Legendary", "-Mythical", "VGC Timer"],
+        "name": "[Gen 8] Battle Stadium Singles Series 9"
+    },
+    "5": {
+        "format": "[Gen 8] Battle Stadium Doubles Series 13"
+    },
+    "6": {
+        "format": "[Gen 8] OU"
+    },
+    "7": {
+        "format": "[Gen 8] National Dex"
+    },
+    "8": {
+        "format": "[Gen 8] Monotype"
+    },
+    "9": {
+        "format": "[Gen 7] Doubles OU"
+    },
+    "10": {
+        "format": "[Gen 8] BSS Factory"
+    },
+    "11": {
+        "format": "[Gen 8] 1v1"
+    },
+    "12": {
+        "format": "[Gen 7] Ubers"
+    },
+    "13": {
+        "format": "[Gen 6] Battle Spot Singles"
+    },
+    "14": {
+        "format": "[Gen 8] CAP"
+    },
+    "15": {
+        "format": "[Gen 8] Anything Goes"
+    },
+    "16": {
+        "format": "[Gen 8] 2v2 Doubles"
+    },
+    "17": {
+        "format": "[Gen 6] Battle Spot Triples"
+    },
+    "18": {
+        "format": "[Gen 8] Random Doubles Battle"
+    },
+    "19": {
+        "format": "[Gen 8] Random Battle"
+    },
+    "20": {
+        "format": "[Gen 8] Battle Stadium Singles"
+    },
+    "21": {
+        "format": "[Gen 8] VGC 2022"
+    },
+    "22": {
+        "format": "[Gen 8] Doubles OU"
+    },
+    "23": {
+        "format": "[Gen 7] OU"
+    },
+    "24": {
+        "format": "[Gen 8] Challenge Cup 1v1"
+    },
+    "25": {
+        "format": "[Gen 8] RU"
+    },
+    "26": {
+        "format": "[Gen 7] Anything Goes"
+    },
+    "27": {
+        "format": "[Gen 7] BSS Factory"
+    },
+    "28": {
+        "format": "[Gen 8] Random Battle Mayhem"
+    },
+    "29": {
+        "format": "[Gen 7] Battle Spot Singles"
+    },
+    "30": {
+        "format": "[Gen 8] LC"
+    }
+}

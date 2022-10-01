@@ -1,16 +1,20 @@
 {
-    "extends": ["eslint:recommended"],
-    "plugins": [],
     "env": {
         "node": true,
+        "commonjs": true,
         "es2022": true
     },
+    "extends": ["eslint:recommended"],
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
     "globals": {
-        "config": false,
         "fs": false,
         "path": false,
-        "time": false,
-        "tool": false
+        "config": false,
+        "pendingVerification": false,
+        "discord": false,
+        "PS": false
     },
     "rules": {
         "no-unused-vars": "error",
@@ -18,9 +22,23 @@
         "comma-spacing": "error",
         "no-extra-semi": "error",
         "quotes": ["error", "double"],
-        "no-var": "error"
+        "no-var": "off"
     },
-    "parserOptions": {
-        "ecmaVersion": 2022
-    }
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+            "parser": "@typescript-eslint/parser",
+            "plugins": ["@typescript-eslint"],
+            "rules": {
+                "no-var": "off",
+                "no-unused-vars": "off",
+                "@typescript-eslint/no-inferrable-types": "off",
+                "@typescript-eslint/no-this-alias": "off",
+                "@typescript-eslint/no-non-null-assertion": "off",
+                "@typescript-eslint/no-unused-vars": "error",
+                "@typescript-eslint/triple-slash-reference": "off"
+            }
+        }
+    ]
 }
