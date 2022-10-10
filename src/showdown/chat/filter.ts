@@ -5,6 +5,7 @@ import type { GuildTextBasedChannel } from "discord.js";
 
 export default (message: Message<Room>): void => {
     if (message.target.isStaff(message.author) || /[\u{3000}-\u{301C}\u{3041}-\u{3093}\u{309B}-\u{309E}]/mu.test(message.content)) return;
+    if (["!", "/"].includes(message.content.charAt(0))) return;
     const stretchRegex: RegExp = /(.)\1{4,}/gimsu;
     const wordStretchRegex: RegExp = /(\S+?)\1+\1+\1+\1+/gimsu;
 
