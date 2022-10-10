@@ -31,7 +31,7 @@ export default (message: Message<Room>): void => {
     const weekBanRegex: RegExp = new RegExp(
         `(?<target>^.{2,20}) was banned for a week from ${message.target.title} by (?<staff>.{2,20})\.( \((?<reason>.*)\))?`
     );
-    const lockRegex: RegExp = /`(?<target>^.{2,20}) was locked from talking by (?<staff>.{2,20})\.( \((?<reason>.*)\))?`)/;
+    const lockRegex: RegExp = /(?<target>^.{2,20}) was locked from talking by (?<staff>.{2,20})\.( \((?<reason>.*)\))?/;
     const muteRegex: RegExp = /(?<target>^.{2,20}) was muted by (?<staff>.{2,20}) for (?<time>(7 minutes|1 hour))\.( \((?<reason>.*)\))?/;
     const promoteRegex: RegExp =
         /(?<target>^.{2,20}) was ((promoted to (?<auth>(Room|Global) (Voice|Driver|Moderator)))|appointed to Room Owner) by (?<staff>.{2,20})\./;
