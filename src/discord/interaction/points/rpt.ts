@@ -13,16 +13,16 @@ export default (interaction: ChatInputCommandInteraction<"cached">): void => {
     const targetUser = interaction.options.getUser("user", true);
     const file = path.resolve(__dirname, "./../../config/rank.json");
     const db: PointsDB = JSON.parse(fs.readFileSync(file, "utf-8"));
-    if (targetUser.id in db) {
+    if (db[targetUser.id]) {
         //ユーザーIDのデータがあるか判定
         // ポイント加算
-        db[targetUser.id]!.points -= score;
+        (db[targetUser.id] as { points: number }).points -= score;
     } else {
         return void interaction.reply({ content: `Error: ${targetUser.tag} has no ranks.`, ephemeral: true });
     }
     // 書き換え
     fs.writeFileSync(file, JSON.stringify(db, null, 4));
     //送信
-    interaction.reply(`Removed ${score}points from ${targetUser.tag} and having ${db[targetUser.id]!.points}points now.`);
+    interaction.reply(`Removed ${score}points from ${targetUser.tag} and having ${(db[targetUser.id] ?? { points: 0 }).points}points now.`);
     sort();
 };

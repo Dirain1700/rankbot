@@ -16,7 +16,7 @@ export default (interaction: ChatInputCommandInteraction<"cached">): void => {
     if (targetUser.id in db) {
         //ユーザーIDのデータがあるか判定
         // ポイント加算
-        db[targetUser.id]!.points += score;
+        (db[targetUser.id] as { points: number }).points += score;
     } else {
         // ポイント設定
         db[targetUser.id] = { points: score };
@@ -24,6 +24,6 @@ export default (interaction: ChatInputCommandInteraction<"cached">): void => {
     // 書き換え
     fs.writeFileSync(file, JSON.stringify(db, null, 4));
     //送信
-    interaction.reply(`Added ${score}points to ${targetUser.tag} and having ${db[targetUser.id]!.points}points now.`);
+    interaction.reply(`Added ${score}points to ${targetUser.tag} and having ${(db[targetUser.id] ?? { points: 0 }).points}points now.`);
     sort();
 };

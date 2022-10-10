@@ -11,16 +11,20 @@ export default async (interaction: ChatInputCommandInteraction<"cached">): Promi
     const targetUser = await discord.users.fetch(targetID);
     const reasons = interaction.options.getString("reason", true);
 
-    await interaction.guild.bans.create(targetUser, { reason: `by ${interaction.user.tag}. Force-BAN. reason: ${reasons}` });
-    await interaction.reply({
-        content: `${time(new Date(), "T")} ${targetUser.tag} was force-banned from ${interaction.guild.name} by ${
-            interaction.user.tag
-        }.(${reasons})`,
-        ephemeral: false,
-    });
-    await targetUser.send(
-        `${time(new Date(), "T")} You (${targetUser.tag}) were banned from ${interaction.guild.name} by ${
-            interaction.user.tag
-        }.(${reasons})`
-    );
+    interaction.guild.bans
+        .create(targetUser, { reason: `by ${interaction.user.tag}. Force-BAN. reason: ${reasons}` })
+        .then(() => {
+            interaction.reply({
+                content: `${time(new Date(), "T")} ${targetUser.tag} was force-banned from ${interaction.guild.name} by ${
+                    interaction.user.tag
+                }.(${reasons})`,
+                ephemeral: false,
+            });
+            targetUser.send(
+                `${time(new Date(), "T")} You (${targetUser.tag}) were banned from ${interaction.guild.name} by ${
+                    interaction.user.tag
+                }.(${reasons})`
+            );
+        })
+        .catch((e) => interaction.reply(`Error: failed to ban ${targetUser.tag}.\nReason: ${e.toString()}`));
 };

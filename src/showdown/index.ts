@@ -2,7 +2,7 @@
 
 import { scheduleJob } from "node-schedule";
 import { Room } from "@dirain/client";
-import type { Message, User } from "@dirain/client";
+import type { Message, User, ClientUser } from "@dirain/client";
 
 import { enableModchat, disableModchat } from "./chat/modchat";
 import announceModChat from "./chat/raw";
@@ -19,7 +19,7 @@ import setTourConfigs from "./tour/tourmanager";
 import chatFilter from "./chat/filter";
 
 export default () => {
-    PS.on("ready", () => console.log("Logged in as", PS.user!.name));
+    PS.on("ready", () => console.log("Logged in as", (PS.user as ClientUser).name));
 
     PS.on("messageCreate", (message: Message<unknown>) => {
         if (!message.isNotUnknown() || message.author.userid === PS.status.id) return;
@@ -83,6 +83,8 @@ export default () => {
         enableModchat(room, NewU);
     });
 
+    /* eslint-disable @typescript-eslint/no-non-null-assertion */
+
     scheduleJob("0 0 13 * * *", () => {
         createTour(PS.rooms.get("japanese")!);
     });
@@ -94,6 +96,8 @@ export default () => {
     scheduleJob("0 0 12 * * *", () => {
         configure(PS.rooms.get("japanese")!);
     });
+
+    /* eslint-enable */
 
     function logmsg(message: Message<Room>): void {
         const add = {

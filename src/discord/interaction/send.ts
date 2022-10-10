@@ -5,7 +5,7 @@ import { EmbedBuilder, PermissionsBitField } from "discord.js";
 import type { ChatInputCommandInteraction, GuildTextBasedChannel, Message, Snowflake, Collection, APIEmbed } from "discord.js";
 
 export default async (interaction: ChatInputCommandInteraction<"cached">): Promise<void> => {
-    if (!interaction.memberPermissions.has(PermissionsBitField.Flags.ModerateMembers))
+    if (!interaction.channel || !interaction.memberPermissions.has(PermissionsBitField.Flags.ModerateMembers))
         return void interaction.reply({ content: "/send - Access denied.", ephemeral: true });
 
     const type = interaction.options.getString("type", true);
@@ -17,8 +17,8 @@ export default async (interaction: ChatInputCommandInteraction<"cached">): Promi
     interaction.reply(`Please send ${type} in 2 minutes!`);
 
     const awaitMessageFilter = (m: Message) => m.author === interaction.user;
-    const content = await interaction
-        .channel!.awaitMessages({
+    const content = await interaction.channel
+        .awaitMessages({
             filter: awaitMessageFilter,
             max: 5,
             idle: 3 * 60 * 1000,
@@ -27,7 +27,7 @@ export default async (interaction: ChatInputCommandInteraction<"cached">): Promi
         .then((c) => c.map((m) => m.content))
         .catch((c: Collection<Snowflake, Message> | undefined) => (c ? c.map((m: Message) => m.content) : null));
 
-    if (!content) return void interaction.channel!.send("Got empty message!");
+    if (!content) return void interaction.channel.send("Got empty message!");
 
     let message;
     switch (type) {
@@ -39,12 +39,12 @@ export default async (interaction: ChatInputCommandInteraction<"cached">): Promi
             try {
                 content.forEach((e) => embeds.push(JSON.parse(e)));
             } catch (e: unknown) {
-                interaction.channel!.send((e as SyntaxError).toString());
+                interaction.channel.send((e as SyntaxError).toString());
             }
             try {
                 message = { embeds: embeds.map((e) => new EmbedBuilder(e)) };
             } catch (e: unknown) {
-                interaction.channel!.send((e as Error).toString());
+                interaction.channel.send((e as Error).toString());
             }
             break;
         }
@@ -55,16 +55,17 @@ export default async (interaction: ChatInputCommandInteraction<"cached">): Promi
             try {
                 objects.forEach((e) => embeds.push(JSON.parse(e)));
             } catch (e: unknown) {
-                interaction.channel!.send((e as SyntaxError).toString());
+                interaction.channel.send((e as SyntaxError).toString());
             }
             try {
                 message = { content: string.join("\n"), embeds: embeds.map((e) => new EmbedBuilder(e)) };
             } catch (e: unknown) {
-                interaction.channel!.send((e as Error).toString());
+                interaction.channel.send((e as Error).toString());
             }
             break;
         }
     }
-    if (!message?.content?.length && !message?.embeds?.length) return void interaction.channel!.send("Can't send empty message!");
+    if (!message?.content?.length && !message?.embeds?.length) return void interaction.channel.send("Can't send empty message!");
+
     (channel as GuildTextBasedChannel).send(message);
 };

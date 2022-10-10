@@ -25,10 +25,12 @@ export default () => {
     discord.on("ready", ready);
 
     discord.on("messageCreate", (message: Message) => {
+        if (!discord.isReady()) return;
         if (message.content.startsWith(">runjs")) runjs(message);
     });
 
     discord.on("interactionCreate", (interaction: BaseInteraction): void => {
+        if (!discord.isReady()) return;
         if (!interaction.isChatInputCommand() || !interaction.inCachedGuild()) return;
         let func: ((interaction: ChatInputCommandInteraction<"cached">) => void) | undefined = undefined;
         switch (interaction.commandName) {

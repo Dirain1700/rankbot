@@ -23,7 +23,7 @@ export default (interaction: ChatInputCommandInteraction<"cached">): void => {
     let rank = 1;
     for (const id in db) {
         // 自分より得点が高い人がいたら、順位を下げる
-        if (data.points < db[id]!.points) {
+        if (data.points < (db[id] as { points: number }).points) {
             rank += 1;
         }
     }

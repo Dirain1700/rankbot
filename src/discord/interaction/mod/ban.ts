@@ -3,8 +3,8 @@
 import { time, PermissionsBitField } from "discord.js";
 import type { ChatInputCommandInteraction } from "discord.js";
 
-export default async (interaction: ChatInputCommandInteraction<"cached">): Promise<void> => {
-    if (!interaction.memberPermissions.has(PermissionsBitField.Flags.BanMembers)) {
+export default (interaction: ChatInputCommandInteraction<"cached">): void => {
+    if (!interaction.inCachedGuild() || !interaction.channel || !interaction.memberPermissions.has(PermissionsBitField.Flags.BanMembers)) {
         return void interaction.reply({ content: "/ban - Access Denied.", ephemeral: true });
     }
     const targetMember = interaction.options.getMember("user");
@@ -17,16 +17,20 @@ export default async (interaction: ChatInputCommandInteraction<"cached">): Promi
     }
 
     const reasons = interaction.options.getString("reason");
-    await interaction.guild.bans.create(targetMember, { reason: `by ${interaction.user.tag}. reason: ${reasons}` });
-    await interaction.reply({
-        content: `${time(new Date(), "T")} ${targetMember.user.tag} was banned from ${interaction.guild.name} by ${
-            interaction.user.tag
-        }.(${reasons})`,
-        ephemeral: false,
-    });
-    await targetMember.user.send(
-        `${time(new Date(), "T")} You (${targetMember.user.tag}) were banned from ${interaction.guild.name} by ${
-            interaction.user.tag
-        }.(${reasons})`
-    );
+    interaction.guild.bans
+        .create(targetMember, { reason: `by ${interaction.user.tag}. reason: ${reasons}` })
+        .then(() => {
+            interaction.reply({
+                content: `${time(new Date(), "T")} ${targetMember.user.tag} was banned from ${interaction.guild.name} by ${
+                    interaction.user.tag
+                }.(${reasons})`,
+                ephemeral: false,
+            });
+            targetMember.user.send(
+                `${time(new Date(), "T")} You (${targetMember.user.tag}) were banned from ${interaction.guild.name} by ${
+                    interaction.user.tag
+                }.(${reasons})`
+            );
+        })
+        .catch((e) => interaction.reply(`Error: failed to ban ${targetMember.user.tag}.\nReason: ${e.toString()}`));
 };

@@ -4,9 +4,9 @@ import type { Room, User } from "@dirain/client";
 
 export const enableModchat = async (targetRoom: Room, targetUser: User) => {
     if (targetRoom.id !== "japanese") return;
-    targetRoom = await PS.fetchRoom(targetRoom.id, false).catch(() => PS.getRoom(targetRoom.id)!);
+    targetRoom = await PS.fetchRoom(targetRoom.id, false).catch(() => PS.getRoom(targetRoom.id) as Room);
 
-    if (!targetRoom.modchat || !["off", "autoconfirmed"].includes(targetRoom.modchat)) return;
+    if (!targetRoom || !targetRoom.modchat || ![null, "autoconfirmed"].includes(targetRoom.modchat)) return;
     const hour = new Date(Date.now() + 9 * 60 * 60 * 1000).getHours();
     if (hour < 22 && hour > 6) return;
     if (!targetRoom.isStaff(targetUser)) return;
@@ -20,9 +20,11 @@ export const enableModchat = async (targetRoom: Room, targetUser: User) => {
 };
 
 export const disableModchat = async (targetRoom: Room, targetUser: User) => {
-    //if (targetRoom.id !== "japanese") return;
+    if (targetRoom.id !== "japanese") return;
     if (!targetRoom.modchat || targetRoom.modchat === "autoconfirmed") return;
-    targetRoom = await PS.fetchRoom(targetRoom.id, false).catch(() => PS.getRoom(targetRoom.id)!);
+    targetRoom = await PS.fetchRoom(targetRoom.id, false).catch(() => PS.getRoom(targetRoom.id) as Room);
+
+    if (!targetRoom) return;
 
     const hour = new Date(Date.now() + 9 * 60 * 60 * 1000).getHours();
     if (hour > 21 || hour < 7) return;

@@ -15,7 +15,7 @@ export const createTour = (room: Room): void => {
         return;
     }
     if (!tourSchedule[new Date().getDate()]) return void room.send("No tournament data found.");
-    const { format, name, rules } = tourSchedule[String(new Date().getDate())]!;
+    const { format, name, rules } = tourSchedule[String(new Date().getDate())] ?? {};
     if (!format) return void room.send("Data not found.");
     const command = [];
     if (format.includes("1v1")) command.push(`${room.id}|/tour new ${format}, rr`);
@@ -38,7 +38,8 @@ export const announce = (room: Room): void => {
         return;
     }
     if (!tourSchedule[new Date().getDate()]) return void room.send("No tournament data found.");
-    const { format, name } = tourSchedule[new Date().getDate()]!;
+    const { format, name } = tourSchedule[new Date().getDate()] ?? {};
+    if (!format) return void room.send("No tournament data found.");
     const messages: string[] = [];
     messages.push(`/announce 30分後から${name ?? format}のOfficial Tournamentを開催します!奮ってご参加ください!`);
     messages.push(`/announce After 30 minutes , we will open an Official Tournament in ${name ?? format}! Please join with us!`);
@@ -64,7 +65,7 @@ export const configure = (room: Room): void => {
         content: `<div class="infobox">今日のトーナメントの内容は以下の通りです。<br>フォーマット: ${format ? format : "undefined"}<br>${
             name ? "名前: " + name + "<br>" : ""
         }${rules?.length ? "ルール: " + rules.join("、") + "<br>" : ""}<br>Raw:<br><code>${JSON.stringify(
-            tourSchedule[date.getDate()]!,
+            tourSchedule[date.getDate()] ?? {},
             null,
             4
         )}</code><br><br><form data-submitsend="/msg ${PS.status.id},.fixTourData ${
@@ -89,14 +90,15 @@ export const configure = (room: Room): void => {
 };
 
 export const fixTourData = async (message: Message<User>): Promise<void> => {
-    const roomid = message.content.split(" ")[1]!;
-    if (!config.officials.includes(roomid)) return;
+    const roomid = message.content.split(" ")[1];
+    if (!roomid || !config.officials.includes(roomid)) return;
     const room = await PS.fetchRoom(roomid, false).catch(
         () => new Room({ id: roomid, type: "chat", error: "not found or access denied" }, PS)
     );
     if (!room.isExist) return;
     if (!room.isStaff(message.author)) return;
-    const dateString = message.content.split(" ")[2]!;
+    const dateString = message.content.split(" ")[2];
+    if (!dateString) return void message.reply("Error: wrong args.");
     const year = dateString.substring(0, 4),
         month = dateString.substring(4, 6),
         date = dateString.substring(6, 8);
@@ -110,7 +112,8 @@ export const fixTourData = async (message: Message<User>): Promise<void> => {
             return;
         }
     }
-    const rawData = message.content.split(" ").slice(3).join(" ")!;
+    const rawData = message.content.split(" ").slice(3).join(" ");
+    if (!rawData) return void message.reply("Error: could not fix data.");
     interface RawParsedData {
         format?: string;
         name?: string;
