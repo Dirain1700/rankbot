@@ -25,7 +25,7 @@
         "@types/node": "^18.7.23",
         "@types/node-schedule": "^2.1.0",
         "@types/workerpool": "^6.1.0",
-        "@typescript-eslint/eslint-plugin": "5.38.1",
+        "@typescript-eslint/eslint-plugin": "5.39.0",
         "@typescript-eslint/parser": "^5.38.1",
         "eslint": "^8.24.0",
         "node": "^18.9.0",
