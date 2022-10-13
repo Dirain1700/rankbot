@@ -5,7 +5,7 @@ import type { Message } from "@dirain/client";
 
 export default (message: Message<unknown>): void => {
     if (!message.isNotUnknown()) return;
-    const pool = workerpool.pool("../../../../vm2/worker.js", {
+    const pool = workerpool.pool("../../../../src/vm2/worker.js", {
         workerType: "process",
     });
     const content = message.content.substring(7);

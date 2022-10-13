@@ -36,7 +36,7 @@ export default () => {
         if (message.content.startsWith("?export")) {
             output(message);
         }
-        if (message.content.startsWith(">runjs")) {
+        if (message.content.startsWith("?runjs")) {
             runjs(message);
         }
         if (message.content === "process.exit(0)" && message.author.userid === config.owner) process.exit(0);

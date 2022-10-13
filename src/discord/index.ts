@@ -26,7 +26,7 @@ export default () => {
 
     discord.on("messageCreate", (message: Message) => {
         if (!discord.isReady()) return;
-        if (message.content.startsWith(">runjs")) runjs(message);
+        if (message.content.startsWith("?runjs")) runjs(message);
     });
 
     discord.on("interactionCreate", (interaction: BaseInteraction): void => {
