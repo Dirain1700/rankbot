@@ -32,7 +32,7 @@ export default (message: Message<unknown>): void => {
     } else {
         if (!filePath || !fs.existsSync(filePath)) return void message.reply("Error: The file does not exist.");
 
-        const resolvedPath = Object.keys(require.cache).find((e) => e.includes(e));
+        const resolvedPath = Object.keys(require.cache).find((e) => e.includes(filePath.slice(1)));
         if (!resolvedPath) return void message.reply("Error: The file does not exist");
         delete require.cache[resolvedPath];
         message.reply(`Hotpatch successed: ${resolvedPath}`);
