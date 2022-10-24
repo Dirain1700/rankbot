@@ -86,15 +86,15 @@ export default () => {
     /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
     scheduleJob("0 0 13 * * *", () => {
-        createTour(PS.rooms.get("japanese")!);
+        createTour(PS.rooms.cache.get("japanese")!);
     });
 
     scheduleJob("0 30 12 * * *", () => {
-        announce(PS.rooms.get("japanese")!);
+        announce(PS.rooms.cache.get("japanese")!);
     });
 
     scheduleJob("0 0 12 * * *", () => {
-        configure(PS.rooms.get("japanese")!);
+        configure(PS.rooms.cache.get("japanese")!);
     });
 
     /* eslint-enable */

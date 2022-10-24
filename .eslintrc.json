@@ -14,7 +14,8 @@
         "config": false,
         "pendingVerification": false,
         "discord": false,
-        "PS": false
+        "PS": false,
+        "lodash": false
     },
     "rules": {
         "no-unused-vars": "error",
