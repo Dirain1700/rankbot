@@ -10,7 +10,9 @@ export const enableModchat = async (targetRoom: Room, targetUser: User) => {
     const hour = new Date(Date.now() + 9 * 60 * 60 * 1000).getHours();
     if (hour < 22 && hour > 6) return;
     if (!targetRoom.isStaff(targetUser)) return;
-    const users: User[] = (targetRoom.users as string[]).map((u) => PS.getUser(Tools.toId(u)) as User);
+    const users: User[] = (targetRoom.users as string[])
+        .filter((e) => PS.users.cache.has(Tools.toId(e)))
+        .map((u) => PS.users.cache.get(Tools.toId(u)) as User);
     const Staffs = users.filter((u) => targetRoom.isStaff(u) && !targetRoom.isBot(u.id) && !u.isGlobalBot);
     if (Staffs.length) {
         const isActiveStaffOnline = Staffs.some((e) => !(e.status ?? "").startsWith("!(Idle) "));
