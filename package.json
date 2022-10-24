@@ -15,7 +15,7 @@
         "check": "prettier --check ."
     },
     "dependencies": {
-        "@dirain/client": "^0.0.8-2",
+        "@dirain/client": "^0.0.8",
         "discord.js": "^14.6.0",
         "node-schedule": "^2.1.0",
         "vm2": "^3.9.11",
