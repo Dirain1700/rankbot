@@ -5,8 +5,7 @@ import { Room } from "@dirain/client";
 import type { RankuHTMLOptions, Message, User } from "@dirain/client";
 
 export const createTour = (room: Room): void => {
-    let month = new String(new Date().getMonth() + 1);
-    month = month.length === 1 ? "0" + month : month;
+    const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
     let tourSchedule: { [day: string]: { format: string; name?: string; rules?: string[] } } = {};
     try {
         tourSchedule = JSON.parse(fs.readFileSync(`./src/showdown/tour/schedule/${new Date().getFullYear()}${month}.json`, "utf-8"));
@@ -28,8 +27,7 @@ export const createTour = (room: Room): void => {
 };
 
 export const announce = (room: Room): void => {
-    let month = new String(new Date().getMonth() + 1);
-    month = month.length === 1 ? "0" + month : month;
+    const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
     let tourSchedule: { [day: string]: { format: string; name?: string; rules?: string[] } } = {};
     try {
         tourSchedule = JSON.parse(fs.readFileSync(`./src/showdown/tour/schedule/${new Date().getFullYear()}${month}.json`, "utf-8"));
@@ -50,8 +48,7 @@ export const announce = (room: Room): void => {
 
 export const configure = (room: Room): void => {
     const date = new Date(Date.now() + 9 * 60 * 60 * 1000);
-    let month = String(date.getMonth() + 1);
-    month = month.length === 1 ? "0" + month : month;
+    const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
     let tourSchedule: { [day: string]: { format: string; name?: string; rules?: string[] } } = {};
     try {
         tourSchedule = JSON.parse(fs.readFileSync(`./src/showdown/tour/schedule/${date.getFullYear()}${month}.json`, "utf-8"));
@@ -70,14 +67,14 @@ export const configure = (room: Room): void => {
             4
         )}</code><br><br><form data-submitsend="/msg ${PS.status.id},.fixTourData ${
             room.id
-        } ${date.getFullYear()}${month}${date.getDate()} format&#061;{format}${rules ? "&rules&#061;{rules}" : ""}${
-            name ? "&name&#061;name" : ""
+        } ${date.getFullYear()}${month}${date.getDate()} format&#061;{format}${rules ? "&amp;rules&#061;{rules}" : ""}${
+            name ? "&amp;name&#061;{name}" : ""
         }" id="format">Format: <input type="text" id="format" name="format" value="${format ?? ""}"></input>`,
         allowedDisplay: "%",
     };
 
     //prettier-ignore
-    const buttonHTML = "<br><button class=\"button\" type=\"submit\">Submit</button></form></div>";
+    const buttonHTML = "<br><button class=\"button\" type=\"submit\">Submit!</button></form></div>";
     const rulesHTML = `<br>Rules: <input type="text" id="rules" name="rules" value="${(rules ?? []).join(",")}"></input>`;
     const nameHTML = `<br>Name: <input type="text" id="name" name="name" value="${name ?? ""}"></input>`;
 
