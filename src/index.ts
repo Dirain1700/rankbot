@@ -58,28 +58,45 @@ PSClient.connect();
 const UNCAUGHT_ERR_PATH = "./logs/uncaught";
 const UNHANDLED_ERR_PATH = "./logs/unhandled";
 
+process.on("unhandledRejection", (reason, p) => {
+    const err = `UanhandledRejection occured at:\n${p}\n\nReason:\n${reason}`;
+    onError("PromiseRejection", err);
+});
+
 process.on("uncaughtException", (err, origin) => {
+    if (origin === "uncaughtException") onError("NormalError", err.stack ?? err.toString());
+});
+
+function onError(errType: string, err: string) {
     const date = new Date(Date.now() + 9 * 60 * 60 * 1000);
     const year = date.getFullYear();
-    const month = date.getMonth() > 8 ? String(date.getMonth() + 1) : "0" + String(date.getMonth() + 1);
-    const day = date.getDate() > 9 ? String(date.getDate()) : "0" + String(date.getDate());
-    const hour = date.getHours() > 9 ? String(date.getHours()) : "0" + String(date.getHours());
-    const min = date.getMinutes() > 9 ? String(date.getMinutes()) : "0" + String(date.getMinutes());
-    const sec = date.getSeconds() > 9 ? String(date.getSeconds()) : "0" + String(date.getSeconds());
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+    const hour = date.getHours().toString().padStart(2, "0");
+    const min = date.getMinutes().toString().padStart(2, "0");
+    const sec = date.getSeconds().toString().padStart(2, "0");
     const dirTime = `/${year}/${month}/${day}`;
-    if (origin === "uncaughtException") {
-        const dirName = UNCAUGHT_ERR_PATH + dirTime;
-        if (!fs.existsSync(dirName)) fs.mkdirSync(dirName, { recursive: true });
-        const file = dirName + `/${hour}${min}${sec}.log`;
 
-        fs.writeFileSync(file, err.stack ?? err.toString());
-    } else if (origin === "unhandledRejection") {
-        const dirName = UNHANDLED_ERR_PATH + dirTime;
-        if (!fs.existsSync(dirName)) fs.mkdirSync(dirName, { recursive: true });
-        const file = dirName + `/${hour}${min}${sec}.log`;
+    let dirName: string;
+    let file: string;
+    switch (errType) {
+        case "NormalError": {
+            dirName = UNCAUGHT_ERR_PATH + dirTime;
+            file = dirName + `/${hour}${min}${sec}.log`;
+            break;
+        }
 
-        fs.writeFileSync(file, err.stack ?? err.toString());
+        case "PromiseRejection": {
+            dirName = UNHANDLED_ERR_PATH + dirTime;
+            file = dirName + `/${hour}${min}${sec}.log`;
+            break;
+        }
+        default:
+            return;
     }
 
-    process.exit(1);
-});
+    if (!dirName || !file) return;
+
+    if (!fs.existsSync(dirName)) fs.mkdirSync(dirName, { recursive: true });
+    fs.writeFileSync(file, err);
+}
