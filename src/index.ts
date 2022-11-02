@@ -59,7 +59,7 @@ const UNCAUGHT_ERR_PATH = "./logs/uncaught";
 const UNHANDLED_ERR_PATH = "./logs/unhandled";
 
 process.on("unhandledRejection", (reason, p) => {
-    const err = `UanhandledRejection occured at:\n${JSON.stringify(p)}\n\nReason:\n${reason}`;
+    const err = `UanhandledRejection occured at:\n${JSON.stringify(p, null, 4)}\n\nReason:\n${reason}`;
     onError("PromiseRejection", err);
 });
 
