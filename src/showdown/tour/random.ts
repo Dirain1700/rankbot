@@ -11,6 +11,6 @@ export default (message: Message<Room>): void => {
     message.target.send(`/adduhtml pickedtour, <div class="infobox"><em>We randomly picked:</em> ${result}</div>`);
     if (result === "[Gen 8] Battle Stadium Singles") {
         const cmd = ["/tour rules VGC Timer", "/tour name [Gen 8] Battle Stadium Singles"];
-        setTimeout(message.reply.bind(message), PS.messageInterval, cmd.join("\n"));
+        setTimeout(message.reply.bind(message), PS.throttleInterval, cmd.join("\n"));
     }
 };
