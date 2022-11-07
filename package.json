@@ -16,7 +16,7 @@
     },
     "dependencies": {
         "@dirain/client": "^0.0.9-1",
-        "@types/lodash": "^4.14.186",
+        "@types/lodash": "^4.14.188",
         "discord.js": "^14.6.0",
         "lodash": "^4.17.21",
         "node-schedule": "^2.1.0",
