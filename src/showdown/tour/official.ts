@@ -40,7 +40,7 @@ export const announce = (room: Room): void => {
     if (!format) return void room.send("No tournament data found.");
     const messages: string[] = [];
     messages.push(`/announce 30分後から${name ?? format}のOfficial Tournamentを開催します!奮ってご参加ください!`);
-    messages.push(`/announce After 30 minutes, we will open an Official Tournament with ${name ?? format}! Please join with us!`);
+    messages.push(`/announce After 30 minutes, we will open an Official Tournament with the format ${name ?? format}! Please join with us!`);
     const randomized = ["Random", "Factory", "Hackmons", "Staff"];
     if (!randomized.some((e) => format.includes(e))) messages.push(`!tier ${format}`);
     PS.sendArray(messages.map((e) => `${room.id}|${e}`));
