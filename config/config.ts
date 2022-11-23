@@ -21,5 +21,6 @@ export const owner: string = "dirain";
 export const admin: Snowflake[] = ["751433045529329825"];
 export const log: string[] = ["was banned", "was warned", "was muted", "was locked"];
 export const officials: string[] = ["japanese"];
+export const wordle: string[] = ["japanese"];
 export const tourSettings: string[] = ["autostart 5", "autodq 3"];
 export const acRole: Snowflake = "888013264355749928";

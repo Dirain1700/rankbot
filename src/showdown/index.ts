@@ -17,29 +17,60 @@ import { createTour, announce, configure, fixTourData } from "./tour/official";
 import random from "./tour/random";
 import setTourConfigs from "./tour/tourmanager";
 import chatFilter from "./chat/filter";
+import {
+    init as initWordle,
+    commend as commendWordle,
+    parse as parseWordle,
+    send as sendWordle,
+    rebuild as rebuildWordle,
+    destroyWordle,
+    sendButton as sendWordleButton,
+} from "./wordle/index";
 
 export default () => {
-    PS.on("ready", () => console.log("Logged in as", (PS.user as ClientUser).name));
+    PS.on("ready", () => {
+        console.log("Logged in as", (PS.user as ClientUser).name);
+        setTimeout(() => {
+            rebuildWordle();
+        }, 3000);
+    });
 
     PS.on("messageCreate", (message: Message<unknown>) => {
         if (!message.isNotUnknown() || message.author.userid === PS.status.id) return;
         if (message.content.startsWith("?help")) {
             help(message);
         }
-        if (message.content === "?resetlog") {
-            resetlog(message);
+
+        if (message.content.startsWith("?sendWordleButton")) {
+            sendWordleButton(message);
         }
-        if (message.content.startsWith("?hotpatch")) {
-            hotpatch(message);
+
+        if (message.author.userid === config.owner) {
+            if (message.content === "?resetlog") {
+                resetlog(message);
+            }
+
+            if (message.content.startsWith("?hotpatch")) {
+                hotpatch(message);
+            }
+
+            if (message.content.startsWith("echo")) {
+                PS.send(message.content.substring(5));
+            }
+
+            if (message.content.startsWith("?export")) {
+                output(message);
+            }
+
+            if (message.content.startsWith("?runjs")) {
+                runjs(message);
+            }
+
+            if (message.content === "process.exit(0)") {
+                process.exit(0);
+            }
         }
-        if (message.content.startsWith("echo") && message.author.userid === config.owner) PS.send(message.content.substring(5));
-        if (message.content.startsWith("?export")) {
-            output(message);
-        }
-        if (message.content.startsWith("?runjs")) {
-            runjs(message);
-        }
-        if (message.content === "process.exit(0)" && message.author.userid === config.owner) process.exit(0);
+
         if (message.isUserMessage()) {
             if (message.content.startsWith("/invite")) {
                 invite(message);
@@ -49,15 +80,35 @@ export default () => {
             if (/\.fixTourData \w+ \d{8} [\[\]a-zA-Z0-9 ]+/.test(message.content)) {
                 fixTourData(message);
             }
+
+            if (message.content.startsWith("/botmsg ?requestWordle")) {
+                sendWordle(message);
+            }
+
+            if (message.content.startsWith("/botmsg ?guess")) {
+                parseWordle(message);
+            }
         }
 
         if (message.isRoomMessage()) {
             chatFilter(message);
-            if (message.target.id === "japanese") logmsg(message);
-            if (message.content.startsWith("/log") && message.target.id === "japanese") {
-                sendlog(message);
+            if (message.target.id === "japanese") {
+                logmsg(message);
+                if (message.content.startsWith("/log")) {
+                    sendlog(message);
+                }
             }
-            if (message.content.toLowerCase() === "?randtour") random(message);
+            if (message.content.toLowerCase() === "?randtour") {
+                random(message);
+            }
+            if (message.author.id === config.owner) {
+                if (message.content === "?initWordle") {
+                    initWordle();
+                }
+                if (message.content === "?destroyWordle") {
+                    destroyWordle(true);
+                }
+            }
         }
     });
 
@@ -95,6 +146,15 @@ export default () => {
 
     scheduleJob("0 0 12 * * *", () => {
         configure(PS.rooms.cache.get("japanese")!);
+    });
+
+    scheduleJob("0 0 23 * * *", () => {
+        initWordle();
+    });
+
+    scheduleJob("0 0 14 * * *", () => {
+        commendWordle(PS.rooms.cache.get("japanese")!);
+        destroyWordle();
     });
 
     /* eslint-enable */

@@ -10,6 +10,7 @@ global.fs = fs;
 global.config = config;
 global.path = require("path");
 global.Tools = Tools;
+global.wordles = {};
 
 import { Client as disClient } from "discord.js";
 import { Client as PSC } from "@dirain/client";
@@ -99,4 +100,6 @@ function onError(errType: string, err: string) {
 
     if (!fs.existsSync(dirName)) fs.mkdirSync(dirName, { recursive: true });
     fs.writeFileSync(file, err);
+
+    process.exit(1);
 }
