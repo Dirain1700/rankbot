@@ -138,7 +138,7 @@ export const sendButton = (message: Message<unknown>): void => {
         if (!wordles[target.id]) return void reply(`The game of Wordle is not enabled for room ${target.id}.`);
         reply("/addhtmlbox " + announce(target.id));
     } else if (message.isUserMessage()) {
-        const r = Tools.toRoomId(content.substring(16));
+        const r = Tools.toRoomId(content.substring(17));
         if (!PS.rooms.cache.has(r) || !wordles[r]) return void reply(`The game of Wordle is not enabled for room ${r}.`);
         PS.send(`${r}|/sendprivatehtmlbox ${author.id},${announce(r)}`);
     }

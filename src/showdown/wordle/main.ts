@@ -112,13 +112,13 @@ export class Wordle {
                 if (isCorrect) {
                     const user = this.client.users.cache.get(pl);
                     if (!user) break;
-                    html += correctNotice(round);
                     this.destroy(user, { round, html }, true);
+                    html += correctNotice(round);
                 } else if (round === 6) {
                     const user = this.client.users.cache.get(pl);
                     if (!user) break;
-                    html += incorrectNotice(this.answer);
                     this.destroy(user, { round, html }, false);
+                    html += incorrectNotice(this.answer);
                 } else html += form(this.room.id);
                 break;
             }
@@ -154,10 +154,8 @@ export class Wordle {
     }
 
     destroy(user: User, data: WordlePlayer, correct: boolean): void {
-        //eslint-disable-next-line prefer-const
-        let { html, round } = data;
+        const { html, round } = data;
         const { id, name } = user;
-        html = head + html + closeDiv;
         if (correct) {
             this.correctedPl.set(id, { name, html, round });
             this.endedPl.push(user.id);
