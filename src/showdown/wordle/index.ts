@@ -131,15 +131,15 @@ export const sendButton = (message: Message<unknown>): void => {
         `<div>Today's Wordle is available now! To play Wordle, push the bottom button!<br><button class="button" name="send" value="/botmsg ${
             PS.status.id
         },?requestWordle ${Tools.toId(r)}">Play wordle!</button></div>`;
-    const { author, reply, content } = message;
+    const { author, content } = message;
     if (message.isRoomMessage()) {
         const { target } = message;
-        if (!target.isVoice(author.id) || !target.isStaff(author)) return;
-        if (!wordles[target.id]) return void reply(`The game of Wordle is not enabled for room ${target.id}.`);
-        reply("/addhtmlbox " + announce(target.id));
+        if (!target.isVoice(author.id) && !target.isStaff(author)) return;
+        if (!wordles[target.id]) return void message.reply(`The game of Wordle is not enabled for room ${target.id}.`);
+        message.reply("/addhtmlbox " + announce(target.id));
     } else if (message.isUserMessage()) {
         const r = Tools.toRoomId(content.substring(17));
-        if (!PS.rooms.cache.has(r) || !wordles[r]) return void reply(`The game of Wordle is not enabled for room ${r}.`);
+        if (!PS.rooms.cache.has(r) || !wordles[r]) return void message.reply(`The game of Wordle is not enabled for room ${r}.`);
         PS.send(`${r}|/sendprivatehtmlbox ${author.id},${announce(r)}`);
     }
 };
