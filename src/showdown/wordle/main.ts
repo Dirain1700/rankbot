@@ -144,7 +144,7 @@ export class Wordle {
                     for (let n = 0; n <= 4; n++) {
                         if (guessArray[n] === str) arr.push(n);
                     }
-                    return !arr.every((e) => e <= i);
+                    return !arr.every((e) => e >= i);
                 }
             })();
             result.push([str, isCorrect ? "T" : isInvalid ? "F" : "P"]);
