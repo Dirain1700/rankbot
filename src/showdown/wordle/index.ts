@@ -51,7 +51,7 @@ export const parse = (message: Message<User>): void => {
         .map((e) => Tools.toRoomId(e));
     const [room, guess] = args;
     if (!room || !guess) return void fail("Invalid syntax.", "", id);
-    if (!wordles[room]) return void fail("Invalid room.", "", id);
+    if (!wordles[room]) return void fail(`The game of Wordle is not enabled for room ${room}.`, "", id);
     if (guess.length !== 5) return void fail("Invalid guess. Strings must have 5 characters.", room, id);
     const wordList = fs.readFileSync(`./src/showdown/wordle/words/${guess.charAt(0)}.txt`, "utf-8").split("\n");
     if (!wordList.includes(guess)) return void fail("Not in word list", room, id);
