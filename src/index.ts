@@ -61,11 +61,13 @@ const UNHANDLED_ERR_PATH = "./logs/unhandled";
 
 process.on("unhandledRejection", (reason, p) => {
     const err = `UanhandledRejection occured at:\n${p}\n\nReason:\n${reason}`;
+    console.error("UanhandledRejection occured at:\n", p, "\n\nReason:\n", reason);
     onError("PromiseRejection", err);
 });
 
 process.on("uncaughtException", (err, origin) => {
     if (origin === "uncaughtException") onError("NormalError", err.stack ?? err.toString());
+    console.error(err.stack ?? err.toString());
 });
 
 function onError(errType: string, err: string) {
