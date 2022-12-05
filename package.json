@@ -16,7 +16,7 @@
     },
     "dependencies": {
         "@dirain/client": "^0.0.9",
-        "discord.js": "^14.7.0",
+        "discord.js": "^14.7.1",
         "node-schedule": "^2.1.0",
         "vm2": "^3.9.11",
         "workerpool": "^6.3.1"
