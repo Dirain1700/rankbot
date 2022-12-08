@@ -3,7 +3,7 @@
 import * as fs from "fs";
 import { createServer } from "http";
 import * as config from "../config/config";
-import { Tools } from "@dirain/client";
+import { Tools, TimeoutError } from "@dirain/client";
 import { parse } from "querystring";
 
 global.fs = fs;
@@ -59,10 +59,11 @@ PSClient.connect();
 const UNCAUGHT_ERR_PATH = "./logs/uncaught";
 const UNHANDLED_ERR_PATH = "./logs/unhandled";
 
-process.on("unhandledRejection", (reason, p) => {
-    const err = `UanhandledRejection occured at:\n${p}\n\nReason:\n${reason}`;
-    console.error("UanhandledRejection occured at:\n", p, "\n\nReason:\n", reason);
-    onError("PromiseRejection", err);
+process.on("unhandledRejection", (reason) => {
+    let str: string;
+    if (reason instanceof TimeoutError) str = reason.stack ?? reason.toString();
+    else str = reason?.toString?.() ?? String(reason);
+    onError("PromiseRejection", str);
 });
 
 process.on("uncaughtException", (err, origin) => {
