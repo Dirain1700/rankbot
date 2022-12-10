@@ -81,11 +81,11 @@ export default () => {
                 fixTourData(message);
             }
 
-            if (message.content.startsWith("/botmsg ?requestWordle")) {
+            if (message.content.startsWith("?requestWordle")) {
                 sendWordle(message);
             }
 
-            if (message.content.startsWith("/botmsg ?guess")) {
+            if (message.content.startsWith("?guess")) {
                 parseWordle(message);
             }
         }
