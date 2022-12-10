@@ -4,7 +4,7 @@
     "description": "No bot, No life.",
     "main": "index.js",
     "scripts": {
-        "start": "node dist/src/index.js",
+        "start": "node -r source-map-support/register dist/src/index.js",
         "pre-tsc": "tsc -p tsconfig.json --noEmit",
         "tsc": "tsc -p tsconfig.json",
         "build": "npm run write && npm run lint-fix && npm run tsc",
@@ -15,7 +15,7 @@
         "check": "prettier --check ."
     },
     "dependencies": {
-        "@dirain/client": "^0.0.10-0",
+        "@dirain/client": "^0.0.10",
         "discord.js": "^14.7.1",
         "node-schedule": "^2.1.0",
         "vm2": "^3.9.12",
@@ -29,6 +29,7 @@
         "@typescript-eslint/parser": "^5.45.1",
         "eslint": "^8.29.0",
         "prettier": "^2.8.1",
+        "source-map-support": "^0.5.21",
         "typescript": "^4.9.4"
     },
     "engines": {
