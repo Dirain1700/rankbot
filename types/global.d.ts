@@ -1,5 +1,6 @@
-import type { Snowflake } from "discord.js";
+import type { Collection, Snowflake } from "discord.js";
 import type { Wordle } from "../src/showdown/wordle/main";
+import type { Species } from "./dex";
 
 declare global {
     var fs: typeof import("fs");
@@ -10,6 +11,7 @@ declare global {
     var Tools: typeof import("@dirain/client").Tools;
     var pendingVerification: Map<string, Snowflake>;
     var wordles: { [id: string]: Wordle };
+    var Dex: Collection<string, Species>;
 }
 
 export {};

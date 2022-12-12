@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@dirain/client": "^0.0.10",
+        "axios": "^1.2.1",
         "discord.js": "^14.7.1",
         "node-schedule": "^2.1.0",
         "vm2": "^3.9.12",

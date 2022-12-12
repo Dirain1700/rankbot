@@ -4,6 +4,7 @@
         "module": "commonjs",
         "outDir": "./dist",
         "moduleResolution": "node",
+        "resolveJsonModule": true,
 
         // emit settings
         "target": "esnext",
@@ -12,6 +13,7 @@
         "esModuleInterop": true,
         "sourceMap": true,
         "forceConsistentCasingInFileNames": true,
+        "incremental": true,
 
         // type checks
         "strict": true,
@@ -21,7 +23,7 @@
         "noUncheckedIndexedAccess": true,
         "strictBindCallApply": true,
         "noPropertyAccessFromIndexSignature": false,
-        "typeRoots": ["node_modules/@types", "types", "types/Class"]
+        "typeRoots": ["node_modules/@types", "types"]
     },
-    "include": ["src/**/*.ts", "config/*.ts"]
+    "include": ["src/**/*.ts", "config/*.ts", "data/**/*.ts"]
 }

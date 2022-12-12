@@ -6,3 +6,5 @@ config/*.json
 dist/*
 logs/*
 !logs/README.md
+data/*
+data/**/*.md

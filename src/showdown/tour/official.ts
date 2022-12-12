@@ -2,90 +2,140 @@
 
 import * as querystring from "querystring";
 import { Room } from "@dirain/client";
+("use strict");
+import { Game } from "./game";
+
 import type { RankuHTMLOptions, Message, User } from "@dirain/client";
+
+export const Games = ["Same Solo", "Same Duo", "Same Six"] as const;
+
+type GameTypes = typeof Games[number] | false;
+
+export interface TourDataType {
+    [day: string]: {
+        type: "Game" | "Tour";
+        format: string;
+        game?: GameTypes | false;
+        name?: string;
+        rules?: string[];
+    };
+}
 
 export const createTour = (room: Room): void => {
     const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
-    let tourSchedule: { [day: string]: { format: string; name?: string; rules?: string[] } } = {};
-    try {
-        tourSchedule = JSON.parse(fs.readFileSync(`./src/showdown/tour/schedule/${new Date().getFullYear()}${month}.json`, "utf-8"));
-    } catch (e: unknown) {
-        room.send("!code " + (e as Error).toString());
-        return;
-    }
+    const filePath = path.resolve(__dirname, `./schedule/${new Date().getFullYear}${month}.json`);
+    if (!fs.existsSync(filePath)) return void room.send("Tournament data not found");
+    const tourSchedule: TourDataType = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+
     if (!tourSchedule[new Date().getDate()]) return void room.send("No tournament data found.");
-    const { format, name, rules } = tourSchedule[String(new Date().getDate())] ?? {};
-    if (!format) return void room.send("Data not found.");
+    const { type, game, format, name, rules } = tourSchedule[String(new Date().getDate())] ?? {};
+    if (!format || !type) return void room.send("Data not found.");
     const command = [];
     if (format.includes("1v1")) command.push(`${room.id}|/tour new ${format}, rr`);
     else command.push(`${room.id}|/tour new ${format}, elim`);
 
-    if (rules) command.push(`${room.id}|/tour rules ${rules.join(",")}`);
-    if (name) command.push(`${room.id}|/tour name ${name}`);
+    if (game) {
+        /* eslint-disable @typescript-eslint/no-non-null-assertion */
+        const mons = Dex.random(Game[game].Pokemon);
+
+        const gameRules: string[] = rules ?? [];
+        gameRules.push("-All Pokemon");
+        mons.forEach((e) => gameRules.push("+" + e));
+
+        command.push(`${room.id}|/tour rules ${gameRules.join(",")}`);
+        command.push(`${room.id}|/tour name ${game}`);
+
+        command.push(
+            `${room.id}|/announce This is ${game} tournament! Only these ${mons.length} Pokémons allowed: ${
+                mons.length > 1 ? mons.slice(-1).join(", ") + " and " + mons.at(-1) : mons[0]
+            }`
+        );
+        /* eslint-enable */
+    } else {
+        if (rules) command.push(`${room.id}|/tour rules ${rules.join(",")}`);
+        if (name) command.push(`${room.id}|/tour name ${name}`);
+    }
 
     PS.sendArray(command);
 };
 
 export const announce = (room: Room): void => {
     const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
-    let tourSchedule: { [day: string]: { format: string; name?: string; rules?: string[] } } = {};
-    try {
-        tourSchedule = JSON.parse(fs.readFileSync(`./src/showdown/tour/schedule/${new Date().getFullYear()}${month}.json`, "utf-8"));
-    } catch (e: unknown) {
-        room.send("!code " + (e as Error).toString());
-        return;
-    }
+    const filePath = path.resolve(__dirname, `./schedule/${new Date().getFullYear}${month}.json`);
+    if (!fs.existsSync(filePath)) return void room.send("Tournament data not found");
+    const tourSchedule: TourDataType = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+
     if (!tourSchedule[new Date().getDate()]) return void room.send("No tournament data found.");
-    const { format, name } = tourSchedule[new Date().getDate()] ?? {};
+    const { format, name, game } = tourSchedule[new Date().getDate()] ?? {};
     if (!format) return void room.send("No tournament data found.");
     const messages: string[] = [];
-    messages.push(`/announce 30分後から${name ?? format}のOfficial Tournamentを開催します!奮ってご参加ください!`);
-    messages.push(
-        `/announce After 30 minutes, we will open an Official Tournament with the format ${name ?? format}! Please join with us!`
-    );
+    if (game) {
+        messages.push(`/announce 30分後に${game}トーナメントを開催します! 使用できるポケモンはあとで発表します!`);
+        messages.push(`/announce After 30mins, we will hold an Official Game: ${game}! Available Pokémon will be announced later.`);
+    } else {
+        messages.push(`/announce 30分後に${name ?? format}のOfficial Tournamentを開催します!`);
+        messages.push(`/announce After 30mins, we will hold an Official Tournament with the format ${name ?? format}.`);
+    }
+
     const randomized = ["Random", "Factory", "Hackmons", "Staff"];
     if (!randomized.some((e) => format.includes(e))) messages.push(`!tier ${format}`);
     PS.sendArray(messages.map((e) => `${room.id}|${e}`));
 };
 
-export const configure = (room: Room): void => {
+export const configure = (room: Room, tourType?: "Game" | "Tour"): void => {
     const date = new Date(Date.now() + 9 * 60 * 60 * 1000);
     const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
-    let tourSchedule: { [day: string]: { format: string; name?: string; rules?: string[] } } = {};
-    try {
-        tourSchedule = JSON.parse(fs.readFileSync(`./src/showdown/tour/schedule/${date.getFullYear()}${month}.json`, "utf-8"));
-    } catch (e: unknown) {
-        room.send("!code " + (e as Error).toString());
-        return;
-    }
-    const { format, name, rules } = tourSchedule[date.getDate()] ?? {};
+    const filePath = path.resolve(__dirname, `./schedule/${new Date().getFullYear}${month}.json`);
+    if (!fs.existsSync(filePath)) return void room.send("Tournament data not found");
+    const tourSchedule: TourDataType = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+
+    const { type, format, name, rules } = tourSchedule[date.getDate()] ?? {};
     const html: RankuHTMLOptions = {
         id: "tourFormat",
-        content: `<div class="infobox">今日のトーナメントの内容は以下の通りです。<br>フォーマット: ${format ? format : "undefined"}<br>${
+        content: `<div class="infobox">今日のトーナメントの内容は以下の通りです。<br>Type: ${type}フォーマット: ${format}<br>${
             name ? "名前: " + name + "<br>" : ""
         }${rules?.length ? "ルール: " + rules.join("、") + "<br>" : ""}<br>Raw:<br><code>${JSON.stringify(
             tourSchedule[date.getDate()] ?? {},
             null,
             4
-        )}</code><br><br><form data-submitsend="/msg ${PS.status.id},.fixTourData ${
+        )}</code><br><br><b>Choose game mode</b>:<form data-submitsend="/botmsg ${PS.status.id},.selectTourType ${
             room.id
-        } ${date.getFullYear()}${month}${date.getDate()} format&#061;{format}${rules ? "&amp;rules&#061;{rules}" : ""}${
-            name ? "&amp;name&#061;{name}" : ""
-        }" id="format">Format: <input type="text" id="format" name="format" value="${format ?? ""}"></input>`,
+        } ${date.getFullYear()}${month}${date.getDate()} type&#061;{type}>Type: <select id="type" name="type"><option value="Tour"${
+            tourType || type === "Tour" ? "selected" : ""
+        }>Tour</option><option value="Game"${
+            tourType || type === "Game" ? "selected" : ""
+        }>Game</option></select><br><br><button class="button" type="submit">Submit game mode</button></form><div class="infobox>"`,
         allowedDisplay: "%",
     };
 
-    //prettier-ignore
-    const buttonHTML = "<br><button class=\"button\" type=\"submit\">Submit!</button></form></div>";
-    const rulesHTML = `<br>Rules: <input type="text" id="rules" name="rules" value="${(rules ?? []).join(",")}"></input>`;
-    const nameHTML = `<br>Name: <input type="text" id="name" name="name" value="${name ?? ""}"></input>`;
+    const TourForm = `<div class="infobox><br><br><b>Choose formats:</b><form data-submitsend="/botmsg ${PS.status.id},.fixTourData ${
+        room.id
+    } ${date.getFullYear()}${month}${date.getDate()} type&#061;Tour&amp;format&#061;{format}${rules ? "&amp;rules&#061;{rules}" : ""}${
+        name ? "&amp;name&#061;{name}" : ""
+    }">Format: <input type="text" id="format" name="format" value="${
+        format ?? ""
+    }"></input><br>Rules: <input type="text" id="rules" name="rules" value="${(rules ?? []).join(
+        ","
+    )}"></input><br>Name: <input type="text" id="name" name="name" value="${
+        name ?? ""
+    }"></input><br><button class="button" type="submit">Submit!</button></form></div>`;
 
-    if (rules && rules.length) html.content += rulesHTML;
-    if (name) html.content += nameHTML;
+    const GameForm = `<div class="infobox><br><br><b>Choose formats:</b><form data-submitsend="/botmsg ${PS.status.id},.fixTourData ${
+        room.id
+    } ${date.getFullYear()}${month}${date.getDate()} type&#061;Game&amp;game&#061;{game}">Game: <select id="game" name="game">${Games.map(
+        (e) => `<option value=${e}${name === e ? "selected" : ""}>${e}</option>`
+    )}</select><br><button class="button" type="submit">Submit!</button></form></div>`;
 
-    html.content += buttonHTML;
+    if (tourType === "Tour") html.content += TourForm;
+    else if (tourType === "Game") html.content += GameForm;
 
-    room.sendHTML(html);
+    html.content += "</div>";
+
+    if (tourType) {
+        room.send("/privatesenduhtml tourFormat," + html.content);
+        html.content = html.content.replaceAll(">Submit", "disabled>Submit");
+        room.sendHTML(html);
+    } else room.sendHTML(html);
 };
 
 export const fixTourData = async (message: Message<User>): Promise<void> => {
@@ -101,64 +151,117 @@ export const fixTourData = async (message: Message<User>): Promise<void> => {
     const year = dateString.substring(0, 4),
         month = dateString.substring(4, 6),
         date = dateString.substring(6, 8);
-    let tourSchedule: { [day: string]: { format: string; name?: string; rules?: string[] } } = {};
-    const filePath = `./src/showdown/tour/schedule/${year}${month}.json`;
-    if (fs.existsSync(filePath)) {
-        try {
-            tourSchedule = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-        } catch (e: unknown) {
-            room.send("!code " + (e as Error).toString());
-            return;
-        }
-    }
+    const filePath = path.resolve(__dirname, `./schedule/${year}${month}.json`);
+    if (!fs.existsSync(filePath)) return void message.reply("Tournament data not found");
+    const tourSchedule: TourDataType = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+
     const rawData = message.content.split(" ").slice(3).join(" ");
     if (!rawData) return void message.reply("Error: could not fix data.");
     interface RawParsedData {
+        type?: string;
         format?: string;
+        game?: string;
         name?: string;
         rules?: string;
     }
-    interface ParsedData {
+    type ParsedData = {
+        type: "Tour" | "Game";
         format: string;
+        game?: (string & GameTypes) | false;
         name?: string;
         rules?: string[];
-    }
-    let fixedData: RawParsedData | ParsedData = { format: "" };
+    };
+
+    let fixedData: RawParsedData | ParsedData = { type: "Tour", format: "" };
 
     try {
-        fixedData = querystring.parse(rawData);
+        fixedData = querystring.parse(rawData) as RawParsedData as ParsedData;
     } catch (e: unknown) {
         message.reply("!code " + (e as Error).toString());
     }
+    if (!fixedData.type || !["Tour", "Game"].includes(fixedData.type)) return void message.reply("Invalid Syntax.");
     if (fixedData.rules) fixedData.rules = (fixedData.rules as string).split(",").map((e) => e.trim());
     let isValidData: boolean = false;
-    switch (Object.keys(fixedData).length) {
-        case 1:
-            isValidData = typeof fixedData.format === "string" && /\[Gen \d] \w{1,}/i.test(fixedData.format);
-            break;
-        case 2:
-            isValidData =
-                typeof fixedData.format === "string" &&
-                /\[Gen \d] \w{1,}/i.test(fixedData.format) &&
-                [...new Set(Object.keys(fixedData)).values()][0] === "name"
-                    ? typeof fixedData.name === "string"
-                    : Array.isArray(fixedData.rules);
-            break;
-        case 3:
-            isValidData =
-                typeof fixedData.format === "string" &&
-                /\[Gen \d] \w{1,}/i.test(fixedData.format) &&
-                typeof fixedData.name === "string" &&
-                Array.isArray(fixedData.rules);
-            break;
-        default:
-            message.reply("Error occured.");
+    if (fixedData.type === "Tour") {
+        switch (Object.keys(fixedData).length) {
+            case 2:
+                isValidData = typeof fixedData.format === "string" && /\[Gen \d] \w{1,}/i.test(fixedData.format);
+                break;
+            case 3:
+                isValidData =
+                    typeof fixedData.format === "string" &&
+                    /\[Gen \d] \w{1,}/i.test(fixedData.format) &&
+                    [...new Set(Object.keys(fixedData)).values()][0] === "name"
+                        ? typeof fixedData.name === "string"
+                        : Array.isArray(fixedData.rules);
+                break;
+            case 4:
+                isValidData =
+                    typeof fixedData.format === "string" &&
+                    /\[Gen \d] \w{1,}/i.test(fixedData.format) &&
+                    typeof fixedData.name === "string" &&
+                    Array.isArray(fixedData.rules);
+                break;
+        }
+    } else if (fixedData.type === "Game") {
+        if (!fixedData.game) return;
+        switch (Object.keys(fixedData).length) {
+            case 2:
+                isValidData = Games.includes(fixedData.game as string as typeof Games[number]);
+                break;
+            case 4:
+                isValidData =
+                    Games.includes(fixedData.game as string as typeof Games[number]) && !!fixedData.rules && Array.isArray(fixedData.rules);
+                break;
+        }
     }
     if (isValidData) {
+        if (fixedData.type === "Game") {
+            switch (fixedData.game) {
+                case "Same Solo":
+                    fixedData.format = "[Gen 8] 1v1";
+                    fixedData.name = "Same Solo";
+                    break;
+                case "Same Duo":
+                    fixedData.format = "[Gen 8] 2v2 Doubles";
+                    fixedData.name = "Same Duo";
+                    break;
+                case "Same Six":
+                    fixedData.format = "[Gen 8] OU";
+                    fixedData.name = "Same Six";
+                    break;
+            }
+        } else fixedData.game = false;
         tourSchedule[date] = fixedData as ParsedData;
         fs.writeFileSync(filePath, JSON.stringify(tourSchedule, null, 4));
         message.reply("Successfuly fixed tournament data!");
     } else return void message.reply("!code Error occured:\n" + JSON.stringify(fixedData, null, 4));
 
     configure(room);
+};
+
+export const setType = async (message: Message<User>): Promise<void> => {
+    const roomid = message.content.split(" ")[1];
+    if (!roomid || !config.officials.includes(roomid)) return;
+    const room = await PS.fetchRoom(roomid, false).catch(
+        () => new Room({ id: roomid, type: "chat", error: "not found or access denied" }, PS)
+    );
+    if (!room.isExist) return;
+    if (!room.isStaff(message.author)) return;
+
+    const rawData = message.content.split(" ").slice(3).join(" ");
+    if (!rawData) return void message.reply("Error: could not fix data.");
+    interface ParsedData {
+        type?: "Game" | "Tour";
+    }
+    let fixedData: ParsedData = { type: "Tour" };
+
+    try {
+        fixedData = querystring.parse(rawData);
+    } catch (e: unknown) {
+        message.reply("!code " + (e as Error).toString());
+    }
+    if (!fixedData.type || !["Tour", "Game"].includes(fixedData.type)) return void message.reply("Error: could not fix data.");
+
+    configure(room, fixedData.type);
 };

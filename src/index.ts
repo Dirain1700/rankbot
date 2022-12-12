@@ -1,19 +1,21 @@
 ///<reference types="../types/global"/>
 
 import * as fs from "fs";
+import * as path from "path";
 import { createServer } from "http";
 import * as config from "../config/config";
 import { Tools, TimeoutError } from "@dirain/client";
 import { parse } from "querystring";
+import { Collection, Client as disClient } from "discord.js";
+import { Client as PSC } from "@dirain/client";
+import { dex } from "../data/dex/pokedex";
 
 global.fs = fs;
 global.config = config;
-global.path = require("path");
+global.path = path;
 global.Tools = Tools;
 global.wordles = {};
-
-import { Client as disClient } from "discord.js";
-import { Client as PSC } from "@dirain/client";
+global.Dex = new Collection([...Object.entries(dex)]);
 
 const html = fs.readFileSync("./config/index.html", "utf-8");
 
