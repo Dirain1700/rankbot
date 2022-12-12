@@ -234,6 +234,7 @@ export const fixTourData = async (message: Message<User>): Promise<void> => {
         } else fixedData.game = false;
         TourSchedule[date] = fixedData as ParsedData;
         const prettierSet = JSON.parse(fs.readFileSync("./.prettierrc.json", "utf-8"));
+        // prettier-ignore
         const string = format(
             "import type {TourDataType} from \"../official\";export const TourSchedule:TourDataType=" + JSON.stringify(TourSchedule, null, 4),
             Object.assign({ parser: "typescript" }, prettierSet)
