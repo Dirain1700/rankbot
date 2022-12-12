@@ -2,7 +2,7 @@
 
 import * as querystring from "querystring";
 import { Room } from "@dirain/client";
-("use strict");
+import { format } from "prettier";
 import { Game } from "./game";
 
 import type { RankuHTMLOptions, Message, User } from "@dirain/client";
@@ -21,14 +21,14 @@ export interface TourDataType {
     };
 }
 
-export const createTour = (room: Room): void => {
+export const createTour = async (room: Room): Promise<void> => {
     const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
-    const filePath = path.resolve(__dirname, `./schedule/${new Date().getFullYear}${month}.json`);
-    if (!fs.existsSync(filePath)) return void room.send("Tournament data not found");
-    const tourSchedule: TourDataType = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    const filePath = `./schedule/${new Date().getFullYear}${month}`;
+    if (!fs.existsSync(path.resolve(__dirname, filePath) + ".js")) return void room.send("Tournament data not found");
+    const { TourSchedule } = await import(filePath);
 
-    if (!tourSchedule[new Date().getDate()]) return void room.send("No tournament data found.");
-    const { type, game, format, name, rules } = tourSchedule[String(new Date().getDate())] ?? {};
+    if (!TourSchedule[new Date().getDate()]) return void room.send("No tournament data found.");
+    const { type, game, format, name, rules } = TourSchedule[String(new Date().getDate())] ?? {};
     if (!format || !type) return void room.send("Data not found.");
     const command = [];
     if (format.includes("1v1")) command.push(`${room.id}|/tour new ${format}, rr`);
@@ -36,7 +36,7 @@ export const createTour = (room: Room): void => {
 
     if (game) {
         /* eslint-disable @typescript-eslint/no-non-null-assertion */
-        const mons = Dex.random(Game[game].Pokemon);
+        const mons = Dex.random(Game[game as typeof Games[number]].Pokemon);
 
         const gameRules: string[] = rules ?? [];
         gameRules.push("-All Pokemon");
@@ -59,14 +59,14 @@ export const createTour = (room: Room): void => {
     PS.sendArray(command);
 };
 
-export const announce = (room: Room): void => {
+export const announce = async (room: Room): Promise<void> => {
     const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
-    const filePath = path.resolve(__dirname, `./schedule/${new Date().getFullYear}${month}.json`);
-    if (!fs.existsSync(filePath)) return void room.send("Tournament data not found");
-    const tourSchedule: TourDataType = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    const filePath = `./schedule/${new Date().getFullYear}${month}`;
+    if (!fs.existsSync(path.resolve(__dirname, filePath) + ".js")) return void room.send("Tournament data not found");
+    const { TourSchedule } = await import(filePath);
 
-    if (!tourSchedule[new Date().getDate()]) return void room.send("No tournament data found.");
-    const { format, name, game } = tourSchedule[new Date().getDate()] ?? {};
+    if (!TourSchedule[new Date().getDate()]) return void room.send("No tournament data found.");
+    const { format, name, game } = TourSchedule[new Date().getDate()] ?? {};
     if (!format) return void room.send("No tournament data found.");
     const messages: string[] = [];
     if (game) {
@@ -82,20 +82,20 @@ export const announce = (room: Room): void => {
     PS.sendArray(messages.map((e) => `${room.id}|${e}`));
 };
 
-export const configure = (room: Room, tourType?: "Game" | "Tour"): void => {
+export const configure = async (room: Room, tourType?: "Game" | "Tour"): Promise<void> => {
     const date = new Date(Date.now() + 9 * 60 * 60 * 1000);
     const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
-    const filePath = path.resolve(__dirname, `./schedule/${new Date().getFullYear}${month}.json`);
-    if (!fs.existsSync(filePath)) return void room.send("Tournament data not found");
-    const tourSchedule: TourDataType = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    const filePath = `./schedule/${new Date().getFullYear}${month}`;
+    if (!fs.existsSync(path.resolve(__dirname, filePath) + ".js")) return void room.send("Tournament data not found");
+    const { TourSchedule } = await import(filePath);
 
-    const { type, format, name, rules } = tourSchedule[date.getDate()] ?? {};
+    const { type, format, name, rules } = TourSchedule[date.getDate()] ?? {};
     const html: RankuHTMLOptions = {
         id: "tourFormat",
         content: `<div class="infobox">今日のトーナメントの内容は以下の通りです。<br>Type: ${type}フォーマット: ${format}<br>${
             name ? "名前: " + name + "<br>" : ""
         }${rules?.length ? "ルール: " + rules.join("、") + "<br>" : ""}<br>Raw:<br><code>${JSON.stringify(
-            tourSchedule[date.getDate()] ?? {},
+            TourSchedule[date.getDate()] ?? {},
             null,
             4
         )}</code><br><br><b>Choose game mode</b>:<form data-submitsend="/botmsg ${PS.status.id},.selectTourType ${
@@ -151,9 +151,9 @@ export const fixTourData = async (message: Message<User>): Promise<void> => {
     const year = dateString.substring(0, 4),
         month = dateString.substring(4, 6),
         date = dateString.substring(6, 8);
-    const filePath = path.resolve(__dirname, `./schedule/${year}${month}.json`);
-    if (!fs.existsSync(filePath)) return void message.reply("Tournament data not found");
-    const tourSchedule: TourDataType = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    const filePath = `./schedule/${year}${month}`;
+    if (!fs.existsSync(path.resolve(__dirname, filePath) + ".js")) return void room.send("Tournament data not found");
+    const { TourSchedule } = await import(filePath);
 
     const rawData = message.content.split(" ").slice(3).join(" ");
     if (!rawData) return void message.reply("Error: could not fix data.");
@@ -232,8 +232,13 @@ export const fixTourData = async (message: Message<User>): Promise<void> => {
                     break;
             }
         } else fixedData.game = false;
-        tourSchedule[date] = fixedData as ParsedData;
-        fs.writeFileSync(filePath, JSON.stringify(tourSchedule, null, 4));
+        TourSchedule[date] = fixedData as ParsedData;
+        const prettierSet = JSON.parse(fs.readFileSync("./.prettierrc.json", "utf-8"));
+        const string = format(
+            "import type {TourDataType} from \"../official\";export const TourSchedule:TourDataType=" + JSON.stringify(TourSchedule, null, 4),
+            Object.assign({ parser: "typescript" }, prettierSet)
+        );
+        fs.writeFileSync(filePath, string);
         message.reply("Successfuly fixed tournament data!");
     } else return void message.reply("!code Error occured:\n" + JSON.stringify(fixedData, null, 4));
 
