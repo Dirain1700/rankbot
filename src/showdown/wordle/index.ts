@@ -61,7 +61,7 @@ export const parse = (message: Message<User>): void => {
 };
 
 export const send = (message: Message<User>): void => {
-    const room = Tools.toRoomId(message.content.substring(22));
+    const room = Tools.toRoomId(message.content.replace("?requestWordle", ""));
     if (!room) return void message.reply("Invalid Syntax: Missing room");
     const hour = new Date().getHours();
     if (hour > 14 && hour < 23) {
@@ -138,7 +138,7 @@ export const sendButton = (message: Message<unknown>): void => {
         if (!wordles[target.id]) return void message.reply(`The game of Wordle is not enabled for room ${target.id}.`);
         message.reply("/addhtmlbox " + announce(target.id));
     } else if (message.isUserMessage()) {
-        const r = Tools.toRoomId(content.substring(17));
+        const r = Tools.toRoomId(content.replace("?sendWordleButton", ""));
         if (!PS.rooms.cache.has(r) || !wordles[r]) return void message.reply(`The game of Wordle is not enabled for room ${r}.`);
         PS.send(`${r}|/sendprivatehtmlbox ${author.id},${announce(r)}`);
     }
