@@ -46,7 +46,7 @@ export const parse = (message: Message<User>): void => {
         author: { id },
     } = message;
     const args = message.content
-        .substring(15)
+        .replace("?guess ", "")
         .split(",")
         .map((e) => Tools.toRoomId(e));
     const [room, guess] = args;
