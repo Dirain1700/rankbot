@@ -23,7 +23,7 @@ export interface TourDataType {
 
 export const createTour = async (room: Room): Promise<void> => {
     const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
-    const filePath = `./schedule/${new Date().getFullYear}${month}`;
+    const filePath = `./schedule/${new Date().getFullYear()}${month}`;
     if (!fs.existsSync(path.resolve(__dirname, filePath) + ".js")) return void room.send("Tournament data not found");
     const { TourSchedule } = await import(filePath);
 
@@ -61,7 +61,7 @@ export const createTour = async (room: Room): Promise<void> => {
 
 export const announce = async (room: Room): Promise<void> => {
     const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
-    const filePath = `./schedule/${new Date().getFullYear}${month}`;
+    const filePath = `./schedule/${new Date().getFullYear()}${month}`;
     if (!fs.existsSync(path.resolve(__dirname, filePath) + ".js")) return void room.send("Tournament data not found");
     const { TourSchedule } = await import(filePath);
 
@@ -85,7 +85,7 @@ export const announce = async (room: Room): Promise<void> => {
 export const configure = async (room: Room, tourType?: "Game" | "Tour"): Promise<void> => {
     const date = new Date(Date.now() + 9 * 60 * 60 * 1000);
     const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
-    const filePath = `./schedule/${new Date().getFullYear}${month}`;
+    const filePath = `./schedule/${new Date().getFullYear()}${month}`;
     if (!fs.existsSync(path.resolve(__dirname, filePath) + ".js")) return void room.send("Tournament data not found");
     const { TourSchedule } = await import(filePath);
 
