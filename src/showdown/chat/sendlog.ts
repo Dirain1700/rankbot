@@ -41,64 +41,57 @@ export default (message: Message<Room>): void => {
 
     let isPunish: boolean | null = null;
 
+    /* eslint-disable @typescript-eslint/no-non-null-assertion */
     if (log.match(clearLinesRegex)) {
         isPunish = true;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const { lines, target } = log.match(clearLinesRegex)!.groups ?? {};
         chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
         chatLogs.sort((a: chatLogType, b: chatLogType) => a.time - b.time);
         chatLogs.length = parseInt(lines as string);
     } else if (log.match(clearTextRegex)) {
         isPunish = true;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const { target } = log.match(clearTextRegex)!.groups ?? {};
         chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
         chatLogs.sort((a: chatLogType, b: chatLogType) => a.time - b.time);
     } else if (log.match(warnRegex)) {
         isPunish = true;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const { target } = log.match(warnRegex)!.groups ?? {};
         chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
         chatLogs.sort((a: chatLogType, b: chatLogType) => a.time - b.time);
     }
     if (log.match(roomBanRegex)) {
         isPunish = true;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const { target } = log.match(roomBanRegex)!.groups ?? {};
         chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
         chatLogs.sort((a: chatLogType, b: chatLogType) => a.time - b.time);
     } else if (log.match(weekBanRegex)) {
         isPunish = true;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const { target } = log.match(weekBanRegex)!.groups ?? {};
         chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
         chatLogs.sort((a: chatLogType, b: chatLogType) => a.time - b.time);
     } else if (log.match(lockRegex)) {
         isPunish = true;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const { target } = log.match(lockRegex)!.groups ?? {};
         chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
         chatLogs.sort((a: chatLogType, b: chatLogType) => a.time - b.time);
     } else if (log.match(muteRegex)) {
         isPunish = true;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const { target } = log.match(muteRegex)!.groups ?? {};
         chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
         chatLogs.sort((a: chatLogType, b: chatLogType) => a.time - b.time);
     } else if (log.match(promoteRegex)) {
         isPunish = false;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const { target, auth } = log.match(promoteRegex)!.groups ?? {};
-        log = `${log}\n${auth as string}への昇格おめでとう、${target as string}!`;
+        log = `${log}\nCongrats ${target} to ${auth!}!`;
     } else if (log.match(demoteRegex)) {
         isPunish = false;
     }
 
     if (isPunish === null) return;
 
-    let logsToSend: string[] = [];
+    let logsToSend: string = "";
 
-    if (chatLogs.length) logsToSend = chatLogs.map((i) => `<t:${i.time}:T> ${i.user}: ${i.content}`);
+    if (chatLogs.length) logsToSend = chatLogs.map((i) => `<t:${i.time}:T> ${i.user}: ${i.content}`).join("\n");
 
-    targetChannel.send(log + logsToSend.length ? "\n" + logsToSend.join("\n") : "");
+    targetChannel.send(log + "\n" + logsToSend).catch(() => console.error("content:", log + "\n" + logsToSend));
 };
