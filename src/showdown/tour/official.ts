@@ -100,18 +100,17 @@ export const configure = async (room: Room, tourType?: "Game" | "Tour"): Promise
             4
         )}</code><br><br><b>Choose game mode</b>:<form data-submitsend="/botmsg ${PS.status.id},.selectTourType ${
             room.id
-        } ${date.getFullYear()}${month}${date.getDate()} type&#061;{type}>Type: <select id="type" name="type"><option value="Tour"${
+        } ${date.getFullYear()}${month}${date.getDate()} type&#061;{type}">Type: <select id="type" name="type"><option value="Tour" ${
             tourType || type === "Tour" ? "selected" : ""
-        }>Tour</option><option value="Game"${
+        }>Tour</option><option value="Game" ${
             tourType || type === "Game" ? "selected" : ""
-        }>Game</option></select><br><br><button class="button" type="submit">Submit game mode</button></form><div class="infobox>"`,
+        }>Game</option></select><br><br><button class="button" type="submit">Submit game mode</button></form>`,
         allowedDisplay: "%",
     };
 
-    const TourForm = `<div class="infobox><br><br><b>Choose formats:</b><form data-submitsend="/botmsg ${PS.status.id},.fixTourData ${
+    const TourForm = `<div class="infobox"><br><br><b>Choose formats:</b><form data-submitsend="/botmsg ${PS.status.id},.fixTourData ${
         room.id
-    } ${date.getFullYear()}${month}${date.getDate()} type&#061;Tour&amp;format&#061;{format}${rules ? "&amp;rules&#061;{rules}" : ""}${
-        name ? "&amp;name&#061;{name}" : ""
+    } ${date.getFullYear()}${month}${date.getDate()} type&#061;Tour&amp;format&#061;{format}"&amp;rules&#061;{rules}&amp;name&#061;{name}"
     }">Format: <input type="text" id="format" name="format" value="${
         format ?? ""
     }"></input><br>Rules: <input type="text" id="rules" name="rules" value="${(rules ?? []).join(
@@ -120,7 +119,7 @@ export const configure = async (room: Room, tourType?: "Game" | "Tour"): Promise
         name ?? ""
     }"></input><br><button class="button" type="submit">Submit!</button></form></div>`;
 
-    const GameForm = `<div class="infobox><br><br><b>Choose formats:</b><form data-submitsend="/botmsg ${PS.status.id},.fixTourData ${
+    const GameForm = `<div class="infobox"><br><br><b>Choose formats:</b><form data-submitsend="/botmsg ${PS.status.id},.fixTourData ${
         room.id
     } ${date.getFullYear()}${month}${date.getDate()} type&#061;Game&amp;game&#061;{game}">Game: <select id="game" name="game">${Games.map(
         (e) => `<option value=${e}${name === e ? "selected" : ""}>${e}</option>`
@@ -133,9 +132,9 @@ export const configure = async (room: Room, tourType?: "Game" | "Tour"): Promise
 
     if (tourType) {
         room.send("/privatesenduhtml tourFormat," + html.content);
-        html.content = html.content.replaceAll(">Submit", "disabled>Submit");
-        room.sendHTML(html);
-    } else room.sendHTML(html);
+        html.content = html.content.replaceAll(">Submit", " disabled>Submit");
+    }
+    room.send(`/addrankuhtml ${html.allowedDisplay},${html.id},${html.content}`);
 };
 
 export const fixTourData = async (message: Message<User>): Promise<void> => {
