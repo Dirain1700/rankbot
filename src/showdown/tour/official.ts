@@ -22,13 +22,14 @@ export interface TourDataType {
 }
 
 export const createTour = async (room: Room): Promise<void> => {
-    const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
-    const filePath = `./schedule/${new Date().getFullYear()}${month}`;
+    const date = new Date(Date.now() + 9 * 60 * 60 * 1000);
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const filePath = `./schedule/${date.getFullYear()}${month}`;
     if (!fs.existsSync(path.resolve(__dirname, filePath) + ".js")) return void room.send("Tournament data not found");
     const { TourSchedule } = await import(filePath);
 
-    if (!TourSchedule[new Date().getDate()]) return void room.send("No tournament data found.");
-    const { type, game, format, name, rules } = TourSchedule[String(new Date().getDate())] ?? {};
+    if (!TourSchedule[date.getDate()]) return void room.send("No tournament data found.");
+    const { type, game, format, name, rules } = TourSchedule[date.getDate()] ?? {};
     if (!format || !type) return void room.send("Data not found.");
     const command = [];
     if (format.includes("1v1")) command.push(`${room.id}|/tour new ${format}, rr`);
@@ -36,7 +37,8 @@ export const createTour = async (room: Room): Promise<void> => {
 
     if (game) {
         /* eslint-disable @typescript-eslint/no-non-null-assertion */
-        const mons = Dex.random(Game[game as typeof Games[number]].Pokemon);
+        const mons = Dex.random(Game[game as typeof Games[number]].Pokemon).map((e) => e.name);
+        const boldMons = mons.map((e) => "**" + e + "**");
 
         const gameRules: string[] = rules ?? [];
         gameRules.push("-All Pokemon");
@@ -47,7 +49,7 @@ export const createTour = async (room: Room): Promise<void> => {
 
         command.push(
             `${room.id}|/announce This is ${game} tournament! Only these ${mons.length} Pokémons allowed: ${
-                mons.length > 1 ? mons.slice(-1).join(", ") + " and " + mons.at(-1) : mons[0]
+                mons.length > 1 ? boldMons.slice(-1).join(", ") + " and " + boldMons.at(-1) : boldMons[0]
             }`
         );
         /* eslint-enable */
@@ -60,13 +62,14 @@ export const createTour = async (room: Room): Promise<void> => {
 };
 
 export const announce = async (room: Room): Promise<void> => {
-    const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
-    const filePath = `./schedule/${new Date().getFullYear()}${month}`;
+    const date = new Date(Date.now() + 9 * 60 * 60 * 1000);
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const filePath = `./schedule/${date.getFullYear()}${month}`;
     if (!fs.existsSync(path.resolve(__dirname, filePath) + ".js")) return void room.send("Tournament data not found");
     const { TourSchedule } = await import(filePath);
 
-    if (!TourSchedule[new Date().getDate()]) return void room.send("No tournament data found.");
-    const { format, name, game } = TourSchedule[new Date().getDate()] ?? {};
+    if (!TourSchedule[date.getDate()]) return void room.send("No tournament data found.");
+    const { format, name, game } = TourSchedule[date.getDate()] ?? {};
     if (!format) return void room.send("No tournament data found.");
     const messages: string[] = [];
     if (game) {
