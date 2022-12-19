@@ -13,7 +13,7 @@ import hotpatch from "./global/hotpatch";
 import output from "./global/output";
 import resetlog from "./global/resetlog";
 import invite from "./pm/invite";
-import { createTour, announce, configure, fixTourData } from "./tour/official";
+import { createTour, announce, configure, fixTourData, setType as setTourType } from "./tour/official";
 import { rerollPokemon } from "./tour/game";
 import random from "./tour/random";
 import setTourConfigs from "./tour/tourmanager";
@@ -78,8 +78,12 @@ export default () => {
             }
 
             // eslint-disable-next-line no-useless-escape
-            if (/\.fixTourData \w+ \d{8} [\[\]a-zA-Z0-9 ]+/.test(message.content)) {
+            if (/\?fixTourData \w+ \d{8} [\[\]a-zA-Z0-9 ]+/.test(message.content)) {
                 fixTourData(message);
+            }
+
+            if (/\?selectTourType \w+ \d{8} type=(Tour|Game)/.test(message.content)) {
+                setTourType(message);
             }
 
             if (message.content.startsWith("?requestWordle")) {
