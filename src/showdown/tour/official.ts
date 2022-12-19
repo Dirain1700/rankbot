@@ -101,7 +101,7 @@ export const configure = async (room: Room, tourType?: "Game" | "Tour"): Promise
             TourSchedule[date.getDate()] ?? {},
             null,
             4
-        )}</code><br><br><b>Choose game mode</b>:<form data-submitsend="/botmsg ${PS.status.id},.selectTourType ${
+        )}</code><br><br><b>Choose game mode</b>:<form data-submitsend="/msgroom ${room.id},/botmsg ${PS.status.id},?selectTourType ${
             room.id
         } ${date.getFullYear()}${month}${date.getDate()} type&#061;{type}">Type: <select id="type" name="type"><option value="Tour" ${
             tourType || type === "Tour" ? "selected" : ""
@@ -111,7 +111,7 @@ export const configure = async (room: Room, tourType?: "Game" | "Tour"): Promise
         allowedDisplay: "%",
     };
 
-    const TourForm = `<div class="infobox"><br><br><b>Choose formats:</b><form data-submitsend="/botmsg ${PS.status.id},.fixTourData ${
+    const TourForm = `<div class="infobox"><br><br><b>Choose formats:</b><form data-submitsend="/msgroom ${room.id},/botmsg ${PS.status.id},.fixTourData ${
         room.id
     } ${date.getFullYear()}${month}${date.getDate()} type&#061;Tour&amp;format&#061;{format}"&amp;rules&#061;{rules}&amp;name&#061;{name}"
     }">Format: <input type="text" id="format" name="format" value="${
@@ -122,7 +122,7 @@ export const configure = async (room: Room, tourType?: "Game" | "Tour"): Promise
         name ?? ""
     }"></input><br><button class="button" type="submit">Submit!</button></form></div>`;
 
-    const GameForm = `<div class="infobox"><br><br><b>Choose formats:</b><form data-submitsend="/botmsg ${PS.status.id},.fixTourData ${
+    const GameForm = `<div class="infobox"><br><br><b>Choose formats:</b><form data-submitsend="/msgroom ${room.id},/botmsg ${PS.status.id},?fixTourData ${
         room.id
     } ${date.getFullYear()}${month}${date.getDate()} type&#061;Game&amp;game&#061;{game}">Game: <select id="game" name="game">${Games.map(
         (e) => `<option value=${e}${name === e ? "selected" : ""}>${e}</option>`
