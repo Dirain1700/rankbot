@@ -121,7 +121,7 @@ export const rebuild = () => {
 export const destroyWordle = (force?: boolean) => {
     global.wordles = {};
     for (const r of config.wordle) {
-        PS.send(`${r}|/announce The game of Wordle was ${force ? "forcibly" : ""} ended!`);
+        PS.send(`${r}|/announce The game of Wordle has ${force ? "forcibly" : "been"} ended!`);
     }
 };
 
