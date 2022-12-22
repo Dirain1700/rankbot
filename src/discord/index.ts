@@ -3,23 +3,23 @@
 import type { Message, ChatInputCommandInteraction, BaseInteraction } from "discord.js";
 
 import ready from "./ready";
-import ping from "./interaction/ping";
-import send from "./interaction/send";
-import verify from "./interaction/verify";
-import ban from "./interaction/mod/ban";
-import cleartext from "./interaction/mod/cleartext";
-import forceban from "./interaction/mod/forceban";
-import forcecleartext from "./interaction/mod/forcecleartext";
-import kick from "./interaction/mod/kick";
-import mute from "./interaction/mod/mute";
-import unban from "./interaction/mod/unban";
-import unmute from "./interaction/mod/unmute";
-import apt from "./interaction/points/apt";
-import clearboard from "./interaction/points/clearboard";
-import hotpatch from "./interaction/hotpatch";
-import rank from "./interaction/points/rank";
-import rpt from "./interaction/points/rpt";
 import runjs from "./message/runjs";
+const PING = "./interaction/ping";
+const SEND = "./interaction/send";
+const HOTPATCH = "./interaction/hotpatch";
+const VERIFY = "./interaction/verify";
+const BAN = "./interaction/mod/ban";
+const CLEAR_TEXT = "./interaction/mod/cleartext";
+const FORCE_BAN = "./interaction/mod/forceban";
+const FORCE_CLEAR_TEXT = "./interaction/mod/forcecleartext";
+const KICK = "./interaction/mod/kick";
+const MUTE = "./interaction/mod/mute";
+const UNBAN = "./interaction/mod/unban";
+const UNMUTE = "./interaction/mod/unmute";
+const APT = "./interaction/points/apt";
+const CLEAR_BOARD = "./interaction/points/clearboard";
+const RANK = "./interaction/points/rank";
+const RPT = "./interaction/points/rpt";
 
 export default () => {
     discord.on("ready", ready);
@@ -29,63 +29,63 @@ export default () => {
         if (message.content.startsWith("?runjs")) runjs(message);
     });
 
-    discord.on("interactionCreate", (interaction: BaseInteraction): void => {
+    discord.on("interactionCreate", async (interaction: BaseInteraction): Promise<void> => {
         if (!discord.isReady()) return;
         if (!interaction.isChatInputCommand() || !interaction.inCachedGuild()) return;
-        let func: ((interaction: ChatInputCommandInteraction<"cached">) => void) | undefined = undefined;
+        let file: string = "";
         switch (interaction.commandName) {
             case "ping":
-                func = ping;
+                file = PING;
                 break;
             case "send":
-                func = send;
+                file = SEND;
                 break;
             case "hotpatch":
-                func = hotpatch;
+                file = HOTPATCH;
                 break;
             case "verify":
-                func = verify;
+                file = VERIFY;
                 break;
             case "ban":
-                func = ban;
+                file = BAN;
                 break;
             case "cleartext":
-                func = cleartext;
+                file = CLEAR_TEXT;
                 break;
             case "forceban":
-                func = forceban;
+                file = FORCE_BAN;
                 break;
             case "forcecleartext":
-                func = forcecleartext;
+                file = FORCE_CLEAR_TEXT;
                 break;
             case "kick":
-                func = kick;
+                file = KICK;
                 break;
             case "mute":
-                func = mute;
+                file = MUTE;
                 break;
             case "unban":
-                func = unban;
+                file = UNBAN;
                 break;
             case "unmute":
-                func = unmute;
+                file = UNMUTE;
                 break;
             case "apt":
-                func = apt;
+                file = APT;
                 break;
             case "clearboard":
-                func = clearboard;
+                file = CLEAR_BOARD;
                 break;
             case "rank":
-                func = rank;
+                file = RANK;
                 break;
             case "rpt":
-                func = rpt;
+                file = RPT;
                 break;
         }
 
-        if (!func) return void interaction.reply("Error: Command not found");
+        if (!file || fs.existsSync(path.resolve(__dirname, file))) return void interaction.reply("Error: Command not found");
 
-        func(interaction as ChatInputCommandInteraction<"cached">);
+        (await import(file)).default(interaction as ChatInputCommandInteraction<"cached">);
     });
 };
