@@ -15,7 +15,9 @@ export default (message: Message<unknown>): void => {
     /* eslint-enable */
     const subcommand = Tools.toId(content.replace("?game ", "").split(" ")[0] ?? "");
     const name = Tools.toId(content.replace("?game ", "").split(" ").slice(1).join(" ").split(",")[0] ?? "");
-    const rules = (content.replace("?game ", "").split(" ").slice(1).join(" ").split(",").slice(1) ?? []).map((e) => e.toLowerCase().replace(/[^a-z0-9-+!= ]/g, ""));
+    const rules = (content.replace("?game ", "").split(" ").slice(1).join(" ").split(",").slice(1) ?? []).map((e) =>
+        e.toLowerCase().replace(/[^a-z0-9-+!= ]/g, "")
+    );
     /* eslint-disable @typescript-eslint/no-explicit-any */
     let fanc: ((...arg: any) => any) | null = null;
     let arg: any[] | null = null;
@@ -26,7 +28,7 @@ export default (message: Message<unknown>): void => {
         case "create":
             fanc = createGame;
             arg = [name, target];
-            if (rules.length) arg.push(rules)
+            if (rules.length) arg.push(rules);
             break;
         case "reroll":
         case "rerollpokemon":

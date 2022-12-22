@@ -104,7 +104,7 @@ export const TourSchedule: TourDataType = {
     },
     22: {
         type: "Tour",
-        format: "[Gen 8] Random Battle Mayhem",
+        format: "[Gen 7] BSS Factory",
         game: false,
     },
     23: {
