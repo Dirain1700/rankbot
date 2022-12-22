@@ -1,38 +1,88 @@
 "use strict";
 
-import type { Message, Room } from "@dirain/client";
-import type { TourDataType } from "./official";
+import type { Room } from "@dirain/client";
+
+export const GameList = ["Same Solo", "Same Duo", "Same Six"] as const;
+
+export const GameIdList = ["samesolo", "sameduo", "samesix"] as const;
+
+interface IGame {
+    name: typeof GameList[number];
+    Pokemon: number;
+    tier: string;
+}
 
 export const Game = {
-    "Same Solo": {
+    samesolo: {
+        name: "Same Solo",
         Pokemon: 1,
         tier: "[Gen 8] 1v1",
     },
-    "Same Duo": {
+    sameduo: {
+        name: "Same Duo",
         Pokemon: 2,
         tier: "[Gen 8] 2v2 Doubles",
     },
-    "Same Six": {
+    samesix: {
+        name: "Same Six",
         Pokemon: 6,
         tier: "[Gen 8] OU",
     },
+} as const satisfies { [key in typeof GameIdList[number]]: IGame };
+
+export function isValidGame(name: string): name is keyof typeof Game {
+    return Object.keys(Game).includes(name);
+}
+
+export const createGame = (gameName: string, room: Room, rules?: string[]): void => {
+    gameName = Tools.toId(gameName);
+    if (!isValidGame(gameName)) return;
+    if (!Game[gameName]) return void room.send("No tournament data found.");
+    const { name, Pokemon, tier } = Game[gameName];
+    const command = [];
+    room.send(`/tour new ${tier}, elim`);
+
+    /* eslint-disable @typescript-eslint/no-non-null-assertion */
+    const mons = Dex.filter((e) => !e.evos && !e.forme)
+        .random(Pokemon)
+        .map((e) => e.name);
+    const boldMons = mons.map((e) => "**" + e + "**");
+
+    const gameRules: string[] = rules ?? [];
+    gameRules.push("-All Pokemon");
+    mons.forEach((e) => gameRules.push("+" + e));
+
+    command.push(`${room.id}|/tour rules ${gameRules.join(",")}`);
+    command.push(`${room.id}|/tour name ${name}`);
+
+    command.push(
+        `${room.id}|/announce This is ${name} tournament! Only these ${mons.length} Pokémons allowed: ${
+            mons.length > 1 ? boldMons.slice(0, -1).join(", ") + " and " + boldMons.at(-1) : boldMons[0]
+        }`
+    );
+    /* eslint-enable */
+
+    PS.sendArray(command);
 };
 
-export const rerollPokemon = (message: Message<Room>): void => {
-    const { target: room } = message;
-    if (!message.client.user || !room.isStaff(message.client.user)) return;
-    const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
-    const filePath = path.resolve(__dirname, `./schedule/${new Date().getFullYear}${month}.json`);
-    if (!fs.existsSync(filePath)) return void room.send("Tournament data not found");
-    const tourSchedule: TourDataType = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-
-    if (!tourSchedule[new Date().getDate()]) return void room.send("No tournament data found.");
-    const { game, rules } = tourSchedule[new Date().getDate()] ?? {};
-    if (!game) return void room.send("No tournament data found.");
-    const mons = Dex.random(Game[game].Pokemon).map((e) => e.name);
+export const rerollPokemon = (gameName: string, room: Room, rules?: string[]): void => {
+    if (!isValidGame(Tools.toId(gameName))) return;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { Pokemon } = Game[Tools.toId(gameName) as any as typeof GameIdList[number]];
+    const mons = Dex.filter((e) => !e.evos && !e.forme)
+        .random(Pokemon)
+        .map((e) => e.name);
     const newRule = rules ?? [];
     newRule.push("-All Pokemon");
     mons.forEach((e) => newRule.push("+" + e));
-    room.send(`/announce Rerolled Pokémons: ${mons.length > 1 ? mons.slice(-1).join(", ") + " and " + mons.at(-1) : mons[0]}`);
+    const boldMons = mons.map((e) => "**" + e + "**");
+    room.send(
+        `/announce Rerolled Pokémons: ${mons.length > 1 ? boldMons.slice(0, -1).join(", ") + " and " + boldMons.at(-1) : boldMons[0]}`
+    );
     room.send(`/tour rules ${newRule.join(",")}`);
+};
+
+export const endGame = (room: Room) => {
+    room.send("/tour end");
+    room.send("/announce The game was forcibly ended.");
 };

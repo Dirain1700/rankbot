@@ -14,7 +14,7 @@ import output from "./global/output";
 import resetlog from "./global/resetlog";
 import invite from "./pm/invite";
 import { createTour, announce, configure, fixTourData, setType as setTourType } from "./tour/official";
-import { rerollPokemon } from "./tour/game";
+import parseGame from "./tour/parser";
 import random from "./tour/random";
 import setTourConfigs from "./tour/tourmanager";
 import chatFilter from "./chat/filter";
@@ -103,11 +103,11 @@ export default () => {
                     sendlog(message);
                 }
             }
+            if (message.content.startsWith("?game ")) {
+                parseGame(message);
+            }
             if (message.content.toLowerCase() === "?randtour") {
                 random(message);
-            }
-            if (message.content.startsWith("?rerollPokemon")) {
-                rerollPokemon(message);
             }
             if (message.author.id === config.owner) {
                 if (message.content === "?initWordle") {

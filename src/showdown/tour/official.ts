@@ -3,13 +3,11 @@
 import * as querystring from "querystring";
 import { Room } from "@dirain/client";
 import { format } from "prettier";
-import { Game } from "./game";
+import { Game, GameList, GameIdList, isValidGame } from "./game";
 
 import type { RankuHTMLOptions, Message, User } from "@dirain/client";
 
-export const Games = ["Same Solo", "Same Duo", "Same Six"] as const;
-
-type GameTypes = typeof Games[number] | false;
+type GameTypes = typeof GameList[number] | false;
 
 export interface TourDataType {
     [day: string]: {
@@ -36,8 +34,12 @@ export const createTour = async (room: Room): Promise<void> => {
     else command.push(`${room.id}|/tour new ${format}, elim`);
 
     if (game) {
+        if (game && !isValidGame(Tools.toId(name))) return;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const scriptedGame = Game[Tools.toId(name) as any as typeof GameIdList[number]];
+        const { Pokemon } = scriptedGame;
         /* eslint-disable @typescript-eslint/no-non-null-assertion */
-        const mons = Dex.random(Game[game as typeof Games[number]].Pokemon).map((e) => e.name);
+        const mons = Dex.random(Pokemon).map((e) => e.name);
         const boldMons = mons.map((e) => "**" + e + "**");
 
         const gameRules: string[] = rules ?? [];
@@ -128,7 +130,7 @@ export const configure = async (room: Room, tourType?: "Game" | "Tour"): Promise
         PS.status.id
     },?fixTourData ${
         room.id
-    } ${date.getFullYear()}${month}${date.getDate()} type&#061;Game&amp;game&#061;{game}">Game: <select id="game" name="game">${Games.map(
+    } ${date.getFullYear()}${month}${date.getDate()} type&#061;Game&amp;game&#061;{game}">Game: <select id="game" name="game">${GameList.map(
         (e) => `<option value=${e}${name === e ? "selected" : ""}>${e}</option>`
     )}</select><br><button class="button" type="submit">Submit!</button></form></div>`;
 
@@ -213,11 +215,13 @@ export const fixTourData = async (message: Message<User>): Promise<void> => {
         if (!fixedData.game) return;
         switch (Object.keys(fixedData).length) {
             case 2:
-                isValidData = Games.includes(fixedData.game as string as typeof Games[number]);
+                isValidData = GameList.includes(fixedData.game as string as typeof GameList[number]);
                 break;
             case 4:
                 isValidData =
-                    Games.includes(fixedData.game as string as typeof Games[number]) && !!fixedData.rules && Array.isArray(fixedData.rules);
+                    GameList.includes(fixedData.game as string as typeof GameList[number]) &&
+                    !!fixedData.rules &&
+                    Array.isArray(fixedData.rules);
                 break;
         }
     }
