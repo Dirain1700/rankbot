@@ -249,7 +249,7 @@ export const fixTourData = async (message: Message<User>): Promise<void> => {
             "import type {TourDataType} from \"../official\";export const TourSchedule:TourDataType=" + JSON.stringify(TourSchedule, null, 4),
             Object.assign({ parser: "typescript" }, prettierSet)
         );
-        fs.writeFileSync(filePath, string);
+        fs.writeFileSync(path.resolve(__dirname, filePath) + ".ts", string);
         message.reply("Successfuly fixed tournament data!");
     } else return void message.reply("!code Error occured:\n" + JSON.stringify(fixedData, null, 4));
 
