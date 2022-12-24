@@ -102,6 +102,11 @@ export const TourSchedule: TourDataType = {
         format: "[Gen 9] Ubers",
         game: false,
     },
+    21: {
+        type: "Tour",
+        format: "[Gen 8] Random Battle",
+        game: false,
+    },
     22: {
         type: "Tour",
         format: "[Gen 7] BSS Factory",
@@ -109,12 +114,12 @@ export const TourSchedule: TourDataType = {
     },
     23: {
         type: "Tour",
-        format: "[Gen 7] BSS Factory",
+        format: "[Gen 9] LC",
         game: false,
     },
     24: {
         type: "Tour",
-        format: "[Gen 9] LC",
+        format: "[Gen 8] Ubers",
         game: false,
     },
     25: {
