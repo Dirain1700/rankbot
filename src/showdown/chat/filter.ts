@@ -59,7 +59,6 @@ export default (message: Message<Room>): void => {
     if (stretchFilter(message.content)) content += "stretchFilter: " + message.content;
     else if (wordStretchFilter(message.content)) content += "wordStretchFilter: " + message.content;
     else if (wordStretchWithBlankFilter(message.content)) content += "wordStretchFilter: " + message.content;
-    else if (noMeaningFilter(message.content)) content += "noMeaningFilter: " + message.content;
     else return;
     message.reply(content);
     (discord.channels.cache.get(config.testCh) as GuildTextBasedChannel)?.send?.(content);
