@@ -5,6 +5,6 @@ export interface ModchatSetting {
     endTime: number;
     always?: boolean;
     rank?: boolean;
-    ignoreGlobals: boolean;
-    allowBusy: boolean;
+    ignoreGlobals?: boolean;
+    allowBusy?: boolean;
 }

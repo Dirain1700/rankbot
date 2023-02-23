@@ -1,5 +1,6 @@
 # TypeScript outputs
 dist/*
+config/config.ts
 
 # Test files
 foo*

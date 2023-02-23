@@ -20,6 +20,7 @@ export const PSOptions: PSClientOptions = {
 export const modchatTime: Dict<ModchatSetting> = {};
 export const commandPrefix = "";
 export const readme = "";
+export const enableStretchFilter: string[] =
 export const testCh: Snowflake = "";
 export const logch: Snowflake = "";
 export const aptguild: Snowflake = "";
