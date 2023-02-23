@@ -14,7 +14,7 @@ export default (message: Message<Room>): void => {
     }
     const messages: chatLogType[] = JSON.parse(fs.readFileSync(file, "utf-8"));
     let chatLogs: chatLogType[] = [];
-    const targetChannel: undefined | Channel = discord.channels.cache.get(config.logch);
+    const targetChannel: undefined | Channel = discord.channels.cache.get(Config.logch);
     if (!targetChannel || !targetChannel.isTextBased()) return;
 
     /* eslint-disable no-useless-escape */

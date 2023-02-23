@@ -8,38 +8,34 @@ import { head, closeDiv, partsHead, form, correctNotice, incorrectNotice } from 
 import type { StoredWordleDataType, GuessType, WordlePlayer, EndedPlData } from "../../../types/wordle";
 
 export class Wordle {
+    readonly path = "./src/showdown/wordle/words/";
     pl: Map<string, WordlePlayer>;
     room: Room;
     answer: string;
+    ended: boolean = false;
     client: Client;
     endedPl: string[]; // User ID[]
     correctedPl: Map<string, EndedPlData>; // Map<User ID, WordleData>
     eliminatedPl: Map<string, EndedPlData>; // Map<User ID, WordleData>;
 
-    constructor(room: Room) {
-        const str = "abcdefghijklmnopqrstuvwxyz";
-        const firstStr = str[~~(Math.random() * str.length)];
-        const pick = (arr: string[]): string => arr[~~(Math.random() * arr.length)] as string;
-        const words = fs.readFileSync(`./src/showdown/wordle/words/${firstStr}.txt`, "utf-8").split("\n");
-        const word = pick(words);
-
-        this.answer = word;
+    constructor(room: Room, data?: StoredWordleDataType) {
+        let answer: string = "";
+        if (!data || !data?.answer) answer = this.setup();
+        this.answer = data?.answer || answer;
         this.room = room;
         this.client = room.client;
-        this.pl = new Map();
-        this.endedPl = [];
-        this.correctedPl = new Map();
-        this.eliminatedPl = new Map();
+        this.pl = new Map(data?.pl ?? []);
+        this.endedPl = data?.endedPl || [];
+        this.correctedPl = new Map(data?.correctedPl || []);
+        this.eliminatedPl = new Map(data?.eliminatedPl || []);
     }
 
-    rebuild(data: StoredWordleDataType, room: Room) {
-        this.answer = data.answer;
-        this.room = room;
-        this.client = room.client;
-        this.pl = new Map(data.pl);
-        this.endedPl = data.endedPl;
-        this.correctedPl = new Map(data.correctedPl);
-        this.eliminatedPl = new Map(data.eliminatedPl);
+    setup(): string {
+        const str = "abcdefghijklmnopqrstuvwxyz";
+        const pick = (arr: string[]): string => arr[~~(Math.random() * arr.length)] as string;
+        const words = fs.readFileSync(this.path + pick(str.split("")) + ".txt", "utf-8").split("\n");
+        this.answer = pick(words);
+        return this.answer;
     }
 
     generate(pl: string, guess?: GuessType): string {
@@ -167,10 +163,17 @@ export class Wordle {
         } else throw new Error();
     }
 
-    commend(): [string, number][] {
-        const arr: [string, number][] = []; // [User ID, time]
-        [...this.correctedPl.values()].forEach((e) => arr.push([e.name, e.round]));
-        return arr;
+    destroyGame(): void {
+        this.ended = true;
+        this.answer = "";
+        this.pl.clear();
+        this.correctedPl.clear();
+        this.eliminatedPl.clear();
+        this.endedPl = [];
+    }
+
+    getWinners(): [string, number][] {
+        return [...this.correctedPl.values()].map((e) => [e.name, e.round]);
     }
 
     store(): StoredWordleDataType {

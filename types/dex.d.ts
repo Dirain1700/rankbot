@@ -10,9 +10,9 @@ export interface Species {
      */
     name: string;
     /**
-     * Generation. Any one of 1 to 8. Possibly undefined.
+     * Generation. Any one of 1 to 9. Possibly undefined.
      */
-    gen?: number & (1 | 2 | 3 | 4 | 5 | 6 | 7 | 8);
+    gen?: number & (1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9);
     /**
      * Base species. Species, but without the forme name.
      *
@@ -174,6 +174,12 @@ export interface Species {
      * National Dex Tier. The Pokemon's location in the Smogon National Dex tier system.
      */
     natDexTier?: string;
+    /**
+     * Is this item/move/ability/pokemon nonstandard? Specified for effects
+     * that have no use in standard formats: made-up pokemon (CAP),
+     * glitches (MissingNo etc), Pokestar pokemon, etc.
+     */
+    isNonstandard?: "Past" | "Future" | "Unobtainable" | "CAP" | "LGPE" | "Custom" | "Gigantamax";
 }
 
 export interface SpeciesAbility {

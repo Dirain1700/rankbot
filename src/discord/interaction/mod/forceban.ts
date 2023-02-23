@@ -4,7 +4,7 @@ import { time } from "discord.js";
 import type { ChatInputCommandInteraction } from "discord.js";
 
 export default async (interaction: ChatInputCommandInteraction<"cached">): Promise<void> => {
-    if (config.admin.includes(interaction.user.id))
+    if (Config.admin.includes(interaction.user.id))
         return void interaction.reply({ content: "/forceban - Access Denied.", ephemeral: true });
 
     const targetID = interaction.options.getString("userid", true);

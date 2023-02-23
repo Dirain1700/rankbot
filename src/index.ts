@@ -4,19 +4,23 @@ import * as fs from "fs";
 import * as path from "path";
 import { createServer } from "http";
 import * as config from "../config/config";
-import { Tools, TimeoutError } from "@dirain/client";
+import { Tools } from "@dirain/client";
 import { parse } from "querystring";
 import { Collection, Client as disClient } from "discord.js";
 import { Client as PSC } from "@dirain/client";
 import { dex } from "../data/dex/pokedex";
+import { CommandParser as PSCommandParser } from "./showdown/parser";
 
 global.fs = fs;
-global.config = config;
+global.Config = config;
 global.path = path;
 global.Tools = Tools;
-global.wordles = {};
+global.Wordles = {};
 global.Dex = new Collection([...Object.entries(dex)]);
+global.Commands = {};
+global.PSCommandParser = new PSCommandParser();
 
+global.PSCommandParser.loadCommands();
 const html = fs.readFileSync("./config/index.html", "utf-8");
 
 export const PSClient = new PSC(config.PSOptions);
@@ -63,8 +67,8 @@ const UNHANDLED_ERR_PATH = "./logs/unhandled";
 
 process.on("unhandledRejection", (reason) => {
     let str: string;
-    if (reason instanceof TimeoutError) str = reason.stack ?? reason.toString();
-    else str = reason?.toString?.() ?? String(reason);
+    if (reason instanceof Error) str = reason.stack ?? reason.toString();
+    else throw reason;
     onError("PromiseRejection", str);
 });
 

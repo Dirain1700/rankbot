@@ -1,23 +1,27 @@
 "use strict";
 
 import type { Room, Message } from "@dirain/client";
-import type { GuildTextBasedChannel } from "discord.js";
 
-export default (message: Message<Room>): void => {
+const STRETCH_LIMIT = 10;
+
+export default function (message: Message<Room>): void {
+    if (!Config.enableStretchFilter.includes(message.target.id)) return;
+    /* eslint-disable no-useless-escape */
     if (message.target.isStaff(message.author) || /[\u{3000}-\u{301C}\u{3041}-\u{3093}\u{309B}-\u{309E}]/mu.test(message.content)) return;
-    if (["!", "/"].includes(message.content.charAt(0))) return;
-    const stretchRegex: RegExp = /(.)\1{4,}/gimsu;
-    const wordStretchRegex: RegExp = /(\S+?)\1+\1+\1+\1+/gimsu;
+    if (/^[^A-Za-z0-9]/.test(message.content.charAt(0))) return;
+    const stretchRegex: RegExp = new RegExp(`(.)\1{${STRETCH_LIMIT - 1},}`, "gimsu");
+    const wordStretchRegex: RegExp = new RegExp(`(\S+?)${"\1".repeat(STRETCH_LIMIT - 1)}`, "gimsu");
+    /* eslint-enable */
 
     const stretchFilter: (str: string) => boolean = (str: string) => {
         const result = str.match(stretchRegex);
-        if (Array.isArray(result)) return !str.toLowerCase().startsWith("w".repeat(5));
+        if (Array.isArray(result)) return !str.toLowerCase().startsWith("w".repeat(STRETCH_LIMIT));
         else return false;
     };
 
     const wordStretchFilter: (str: string) => boolean = (str: string) => {
         const result = str.match(wordStretchRegex);
-        if (Array.isArray(result)) return !str.toLowerCase().startsWith("w".repeat(5));
+        if (Array.isArray(result)) return !str.toLowerCase().startsWith("w".repeat(STRETCH_LIMIT));
         else return false;
     };
 
@@ -44,22 +48,16 @@ export default (message: Message<Room>): void => {
                 i++;
             }
             if (count > 3) hasStretchSentence = true;
-            else if (Object.values(duplicatedWords).filter((e) => e >= 6).length) hasStretchSentence = true;
+            else if (Object.values(duplicatedWords).filter((e) => e > STRETCH_LIMIT).length) hasStretchSentence = true;
         }
         return hasStretchSentence;
     };
 
-    if (stretchFilter(message.content))
-        return void (discord.channels.cache.get(config.testCh) as GuildTextBasedChannel)?.send?.({
-            content: "Caught by stretchFilter: " + message.content,
-        });
-
     let content: string = "Caught by ";
 
-    if (stretchFilter(message.content)) content += "stretchFilter: " + message.content;
-    else if (wordStretchFilter(message.content)) content += "wordStretchFilter: " + message.content;
-    else if (wordStretchWithBlankFilter(message.content)) content += "wordStretchFilter: " + message.content;
+    if (stretchFilter(message.content)) content += "stretchFilter";
+    else if (wordStretchFilter(message.content)) content += "wordStretchFilter" + message.content;
+    else if (wordStretchWithBlankFilter(message.content)) content += "wordStretchFilter" + message.content;
     else return;
     message.reply(content);
-    (discord.channels.cache.get(config.testCh) as GuildTextBasedChannel)?.send?.(content);
-};
+}

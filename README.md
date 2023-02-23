@@ -1,54 +1,37 @@
 [![Node.js CI (full)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml/badge.svg?branch=main&event=push)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml) [![Node.js CI (full)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml/badge.svg?branch=dev&event=push)](https://github.com/Dirain1700/rankbot/actions/workflows/node.js.yml)
 
-Looking for English version? visit [README-en.md](./README-en.md)!
+# Development Environments
 
-# 環境
-
-言語は<b>TypeScript</b>です。
+Using <b>TypeScript</b>.
 
 -   Windows10
 -   Node.js v18.6.0
 -   Visual Studio Code
 
-# 実装済み
+# Codes
 
-## Discord
+All source are on GitHub.<br/>
+If you have any questions, feel free to ask them in DM or support channel.
 
-### 雑用
+[Dirain1700/rankbot](https://github.com/Dirain1700/rankbot)
 
--   `/ping` (ping 値を測定する。)
--   ` >runjs ```js  ` <br> `JavaScriptをここに` <br> ` ``` ` <br >JavaScript を実行し、結果を返信します。一部使用できない機能があります。
--   `/resgister` [Registering Guide](https://gist.github.com/Dirain1700/f2c01cebe77dc495b6453dbdfa9d23df)
+# Setup
 
-### サーバー管理
+Use Node.js v18.
 
--   `/ban [ユーザー] [日数] [理由]` (運営向け)
--   `/forceban [ユーザーID] [日数] [理由]` (運営向け。BAN するユーザーがサーバーにいない場合。)
--   `/unban [ユーザーID] [理由(任意)]` (運営向け)
--   `/kick [ユーザー] [理由]` (運営向け)
--   `/mute [ユーザー] [時間(0-23)] [分(0-60)] [理由]` (運営向け)
--   `/unmute [ユーザー] [理由]` (運営向け)
--   `/cleartext [ユーザー名] [メッセージ数(指定しない場合は1)]` (運営向け)
--   `/forcecleartext [ユーザー名] [メッセージ数(指定しない場合は1)]` (運営向け)
+```
+git clone https://github.com/Dirain1700/rankbot
 
-### ユーザーのポイント管理
+npm install
 
--   `/apt [点数] [ユーザー名]` (運営向け)<br />
--   `/rank [ユーザー名(任意)]`
+cp config/config-example.ts config/config.ts
+```
 
-## PS
+after modifying config.ts, run `npm start`.
 
-### トーナメント
+# Futures
 
--   `?nt [options]` 指定したオプションでトーナメントを作成します。
-
-#### オプション
-
--   `random` [フォーマット](./showdown/tour/formatnames.js)一覧の中からランダムに選び、トーナメントを開催します。
-
-# 実装予定
-
-上位数人の出力
+None
 
 # LICENSE
 

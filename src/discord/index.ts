@@ -1,9 +1,8 @@
 "use strict";
 
-import type { Message, ChatInputCommandInteraction, BaseInteraction } from "discord.js";
+import type { ChatInputCommandInteraction, BaseInteraction } from "discord.js";
 
 import ready from "./ready";
-import runjs from "./message/runjs";
 const PING = "./interaction/ping";
 const SEND = "./interaction/send";
 const HOTPATCH = "./interaction/hotpatch";
@@ -23,11 +22,6 @@ const RPT = "./interaction/points/rpt";
 
 export default () => {
     discord.on("ready", ready);
-
-    discord.on("messageCreate", (message: Message) => {
-        if (!discord.isReady()) return;
-        if (message.content.startsWith("?runjs")) runjs(message);
-    });
 
     discord.on("interactionCreate", async (interaction: BaseInteraction): Promise<void> => {
         if (!discord.isReady()) return;

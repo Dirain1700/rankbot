@@ -28,9 +28,9 @@ export default async (interaction: ChatInputCommandInteraction<"cached">) => {
         },
     });
 
-    function onMessage(message: Message<unknown>, resolve: (value: void) => void, reject: (value: void) => void): void {
-        if (!message.isUserMessage()) return;
-        if (message.type === "Room" || message.author.id !== userid || !message.content.startsWith("?register ")) return;
+    function onMessage(message: Message, resolve: (value: void) => void, reject: (value: void) => void): void {
+        if (!message.inPm()) return;
+        if (message.author.id !== userid || !message.content.startsWith("?register ")) return;
         const inputUserid = message.content.substring(10).trim().replace(/\D/g, "");
         if (!UserRegex.test(inputUserid) || !discord.users.cache.has(inputUserid))
             return void message.reply("Error: The id of Discord that you input was invalid.");
@@ -40,7 +40,7 @@ export default async (interaction: ChatInputCommandInteraction<"cached">) => {
             );
         if (!message.author.autoconfirmed)
             return void message.reply("Your account is not autoconfirmed account. Try after you got autoconfirmed!\n!faq ac");
-        interaction.member.roles.add(interaction.guild.roles.cache.get(config.acRole) as Role);
+        interaction.member.roles.add(interaction.guild.roles.cache.get(Config.acRole) as Role);
         message.reply("Verifycation sucessed!");
         interaction.member.setNickname(message.author.name, `Register UserName: ${message.author.name}`);
         resolve();
@@ -49,9 +49,9 @@ export default async (interaction: ChatInputCommandInteraction<"cached">) => {
 
     //prettier-ignore
     return new Promise((resolve, reject) => {
-            PS.on("messageCreate", (message: Message<unknown>) => onMessage(message, resolve, reject));
+            PS.on("messageCreate", (message: Message) => onMessage(message, resolve, reject));
         })
-            .then(() => interaction.editReply(`Sucessfully verified your account as "${userid}" and added <@&${config.acRole}> role.`).catch())
+            .then(() => interaction.editReply(`Sucessfully verified your account as "${userid}" and added <@&${Config.acRole}> role.`).catch())
             //eslint-disable-next-line no-empty
             .catch(() => interaction.editReply("Failed to Registration: Timed out!").catch())
             .finally(() => {

@@ -28,6 +28,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Ivysaur"],
         eggGroups: ["Monster", "Grass"],
+        tier: "LC",
     },
     ivysaur: {
         num: 2,
@@ -56,6 +57,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Venusaur"],
         eggGroups: ["Monster", "Grass"],
+        tier: "NFE",
     },
     venusaur: {
         num: 3,
@@ -86,6 +88,9 @@ export const dex: { [id: string]: Species } = {
         otherFormes: ["Venusaur-Mega"],
         formeOrder: ["Venusaur", "Venusaur-Mega"],
         canGigantamax: "G-Max Vine Lash",
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     venusaurmega: {
         num: 3,
@@ -113,6 +118,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         eggGroups: ["Monster", "Grass"],
         requiredItem: "Venusaurite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UUBL",
     },
     venusaurgmax: {
         num: 3,
@@ -141,6 +149,10 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         eggGroups: ["Monster", "Grass"],
         changesFrom: "Venusaur",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     charmander: {
         num: 4,
@@ -167,6 +179,7 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Charmeleon"],
         eggGroups: ["Monster", "Dragon"],
+        tier: "LC",
     },
     charmeleon: {
         num: 5,
@@ -195,6 +208,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Charizard"],
         eggGroups: ["Monster", "Dragon"],
+        tier: "NFE",
     },
     charizard: {
         num: 6,
@@ -225,6 +239,9 @@ export const dex: { [id: string]: Species } = {
         otherFormes: ["Charizard-Mega-X", "Charizard-Mega-Y"],
         formeOrder: ["Charizard", "Charizard-Mega-X", "Charizard-Mega-Y"],
         canGigantamax: "G-Max Wildfire",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     charizardmegax: {
         num: 6,
@@ -252,6 +269,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         eggGroups: ["Monster", "Dragon"],
         requiredItem: "Charizardite X",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "OU",
     },
     charizardmegay: {
         num: 6,
@@ -279,6 +299,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Monster", "Dragon"],
         requiredItem: "Charizardite Y",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "OU",
     },
     charizardgmax: {
         num: 6,
@@ -307,6 +330,10 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Monster", "Dragon"],
         changesFrom: "Charizard",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     squirtle: {
         num: 7,
@@ -333,6 +360,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Wartortle"],
         eggGroups: ["Monster", "Water 1"],
+        tier: "LC",
     },
     wartortle: {
         num: 8,
@@ -361,6 +389,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Blastoise"],
         eggGroups: ["Monster", "Water 1"],
+        tier: "NFE",
     },
     blastoise: {
         num: 9,
@@ -391,6 +420,9 @@ export const dex: { [id: string]: Species } = {
         otherFormes: ["Blastoise-Mega"],
         formeOrder: ["Blastoise", "Blastoise-Mega"],
         canGigantamax: "G-Max Cannonade",
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     blastoisemega: {
         num: 9,
@@ -418,6 +450,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Monster", "Water 1"],
         requiredItem: "Blastoisinite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     blastoisegmax: {
         num: 9,
@@ -446,6 +481,10 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Monster", "Water 1"],
         changesFrom: "Blastoise",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     caterpie: {
         num: 10,
@@ -468,6 +507,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Metapod"],
         eggGroups: ["Bug"],
+        tier: "LC",
     },
     metapod: {
         num: 11,
@@ -491,6 +531,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 7,
         evos: ["Butterfree"],
         eggGroups: ["Bug"],
+        tier: "NFE",
     },
     butterfree: {
         num: 12,
@@ -515,6 +556,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 10,
         eggGroups: ["Bug"],
         canGigantamax: "G-Max Befuddle",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     butterfreegmax: {
         num: 12,
@@ -539,6 +583,10 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         eggGroups: ["Bug"],
         changesFrom: "Butterfree",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     weedle: {
         num: 13,
@@ -561,6 +609,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Kakuna"],
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     kakuna: {
         num: 14,
@@ -584,6 +635,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 7,
         evos: ["Beedrill"],
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     beedrill: {
         num: 15,
@@ -609,6 +663,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Bug"],
         otherFormes: ["Beedrill-Mega"],
         formeOrder: ["Beedrill", "Beedrill-Mega"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     beedrillmega: {
         num: 15,
@@ -632,6 +689,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Bug"],
         requiredItem: "Beedrillite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UU",
     },
     pidgey: {
         num: 16,
@@ -655,6 +715,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Pidgeotto"],
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     pidgeotto: {
         num: 17,
@@ -680,6 +743,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 18,
         evos: ["Pidgeot"],
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     pidgeot: {
         num: 18,
@@ -706,6 +772,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Flying"],
         otherFormes: ["Pidgeot-Mega"],
         formeOrder: ["Pidgeot", "Pidgeot-Mega"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     pidgeotmega: {
         num: 18,
@@ -729,6 +798,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         eggGroups: ["Flying"],
         requiredItem: "Pidgeotite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UU",
     },
     rattata: {
         num: 19,
@@ -754,6 +826,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Rattata-Alola"],
         formeOrder: ["Rattata", "Rattata-Alola"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     rattataalola: {
         num: 19,
@@ -779,6 +854,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         evos: ["Raticate-Alola"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     raticate: {
         num: 20,
@@ -805,6 +883,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Raticate-Alola", "Raticate-Alola-Totem"],
         formeOrder: ["Raticate", "Raticate-Alola", "Raticate-Alola-Totem"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     raticatealola: {
         num: 20,
@@ -831,6 +912,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Rattata-Alola",
         evoLevel: 20,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     raticatealolatotem: {
         num: 20,
@@ -853,6 +937,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 105,
         color: "Black",
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     spearow: {
         num: 21,
@@ -875,6 +962,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Fearow"],
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     fearow: {
         num: 22,
@@ -898,6 +988,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Spearow",
         evoLevel: 20,
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     ekans: {
         num: 23,
@@ -921,6 +1014,9 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Arbok"],
         eggGroups: ["Field", "Dragon"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     arbok: {
         num: 24,
@@ -945,6 +1041,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Ekans",
         evoLevel: 22,
         eggGroups: ["Field", "Dragon"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     pikachu: {
         num: 25,
@@ -1005,6 +1104,7 @@ export const dex: { [id: string]: Species } = {
             "Pikachu-Cosplay",
         ],
         canGigantamax: "G-Max Volt Crash",
+        tier: "NFE",
     },
     pikachucosplay: {
         num: 25,
@@ -1029,6 +1129,8 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Undiscovered"],
         gen: 6,
+        isNonstandard: "Past",
+        tier: "Illegal",
     },
     pikachurockstar: {
         num: 25,
@@ -1054,6 +1156,8 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         changesFrom: "Pikachu-Cosplay",
         gen: 6,
+        isNonstandard: "Past",
+        tier: "Illegal",
     },
     pikachubelle: {
         num: 25,
@@ -1079,6 +1183,8 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         changesFrom: "Pikachu-Cosplay",
         gen: 6,
+        isNonstandard: "Past",
+        tier: "Illegal",
     },
     pikachupopstar: {
         num: 25,
@@ -1104,6 +1210,8 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         changesFrom: "Pikachu-Cosplay",
         gen: 6,
+        isNonstandard: "Past",
+        tier: "Illegal",
     },
     pikachuphd: {
         num: 25,
@@ -1129,6 +1237,8 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         changesFrom: "Pikachu-Cosplay",
         gen: 6,
+        isNonstandard: "Past",
+        tier: "Illegal",
     },
     pikachulibre: {
         num: 25,
@@ -1154,6 +1264,8 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         changesFrom: "Pikachu-Cosplay",
         gen: 6,
+        isNonstandard: "Past",
+        tier: "Illegal",
     },
     pikachuoriginal: {
         num: 25,
@@ -1179,6 +1291,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Undiscovered"],
         gen: 7,
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     pikachuhoenn: {
         num: 25,
@@ -1204,6 +1319,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Undiscovered"],
         gen: 7,
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     pikachusinnoh: {
         num: 25,
@@ -1229,6 +1347,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Undiscovered"],
         gen: 7,
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     pikachuunova: {
         num: 25,
@@ -1254,6 +1375,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Undiscovered"],
         gen: 7,
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     pikachukalos: {
         num: 25,
@@ -1279,6 +1403,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Undiscovered"],
         gen: 7,
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     pikachualola: {
         num: 25,
@@ -1304,6 +1431,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Undiscovered"],
         gen: 7,
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     pikachupartner: {
         num: 25,
@@ -1329,6 +1459,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Undiscovered"],
         gen: 7,
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     pikachustarter: {
         num: 25,
@@ -1352,6 +1485,8 @@ export const dex: { [id: string]: Species } = {
         weightkg: 6,
         color: "Yellow",
         eggGroups: ["Undiscovered"],
+        isNonstandard: "LGPE",
+        tier: "Illegal",
     },
     pikachugmax: {
         num: 25,
@@ -1376,6 +1511,10 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Field", "Fairy"],
         changesFrom: "Pikachu",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     pikachuworld: {
         num: 25,
@@ -1401,6 +1540,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Undiscovered"],
         gen: 8,
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     raichu: {
         num: 26,
@@ -1427,6 +1569,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field", "Fairy"],
         otherFormes: ["Raichu-Alola"],
         formeOrder: ["Raichu", "Raichu-Alola"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     raichualola: {
         num: 26,
@@ -1452,6 +1597,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Thunder Stone",
         eggGroups: ["Field", "Fairy"],
+        tier: "PUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     sandshrew: {
         num: 27,
@@ -1476,6 +1624,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Sandshrew-Alola"],
         formeOrder: ["Sandshrew", "Sandshrew-Alola"],
+        tier: "LC",
     },
     sandshrewalola: {
         num: 27,
@@ -1500,6 +1649,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Sandslash-Alola"],
         eggGroups: ["Field"],
+        tier: "NUBL",
+        doublesTier: "LC",
+        natDexTier: "LC",
     },
     sandslash: {
         num: 28,
@@ -1525,6 +1677,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Sandslash-Alola"],
         formeOrder: ["Sandslash", "Sandslash-Alola"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     sandslashalola: {
         num: 28,
@@ -1551,6 +1706,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Ice Stone",
         eggGroups: ["Field"],
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     nidoranf: {
         num: 29,
@@ -1575,6 +1733,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Nidorina"],
         eggGroups: ["Monster", "Field"],
+        tier: "LC",
     },
     nidorina: {
         num: 30,
@@ -1601,6 +1760,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Nidoqueen"],
         eggGroups: ["Undiscovered"],
+        tier: "NFE",
     },
     nidoqueen: {
         num: 31,
@@ -1627,6 +1787,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Moon Stone",
         eggGroups: ["Undiscovered"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     nidoranm: {
         num: 32,
@@ -1651,6 +1814,7 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Nidorino"],
         eggGroups: ["Monster", "Field"],
+        tier: "LC",
     },
     nidorino: {
         num: 33,
@@ -1677,6 +1841,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Nidoking"],
         eggGroups: ["Monster", "Field"],
+        tier: "NFE",
     },
     nidoking: {
         num: 34,
@@ -1703,6 +1868,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Moon Stone",
         eggGroups: ["Monster", "Field"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     clefairy: {
         num: 35,
@@ -1732,6 +1900,7 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelFriendship",
         evos: ["Clefable"],
         eggGroups: ["Fairy"],
+        tier: "NFE",
     },
     clefable: {
         num: 36,
@@ -1761,6 +1930,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Moon Stone",
         eggGroups: ["Fairy"],
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "OU",
     },
     vulpix: {
         num: 37,
@@ -1789,6 +1961,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Vulpix-Alola"],
         formeOrder: ["Vulpix", "Vulpix-Alola"],
+        tier: "LC",
     },
     vulpixalola: {
         num: 37,
@@ -1817,6 +1990,8 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Ninetales-Alola"],
         eggGroups: ["Field"],
+        tier: "NFE",
+        natDexTier: "LC",
     },
     ninetales: {
         num: 38,
@@ -1847,6 +2022,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Ninetales-Alola"],
         formeOrder: ["Ninetales", "Ninetales-Alola"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     ninetalesalola: {
         num: 38,
@@ -1877,6 +2055,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Ice Stone",
         eggGroups: ["Field"],
+        tier: "OU",
+        doublesTier: "Doubles OU",
+        natDexTier: "RU",
     },
     jigglypuff: {
         num: 39,
@@ -1906,6 +2087,7 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelFriendship",
         evos: ["Wigglytuff"],
         eggGroups: ["Fairy"],
+        tier: "NFE",
     },
     wigglytuff: {
         num: 40,
@@ -1935,6 +2117,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Moon Stone",
         eggGroups: ["Fairy"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     zubat: {
         num: 41,
@@ -1957,6 +2142,7 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Golbat"],
         eggGroups: ["Flying"],
+        tier: "LC",
     },
     golbat: {
         num: 42,
@@ -1981,6 +2167,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 22,
         evos: ["Crobat"],
         eggGroups: ["Flying"],
+        tier: "NFE",
     },
     oddish: {
         num: 43,
@@ -2003,6 +2190,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Gloom"],
         eggGroups: ["Grass"],
+        tier: "LC",
     },
     gloom: {
         num: 44,
@@ -2027,6 +2215,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 21,
         evos: ["Vileplume", "Bellossom"],
         eggGroups: ["Grass"],
+        tier: "NFE",
     },
     vileplume: {
         num: 45,
@@ -2051,6 +2240,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Leaf Stone",
         eggGroups: ["Grass"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     paras: {
         num: 46,
@@ -2074,6 +2266,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Parasect"],
         eggGroups: ["Bug", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     parasect: {
         num: 47,
@@ -2098,6 +2293,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Paras",
         evoLevel: 24,
         eggGroups: ["Bug", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     venonat: {
         num: 48,
@@ -2121,6 +2319,9 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Venomoth"],
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     venomoth: {
         num: 49,
@@ -2145,6 +2346,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Venonat",
         evoLevel: 31,
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RUBL",
     },
     diglett: {
         num: 50,
@@ -2170,6 +2374,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Diglett-Alola"],
         formeOrder: ["Diglett", "Diglett-Alola"],
+        tier: "LC",
     },
     diglettalola: {
         num: 50,
@@ -2195,6 +2400,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Dugtrio-Alola"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     dugtrio: {
         num: 51,
@@ -2221,6 +2427,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Dugtrio-Alola"],
         formeOrder: ["Dugtrio", "Dugtrio-Alola"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     dugtrioalola: {
         num: 51,
@@ -2247,6 +2456,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Diglett-Alola",
         evoLevel: 26,
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     meowth: {
         num: 52,
@@ -2273,6 +2485,7 @@ export const dex: { [id: string]: Species } = {
         otherFormes: ["Meowth-Alola", "Meowth-Galar"],
         formeOrder: ["Meowth", "Meowth-Alola", "Meowth-Galar"],
         canGigantamax: "G-Max Gold Rush",
+        tier: "LC",
     },
     meowthalola: {
         num: 52,
@@ -2298,6 +2511,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Persian-Alola"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     meowthgalar: {
         num: 52,
@@ -2323,6 +2537,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Perrserker"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     meowthgmax: {
         num: 52,
@@ -2348,6 +2563,10 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Field"],
         changesFrom: "Meowth",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     persian: {
         num: 53,
@@ -2374,6 +2593,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Persian-Alola"],
         formeOrder: ["Persian", "Persian-Alola"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     persianalola: {
         num: 53,
@@ -2400,6 +2622,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Meowth-Alola",
         evoType: "levelFriendship",
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     psyduck: {
         num: 54,
@@ -2423,6 +2648,7 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         evos: ["Golduck"],
         eggGroups: ["Water 1", "Field"],
+        tier: "LC",
     },
     golduck: {
         num: 55,
@@ -2447,6 +2673,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Psyduck",
         evoLevel: 33,
         eggGroups: ["Water 1", "Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     mankey: {
         num: 56,
@@ -2470,6 +2699,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Primeape"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     primeape: {
         num: 57,
@@ -2494,6 +2726,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Mankey",
         evoLevel: 28,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     growlithe: {
         num: 58,
@@ -2521,6 +2756,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Arcanine"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     arcanine: {
         num: 59,
@@ -2550,6 +2786,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Fire Stone",
         eggGroups: ["Field"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     poliwag: {
         num: 60,
@@ -2573,6 +2812,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Poliwhirl"],
         eggGroups: ["Water 1"],
+        tier: "LC",
     },
     poliwhirl: {
         num: 61,
@@ -2598,6 +2838,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 25,
         evos: ["Poliwrath", "Politoed"],
         eggGroups: ["Water 1"],
+        tier: "NFE",
     },
     poliwrath: {
         num: 62,
@@ -2623,6 +2864,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Water Stone",
         eggGroups: ["Water 1"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     abra: {
         num: 63,
@@ -2650,6 +2894,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Kadabra"],
         eggGroups: ["Human-Like"],
+        tier: "LC",
     },
     kadabra: {
         num: 64,
@@ -2679,6 +2924,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Alakazam"],
         eggGroups: ["Human-Like"],
+        tier: "NFE",
     },
     alakazam: {
         num: 65,
@@ -2709,6 +2955,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Human-Like"],
         otherFormes: ["Alakazam-Mega"],
         formeOrder: ["Alakazam", "Alakazam-Mega"],
+        tier: "UUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "UUBL",
     },
     alakazammega: {
         num: 65,
@@ -2736,6 +2985,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         eggGroups: ["Human-Like"],
         requiredItem: "Alakazite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     machop: {
         num: 66,
@@ -2763,6 +3015,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Machoke"],
         eggGroups: ["Human-Like"],
+        tier: "LC",
     },
     machoke: {
         num: 67,
@@ -2792,6 +3045,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 28,
         evos: ["Machamp"],
         eggGroups: ["Human-Like"],
+        tier: "NFE",
     },
     machamp: {
         num: 68,
@@ -2821,6 +3075,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "trade",
         eggGroups: ["Human-Like"],
         canGigantamax: "G-Max Chi Strike",
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     machampgmax: {
         num: 68,
@@ -2850,6 +3107,10 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         eggGroups: ["Human-Like"],
         changesFrom: "Machamp",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     bellsprout: {
         num: 69,
@@ -2872,6 +3133,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Weepinbell"],
         eggGroups: ["Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     weepinbell: {
         num: 70,
@@ -2896,6 +3160,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 21,
         evos: ["Victreebel"],
         eggGroups: ["Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     victreebel: {
         num: 71,
@@ -2920,6 +3187,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Leaf Stone",
         eggGroups: ["Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     tentacool: {
         num: 72,
@@ -2943,6 +3213,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Tentacruel"],
         eggGroups: ["Water 3"],
+        tier: "LC",
     },
     tentacruel: {
         num: 73,
@@ -2967,6 +3238,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Tentacool",
         evoLevel: 30,
         eggGroups: ["Water 3"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     geodude: {
         num: 74,
@@ -2992,6 +3266,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Mineral"],
         otherFormes: ["Geodude-Alola"],
         formeOrder: ["Geodude", "Geodude-Alola"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     geodudealola: {
         num: 74,
@@ -3017,6 +3294,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Graveler-Alola"],
         eggGroups: ["Mineral"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     graveler: {
         num: 75,
@@ -3044,6 +3324,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Mineral"],
         otherFormes: ["Graveler-Alola"],
         formeOrder: ["Graveler", "Graveler-Alola"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     graveleralola: {
         num: 75,
@@ -3071,6 +3354,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 25,
         evos: ["Golem-Alola"],
         eggGroups: ["Mineral"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     golem: {
         num: 76,
@@ -3097,6 +3383,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Mineral"],
         otherFormes: ["Golem-Alola"],
         formeOrder: ["Golem", "Golem-Alola"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     golemalola: {
         num: 76,
@@ -3123,6 +3412,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Graveler-Alola",
         evoType: "trade",
         eggGroups: ["Mineral"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     ponyta: {
         num: 77,
@@ -3148,6 +3440,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Ponyta-Galar"],
         formeOrder: ["Ponyta", "Ponyta-Galar"],
+        tier: "LC",
     },
     ponytagalar: {
         num: 77,
@@ -3173,6 +3466,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Rapidash-Galar"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     rapidash: {
         num: 78,
@@ -3199,6 +3493,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Rapidash-Galar"],
         formeOrder: ["Rapidash", "Rapidash-Galar"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     rapidashgalar: {
         num: 78,
@@ -3225,6 +3522,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Ponyta-Galar",
         evoLevel: 40,
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     slowpoke: {
         num: 79,
@@ -3250,6 +3550,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Monster", "Water 1"],
         otherFormes: ["Slowpoke-Galar"],
         formeOrder: ["Slowpoke", "Slowpoke-Galar"],
+        tier: "LC",
     },
     slowpokegalar: {
         num: 79,
@@ -3275,6 +3576,7 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         evos: ["Slowbro-Galar", "Slowking-Galar"],
         eggGroups: ["Monster", "Water 1"],
+        tier: "LC",
     },
     slowbro: {
         num: 80,
@@ -3301,6 +3603,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Monster", "Water 1"],
         otherFormes: ["Slowbro-Mega", "Slowbro-Galar"],
         formeOrder: ["Slowbro", "Slowbro-Mega", "Slowbro-Galar"],
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "OU",
     },
     slowbromega: {
         num: 80,
@@ -3324,6 +3629,9 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         eggGroups: ["Monster", "Water 1"],
         requiredItem: "Slowbronite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UUBL",
     },
     slowbrogalar: {
         num: 80,
@@ -3351,6 +3659,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Galarica Cuff",
         eggGroups: ["Monster", "Water 1"],
+        tier: "RUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     magnemite: {
         num: 81,
@@ -3375,6 +3686,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Magneton"],
         eggGroups: ["Mineral"],
+        tier: "LC",
     },
     magneton: {
         num: 82,
@@ -3401,6 +3713,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 30,
         evos: ["Magnezone"],
         eggGroups: ["Mineral"],
+        tier: "PU",
+        doublesTier: "NFE",
+        natDexTier: "NFE",
     },
     farfetchd: {
         num: 83,
@@ -3425,6 +3740,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Flying", "Field"],
         otherFormes: ["Farfetch’d-Galar"],
         formeOrder: ["Farfetch’d", "Farfetch’d-Galar"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     farfetchdgalar: {
         num: 83,
@@ -3449,6 +3767,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Sirfetch’d"],
         eggGroups: ["Flying", "Field"],
+        tier: "LC",
     },
     doduo: {
         num: 84,
@@ -3472,6 +3791,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Dodrio"],
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     dodrio: {
         num: 85,
@@ -3496,6 +3818,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Doduo",
         evoLevel: 31,
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     seel: {
         num: 86,
@@ -3519,6 +3844,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Dewgong"],
         eggGroups: ["Water 1", "Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     dewgong: {
         num: 87,
@@ -3543,6 +3871,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Seel",
         evoLevel: 34,
         eggGroups: ["Water 1", "Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     grimer: {
         num: 88,
@@ -3568,6 +3899,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Amorphous"],
         otherFormes: ["Grimer-Alola"],
         formeOrder: ["Grimer", "Grimer-Alola"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     grimeralola: {
         num: 88,
@@ -3593,6 +3927,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Muk-Alola"],
         eggGroups: ["Amorphous"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     muk: {
         num: 89,
@@ -3619,6 +3956,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Amorphous"],
         otherFormes: ["Muk-Alola"],
         formeOrder: ["Muk", "Muk-Alola"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     mukalola: {
         num: 89,
@@ -3645,6 +3985,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Grimer-Alola",
         evoLevel: 38,
         eggGroups: ["Amorphous"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     shellder: {
         num: 90,
@@ -3668,6 +4011,7 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Cloyster"],
         eggGroups: ["Water 3"],
+        tier: "LC",
     },
     cloyster: {
         num: 91,
@@ -3693,6 +4037,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Water Stone",
         eggGroups: ["Water 3"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     gastly: {
         num: 92,
@@ -3714,6 +4061,8 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Haunter"],
         eggGroups: ["Amorphous"],
+        tier: "NFE",
+        natDexTier: "LC",
     },
     haunter: {
         num: 93,
@@ -3737,6 +4086,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 25,
         evos: ["Gengar"],
         eggGroups: ["Amorphous"],
+        tier: "NFE",
     },
     gengar: {
         num: 94,
@@ -3762,6 +4112,9 @@ export const dex: { [id: string]: Species } = {
         otherFormes: ["Gengar-Mega"],
         formeOrder: ["Gengar", "Gengar-Mega"],
         canGigantamax: "G-Max Terror",
+        tier: "UUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "UUBL",
     },
     gengarmega: {
         num: 94,
@@ -3785,6 +4138,9 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         eggGroups: ["Amorphous"],
         requiredItem: "Gengarite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     gengargmax: {
         num: 94,
@@ -3808,6 +4164,10 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         eggGroups: ["Amorphous"],
         changesFrom: "Gengar",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     onix: {
         num: 95,
@@ -3831,6 +4191,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Steelix"],
         eggGroups: ["Mineral"],
+        tier: "LC",
     },
     drowzee: {
         num: 96,
@@ -3854,6 +4215,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         evos: ["Hypno"],
         eggGroups: ["Human-Like"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     hypno: {
         num: 97,
@@ -3878,6 +4242,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Drowzee",
         evoLevel: 26,
         eggGroups: ["Human-Like"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     krabby: {
         num: 98,
@@ -3901,6 +4268,7 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Kingler"],
         eggGroups: ["Water 3"],
+        tier: "LC",
     },
     kingler: {
         num: 99,
@@ -3926,6 +4294,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 28,
         eggGroups: ["Water 3"],
         canGigantamax: "G-Max Foam Burst",
+        tier: "PUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     kinglergmax: {
         num: 99,
@@ -3951,6 +4322,10 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Water 3"],
         changesFrom: "Kingler",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     voltorb: {
         num: 100,
@@ -3975,6 +4350,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Electrode"],
         eggGroups: ["Mineral"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     electrode: {
         num: 101,
@@ -4000,6 +4378,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Voltorb",
         evoLevel: 30,
         eggGroups: ["Mineral"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     exeggcute: {
         num: 102,
@@ -4022,6 +4403,7 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         evos: ["Exeggutor", "Exeggutor-Alola"],
         eggGroups: ["Grass"],
+        tier: "LC",
     },
     exeggutor: {
         num: 103,
@@ -4048,6 +4430,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Grass"],
         otherFormes: ["Exeggutor-Alola"],
         formeOrder: ["Exeggutor", "Exeggutor-Alola"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     exeggutoralola: {
         num: 103,
@@ -4074,6 +4459,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Leaf Stone",
         eggGroups: ["Grass"],
+        tier: "PUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     cubone: {
         num: 104,
@@ -4097,6 +4485,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Marowak", "Marowak-Alola"],
         eggGroups: ["Monster"],
+        tier: "LC",
     },
     marowak: {
         num: 105,
@@ -4123,6 +4512,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Monster"],
         otherFormes: ["Marowak-Alola", "Marowak-Alola-Totem"],
         formeOrder: ["Marowak", "Marowak-Alola", "Marowak-Alola-Totem"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     marowakalola: {
         num: 105,
@@ -4149,6 +4541,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Cubone",
         evoLevel: 28,
         eggGroups: ["Monster"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     marowakalolatotem: {
         num: 105,
@@ -4171,6 +4566,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 98,
         color: "Purple",
         eggGroups: ["Monster"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     hitmonlee: {
         num: 106,
@@ -4197,6 +4595,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 20,
         evoCondition: "with an Atk stat > its Def stat",
         eggGroups: ["Human-Like"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     hitmonchan: {
         num: 107,
@@ -4223,6 +4624,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 20,
         evoCondition: "with an Atk stat < its Def stat",
         eggGroups: ["Human-Like"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     lickitung: {
         num: 108,
@@ -4246,6 +4650,7 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         evos: ["Lickilicky"],
         eggGroups: ["Monster"],
+        tier: "LC",
     },
     koffing: {
         num: 109,
@@ -4269,6 +4674,7 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Weezing", "Weezing-Galar"],
         eggGroups: ["Amorphous"],
+        tier: "LC",
     },
     weezing: {
         num: 110,
@@ -4295,6 +4701,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Amorphous"],
         otherFormes: ["Weezing-Galar"],
         formeOrder: ["Weezing", "Weezing-Galar"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     weezinggalar: {
         num: 110,
@@ -4321,6 +4730,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Koffing",
         evoLevel: 35,
         eggGroups: ["Amorphous"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     rhyhorn: {
         num: 111,
@@ -4344,6 +4756,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Rhydon"],
         eggGroups: ["Monster", "Field"],
+        tier: "LC",
     },
     rhydon: {
         num: 112,
@@ -4369,6 +4782,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 42,
         evos: ["Rhyperior"],
         eggGroups: ["Monster", "Field"],
+        tier: "NFE",
     },
     chansey: {
         num: 113,
@@ -4398,6 +4812,9 @@ export const dex: { [id: string]: Species } = {
         evos: ["Blissey"],
         eggGroups: ["Fairy"],
         canHatch: true,
+        tier: "UU",
+        doublesTier: "NFE",
+        natDexTier: "OU",
     },
     tangela: {
         num: 114,
@@ -4421,6 +4838,8 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Tangrowth"],
         eggGroups: ["Grass"],
+        tier: "NFE",
+        natDexTier: "LC",
     },
     kangaskhan: {
         num: 115,
@@ -4446,6 +4865,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Monster"],
         otherFormes: ["Kangaskhan-Mega"],
         formeOrder: ["Kangaskhan", "Kangaskhan-Mega"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     kangaskhanmega: {
         num: 115,
@@ -4470,6 +4892,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         eggGroups: ["Monster"],
         requiredItem: "Kangaskhanite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     horsea: {
         num: 116,
@@ -4493,6 +4918,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Seadra"],
         eggGroups: ["Water 1", "Dragon"],
+        tier: "LC",
     },
     seadra: {
         num: 117,
@@ -4518,6 +4944,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 32,
         evos: ["Kingdra"],
         eggGroups: ["Water 1", "Dragon"],
+        tier: "NFE",
     },
     goldeen: {
         num: 118,
@@ -4541,6 +4968,7 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Seaking"],
         eggGroups: ["Water 2"],
+        tier: "LC",
     },
     seaking: {
         num: 119,
@@ -4565,6 +4993,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Goldeen",
         evoLevel: 33,
         eggGroups: ["Water 2"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     staryu: {
         num: 120,
@@ -4589,6 +5020,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Starmie"],
         eggGroups: ["Water 3"],
+        tier: "LC",
     },
     starmie: {
         num: 121,
@@ -4615,6 +5047,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Water Stone",
         eggGroups: ["Water 3"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     mrmime: {
         num: 122,
@@ -4643,6 +5078,9 @@ export const dex: { [id: string]: Species } = {
         canHatch: true,
         otherFormes: ["Mr. Mime-Galar"],
         formeOrder: ["Mr. Mime", "Mr. Mime-Galar"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     mrmimegalar: {
         num: 122,
@@ -4672,6 +5110,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Mr. Rime"],
         eggGroups: ["Human-Like"],
         canHatch: true,
+        tier: "NFE",
     },
     scyther: {
         num: 123,
@@ -4695,6 +5134,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Scizor"],
         eggGroups: ["Bug"],
+        tier: "PUBL",
+        doublesTier: "NFE",
+        natDexTier: "LC",
     },
     jynx: {
         num: 124,
@@ -4720,6 +5162,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Smoochum",
         evoLevel: 30,
         eggGroups: ["Human-Like"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     electabuzz: {
         num: 125,
@@ -4748,6 +5193,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 30,
         evos: ["Electivire"],
         eggGroups: ["Human-Like"],
+        tier: "NFE",
     },
     magmar: {
         num: 126,
@@ -4776,6 +5222,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 30,
         evos: ["Magmortar"],
         eggGroups: ["Human-Like"],
+        tier: "NFE",
     },
     pinsir: {
         num: 127,
@@ -4800,6 +5247,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Bug"],
         otherFormes: ["Pinsir-Mega"],
         formeOrder: ["Pinsir", "Pinsir-Mega"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     pinsirmega: {
         num: 127,
@@ -4823,6 +5273,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         eggGroups: ["Bug"],
         requiredItem: "Pinsirite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UUBL",
     },
     tauros: {
         num: 128,
@@ -4846,6 +5299,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 88.4,
         color: "Brown",
         eggGroups: ["Field"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     magikarp: {
         num: 129,
@@ -4868,6 +5324,7 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Gyarados"],
         eggGroups: ["Water 2", "Dragon"],
+        tier: "LC",
     },
     gyarados: {
         num: 130,
@@ -4893,6 +5350,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Water 2", "Dragon"],
         otherFormes: ["Gyarados-Mega"],
         formeOrder: ["Gyarados", "Gyarados-Mega"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UUBL",
     },
     gyaradosmega: {
         num: 130,
@@ -4916,6 +5376,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Water 2", "Dragon"],
         requiredItem: "Gyaradosite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UUBL",
     },
     lapras: {
         num: 131,
@@ -4939,6 +5402,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Monster", "Water 1"],
         canGigantamax: "G-Max Resonance",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     laprasgmax: {
         num: 131,
@@ -4964,6 +5430,10 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Monster", "Water 1"],
         changesFrom: "Lapras",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     ditto: {
         num: 132,
@@ -4986,6 +5456,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 4,
         color: "Purple",
         eggGroups: ["Ditto"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     eevee: {
         num: 133,
@@ -5011,11 +5484,21 @@ export const dex: { [id: string]: Species } = {
         heightm: 0.3,
         weightkg: 6.5,
         color: "Brown",
-        evos: ["Vaporeon", "Jolteon", "Flareon", "Espeon", "Umbreon", "Leafeon", "Glaceon", "Sylveon"],
+        evos: [
+            "Vaporeon",
+            "Jolteon",
+            "Flareon",
+            "Espeon",
+            "Umbreon",
+            "Leafeon",
+            "Glaceon",
+            "Sylveon",
+        ],
         eggGroups: ["Field"],
         otherFormes: ["Eevee-Starter"],
         formeOrder: ["Eevee", "Eevee-Starter"],
         canGigantamax: "G-Max Cuddle",
+        tier: "LC",
     },
     eeveestarter: {
         num: 133,
@@ -5044,6 +5527,8 @@ export const dex: { [id: string]: Species } = {
         weightkg: 6.5,
         color: "Brown",
         eggGroups: ["Undiscovered"],
+        isNonstandard: "LGPE",
+        tier: "Illegal",
     },
     eeveegmax: {
         num: 133,
@@ -5073,6 +5558,10 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         eggGroups: ["Field"],
         changesFrom: "Eevee",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     vaporeon: {
         num: 134,
@@ -5101,6 +5590,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Water Stone",
         eggGroups: ["Field"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     jolteon: {
         num: 135,
@@ -5129,6 +5621,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Thunder Stone",
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     flareon: {
         num: 136,
@@ -5157,6 +5652,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Fire Stone",
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     porygon: {
         num: 137,
@@ -5181,6 +5679,7 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         evos: ["Porygon2"],
         eggGroups: ["Mineral"],
+        tier: "LC",
     },
     omanyte: {
         num: 138,
@@ -5208,6 +5707,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Omastar"],
         eggGroups: ["Water 1", "Water 3"],
+        tier: "LC",
     },
     omastar: {
         num: 139,
@@ -5236,6 +5736,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Omanyte",
         evoLevel: 40,
         eggGroups: ["Water 1", "Water 3"],
+        tier: "PUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     kabuto: {
         num: 140,
@@ -5263,6 +5766,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Kabutops"],
         eggGroups: ["Water 1", "Water 3"],
+        tier: "LC",
     },
     kabutops: {
         num: 141,
@@ -5291,6 +5795,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Kabuto",
         evoLevel: 40,
         eggGroups: ["Water 1", "Water 3"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     aerodactyl: {
         num: 142,
@@ -5319,6 +5826,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Flying"],
         otherFormes: ["Aerodactyl-Mega"],
         formeOrder: ["Aerodactyl", "Aerodactyl-Mega"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     aerodactylmega: {
         num: 142,
@@ -5346,6 +5856,9 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         eggGroups: ["Flying"],
         requiredItem: "Aerodactylite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UUBL",
     },
     snorlax: {
         num: 143,
@@ -5376,6 +5889,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Monster"],
         canHatch: true,
         canGigantamax: "G-Max Replenish",
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     snorlaxgmax: {
         num: 143,
@@ -5405,6 +5921,10 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         eggGroups: ["Monster"],
         changesFrom: "Snorlax",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     articuno: {
         num: 144,
@@ -5430,6 +5950,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         otherFormes: ["Articuno-Galar"],
         formeOrder: ["Articuno", "Articuno-Galar"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     articunogalar: {
         num: 144,
@@ -5453,6 +5976,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 50.9,
         color: "Purple",
         eggGroups: ["Undiscovered"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     zapdos: {
         num: 145,
@@ -5478,6 +6004,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         otherFormes: ["Zapdos-Galar"],
         formeOrder: ["Zapdos", "Zapdos-Galar"],
+        tier: "OU",
+        doublesTier: "Doubles OU",
+        natDexTier: "OU",
     },
     zapdosgalar: {
         num: 145,
@@ -5501,6 +6030,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 58.2,
         color: "Yellow",
         eggGroups: ["Undiscovered"],
+        tier: "UUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "UUBL",
     },
     moltres: {
         num: 146,
@@ -5526,6 +6058,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         otherFormes: ["Moltres-Galar"],
         formeOrder: ["Moltres", "Moltres-Galar"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     moltresgalar: {
         num: 146,
@@ -5549,6 +6084,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 66,
         color: "Red",
         eggGroups: ["Undiscovered"],
+        tier: "UUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "UUBL",
     },
     dratini: {
         num: 147,
@@ -5571,6 +6109,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Dragonair"],
         eggGroups: ["Water 1", "Dragon"],
+        tier: "LC",
     },
     dragonair: {
         num: 148,
@@ -5595,6 +6134,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 30,
         evos: ["Dragonite"],
         eggGroups: ["Water 1", "Dragon"],
+        tier: "NFE",
     },
     dragonite: {
         num: 149,
@@ -5618,6 +6158,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Dragonair",
         evoLevel: 55,
         eggGroups: ["Water 1", "Dragon"],
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     mewtwo: {
         num: 150,
@@ -5643,6 +6186,9 @@ export const dex: { [id: string]: Species } = {
         tags: ["Restricted Legendary"],
         otherFormes: ["Mewtwo-Mega-X", "Mewtwo-Mega-Y"],
         formeOrder: ["Mewtwo", "Mewtwo-Mega-X", "Mewtwo-Mega-Y"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     mewtwomegax: {
         num: 150,
@@ -5667,6 +6213,9 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         eggGroups: ["Undiscovered"],
         requiredItem: "Mewtwonite X",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     mewtwomegay: {
         num: 150,
@@ -5691,6 +6240,9 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         eggGroups: ["Undiscovered"],
         requiredItem: "Mewtwonite Y",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     mew: {
         num: 151,
@@ -5713,6 +6265,9 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         tags: ["Mythical"],
         eggGroups: ["Undiscovered"],
+        tier: "OU",
+        doublesTier: "Doubles OU",
+        natDexTier: "UUBL",
     },
     chikorita: {
         num: 152,
@@ -5739,6 +6294,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Bayleef"],
         eggGroups: ["Monster", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     bayleef: {
         num: 153,
@@ -5767,6 +6325,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Meganium"],
         eggGroups: ["Monster", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     meganium: {
         num: 154,
@@ -5794,6 +6355,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Bayleef",
         evoLevel: 32,
         eggGroups: ["Monster", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     cyndaquil: {
         num: 155,
@@ -5820,6 +6384,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         evos: ["Quilava"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     quilava: {
         num: 156,
@@ -5848,6 +6415,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 14,
         evos: ["Typhlosion"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     typhlosion: {
         num: 157,
@@ -5875,6 +6445,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Quilava",
         evoLevel: 36,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     totodile: {
         num: 158,
@@ -5901,6 +6474,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Croconaw"],
         eggGroups: ["Monster", "Water 1"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     croconaw: {
         num: 159,
@@ -5929,6 +6505,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 18,
         evos: ["Feraligatr"],
         eggGroups: ["Monster", "Water 1"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     feraligatr: {
         num: 160,
@@ -5956,6 +6535,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Croconaw",
         evoLevel: 30,
         eggGroups: ["Monster", "Water 1"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     sentret: {
         num: 161,
@@ -5979,6 +6561,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Furret"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     furret: {
         num: 162,
@@ -6003,6 +6588,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Sentret",
         evoLevel: 15,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     hoothoot: {
         num: 163,
@@ -6026,6 +6614,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Noctowl"],
         eggGroups: ["Flying"],
+        tier: "LC",
     },
     noctowl: {
         num: 164,
@@ -6050,6 +6639,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Hoothoot",
         evoLevel: 20,
         eggGroups: ["Flying"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     ledyba: {
         num: 165,
@@ -6073,6 +6665,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Ledian"],
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     ledian: {
         num: 166,
@@ -6097,6 +6692,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Ledyba",
         evoLevel: 18,
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     spinarak: {
         num: 167,
@@ -6120,6 +6718,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Ariados"],
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     ariados: {
         num: 168,
@@ -6144,6 +6745,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Spinarak",
         evoLevel: 22,
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     crobat: {
         num: 169,
@@ -6167,6 +6771,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Golbat",
         evoType: "levelFriendship",
         eggGroups: ["Flying"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     chinchou: {
         num: 170,
@@ -6190,6 +6797,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Lanturn"],
         eggGroups: ["Water 2"],
+        tier: "LC",
     },
     lanturn: {
         num: 171,
@@ -6214,6 +6822,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Chinchou",
         evoLevel: 27,
         eggGroups: ["Water 2"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     pichu: {
         num: 172,
@@ -6239,6 +6850,7 @@ export const dex: { [id: string]: Species } = {
         canHatch: true,
         otherFormes: ["Pichu-Spiky-eared"],
         formeOrder: ["Pichu", "Pichu-Spiky-eared"],
+        tier: "LC",
     },
     pichuspikyeared: {
         num: 172,
@@ -6262,6 +6874,8 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Undiscovered"],
         gen: 4,
+        isNonstandard: "Past",
+        tier: "Illegal",
     },
     cleffa: {
         num: 173,
@@ -6290,6 +6904,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Clefairy"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "LC",
     },
     igglybuff: {
         num: 174,
@@ -6318,6 +6933,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Jigglypuff"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "LC",
     },
     togepi: {
         num: 175,
@@ -6346,6 +6962,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Togetic"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "LC",
     },
     togetic: {
         num: 176,
@@ -6375,6 +6992,7 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelFriendship",
         evos: ["Togekiss"],
         eggGroups: ["Flying", "Fairy"],
+        tier: "NFE",
     },
     natu: {
         num: 177,
@@ -6398,6 +7016,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Xatu"],
         eggGroups: ["Flying"],
+        tier: "LC",
     },
     xatu: {
         num: 178,
@@ -6422,6 +7041,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Natu",
         evoLevel: 25,
         eggGroups: ["Flying"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     mareep: {
         num: 179,
@@ -6444,6 +7066,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Flaaffy"],
         eggGroups: ["Monster", "Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     flaaffy: {
         num: 180,
@@ -6468,6 +7093,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 15,
         evos: ["Ampharos"],
         eggGroups: ["Monster", "Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     ampharos: {
         num: 181,
@@ -6493,6 +7121,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Monster", "Field"],
         otherFormes: ["Ampharos-Mega"],
         formeOrder: ["Ampharos", "Ampharos-Mega"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     ampharosmega: {
         num: 181,
@@ -6516,6 +7147,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Monster", "Field"],
         requiredItem: "Ampharosite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     bellossom: {
         num: 182,
@@ -6540,6 +7174,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Sun Stone",
         eggGroups: ["Grass"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     marill: {
         num: 183,
@@ -6566,6 +7203,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Azumarill"],
         eggGroups: ["Water 1", "Fairy"],
         canHatch: true,
+        tier: "NFE",
     },
     azumarill: {
         num: 184,
@@ -6590,6 +7228,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Marill",
         evoLevel: 18,
         eggGroups: ["Water 1", "Fairy"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     sudowoodo: {
         num: 185,
@@ -6616,6 +7257,9 @@ export const dex: { [id: string]: Species } = {
         evoMove: "Mimic",
         eggGroups: ["Mineral"],
         canHatch: true,
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     politoed: {
         num: 186,
@@ -6641,6 +7285,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "trade",
         evoItem: "King's Rock",
         eggGroups: ["Water 1"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     hoppip: {
         num: 187,
@@ -6664,6 +7311,9 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         evos: ["Skiploom"],
         eggGroups: ["Fairy", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     skiploom: {
         num: 188,
@@ -6689,6 +7339,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 18,
         evos: ["Jumpluff"],
         eggGroups: ["Fairy", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     jumpluff: {
         num: 189,
@@ -6713,6 +7366,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Skiploom",
         evoLevel: 27,
         eggGroups: ["Fairy", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     aipom: {
         num: 190,
@@ -6736,6 +7392,9 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Ambipom"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     sunkern: {
         num: 191,
@@ -6759,6 +7418,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         evos: ["Sunflora"],
         eggGroups: ["Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     sunflora: {
         num: 192,
@@ -6784,6 +7446,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Sun Stone",
         eggGroups: ["Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     yanma: {
         num: 193,
@@ -6807,6 +7472,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Yanmega"],
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     wooper: {
         num: 194,
@@ -6830,6 +7498,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Quagsire"],
         eggGroups: ["Water 1", "Field"],
+        tier: "LC",
     },
     quagsire: {
         num: 195,
@@ -6854,6 +7523,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Wooper",
         evoLevel: 20,
         eggGroups: ["Water 1", "Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     espeon: {
         num: 196,
@@ -6882,6 +7554,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelFriendship",
         evoCondition: "during the day",
         eggGroups: ["Field"],
+        tier: "PUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     umbreon: {
         num: 197,
@@ -6910,6 +7585,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelFriendship",
         evoCondition: "at night",
         eggGroups: ["Field"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     murkrow: {
         num: 198,
@@ -6933,6 +7611,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         evos: ["Honchkrow"],
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     slowking: {
         num: 199,
@@ -6960,6 +7641,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Monster", "Water 1"],
         otherFormes: ["Slowking-Galar"],
         formeOrder: ["Slowking", "Slowking-Galar"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     slowkinggalar: {
         num: 199,
@@ -6987,6 +7671,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Galarica Wreath",
         eggGroups: ["Monster", "Water 1"],
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UUBL",
     },
     misdreavus: {
         num: 200,
@@ -7008,6 +7695,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Mismagius"],
         eggGroups: ["Amorphous"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     unown: {
         num: 201,
@@ -7089,6 +7779,9 @@ export const dex: { [id: string]: Species } = {
             "Unown-Exclamation",
             "Unown-Question",
         ],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     wobbuffet: {
         num: 202,
@@ -7113,6 +7806,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 15,
         eggGroups: ["Amorphous"],
         canHatch: true,
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     girafarig: {
         num: 203,
@@ -7135,6 +7831,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 41.5,
         color: "Yellow",
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     pineco: {
         num: 204,
@@ -7157,6 +7856,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Forretress"],
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     forretress: {
         num: 205,
@@ -7180,6 +7882,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Pineco",
         evoLevel: 31,
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     dunsparce: {
         num: 206,
@@ -7202,6 +7907,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 14,
         color: "Yellow",
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     gligar: {
         num: 207,
@@ -7225,6 +7933,9 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Gliscor"],
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     steelix: {
         num: 208,
@@ -7252,6 +7963,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Mineral"],
         otherFormes: ["Steelix-Mega"],
         formeOrder: ["Steelix", "Steelix-Mega"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     steelixmega: {
         num: 208,
@@ -7275,6 +7989,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         eggGroups: ["Mineral"],
         requiredItem: "Steelixite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     snubbull: {
         num: 209,
@@ -7302,6 +8019,9 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         evos: ["Granbull"],
         eggGroups: ["Field", "Fairy"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     granbull: {
         num: 210,
@@ -7330,6 +8050,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Snubbull",
         evoLevel: 23,
         eggGroups: ["Field", "Fairy"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     qwilfish: {
         num: 211,
@@ -7352,6 +8075,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 3.9,
         color: "Gray",
         eggGroups: ["Water 2"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     scizor: {
         num: 212,
@@ -7379,6 +8105,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Bug"],
         otherFormes: ["Scizor-Mega"],
         formeOrder: ["Scizor", "Scizor-Mega"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     scizormega: {
         num: 212,
@@ -7402,6 +8131,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Bug"],
         requiredItem: "Scizorite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "OU",
     },
     shuckle: {
         num: 213,
@@ -7424,6 +8156,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 20.5,
         color: "Yellow",
         eggGroups: ["Bug"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     heracross: {
         num: 214,
@@ -7448,6 +8183,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Bug"],
         otherFormes: ["Heracross-Mega"],
         formeOrder: ["Heracross", "Heracross-Mega"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     heracrossmega: {
         num: 214,
@@ -7471,6 +8209,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Bug"],
         requiredItem: "Heracronite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UUBL",
     },
     sneasel: {
         num: 215,
@@ -7494,6 +8235,8 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         evos: ["Weavile"],
         eggGroups: ["Field"],
+        tier: "NFE",
+        natDexTier: "LC",
     },
     teddiursa: {
         num: 216,
@@ -7517,6 +8260,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Ursaring"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     ursaring: {
         num: 217,
@@ -7541,6 +8287,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Teddiursa",
         evoLevel: 30,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     slugma: {
         num: 218,
@@ -7564,6 +8313,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Magcargo"],
         eggGroups: ["Amorphous"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     magcargo: {
         num: 219,
@@ -7588,6 +8340,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Slugma",
         evoLevel: 38,
         eggGroups: ["Amorphous"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     swinub: {
         num: 220,
@@ -7611,6 +8366,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Piloswine"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     piloswine: {
         num: 221,
@@ -7636,6 +8392,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 33,
         evos: ["Mamoswine"],
         eggGroups: ["Field"],
+        tier: "NFE",
     },
     corsola: {
         num: 222,
@@ -7664,6 +8421,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Water 1", "Water 3"],
         otherFormes: ["Corsola-Galar"],
         formeOrder: ["Corsola", "Corsola-Galar"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     corsolagalar: {
         num: 222,
@@ -7692,6 +8452,8 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Cursola"],
         eggGroups: ["Water 1", "Water 3"],
+        tier: "NFE",
+        natDexTier: "LC",
     },
     remoraid: {
         num: 223,
@@ -7715,6 +8477,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Octillery"],
         eggGroups: ["Water 1", "Water 2"],
+        tier: "LC",
     },
     octillery: {
         num: 224,
@@ -7739,6 +8502,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Remoraid",
         evoLevel: 25,
         eggGroups: ["Water 1", "Water 2"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     delibird: {
         num: 225,
@@ -7761,6 +8527,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 16,
         color: "Red",
         eggGroups: ["Water 1", "Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     mantine: {
         num: 226,
@@ -7787,6 +8556,9 @@ export const dex: { [id: string]: Species } = {
         evoCondition: "with a Remoraid in party",
         eggGroups: ["Water 1"],
         canHatch: true,
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     skarmory: {
         num: 227,
@@ -7809,6 +8581,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 50.5,
         color: "Gray",
         eggGroups: ["Flying"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     houndour: {
         num: 228,
@@ -7832,6 +8607,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         evos: ["Houndoom"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     houndoom: {
         num: 229,
@@ -7858,6 +8636,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Houndoom-Mega"],
         formeOrder: ["Houndoom", "Houndoom-Mega"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     houndoommega: {
         num: 229,
@@ -7881,6 +8662,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         eggGroups: ["Field"],
         requiredItem: "Houndoominite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     kingdra: {
         num: 230,
@@ -7906,6 +8690,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "trade",
         evoItem: "Dragon Scale",
         eggGroups: ["Water 1", "Dragon"],
+        tier: "PUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     phanpy: {
         num: 231,
@@ -7928,6 +8715,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Donphan"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     donphan: {
         num: 232,
@@ -7951,6 +8741,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Phanpy",
         evoLevel: 25,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UU",
     },
     porygon2: {
         num: 233,
@@ -7978,6 +8771,9 @@ export const dex: { [id: string]: Species } = {
         evoItem: "Up-Grade",
         evos: ["Porygon-Z"],
         eggGroups: ["Mineral"],
+        tier: "RU",
+        doublesTier: "Doubles OU",
+        natDexTier: "NFE",
     },
     stantler: {
         num: 234,
@@ -8000,6 +8796,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 71.2,
         color: "Brown",
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     smeargle: {
         num: 235,
@@ -8022,6 +8821,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 58,
         color: "White",
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     tyrogue: {
         num: 236,
@@ -8047,6 +8849,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Hitmonlee", "Hitmonchan", "Hitmontop"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "LC",
     },
     hitmontop: {
         num: 237,
@@ -8073,6 +8876,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 20,
         evoCondition: "with an Atk stat equal to its Def stat",
         eggGroups: ["Human-Like"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     smoochum: {
         num: 238,
@@ -8098,6 +8904,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Jynx"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "LC",
     },
     elekid: {
         num: 239,
@@ -8125,6 +8932,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Electabuzz"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "LC",
     },
     magby: {
         num: 240,
@@ -8152,6 +8960,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Magmar"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "NFE",
     },
     miltank: {
         num: 241,
@@ -8175,6 +8984,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 75.5,
         color: "Pink",
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     blissey: {
         num: 242,
@@ -8200,6 +9012,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Chansey",
         evoType: "levelFriendship",
         eggGroups: ["Fairy"],
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "OU",
     },
     raikou: {
         num: 243,
@@ -8223,6 +9038,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     entei: {
         num: 244,
@@ -8246,6 +9064,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     suicune: {
         num: 245,
@@ -8269,6 +9090,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     larvitar: {
         num: 246,
@@ -8291,6 +9115,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Pupitar"],
         eggGroups: ["Monster"],
+        tier: "LC",
     },
     pupitar: {
         num: 247,
@@ -8314,6 +9139,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 30,
         evos: ["Tyranitar"],
         eggGroups: ["Monster"],
+        tier: "NFE",
     },
     tyranitar: {
         num: 248,
@@ -8339,6 +9165,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Monster"],
         otherFormes: ["Tyranitar-Mega"],
         formeOrder: ["Tyranitar", "Tyranitar-Mega"],
+        tier: "OU",
+        doublesTier: "Doubles OU",
+        natDexTier: "OU",
     },
     tyranitarmega: {
         num: 248,
@@ -8362,6 +9191,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         eggGroups: ["Monster"],
         requiredItem: "Tyranitarite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "OU",
     },
     lugia: {
         num: 249,
@@ -8385,6 +9217,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         tags: ["Restricted Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     hooh: {
         num: 250,
@@ -8408,6 +9243,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         tags: ["Restricted Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     celebi: {
         num: 251,
@@ -8430,6 +9268,8 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         tags: ["Mythical"],
         eggGroups: ["Undiscovered"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
     },
     treecko: {
         num: 252,
@@ -8456,6 +9296,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Grovyle"],
         eggGroups: ["Monster", "Dragon"],
+        tier: "LC",
     },
     grovyle: {
         num: 253,
@@ -8484,6 +9325,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Sceptile"],
         eggGroups: ["Monster", "Dragon"],
+        tier: "NFE",
     },
     sceptile: {
         num: 254,
@@ -8513,6 +9355,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Monster", "Dragon"],
         otherFormes: ["Sceptile-Mega"],
         formeOrder: ["Sceptile", "Sceptile-Mega"],
+        tier: "PUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     sceptilemega: {
         num: 254,
@@ -8540,6 +9385,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         eggGroups: ["Monster", "Dragon"],
         requiredItem: "Sceptilite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     torchic: {
         num: 255,
@@ -8566,6 +9414,7 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Combusken"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     combusken: {
         num: 256,
@@ -8594,6 +9443,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Blaziken"],
         eggGroups: ["Field"],
+        tier: "NFE",
     },
     blaziken: {
         num: 257,
@@ -8623,6 +9473,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Blaziken-Mega"],
         formeOrder: ["Blaziken", "Blaziken-Mega"],
+        tier: "UUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "UUBL",
     },
     blazikenmega: {
         num: 257,
@@ -8650,6 +9503,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Field"],
         requiredItem: "Blazikenite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     mudkip: {
         num: 258,
@@ -8676,6 +9532,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Marshtomp"],
         eggGroups: ["Monster", "Water 1"],
+        tier: "LC",
     },
     marshtomp: {
         num: 259,
@@ -8704,6 +9561,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Swampert"],
         eggGroups: ["Monster", "Water 1"],
+        tier: "NFE",
     },
     swampert: {
         num: 260,
@@ -8733,6 +9591,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Monster", "Water 1"],
         otherFormes: ["Swampert-Mega"],
         formeOrder: ["Swampert", "Swampert-Mega"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     swampertmega: {
         num: 260,
@@ -8760,6 +9621,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Monster", "Water 1"],
         requiredItem: "Swampertite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "OU",
     },
     poochyena: {
         num: 261,
@@ -8783,6 +9647,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Mightyena"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     mightyena: {
         num: 262,
@@ -8807,6 +9674,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Poochyena",
         evoLevel: 18,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     zigzagoon: {
         num: 263,
@@ -8832,6 +9702,8 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Zigzagoon-Galar"],
         formeOrder: ["Zigzagoon", "Zigzagoon-Galar"],
+        tier: "NFE",
+        natDexTier: "LC",
     },
     zigzagoongalar: {
         num: 263,
@@ -8857,6 +9729,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Linoone-Galar"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     linoone: {
         num: 264,
@@ -8883,6 +9756,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Linoone-Galar"],
         formeOrder: ["Linoone", "Linoone-Galar"],
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     linoonegalar: {
         num: 264,
@@ -8910,6 +9786,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 20,
         evos: ["Obstagoon"],
         eggGroups: ["Field"],
+        tier: "NFE",
     },
     wurmple: {
         num: 265,
@@ -8932,6 +9809,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Silcoon", "Cascoon"],
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     silcoon: {
         num: 266,
@@ -8955,6 +9835,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 7,
         evos: ["Beautifly"],
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     beautifly: {
         num: 267,
@@ -8978,6 +9861,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Silcoon",
         evoLevel: 10,
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     cascoon: {
         num: 268,
@@ -9001,6 +9887,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 7,
         evos: ["Dustox"],
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     dustox: {
         num: 269,
@@ -9024,6 +9913,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Cascoon",
         evoLevel: 10,
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     lotad: {
         num: 270,
@@ -9047,6 +9939,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Lombre"],
         eggGroups: ["Water 1", "Grass"],
+        tier: "LC",
     },
     lombre: {
         num: 271,
@@ -9072,6 +9965,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 14,
         evos: ["Ludicolo"],
         eggGroups: ["Water 1", "Grass"],
+        tier: "NFE",
     },
     ludicolo: {
         num: 272,
@@ -9097,6 +9991,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Water Stone",
         eggGroups: ["Water 1", "Grass"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     seedot: {
         num: 273,
@@ -9120,6 +10017,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Nuzleaf"],
         eggGroups: ["Field", "Grass"],
+        tier: "LC",
     },
     nuzleaf: {
         num: 274,
@@ -9145,6 +10043,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 14,
         evos: ["Shiftry"],
         eggGroups: ["Field", "Grass"],
+        tier: "NFE",
     },
     shiftry: {
         num: 275,
@@ -9170,6 +10069,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Leaf Stone",
         eggGroups: ["Field", "Grass"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     taillow: {
         num: 276,
@@ -9192,6 +10094,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Swellow"],
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     swellow: {
         num: 277,
@@ -9215,6 +10120,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Taillow",
         evoLevel: 22,
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     wingull: {
         num: 278,
@@ -9238,6 +10146,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Pelipper"],
         eggGroups: ["Water 1", "Flying"],
+        tier: "LC",
     },
     pelipper: {
         num: 279,
@@ -9262,6 +10171,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Wingull",
         evoLevel: 25,
         eggGroups: ["Water 1", "Flying"],
+        tier: "OU",
+        doublesTier: "Doubles OU",
+        natDexTier: "OU",
     },
     ralts: {
         num: 280,
@@ -9285,6 +10197,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Kirlia"],
         eggGroups: ["Human-Like", "Amorphous"],
+        tier: "LC",
     },
     kirlia: {
         num: 281,
@@ -9310,6 +10223,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 20,
         evos: ["Gardevoir", "Gallade"],
         eggGroups: ["Human-Like", "Amorphous"],
+        tier: "NFE",
     },
     gardevoir: {
         num: 282,
@@ -9336,6 +10250,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Human-Like", "Amorphous"],
         otherFormes: ["Gardevoir-Mega"],
         formeOrder: ["Gardevoir", "Gardevoir-Mega"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     gardevoirmega: {
         num: 282,
@@ -9359,6 +10276,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         eggGroups: ["Amorphous"],
         requiredItem: "Gardevoirite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UUBL",
     },
     surskit: {
         num: 283,
@@ -9381,6 +10301,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Masquerain"],
         eggGroups: ["Water 1", "Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     masquerain: {
         num: 284,
@@ -9404,6 +10327,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Surskit",
         evoLevel: 22,
         eggGroups: ["Water 1", "Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     shroomish: {
         num: 285,
@@ -9427,6 +10353,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Breloom"],
         eggGroups: ["Fairy", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     breloom: {
         num: 286,
@@ -9451,6 +10380,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Shroomish",
         evoLevel: 23,
         eggGroups: ["Fairy", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UU",
     },
     slakoth: {
         num: 287,
@@ -9472,6 +10404,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Vigoroth"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     vigoroth: {
         num: 288,
@@ -9495,6 +10430,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 18,
         evos: ["Slaking"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     slaking: {
         num: 289,
@@ -9517,6 +10455,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Vigoroth",
         evoLevel: 36,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     nincada: {
         num: 290,
@@ -9539,6 +10480,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Ninjask", "Shedinja"],
         eggGroups: ["Bug"],
+        tier: "LC",
     },
     ninjask: {
         num: 291,
@@ -9562,6 +10504,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Nincada",
         evoLevel: 20,
         eggGroups: ["Bug"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     shedinja: {
         num: 292,
@@ -9586,6 +10531,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Nincada",
         evoLevel: 20,
         eggGroups: ["Mineral"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     whismur: {
         num: 293,
@@ -9608,6 +10556,7 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         evos: ["Loudred"],
         eggGroups: ["Monster", "Field"],
+        tier: "LC",
     },
     loudred: {
         num: 294,
@@ -9632,6 +10581,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 20,
         evos: ["Exploud"],
         eggGroups: ["Monster", "Field"],
+        tier: "NFE",
     },
     exploud: {
         num: 295,
@@ -9655,6 +10605,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Loudred",
         evoLevel: 40,
         eggGroups: ["Monster", "Field"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     makuhita: {
         num: 296,
@@ -9682,6 +10635,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         evos: ["Hariyama"],
         eggGroups: ["Human-Like"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     hariyama: {
         num: 297,
@@ -9710,6 +10666,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Makuhita",
         evoLevel: 24,
         eggGroups: ["Human-Like"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     azurill: {
         num: 298,
@@ -9738,6 +10697,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Marill"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "LC",
     },
     nosepass: {
         num: 299,
@@ -9761,6 +10721,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Probopass"],
         eggGroups: ["Mineral"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     skitty: {
         num: 300,
@@ -9788,6 +10751,9 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         evos: ["Delcatty"],
         eggGroups: ["Field", "Fairy"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     delcatty: {
         num: 301,
@@ -9817,6 +10783,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Moon Stone",
         eggGroups: ["Field", "Fairy"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     sableye: {
         num: 302,
@@ -9841,6 +10810,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Human-Like"],
         otherFormes: ["Sableye-Mega"],
         formeOrder: ["Sableye", "Sableye-Mega"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     sableyemega: {
         num: 302,
@@ -9864,6 +10836,9 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         eggGroups: ["Human-Like"],
         requiredItem: "Sablenite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UUBL",
     },
     mawile: {
         num: 303,
@@ -9888,6 +10863,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field", "Fairy"],
         otherFormes: ["Mawile-Mega"],
         formeOrder: ["Mawile", "Mawile-Mega"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     mawilemega: {
         num: 303,
@@ -9911,6 +10889,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         eggGroups: ["Field", "Fairy"],
         requiredItem: "Mawilite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "OU",
     },
     aron: {
         num: 304,
@@ -9934,6 +10915,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Lairon"],
         eggGroups: ["Monster"],
+        tier: "LC",
     },
     lairon: {
         num: 305,
@@ -9959,6 +10941,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 32,
         evos: ["Aggron"],
         eggGroups: ["Monster"],
+        tier: "NFE",
     },
     aggron: {
         num: 306,
@@ -9985,6 +10968,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Monster"],
         otherFormes: ["Aggron-Mega"],
         formeOrder: ["Aggron", "Aggron-Mega"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     aggronmega: {
         num: 306,
@@ -10008,6 +10994,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         eggGroups: ["Monster"],
         requiredItem: "Aggronite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RUBL",
     },
     meditite: {
         num: 307,
@@ -10030,6 +11019,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Medicham"],
         eggGroups: ["Human-Like"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     medicham: {
         num: 308,
@@ -10055,6 +11047,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Human-Like"],
         otherFormes: ["Medicham-Mega"],
         formeOrder: ["Medicham", "Medicham-Mega"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     medichammega: {
         num: 308,
@@ -10078,6 +11073,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Human-Like"],
         requiredItem: "Medichamite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UUBL",
     },
     electrike: {
         num: 309,
@@ -10101,6 +11099,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Manectric"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     manectric: {
         num: 310,
@@ -10127,6 +11126,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Manectric-Mega"],
         formeOrder: ["Manectric", "Manectric-Mega"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     manectricmega: {
         num: 310,
@@ -10150,6 +11152,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Field"],
         requiredItem: "Manectite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UU",
     },
     plusle: {
         num: 311,
@@ -10171,6 +11176,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 4.2,
         color: "Yellow",
         eggGroups: ["Fairy"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     minun: {
         num: 312,
@@ -10192,6 +11200,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 4.2,
         color: "Yellow",
         eggGroups: ["Fairy"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     volbeat: {
         num: 313,
@@ -10215,6 +11226,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 17.7,
         color: "Gray",
         eggGroups: ["Bug", "Human-Like"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     illumise: {
         num: 314,
@@ -10238,6 +11252,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 17.7,
         color: "Purple",
         eggGroups: ["Bug", "Human-Like"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     roselia: {
         num: 315,
@@ -10265,6 +11282,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Roserade"],
         eggGroups: ["Fairy", "Grass"],
         canHatch: true,
+        tier: "NFE",
     },
     gulpin: {
         num: 316,
@@ -10288,6 +11306,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Swalot"],
         eggGroups: ["Amorphous"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     swalot: {
         num: 317,
@@ -10312,6 +11333,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Gulpin",
         evoLevel: 26,
         eggGroups: ["Amorphous"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     carvanha: {
         num: 318,
@@ -10334,6 +11358,7 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Sharpedo"],
         eggGroups: ["Water 2"],
+        tier: "LC",
     },
     sharpedo: {
         num: 319,
@@ -10359,6 +11384,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Water 2"],
         otherFormes: ["Sharpedo-Mega"],
         formeOrder: ["Sharpedo", "Sharpedo-Mega"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     sharpedomega: {
         num: 319,
@@ -10382,6 +11410,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Water 2"],
         requiredItem: "Sharpedonite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RUBL",
     },
     wailmer: {
         num: 320,
@@ -10405,6 +11436,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Wailord"],
         eggGroups: ["Field", "Water 2"],
+        tier: "LC",
     },
     wailord: {
         num: 321,
@@ -10429,6 +11461,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Wailmer",
         evoLevel: 40,
         eggGroups: ["Field", "Water 2"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     numel: {
         num: 322,
@@ -10452,6 +11487,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         evos: ["Camerupt"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     camerupt: {
         num: 323,
@@ -10478,6 +11516,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Camerupt-Mega"],
         formeOrder: ["Camerupt", "Camerupt-Mega"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     cameruptmega: {
         num: 323,
@@ -10501,6 +11542,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Field"],
         requiredItem: "Cameruptite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     torkoal: {
         num: 324,
@@ -10523,6 +11567,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 80.4,
         color: "Brown",
         eggGroups: ["Field"],
+        tier: "UU",
+        doublesTier: "Doubles OU",
+        natDexTier: "RU",
     },
     spoink: {
         num: 325,
@@ -10546,6 +11593,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         evos: ["Grumpig"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     grumpig: {
         num: 326,
@@ -10570,6 +11620,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Spoink",
         evoLevel: 32,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     spinda: {
         num: 327,
@@ -10592,6 +11645,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 5,
         color: "Brown",
         eggGroups: ["Field", "Human-Like"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     trapinch: {
         num: 328,
@@ -10615,6 +11671,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Vibrava"],
         eggGroups: ["Bug", "Dragon"],
+        tier: "LC",
     },
     vibrava: {
         num: 329,
@@ -10638,6 +11695,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 35,
         evos: ["Flygon"],
         eggGroups: ["Bug", "Dragon"],
+        tier: "NFE",
     },
     flygon: {
         num: 330,
@@ -10660,6 +11718,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Vibrava",
         evoLevel: 45,
         eggGroups: ["Bug", "Dragon"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     cacnea: {
         num: 331,
@@ -10682,6 +11743,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Cacturne"],
         eggGroups: ["Grass", "Human-Like"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     cacturne: {
         num: 332,
@@ -10705,6 +11769,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Cacnea",
         evoLevel: 32,
         eggGroups: ["Grass", "Human-Like"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     swablu: {
         num: 333,
@@ -10727,6 +11794,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Altaria"],
         eggGroups: ["Flying", "Dragon"],
+        tier: "LC",
     },
     altaria: {
         num: 334,
@@ -10752,6 +11820,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Flying", "Dragon"],
         otherFormes: ["Altaria-Mega"],
         formeOrder: ["Altaria", "Altaria-Mega"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     altariamega: {
         num: 334,
@@ -10775,6 +11846,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Flying", "Dragon"],
         requiredItem: "Altarianite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UU",
     },
     zangoose: {
         num: 335,
@@ -10796,6 +11870,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 40.3,
         color: "White",
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     seviper: {
         num: 336,
@@ -10817,6 +11894,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 52.5,
         color: "Black",
         eggGroups: ["Field", "Dragon"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     lunatone: {
         num: 337,
@@ -10838,6 +11918,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 168,
         color: "Yellow",
         eggGroups: ["Mineral"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     solrock: {
         num: 338,
@@ -10859,6 +11942,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 154,
         color: "Red",
         eggGroups: ["Mineral"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     barboach: {
         num: 339,
@@ -10882,6 +11968,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Whiscash"],
         eggGroups: ["Water 2"],
+        tier: "LC",
     },
     whiscash: {
         num: 340,
@@ -10906,6 +11993,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Barboach",
         evoLevel: 30,
         eggGroups: ["Water 2"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     corphish: {
         num: 341,
@@ -10929,6 +12019,7 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Crawdaunt"],
         eggGroups: ["Water 1", "Water 3"],
+        tier: "LC",
     },
     crawdaunt: {
         num: 342,
@@ -10953,6 +12044,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Corphish",
         evoLevel: 30,
         eggGroups: ["Water 1", "Water 3"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     baltoy: {
         num: 343,
@@ -10975,6 +12069,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Claydol"],
         eggGroups: ["Mineral"],
+        tier: "LC",
     },
     claydol: {
         num: 344,
@@ -10998,6 +12093,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Baltoy",
         evoLevel: 36,
         eggGroups: ["Mineral"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     lileep: {
         num: 345,
@@ -11024,6 +12122,7 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Cradily"],
         eggGroups: ["Water 3"],
+        tier: "LC",
     },
     cradily: {
         num: 346,
@@ -11051,6 +12150,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Lileep",
         evoLevel: 40,
         eggGroups: ["Water 3"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     anorith: {
         num: 347,
@@ -11077,6 +12179,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Armaldo"],
         eggGroups: ["Water 3"],
+        tier: "LC",
     },
     armaldo: {
         num: 348,
@@ -11104,6 +12207,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Anorith",
         evoLevel: 40,
         eggGroups: ["Water 3"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     feebas: {
         num: 349,
@@ -11127,6 +12233,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Milotic"],
         eggGroups: ["Water 1", "Dragon"],
+        tier: "LC",
     },
     milotic: {
         num: 350,
@@ -11152,6 +12259,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "trade",
         evoItem: "Prism Scale",
         eggGroups: ["Water 1", "Dragon"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     castform: {
         num: 351,
@@ -11173,7 +12283,15 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         eggGroups: ["Fairy", "Amorphous"],
         otherFormes: ["Castform-Sunny", "Castform-Rainy", "Castform-Snowy"],
-        formeOrder: ["Castform", "Castform-Sunny", "Castform-Rainy", "Castform-Snowy"],
+        formeOrder: [
+            "Castform",
+            "Castform-Sunny",
+            "Castform-Rainy",
+            "Castform-Snowy",
+        ],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     castformsunny: {
         num: 351,
@@ -11198,6 +12316,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Fairy", "Amorphous"],
         requiredAbility: "Forecast",
         battleOnly: "Castform",
+        isNonstandard: "Past",
     },
     castformrainy: {
         num: 351,
@@ -11222,6 +12341,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Fairy", "Amorphous"],
         requiredAbility: "Forecast",
         battleOnly: "Castform",
+        isNonstandard: "Past",
     },
     castformsnowy: {
         num: 351,
@@ -11246,6 +12366,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Fairy", "Amorphous"],
         requiredAbility: "Forecast",
         battleOnly: "Castform",
+        isNonstandard: "Past",
     },
     kecleon: {
         num: 352,
@@ -11267,6 +12388,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 22,
         color: "Green",
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     shuppet: {
         num: 353,
@@ -11290,6 +12414,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         evos: ["Banette"],
         eggGroups: ["Amorphous"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     banette: {
         num: 354,
@@ -11316,6 +12443,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Amorphous"],
         otherFormes: ["Banette-Mega"],
         formeOrder: ["Banette", "Banette-Mega"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     banettemega: {
         num: 354,
@@ -11339,6 +12469,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         eggGroups: ["Amorphous"],
         requiredItem: "Banettite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     duskull: {
         num: 355,
@@ -11361,6 +12494,7 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         evos: ["Dusclops"],
         eggGroups: ["Amorphous"],
+        tier: "LC",
     },
     dusclops: {
         num: 356,
@@ -11385,6 +12519,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 37,
         evos: ["Dusknoir"],
         eggGroups: ["Amorphous"],
+        tier: "NFE",
     },
     tropius: {
         num: 357,
@@ -11407,6 +12542,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 100,
         color: "Green",
         eggGroups: ["Monster", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     chimecho: {
         num: 358,
@@ -11431,6 +12569,9 @@ export const dex: { [id: string]: Species } = {
         evoCondition: "at night",
         eggGroups: ["Amorphous"],
         canHatch: true,
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     absol: {
         num: 359,
@@ -11455,6 +12596,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Absol-Mega"],
         formeOrder: ["Absol", "Absol-Mega"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     absolmega: {
         num: 359,
@@ -11478,6 +12622,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         eggGroups: ["Field"],
         requiredItem: "Absolite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RUBL",
     },
     wynaut: {
         num: 360,
@@ -11501,6 +12648,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Wobbuffet"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "LC",
     },
     snorunt: {
         num: 361,
@@ -11524,6 +12672,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Glalie", "Froslass"],
         eggGroups: ["Fairy", "Mineral"],
+        tier: "LC",
     },
     glalie: {
         num: 362,
@@ -11550,6 +12699,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Fairy", "Mineral"],
         otherFormes: ["Glalie-Mega"],
         formeOrder: ["Glalie", "Glalie-Mega"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     glaliemega: {
         num: 362,
@@ -11573,6 +12725,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         eggGroups: ["Fairy", "Mineral"],
         requiredItem: "Glalitite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     spheal: {
         num: 363,
@@ -11596,6 +12751,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Sealeo"],
         eggGroups: ["Water 1", "Field"],
+        tier: "LC",
     },
     sealeo: {
         num: 364,
@@ -11621,6 +12777,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 32,
         evos: ["Walrein"],
         eggGroups: ["Water 1", "Field"],
+        tier: "NFE",
     },
     walrein: {
         num: 365,
@@ -11645,6 +12802,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Sealeo",
         evoLevel: 44,
         eggGroups: ["Water 1", "Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     clamperl: {
         num: 366,
@@ -11667,6 +12827,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Huntail", "Gorebyss"],
         eggGroups: ["Water 1"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     huntail: {
         num: 367,
@@ -11691,6 +12854,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "trade",
         evoItem: "Deep Sea Tooth",
         eggGroups: ["Water 1"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     gorebyss: {
         num: 368,
@@ -11715,6 +12881,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "trade",
         evoItem: "Deep Sea Scale",
         eggGroups: ["Water 1"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     relicanth: {
         num: 369,
@@ -11741,6 +12910,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 23.4,
         color: "Gray",
         eggGroups: ["Water 1", "Water 2"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     luvdisc: {
         num: 370,
@@ -11766,6 +12938,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 8.7,
         color: "Pink",
         eggGroups: ["Water 2"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     bagon: {
         num: 371,
@@ -11788,6 +12963,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Shelgon"],
         eggGroups: ["Dragon"],
+        tier: "LC",
     },
     shelgon: {
         num: 372,
@@ -11812,6 +12988,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 30,
         evos: ["Salamence"],
         eggGroups: ["Dragon"],
+        tier: "NFE",
     },
     salamence: {
         num: 373,
@@ -11837,6 +13014,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Dragon"],
         otherFormes: ["Salamence-Mega"],
         formeOrder: ["Salamence", "Salamence-Mega"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     salamencemega: {
         num: 373,
@@ -11860,6 +13040,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Dragon"],
         requiredItem: "Salamencite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     beldum: {
         num: 374,
@@ -11883,6 +13066,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Metang"],
         eggGroups: ["Mineral"],
+        tier: "LC",
     },
     metang: {
         num: 375,
@@ -11908,6 +13092,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 20,
         evos: ["Metagross"],
         eggGroups: ["Mineral"],
+        tier: "NFE",
     },
     metagross: {
         num: 376,
@@ -11934,6 +13119,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Mineral"],
         otherFormes: ["Metagross-Mega"],
         formeOrder: ["Metagross", "Metagross-Mega"],
+        tier: "RU",
+        doublesTier: "Doubles OU",
+        natDexTier: "RU",
     },
     metagrossmega: {
         num: 376,
@@ -11958,6 +13146,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Mineral"],
         requiredItem: "Metagrossite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     regirock: {
         num: 377,
@@ -11981,6 +13172,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     regice: {
         num: 378,
@@ -12004,6 +13198,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     registeel: {
         num: 379,
@@ -12027,6 +13224,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     latias: {
         num: 380,
@@ -12051,6 +13251,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         otherFormes: ["Latias-Mega"],
         formeOrder: ["Latias", "Latias-Mega"],
+        tier: "UUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "UUBL",
     },
     latiasmega: {
         num: 380,
@@ -12075,6 +13278,9 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         eggGroups: ["Undiscovered"],
         requiredItem: "Latiasite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UUBL",
     },
     latios: {
         num: 381,
@@ -12099,6 +13305,9 @@ export const dex: { [id: string]: Species } = {
         tags: ["Sub-Legendary"],
         otherFormes: ["Latios-Mega"],
         formeOrder: ["Latios", "Latios-Mega"],
+        tier: "UUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "UUBL",
     },
     latiosmega: {
         num: 381,
@@ -12123,6 +13332,9 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         eggGroups: ["Undiscovered"],
         requiredItem: "Latiosite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UUBL",
     },
     kyogre: {
         num: 382,
@@ -12147,6 +13359,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         otherFormes: ["Kyogre-Primal"],
         formeOrder: ["Kyogre", "Kyogre-Primal"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     kyogreprimal: {
         num: 382,
@@ -12171,6 +13386,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Undiscovered"],
         requiredItem: "Blue Orb",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     groudon: {
         num: 383,
@@ -12195,6 +13413,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         otherFormes: ["Groudon-Primal"],
         formeOrder: ["Groudon", "Groudon-Primal"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     groudonprimal: {
         num: 383,
@@ -12219,6 +13440,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Undiscovered"],
         requiredItem: "Red Orb",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     rayquaza: {
         num: 384,
@@ -12243,6 +13467,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         otherFormes: ["Rayquaza-Mega"],
         formeOrder: ["Rayquaza", "Rayquaza-Mega"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     rayquazamega: {
         num: 384,
@@ -12267,6 +13494,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         eggGroups: ["Undiscovered"],
         requiredMove: "Dragon Ascent",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     jirachi: {
         num: 385,
@@ -12289,6 +13519,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         tags: ["Mythical"],
         eggGroups: ["Undiscovered"],
+        tier: "UU",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "UUBL",
     },
     deoxys: {
         num: 386,
@@ -12313,7 +13546,15 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         tags: ["Mythical"],
         otherFormes: ["Deoxys-Attack", "Deoxys-Defense", "Deoxys-Speed"],
-        formeOrder: ["Deoxys", "Deoxys-Attack", "Deoxys-Defense", "Deoxys-Speed"],
+        formeOrder: [
+            "Deoxys",
+            "Deoxys-Attack",
+            "Deoxys-Defense",
+            "Deoxys-Speed",
+        ],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     deoxysattack: {
         num: 386,
@@ -12338,6 +13579,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Undiscovered"],
         changesFrom: "Deoxys",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     deoxysdefense: {
         num: 386,
@@ -12362,6 +13606,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Undiscovered"],
         changesFrom: "Deoxys",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RUBL",
     },
     deoxysspeed: {
         num: 386,
@@ -12386,6 +13633,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Undiscovered"],
         changesFrom: "Deoxys",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     turtwig: {
         num: 387,
@@ -12412,6 +13662,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Grotle"],
         eggGroups: ["Monster", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     grotle: {
         num: 388,
@@ -12440,6 +13693,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 18,
         evos: ["Torterra"],
         eggGroups: ["Monster", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     torterra: {
         num: 389,
@@ -12467,6 +13723,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Grotle",
         evoLevel: 32,
         eggGroups: ["Monster", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     chimchar: {
         num: 390,
@@ -12493,6 +13752,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Monferno"],
         eggGroups: ["Field", "Human-Like"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     monferno: {
         num: 391,
@@ -12521,6 +13783,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 14,
         evos: ["Infernape"],
         eggGroups: ["Field", "Human-Like"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     infernape: {
         num: 392,
@@ -12548,6 +13813,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Monferno",
         evoLevel: 36,
         eggGroups: ["Field", "Human-Like"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UU",
     },
     piplup: {
         num: 393,
@@ -12574,6 +13842,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Prinplup"],
         eggGroups: ["Water 1", "Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     prinplup: {
         num: 394,
@@ -12602,6 +13873,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Empoleon"],
         eggGroups: ["Water 1", "Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     empoleon: {
         num: 395,
@@ -12629,6 +13903,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Prinplup",
         evoLevel: 36,
         eggGroups: ["Water 1", "Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     starly: {
         num: 396,
@@ -12651,6 +13928,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Staravia"],
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     staravia: {
         num: 397,
@@ -12675,6 +13955,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 14,
         evos: ["Staraptor"],
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     staraptor: {
         num: 398,
@@ -12698,6 +13981,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Staravia",
         evoLevel: 34,
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RUBL",
     },
     bidoof: {
         num: 399,
@@ -12721,6 +14007,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Bibarel"],
         eggGroups: ["Water 1", "Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     bibarel: {
         num: 400,
@@ -12745,6 +14034,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Bidoof",
         evoLevel: 15,
         eggGroups: ["Water 1", "Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     kricketot: {
         num: 401,
@@ -12767,6 +14059,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Kricketune"],
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     kricketune: {
         num: 402,
@@ -12790,6 +14085,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Kricketot",
         evoLevel: 10,
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     shinx: {
         num: 403,
@@ -12813,6 +14111,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Luxio"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     luxio: {
         num: 404,
@@ -12838,6 +14137,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 15,
         evos: ["Luxray"],
         eggGroups: ["Field"],
+        tier: "NFE",
     },
     luxray: {
         num: 405,
@@ -12862,6 +14162,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Luxio",
         evoLevel: 30,
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     budew: {
         num: 406,
@@ -12886,6 +14189,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Roselia"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "LC",
     },
     roserade: {
         num: 407,
@@ -12911,6 +14215,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Shiny Stone",
         eggGroups: ["Fairy", "Grass"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     cranidos: {
         num: 408,
@@ -12937,6 +14244,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Rampardos"],
         eggGroups: ["Monster"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     rampardos: {
         num: 409,
@@ -12964,6 +14274,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Cranidos",
         evoLevel: 30,
         eggGroups: ["Monster"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     shieldon: {
         num: 410,
@@ -12990,6 +14303,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Bastiodon"],
         eggGroups: ["Monster"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     bastiodon: {
         num: 411,
@@ -13017,6 +14333,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Shieldon",
         evoLevel: 30,
         eggGroups: ["Monster"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     burmy: {
         num: 412,
@@ -13042,6 +14361,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Bug"],
         cosmeticFormes: ["Burmy-Sandy", "Burmy-Trash"],
         formeOrder: ["Burmy", "Burmy-Sandy", "Burmy-Trash"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     wormadam: {
         num: 413,
@@ -13069,6 +14391,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Bug"],
         otherFormes: ["Wormadam-Sandy", "Wormadam-Trash"],
         formeOrder: ["Wormadam", "Wormadam-Sandy", "Wormadam-Trash"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     wormadamsandy: {
         num: 413,
@@ -13095,6 +14420,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Burmy",
         evoLevel: 20,
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     wormadamtrash: {
         num: 413,
@@ -13121,6 +14449,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Burmy",
         evoLevel: 20,
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     mothim: {
         num: 414,
@@ -13145,6 +14476,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Burmy",
         evoLevel: 20,
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     combee: {
         num: 415,
@@ -13171,6 +14505,7 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         evos: ["Vespiquen"],
         eggGroups: ["Bug"],
+        tier: "LC",
     },
     vespiquen: {
         num: 416,
@@ -13195,6 +14530,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Combee",
         evoLevel: 21,
         eggGroups: ["Bug"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     pachirisu: {
         num: 417,
@@ -13217,6 +14555,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 3.9,
         color: "White",
         eggGroups: ["Field", "Fairy"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     buizel: {
         num: 418,
@@ -13239,6 +14580,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Floatzel"],
         eggGroups: ["Water 1", "Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     floatzel: {
         num: 419,
@@ -13262,6 +14606,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Buizel",
         evoLevel: 26,
         eggGroups: ["Water 1", "Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     cherubi: {
         num: 420,
@@ -13283,6 +14630,8 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         evos: ["Cherrim"],
         eggGroups: ["Fairy", "Grass"],
+        tier: "NFE",
+        natDexTier: "LC",
     },
     cherrim: {
         num: 421,
@@ -13308,6 +14657,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Fairy", "Grass"],
         otherFormes: ["Cherrim-Sunshine"],
         formeOrder: ["Cherrim", "Cherrim-Sunshine"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     cherrimsunshine: {
         num: 421,
@@ -13358,6 +14710,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Water 1", "Amorphous"],
         cosmeticFormes: ["Shellos-East"],
         formeOrder: ["Shellos", "Shellos-East"],
+        tier: "LC",
     },
     gastrodon: {
         num: 423,
@@ -13385,6 +14738,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Water 1", "Amorphous"],
         cosmeticFormes: ["Gastrodon-East"],
         formeOrder: ["Gastrodon", "Gastrodon-East"],
+        tier: "NU",
+        doublesTier: "Doubles OU",
+        natDexTier: "RU",
     },
     ambipom: {
         num: 424,
@@ -13410,6 +14766,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelMove",
         evoMove: "Double Hit",
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     drifloon: {
         num: 425,
@@ -13433,6 +14792,8 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Drifblim"],
         eggGroups: ["Amorphous"],
+        tier: "NFE",
+        natDexTier: "LC",
     },
     drifblim: {
         num: 426,
@@ -13457,6 +14818,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Drifloon",
         evoLevel: 28,
         eggGroups: ["Amorphous"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     buneary: {
         num: 427,
@@ -13480,6 +14844,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Lopunny"],
         eggGroups: ["Field", "Human-Like"],
+        tier: "LC",
     },
     lopunny: {
         num: 428,
@@ -13506,6 +14871,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field", "Human-Like"],
         otherFormes: ["Lopunny-Mega"],
         formeOrder: ["Lopunny", "Lopunny-Mega"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     lopunnymega: {
         num: 428,
@@ -13529,6 +14897,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         eggGroups: ["Field", "Human-Like"],
         requiredItem: "Lopunnite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "OU",
     },
     mismagius: {
         num: 429,
@@ -13552,6 +14923,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Dusk Stone",
         eggGroups: ["Amorphous"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     honchkrow: {
         num: 430,
@@ -13577,6 +14951,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Dusk Stone",
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     glameow: {
         num: 431,
@@ -13604,6 +14981,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Purugly"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     purugly: {
         num: 432,
@@ -13632,6 +15012,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Glameow",
         evoLevel: 38,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     chingling: {
         num: 433,
@@ -13654,6 +15037,9 @@ export const dex: { [id: string]: Species } = {
         evos: ["Chimecho"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     stunky: {
         num: 434,
@@ -13677,6 +15063,7 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Skuntank"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     skuntank: {
         num: 435,
@@ -13701,6 +15088,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Stunky",
         evoLevel: 34,
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     bronzor: {
         num: 436,
@@ -13725,6 +15115,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Bronzong"],
         eggGroups: ["Mineral"],
+        tier: "LC",
     },
     bronzong: {
         num: 437,
@@ -13750,6 +15141,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Bronzor",
         evoLevel: 33,
         eggGroups: ["Mineral"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     bonsly: {
         num: 438,
@@ -13774,6 +15168,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Sudowoodo"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "LC",
     },
     mimejr: {
         num: 439,
@@ -13798,6 +15193,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Mr. Mime", "Mr. Mime-Galar"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "LC",
     },
     happiny: {
         num: 440,
@@ -13823,6 +15219,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Chansey"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "LC",
     },
     chatot: {
         num: 441,
@@ -13845,6 +15242,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 1.9,
         color: "Black",
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     spiritomb: {
         num: 442,
@@ -13866,6 +15266,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 108,
         color: "Purple",
         eggGroups: ["Amorphous"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     gible: {
         num: 443,
@@ -13888,6 +15291,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Gabite"],
         eggGroups: ["Monster", "Dragon"],
+        tier: "LC",
     },
     gabite: {
         num: 444,
@@ -13912,6 +15316,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 24,
         evos: ["Garchomp"],
         eggGroups: ["Monster", "Dragon"],
+        tier: "NFE",
     },
     garchomp: {
         num: 445,
@@ -13937,6 +15342,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Monster", "Dragon"],
         otherFormes: ["Garchomp-Mega"],
         formeOrder: ["Garchomp", "Garchomp-Mega"],
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "OU",
     },
     garchompmega: {
         num: 445,
@@ -13960,6 +15368,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Monster", "Dragon"],
         requiredItem: "Garchompite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "OU",
     },
     munchlax: {
         num: 446,
@@ -13988,6 +15399,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Snorlax"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "LC",
     },
     riolu: {
         num: 447,
@@ -14016,6 +15428,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Lucario"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "LC",
     },
     lucario: {
         num: 448,
@@ -14047,6 +15460,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field", "Human-Like"],
         otherFormes: ["Lucario-Mega"],
         formeOrder: ["Lucario", "Lucario-Mega"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     lucariomega: {
         num: 448,
@@ -14074,6 +15490,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Field", "Human-Like"],
         requiredItem: "Lucarionite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     hippopotas: {
         num: 449,
@@ -14096,6 +15515,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Hippowdon"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     hippowdon: {
         num: 450,
@@ -14119,6 +15539,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Hippopotas",
         evoLevel: 34,
         eggGroups: ["Field"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     skorupi: {
         num: 451,
@@ -14142,6 +15565,7 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Drapion"],
         eggGroups: ["Bug", "Water 3"],
+        tier: "LC",
     },
     drapion: {
         num: 452,
@@ -14166,6 +15590,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Skorupi",
         evoLevel: 40,
         eggGroups: ["Bug", "Water 3"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     croagunk: {
         num: 453,
@@ -14189,6 +15616,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Toxicroak"],
         eggGroups: ["Human-Like"],
+        tier: "LC",
     },
     toxicroak: {
         num: 454,
@@ -14213,6 +15641,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Croagunk",
         evoLevel: 37,
         eggGroups: ["Human-Like"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     carnivine: {
         num: 455,
@@ -14233,6 +15664,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 27,
         color: "Green",
         eggGroups: ["Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     finneon: {
         num: 456,
@@ -14256,6 +15690,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Lumineon"],
         eggGroups: ["Water 2"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     lumineon: {
         num: 457,
@@ -14280,6 +15717,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Finneon",
         evoLevel: 31,
         eggGroups: ["Water 2"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     mantyke: {
         num: 458,
@@ -14304,6 +15744,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Mantine"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "LC",
     },
     snover: {
         num: 459,
@@ -14326,6 +15767,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Abomasnow"],
         eggGroups: ["Monster", "Grass"],
+        tier: "LC",
     },
     abomasnow: {
         num: 460,
@@ -14351,6 +15793,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Monster", "Grass"],
         otherFormes: ["Abomasnow-Mega"],
         formeOrder: ["Abomasnow", "Abomasnow-Mega"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     abomasnowmega: {
         num: 460,
@@ -14374,6 +15819,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         eggGroups: ["Monster", "Grass"],
         requiredItem: "Abomasite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     weavile: {
         num: 461,
@@ -14398,6 +15846,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelHold",
         evoItem: "Razor Claw",
         eggGroups: ["Field"],
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "OU",
     },
     magnezone: {
         num: 462,
@@ -14424,6 +15875,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Thunder Stone",
         eggGroups: ["Mineral"],
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "OU",
     },
     lickilicky: {
         num: 463,
@@ -14449,6 +15903,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelMove",
         evoMove: "Rollout",
         eggGroups: ["Monster"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     rhyperior: {
         num: 464,
@@ -14474,6 +15931,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "trade",
         evoItem: "Protector",
         eggGroups: ["Monster", "Field"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     tangrowth: {
         num: 465,
@@ -14499,6 +15959,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelMove",
         evoMove: "Ancient Power",
         eggGroups: ["Grass"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     electivire: {
         num: 466,
@@ -14527,6 +15990,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "trade",
         evoItem: "Electirizer",
         eggGroups: ["Human-Like"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     magmortar: {
         num: 467,
@@ -14555,6 +16021,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "trade",
         evoItem: "Magmarizer",
         eggGroups: ["Human-Like"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     togekiss: {
         num: 468,
@@ -14584,6 +16053,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Shiny Stone",
         eggGroups: ["Flying", "Fairy"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     yanmega: {
         num: 469,
@@ -14609,6 +16081,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelMove",
         evoMove: "Ancient Power",
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     leafeon: {
         num: 470,
@@ -14637,6 +16112,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Leaf Stone",
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     glaceon: {
         num: 471,
@@ -14665,6 +16143,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Ice Stone",
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     gliscor: {
         num: 472,
@@ -14691,6 +16172,9 @@ export const dex: { [id: string]: Species } = {
         evoItem: "Razor Fang",
         evoCondition: "at night",
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "OU",
     },
     mamoswine: {
         num: 473,
@@ -14716,6 +16200,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelMove",
         evoMove: "Ancient Power",
         eggGroups: ["Field"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     porygonz: {
         num: 474,
@@ -14742,6 +16229,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "trade",
         evoItem: "Dubious Disc",
         eggGroups: ["Mineral"],
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "UUBL",
     },
     gallade: {
         num: 475,
@@ -14769,6 +16259,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Human-Like", "Amorphous"],
         otherFormes: ["Gallade-Mega"],
         formeOrder: ["Gallade", "Gallade-Mega"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     gallademega: {
         num: 475,
@@ -14793,6 +16286,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         eggGroups: ["Amorphous"],
         requiredItem: "Galladite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UUBL",
     },
     probopass: {
         num: 476,
@@ -14818,6 +16314,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelExtra",
         evoCondition: "near a special magnetic field",
         eggGroups: ["Mineral"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     dusknoir: {
         num: 477,
@@ -14842,6 +16341,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "trade",
         evoItem: "Reaper Cloth",
         eggGroups: ["Amorphous"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     froslass: {
         num: 478,
@@ -14867,6 +16369,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Dawn Stone",
         eggGroups: ["Fairy", "Mineral"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     rotom: {
         num: 479,
@@ -14888,8 +16393,24 @@ export const dex: { [id: string]: Species } = {
         weightkg: 0.3,
         color: "Red",
         eggGroups: ["Amorphous"],
-        otherFormes: ["Rotom-Heat", "Rotom-Wash", "Rotom-Frost", "Rotom-Fan", "Rotom-Mow"],
-        formeOrder: ["Rotom", "Rotom-Heat", "Rotom-Wash", "Rotom-Frost", "Rotom-Fan", "Rotom-Mow"],
+        otherFormes: [
+            "Rotom-Heat",
+            "Rotom-Wash",
+            "Rotom-Frost",
+            "Rotom-Fan",
+            "Rotom-Mow",
+        ],
+        formeOrder: [
+            "Rotom",
+            "Rotom-Heat",
+            "Rotom-Wash",
+            "Rotom-Frost",
+            "Rotom-Fan",
+            "Rotom-Mow",
+        ],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     rotomheat: {
         num: 479,
@@ -14914,6 +16435,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Amorphous"],
         changesFrom: "Rotom",
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     rotomwash: {
         num: 479,
@@ -14938,6 +16462,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Amorphous"],
         changesFrom: "Rotom",
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     rotomfrost: {
         num: 479,
@@ -14962,6 +16489,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Amorphous"],
         changesFrom: "Rotom",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     rotomfan: {
         num: 479,
@@ -14986,6 +16516,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Amorphous"],
         changesFrom: "Rotom",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     rotommow: {
         num: 479,
@@ -15010,6 +16543,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Amorphous"],
         changesFrom: "Rotom",
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     uxie: {
         num: 480,
@@ -15032,6 +16568,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     mesprit: {
         num: 481,
@@ -15054,6 +16593,9 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     azelf: {
         num: 482,
@@ -15076,6 +16618,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     dialga: {
         num: 483,
@@ -15099,6 +16644,9 @@ export const dex: { [id: string]: Species } = {
         tags: ["Restricted Legendary"],
         color: "White",
         eggGroups: ["Undiscovered"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     palkia: {
         num: 484,
@@ -15122,6 +16670,9 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         tags: ["Restricted Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     heatran: {
         num: 485,
@@ -15144,6 +16695,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "OU",
+        doublesTier: "Doubles OU",
+        natDexTier: "OU",
     },
     regigigas: {
         num: 486,
@@ -15166,6 +16720,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     giratina: {
         num: 487,
@@ -15192,6 +16749,9 @@ export const dex: { [id: string]: Species } = {
         tags: ["Restricted Legendary"],
         otherFormes: ["Giratina-Origin"],
         formeOrder: ["Giratina", "Giratina-Origin"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     giratinaorigin: {
         num: 487,
@@ -15217,6 +16777,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Griseous Orb",
         changesFrom: "Giratina",
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     cresselia: {
         num: 488,
@@ -15239,6 +16802,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     phione: {
         num: 489,
@@ -15261,6 +16827,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         tags: ["Mythical"],
         eggGroups: ["Water 1", "Fairy"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     manaphy: {
         num: 490,
@@ -15283,6 +16852,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         tags: ["Mythical"],
         eggGroups: ["Water 1", "Fairy"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UUBL",
     },
     darkrai: {
         num: 491,
@@ -15305,6 +16877,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         tags: ["Mythical"],
         eggGroups: ["Undiscovered"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     shaymin: {
         num: 492,
@@ -15330,6 +16905,9 @@ export const dex: { [id: string]: Species } = {
         tags: ["Mythical"],
         otherFormes: ["Shaymin-Sky"],
         formeOrder: ["Shaymin", "Shaymin-Sky"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     shayminsky: {
         num: 492,
@@ -15354,6 +16932,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         eggGroups: ["Undiscovered"],
         changesFrom: "Shaymin",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     arceus: {
         num: 493,
@@ -15416,6 +16997,9 @@ export const dex: { [id: string]: Species } = {
             "Arceus-Dark",
             "Arceus-Fairy",
         ],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     arceusbug: {
         num: 493,
@@ -15441,6 +17025,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItems: ["Insect Plate", "Buginium Z"],
         changesFrom: "Arceus",
+        isNonstandard: "Past",
     },
     arceusdark: {
         num: 493,
@@ -15466,6 +17051,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItems: ["Dread Plate", "Darkinium Z"],
         changesFrom: "Arceus",
+        isNonstandard: "Past",
     },
     arceusdragon: {
         num: 493,
@@ -15491,6 +17077,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItems: ["Draco Plate", "Dragonium Z"],
         changesFrom: "Arceus",
+        isNonstandard: "Past",
     },
     arceuselectric: {
         num: 493,
@@ -15516,6 +17103,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItems: ["Zap Plate", "Electrium Z"],
         changesFrom: "Arceus",
+        isNonstandard: "Past",
     },
     arceusfairy: {
         num: 493,
@@ -15542,6 +17130,7 @@ export const dex: { [id: string]: Species } = {
         requiredItems: ["Pixie Plate", "Fairium Z"],
         changesFrom: "Arceus",
         gen: 6,
+        isNonstandard: "Past",
     },
     arceusfighting: {
         num: 493,
@@ -15567,6 +17156,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItems: ["Fist Plate", "Fightinium Z"],
         changesFrom: "Arceus",
+        isNonstandard: "Past",
     },
     arceusfire: {
         num: 493,
@@ -15592,6 +17182,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItems: ["Flame Plate", "Firium Z"],
         changesFrom: "Arceus",
+        isNonstandard: "Past",
     },
     arceusflying: {
         num: 493,
@@ -15617,6 +17208,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItems: ["Sky Plate", "Flyinium Z"],
         changesFrom: "Arceus",
+        isNonstandard: "Past",
     },
     arceusghost: {
         num: 493,
@@ -15642,6 +17234,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItems: ["Spooky Plate", "Ghostium Z"],
         changesFrom: "Arceus",
+        isNonstandard: "Past",
     },
     arceusgrass: {
         num: 493,
@@ -15667,6 +17260,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItems: ["Meadow Plate", "Grassium Z"],
         changesFrom: "Arceus",
+        isNonstandard: "Past",
     },
     arceusground: {
         num: 493,
@@ -15692,6 +17286,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItems: ["Earth Plate", "Groundium Z"],
         changesFrom: "Arceus",
+        isNonstandard: "Past",
     },
     arceusice: {
         num: 493,
@@ -15717,6 +17312,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItems: ["Icicle Plate", "Icium Z"],
         changesFrom: "Arceus",
+        isNonstandard: "Past",
     },
     arceuspoison: {
         num: 493,
@@ -15742,6 +17338,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItems: ["Toxic Plate", "Poisonium Z"],
         changesFrom: "Arceus",
+        isNonstandard: "Past",
     },
     arceuspsychic: {
         num: 493,
@@ -15767,6 +17364,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItems: ["Mind Plate", "Psychium Z"],
         changesFrom: "Arceus",
+        isNonstandard: "Past",
     },
     arceusrock: {
         num: 493,
@@ -15792,6 +17390,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItems: ["Stone Plate", "Rockium Z"],
         changesFrom: "Arceus",
+        isNonstandard: "Past",
     },
     arceussteel: {
         num: 493,
@@ -15817,6 +17416,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItems: ["Iron Plate", "Steelium Z"],
         changesFrom: "Arceus",
+        isNonstandard: "Past",
     },
     arceuswater: {
         num: 493,
@@ -15842,6 +17442,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItems: ["Splash Plate", "Waterium Z"],
         changesFrom: "Arceus",
+        isNonstandard: "Past",
     },
     victini: {
         num: 494,
@@ -15864,6 +17465,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         tags: ["Mythical"],
         eggGroups: ["Undiscovered"],
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "OU",
     },
     snivy: {
         num: 495,
@@ -15890,6 +17494,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Servine"],
         eggGroups: ["Field", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     servine: {
         num: 496,
@@ -15918,6 +17525,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 17,
         evos: ["Serperior"],
         eggGroups: ["Field", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     serperior: {
         num: 497,
@@ -15945,6 +17555,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Servine",
         evoLevel: 36,
         eggGroups: ["Field", "Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "OU",
     },
     tepig: {
         num: 498,
@@ -15971,6 +17584,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Pignite"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     pignite: {
         num: 499,
@@ -15999,6 +17615,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 17,
         evos: ["Emboar"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     emboar: {
         num: 500,
@@ -16026,6 +17645,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Pignite",
         evoLevel: 36,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     oshawott: {
         num: 501,
@@ -16052,6 +17674,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Dewott"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     dewott: {
         num: 502,
@@ -16080,6 +17705,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 17,
         evos: ["Samurott"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     samurott: {
         num: 503,
@@ -16107,6 +17735,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Dewott",
         evoLevel: 36,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     patrat: {
         num: 504,
@@ -16130,6 +17761,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Watchog"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     watchog: {
         num: 505,
@@ -16154,6 +17788,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Patrat",
         evoLevel: 20,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     lillipup: {
         num: 506,
@@ -16177,6 +17814,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Herdier"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     herdier: {
         num: 507,
@@ -16202,6 +17840,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Stoutland"],
         eggGroups: ["Field"],
+        tier: "NFE",
     },
     stoutland: {
         num: 508,
@@ -16226,6 +17865,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Herdier",
         evoLevel: 32,
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     purrloin: {
         num: 509,
@@ -16249,6 +17891,7 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Liepard"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     liepard: {
         num: 510,
@@ -16273,6 +17916,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Purrloin",
         evoLevel: 20,
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     pansage: {
         num: 511,
@@ -16299,6 +17945,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Simisage"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     simisage: {
         num: 512,
@@ -16327,6 +17976,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Leaf Stone",
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     pansear: {
         num: 513,
@@ -16353,6 +18005,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Simisear"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     simisear: {
         num: 514,
@@ -16381,6 +18036,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Fire Stone",
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     panpour: {
         num: 515,
@@ -16407,6 +18065,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Simipour"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     simipour: {
         num: 516,
@@ -16435,6 +18096,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Water Stone",
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     munna: {
         num: 517,
@@ -16458,6 +18122,7 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         evos: ["Musharna"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     musharna: {
         num: 518,
@@ -16483,6 +18148,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Moon Stone",
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     pidove: {
         num: 519,
@@ -16506,6 +18174,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Tranquill"],
         eggGroups: ["Flying"],
+        tier: "LC",
     },
     tranquill: {
         num: 520,
@@ -16531,6 +18200,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 21,
         evos: ["Unfezant"],
         eggGroups: ["Flying"],
+        tier: "NFE",
     },
     unfezant: {
         num: 521,
@@ -16555,6 +18225,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Tranquill",
         evoLevel: 32,
         eggGroups: ["Flying"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     blitzle: {
         num: 522,
@@ -16578,6 +18251,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         evos: ["Zebstrika"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     zebstrika: {
         num: 523,
@@ -16602,6 +18278,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Blitzle",
         evoLevel: 27,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     roggenrola: {
         num: 524,
@@ -16625,6 +18304,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Boldore"],
         eggGroups: ["Mineral"],
+        tier: "LC",
     },
     boldore: {
         num: 525,
@@ -16650,6 +18330,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 25,
         evos: ["Gigalith"],
         eggGroups: ["Mineral"],
+        tier: "NFE",
     },
     gigalith: {
         num: 526,
@@ -16674,6 +18355,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Boldore",
         evoType: "trade",
         eggGroups: ["Mineral"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     woobat: {
         num: 527,
@@ -16697,6 +18381,8 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Swoobat"],
         eggGroups: ["Flying", "Field"],
+        tier: "NFE",
+        natDexTier: "LC",
     },
     swoobat: {
         num: 528,
@@ -16721,6 +18407,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Woobat",
         evoType: "levelFriendship",
         eggGroups: ["Flying", "Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     drilbur: {
         num: 529,
@@ -16744,6 +18433,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Excadrill"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     excadrill: {
         num: 530,
@@ -16768,6 +18458,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Drilbur",
         evoLevel: 31,
         eggGroups: ["Field"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "OU",
     },
     audino: {
         num: 531,
@@ -16792,6 +18485,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Fairy"],
         otherFormes: ["Audino-Mega"],
         formeOrder: ["Audino", "Audino-Mega"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     audinomega: {
         num: 531,
@@ -16815,6 +18511,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         eggGroups: ["Fairy"],
         requiredItem: "Audinite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     timburr: {
         num: 532,
@@ -16842,6 +18541,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Gurdurr"],
         eggGroups: ["Human-Like"],
+        tier: "LC",
     },
     gurdurr: {
         num: 533,
@@ -16871,6 +18571,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 25,
         evos: ["Conkeldurr"],
         eggGroups: ["Human-Like"],
+        tier: "NFE",
     },
     conkeldurr: {
         num: 534,
@@ -16899,6 +18600,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Gurdurr",
         evoType: "trade",
         eggGroups: ["Human-Like"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     tympole: {
         num: 535,
@@ -16922,6 +18626,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Palpitoad"],
         eggGroups: ["Water 1"],
+        tier: "LC",
     },
     palpitoad: {
         num: 536,
@@ -16947,6 +18652,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 25,
         evos: ["Seismitoad"],
         eggGroups: ["Water 1"],
+        tier: "NFE",
     },
     seismitoad: {
         num: 537,
@@ -16971,6 +18677,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Palpitoad",
         evoLevel: 36,
         eggGroups: ["Water 1"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     throh: {
         num: 538,
@@ -16994,6 +18703,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 55.5,
         color: "Red",
         eggGroups: ["Human-Like"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     sawk: {
         num: 539,
@@ -17017,6 +18729,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 51,
         color: "Blue",
         eggGroups: ["Human-Like"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     sewaddle: {
         num: 540,
@@ -17040,6 +18755,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         evos: ["Swadloon"],
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     swadloon: {
         num: 541,
@@ -17065,6 +18783,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 20,
         evos: ["Leavanny"],
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     leavanny: {
         num: 542,
@@ -17089,6 +18810,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Swadloon",
         evoType: "levelFriendship",
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     venipede: {
         num: 543,
@@ -17112,6 +18836,7 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Whirlipede"],
         eggGroups: ["Bug"],
+        tier: "LC",
     },
     whirlipede: {
         num: 544,
@@ -17137,6 +18862,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 22,
         evos: ["Scolipede"],
         eggGroups: ["Bug"],
+        tier: "NFE",
     },
     scolipede: {
         num: 545,
@@ -17161,6 +18887,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Whirlipede",
         evoLevel: 30,
         eggGroups: ["Bug"],
+        tier: "RUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     cottonee: {
         num: 546,
@@ -17184,6 +18913,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Whimsicott"],
         eggGroups: ["Fairy", "Grass"],
+        tier: "LC",
     },
     whimsicott: {
         num: 547,
@@ -17209,6 +18939,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Sun Stone",
         eggGroups: ["Fairy", "Grass"],
+        tier: "PU",
+        doublesTier: "Doubles OU",
+        natDexTier: "RU",
     },
     petilil: {
         num: 548,
@@ -17233,6 +18966,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Lilligant"],
         eggGroups: ["Grass"],
+        tier: "LC",
     },
     lilligant: {
         num: 549,
@@ -17259,6 +18993,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Sun Stone",
         eggGroups: ["Grass"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     basculin: {
         num: 550,
@@ -17284,6 +19021,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Water 2"],
         otherFormes: ["Basculin-Blue-Striped"],
         formeOrder: ["Basculin", "Basculin-Blue-Striped"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     basculinbluestriped: {
         num: 550,
@@ -17308,6 +19048,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 18,
         color: "Green",
         eggGroups: ["Water 2"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     sandile: {
         num: 551,
@@ -17331,6 +19074,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Krokorok"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     krokorok: {
         num: 552,
@@ -17356,6 +19100,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 29,
         evos: ["Krookodile"],
         eggGroups: ["Field"],
+        tier: "NFE",
     },
     krookodile: {
         num: 553,
@@ -17380,6 +19125,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Krokorok",
         evoLevel: 40,
         eggGroups: ["Field"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     darumaka: {
         num: 554,
@@ -17404,6 +19152,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Darumaka-Galar"],
         formeOrder: ["Darumaka", "Darumaka-Galar"],
+        tier: "LC",
     },
     darumakagalar: {
         num: 554,
@@ -17428,6 +19177,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Darmanitan-Galar"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     darmanitan: {
         num: 555,
@@ -17452,8 +19202,20 @@ export const dex: { [id: string]: Species } = {
         prevo: "Darumaka",
         evoLevel: 35,
         eggGroups: ["Field"],
-        otherFormes: ["Darmanitan-Zen", "Darmanitan-Galar", "Darmanitan-Galar-Zen"],
-        formeOrder: ["Darmanitan", "Darmanitan-Zen", "Darmanitan-Galar", "Darmanitan-Galar-Zen"],
+        otherFormes: [
+            "Darmanitan-Zen",
+            "Darmanitan-Galar",
+            "Darmanitan-Galar-Zen",
+        ],
+        formeOrder: [
+            "Darmanitan",
+            "Darmanitan-Zen",
+            "Darmanitan-Galar",
+            "Darmanitan-Galar-Zen",
+        ],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     darmanitanzen: {
         num: 555,
@@ -17504,6 +19266,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Ice Stone",
         eggGroups: ["Field"],
+        tier: "Ubers",
+        doublesTier: "Doubles UU",
+        natDexTier: "Ubers",
     },
     darmanitangalarzen: {
         num: 555,
@@ -17550,6 +19315,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 28,
         color: "Green",
         eggGroups: ["Grass"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     dwebble: {
         num: 557,
@@ -17573,6 +19341,7 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Crustle"],
         eggGroups: ["Bug", "Mineral"],
+        tier: "LC",
     },
     crustle: {
         num: 558,
@@ -17597,6 +19366,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Dwebble",
         evoLevel: 34,
         eggGroups: ["Bug", "Mineral"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     scraggy: {
         num: 559,
@@ -17620,6 +19392,8 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         evos: ["Scrafty"],
         eggGroups: ["Field", "Dragon"],
+        tier: "NFE",
+        natDexTier: "LC",
     },
     scrafty: {
         num: 560,
@@ -17644,6 +19418,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Scraggy",
         evoLevel: 39,
         eggGroups: ["Field", "Dragon"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     sigilyph: {
         num: 561,
@@ -17666,6 +19443,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 14,
         color: "Black",
         eggGroups: ["Flying"],
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     yamask: {
         num: 562,
@@ -17689,6 +19469,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Mineral", "Amorphous"],
         otherFormes: ["Yamask-Galar"],
         formeOrder: ["Yamask", "Yamask-Galar"],
+        tier: "LC",
     },
     yamaskgalar: {
         num: 562,
@@ -17712,6 +19493,7 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         evos: ["Runerigus"],
         eggGroups: ["Mineral", "Amorphous"],
+        tier: "LC",
     },
     cofagrigus: {
         num: 563,
@@ -17734,6 +19516,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Yamask",
         evoLevel: 34,
         eggGroups: ["Mineral", "Amorphous"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     tirtouga: {
         num: 564,
@@ -17761,6 +19546,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Carracosta"],
         eggGroups: ["Water 1", "Water 3"],
+        tier: "LC",
     },
     carracosta: {
         num: 565,
@@ -17789,6 +19575,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Tirtouga",
         evoLevel: 37,
         eggGroups: ["Water 1", "Water 3"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     archen: {
         num: 566,
@@ -17814,6 +19603,7 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         evos: ["Archeops"],
         eggGroups: ["Flying", "Water 3"],
+        tier: "LC",
     },
     archeops: {
         num: 567,
@@ -17840,6 +19630,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Archen",
         evoLevel: 37,
         eggGroups: ["Flying", "Water 3"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     trubbish: {
         num: 568,
@@ -17863,6 +19656,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Garbodor"],
         eggGroups: ["Mineral"],
+        tier: "LC",
     },
     garbodor: {
         num: 569,
@@ -17888,6 +19682,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 36,
         eggGroups: ["Mineral"],
         canGigantamax: "G-Max Malodor",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     garbodorgmax: {
         num: 569,
@@ -17913,6 +19710,10 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         eggGroups: ["Mineral"],
         changesFrom: "Garbodor",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     zorua: {
         num: 570,
@@ -17938,6 +19739,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Zoroark"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     zoroark: {
         num: 571,
@@ -17964,6 +19766,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Zorua",
         evoLevel: 30,
         eggGroups: ["Field"],
+        tier: "PUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     minccino: {
         num: 572,
@@ -17991,6 +19796,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Cinccino"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     cinccino: {
         num: 573,
@@ -18020,6 +19826,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Shiny Stone",
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     gothita: {
         num: 574,
@@ -18047,6 +19856,8 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Gothorita"],
         eggGroups: ["Human-Like"],
+        tier: "NFE",
+        natDexTier: "LC",
     },
     gothorita: {
         num: 575,
@@ -18076,6 +19887,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 32,
         evos: ["Gothitelle"],
         eggGroups: ["Human-Like"],
+        tier: "NFE",
     },
     gothitelle: {
         num: 576,
@@ -18104,6 +19916,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Gothorita",
         evoLevel: 41,
         eggGroups: ["Human-Like"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     solosis: {
         num: 577,
@@ -18127,6 +19942,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Duosion"],
         eggGroups: ["Amorphous"],
+        tier: "LC",
     },
     duosion: {
         num: 578,
@@ -18152,6 +19968,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 32,
         evos: ["Reuniclus"],
         eggGroups: ["Amorphous"],
+        tier: "NFE",
     },
     reuniclus: {
         num: 579,
@@ -18176,6 +19993,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Duosion",
         evoLevel: 41,
         eggGroups: ["Amorphous"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     ducklett: {
         num: 580,
@@ -18199,6 +20019,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Swanna"],
         eggGroups: ["Water 1", "Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     swanna: {
         num: 581,
@@ -18223,6 +20046,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Ducklett",
         evoLevel: 35,
         eggGroups: ["Water 1", "Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     vanillite: {
         num: 582,
@@ -18246,6 +20072,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Vanillish"],
         eggGroups: ["Mineral"],
+        tier: "LC",
     },
     vanillish: {
         num: 583,
@@ -18271,6 +20098,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 35,
         evos: ["Vanilluxe"],
         eggGroups: ["Mineral"],
+        tier: "NFE",
     },
     vanilluxe: {
         num: 584,
@@ -18295,6 +20123,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Vanillish",
         evoLevel: 47,
         eggGroups: ["Mineral"],
+        tier: "PUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     deerling: {
         num: 585,
@@ -18319,8 +20150,20 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         evos: ["Sawsbuck"],
         eggGroups: ["Field"],
-        cosmeticFormes: ["Deerling-Summer", "Deerling-Autumn", "Deerling-Winter"],
-        formeOrder: ["Deerling", "Deerling-Summer", "Deerling-Autumn", "Deerling-Winter"],
+        cosmeticFormes: [
+            "Deerling-Summer",
+            "Deerling-Autumn",
+            "Deerling-Winter",
+        ],
+        formeOrder: [
+            "Deerling",
+            "Deerling-Summer",
+            "Deerling-Autumn",
+            "Deerling-Winter",
+        ],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     sawsbuck: {
         num: 586,
@@ -18346,8 +20189,20 @@ export const dex: { [id: string]: Species } = {
         prevo: "Deerling",
         evoLevel: 34,
         eggGroups: ["Field"],
-        cosmeticFormes: ["Sawsbuck-Summer", "Sawsbuck-Autumn", "Sawsbuck-Winter"],
-        formeOrder: ["Sawsbuck", "Sawsbuck-Summer", "Sawsbuck-Autumn", "Sawsbuck-Winter"],
+        cosmeticFormes: [
+            "Sawsbuck-Summer",
+            "Sawsbuck-Autumn",
+            "Sawsbuck-Winter",
+        ],
+        formeOrder: [
+            "Sawsbuck",
+            "Sawsbuck-Summer",
+            "Sawsbuck-Autumn",
+            "Sawsbuck-Winter",
+        ],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     emolga: {
         num: 587,
@@ -18369,6 +20224,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 5,
         color: "White",
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     karrablast: {
         num: 588,
@@ -18392,6 +20250,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Escavalier"],
         eggGroups: ["Bug"],
+        tier: "LC",
     },
     escavalier: {
         num: 589,
@@ -18417,6 +20276,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "trade",
         evoCondition: "with a Shelmet",
         eggGroups: ["Bug"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     foongus: {
         num: 590,
@@ -18439,6 +20301,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Amoonguss"],
         eggGroups: ["Grass"],
+        tier: "LC",
     },
     amoonguss: {
         num: 591,
@@ -18462,6 +20325,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Foongus",
         evoLevel: 39,
         eggGroups: ["Grass"],
+        tier: "UU",
+        doublesTier: "Doubles OU",
+        natDexTier: "UU",
     },
     frillish: {
         num: 592,
@@ -18485,6 +20351,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Jellicent"],
         eggGroups: ["Amorphous"],
+        tier: "LC",
     },
     jellicent: {
         num: 593,
@@ -18509,6 +20376,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Frillish",
         evoLevel: 40,
         eggGroups: ["Amorphous"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     alomomola: {
         num: 594,
@@ -18531,6 +20401,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 31.6,
         color: "Pink",
         eggGroups: ["Water 1", "Water 2"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     joltik: {
         num: 595,
@@ -18554,6 +20427,7 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         evos: ["Galvantula"],
         eggGroups: ["Bug"],
+        tier: "LC",
     },
     galvantula: {
         num: 596,
@@ -18578,6 +20452,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Joltik",
         evoLevel: 36,
         eggGroups: ["Bug"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     ferroseed: {
         num: 597,
@@ -18599,6 +20476,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Ferrothorn"],
         eggGroups: ["Grass", "Mineral"],
+        tier: "PU",
+        doublesTier: "NFE",
+        natDexTier: "LC",
     },
     ferrothorn: {
         num: 598,
@@ -18622,6 +20502,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Ferroseed",
         evoLevel: 40,
         eggGroups: ["Grass", "Mineral"],
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "OU",
     },
     klink: {
         num: 599,
@@ -18646,6 +20529,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Klang"],
         eggGroups: ["Mineral"],
+        tier: "LC",
     },
     klang: {
         num: 600,
@@ -18672,6 +20556,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 38,
         evos: ["Klinklang"],
         eggGroups: ["Mineral"],
+        tier: "NFE",
     },
     klinklang: {
         num: 601,
@@ -18697,6 +20582,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Klang",
         evoLevel: 49,
         eggGroups: ["Mineral"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     tynamo: {
         num: 602,
@@ -18718,6 +20606,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Eelektrik"],
         eggGroups: ["Amorphous"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     eelektrik: {
         num: 603,
@@ -18741,6 +20632,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 39,
         evos: ["Eelektross"],
         eggGroups: ["Amorphous"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     eelektross: {
         num: 604,
@@ -18764,6 +20658,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Thunder Stone",
         eggGroups: ["Amorphous"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     elgyem: {
         num: 605,
@@ -18787,6 +20684,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Beheeyem"],
         eggGroups: ["Human-Like"],
+        tier: "LC",
     },
     beheeyem: {
         num: 606,
@@ -18811,6 +20709,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Elgyem",
         evoLevel: 42,
         eggGroups: ["Human-Like"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     litwick: {
         num: 607,
@@ -18834,6 +20735,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Lampent"],
         eggGroups: ["Amorphous"],
+        tier: "LC",
     },
     lampent: {
         num: 608,
@@ -18859,6 +20761,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 41,
         evos: ["Chandelure"],
         eggGroups: ["Amorphous"],
+        tier: "NFE",
     },
     chandelure: {
         num: 609,
@@ -18884,6 +20787,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Dusk Stone",
         eggGroups: ["Amorphous"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     axew: {
         num: 610,
@@ -18907,6 +20813,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Fraxure"],
         eggGroups: ["Monster", "Dragon"],
+        tier: "LC",
     },
     fraxure: {
         num: 611,
@@ -18932,6 +20839,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 38,
         evos: ["Haxorus"],
         eggGroups: ["Monster", "Dragon"],
+        tier: "NFE",
     },
     haxorus: {
         num: 612,
@@ -18956,6 +20864,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Fraxure",
         evoLevel: 48,
         eggGroups: ["Monster", "Dragon"],
+        tier: "RUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     cubchoo: {
         num: 613,
@@ -18979,6 +20890,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Beartic"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     beartic: {
         num: 614,
@@ -19003,6 +20915,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Cubchoo",
         evoLevel: 37,
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     cryogonal: {
         num: 615,
@@ -19024,6 +20939,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 148,
         color: "Blue",
         eggGroups: ["Mineral"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     shelmet: {
         num: 616,
@@ -19047,6 +20965,7 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Accelgor"],
         eggGroups: ["Bug"],
+        tier: "LC",
     },
     accelgor: {
         num: 617,
@@ -19072,6 +20991,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "trade",
         evoCondition: "with a Karrablast",
         eggGroups: ["Bug"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     stunfisk: {
         num: 618,
@@ -19096,6 +21018,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Water 1", "Amorphous"],
         otherFormes: ["Stunfisk-Galar"],
         formeOrder: ["Stunfisk", "Stunfisk-Galar"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     stunfiskgalar: {
         num: 618,
@@ -19118,6 +21043,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 20.5,
         color: "Green",
         eggGroups: ["Water 1", "Amorphous"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     mienfoo: {
         num: 619,
@@ -19141,6 +21069,7 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         evos: ["Mienshao"],
         eggGroups: ["Field", "Human-Like"],
+        tier: "LC",
     },
     mienshao: {
         num: 620,
@@ -19165,6 +21094,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Mienfoo",
         evoLevel: 50,
         eggGroups: ["Field", "Human-Like"],
+        tier: "UUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     druddigon: {
         num: 621,
@@ -19187,6 +21119,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 139,
         color: "Red",
         eggGroups: ["Monster", "Dragon"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     golett: {
         num: 622,
@@ -19211,6 +21146,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Golurk"],
         eggGroups: ["Mineral"],
+        tier: "LC",
     },
     golurk: {
         num: 623,
@@ -19236,6 +21172,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Golett",
         evoLevel: 43,
         eggGroups: ["Mineral"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     pawniard: {
         num: 624,
@@ -19259,6 +21198,7 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Bisharp"],
         eggGroups: ["Human-Like"],
+        tier: "LC",
     },
     bisharp: {
         num: 625,
@@ -19283,6 +21223,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Pawniard",
         evoLevel: 52,
         eggGroups: ["Human-Like"],
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     bouffalant: {
         num: 626,
@@ -19305,6 +21248,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 94.6,
         color: "Brown",
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     rufflet: {
         num: 627,
@@ -19329,6 +21275,8 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Braviary"],
         eggGroups: ["Flying"],
+        tier: "NFE",
+        natDexTier: "LC",
     },
     braviary: {
         num: 628,
@@ -19354,6 +21302,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Rufflet",
         evoLevel: 54,
         eggGroups: ["Flying"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     vullaby: {
         num: 629,
@@ -19378,6 +21329,8 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Mandibuzz"],
         eggGroups: ["Flying"],
+        tier: "NFE",
+        natDexTier: "LC",
     },
     mandibuzz: {
         num: 630,
@@ -19403,6 +21356,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Vullaby",
         evoLevel: 54,
         eggGroups: ["Flying"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     heatmor: {
         num: 631,
@@ -19425,6 +21381,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 58,
         color: "Red",
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     durant: {
         num: 632,
@@ -19447,6 +21406,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 33,
         color: "Gray",
         eggGroups: ["Bug"],
+        tier: "RUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     deino: {
         num: 633,
@@ -19468,6 +21430,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Zweilous"],
         eggGroups: ["Dragon"],
+        tier: "LC",
     },
     zweilous: {
         num: 634,
@@ -19491,6 +21454,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 50,
         evos: ["Hydreigon"],
         eggGroups: ["Dragon"],
+        tier: "NFE",
     },
     hydreigon: {
         num: 635,
@@ -19513,6 +21477,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Zweilous",
         evoLevel: 64,
         eggGroups: ["Dragon"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UUBL",
     },
     larvesta: {
         num: 636,
@@ -19535,6 +21502,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Volcarona"],
         eggGroups: ["Bug"],
+        tier: "LC",
     },
     volcarona: {
         num: 637,
@@ -19558,6 +21526,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Larvesta",
         evoLevel: 59,
         eggGroups: ["Bug"],
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "OU",
     },
     cobalion: {
         num: 638,
@@ -19580,6 +21551,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     terrakion: {
         num: 639,
@@ -19602,6 +21576,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "UUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     virizion: {
         num: 640,
@@ -19624,6 +21601,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "PUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     tornadus: {
         num: 641,
@@ -19650,6 +21630,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         otherFormes: ["Tornadus-Therian"],
         formeOrder: ["Tornadus", "Tornadus-Therian"],
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     tornadustherian: {
         num: 641,
@@ -19674,6 +21657,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         eggGroups: ["Undiscovered"],
         changesFrom: "Tornadus",
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "Ubers",
     },
     thundurus: {
         num: 642,
@@ -19700,6 +21686,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         otherFormes: ["Thundurus-Therian"],
         formeOrder: ["Thundurus", "Thundurus-Therian"],
+        tier: "UUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "UUBL",
     },
     thundurustherian: {
         num: 642,
@@ -19724,6 +21713,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Undiscovered"],
         changesFrom: "Thundurus",
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UUBL",
     },
     reshiram: {
         num: 643,
@@ -19746,6 +21738,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         tags: ["Restricted Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     zekrom: {
         num: 644,
@@ -19768,6 +21763,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         tags: ["Restricted Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     landorus: {
         num: 645,
@@ -19794,6 +21792,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         otherFormes: ["Landorus-Therian"],
         formeOrder: ["Landorus", "Landorus-Therian"],
+        tier: "Ubers",
+        doublesTier: "Doubles OU",
+        natDexTier: "Ubers",
     },
     landorustherian: {
         num: 645,
@@ -19818,6 +21819,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         eggGroups: ["Undiscovered"],
         changesFrom: "Landorus",
+        tier: "OU",
+        doublesTier: "Doubles OU",
+        natDexTier: "OU",
     },
     kyurem: {
         num: 646,
@@ -19842,6 +21846,9 @@ export const dex: { [id: string]: Species } = {
         tags: ["Restricted Legendary"],
         otherFormes: ["Kyurem-Black", "Kyurem-White"],
         formeOrder: ["Kyurem", "Kyurem-White", "Kyurem-Black"],
+        tier: "Ubers",
+        doublesTier: "Doubles UU",
+        natDexTier: "OU",
     },
     kyuremblack: {
         num: 646,
@@ -19866,6 +21873,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         eggGroups: ["Undiscovered"],
         changesFrom: "Kyurem",
+        tier: "Ubers",
+        doublesTier: "Doubles OU",
+        natDexTier: "Ubers",
     },
     kyuremwhite: {
         num: 646,
@@ -19890,6 +21900,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         eggGroups: ["Undiscovered"],
         changesFrom: "Kyurem",
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     keldeo: {
         num: 647,
@@ -19915,6 +21928,9 @@ export const dex: { [id: string]: Species } = {
         tags: ["Mythical"],
         otherFormes: ["Keldeo-Resolute"],
         formeOrder: ["Keldeo", "Keldeo-Resolute"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     keldeoresolute: {
         num: 647,
@@ -19965,6 +21981,9 @@ export const dex: { [id: string]: Species } = {
         tags: ["Mythical"],
         otherFormes: ["Meloetta-Pirouette"],
         formeOrder: ["Meloetta", "Meloetta-Pirouette"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     meloettapirouette: {
         num: 648,
@@ -19990,6 +22009,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredMove: "Relic Song",
         battleOnly: "Meloetta",
+        isNonstandard: "Past",
     },
     genesect: {
         num: 649,
@@ -20012,8 +22032,22 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         eggGroups: ["Undiscovered"],
         tags: ["Mythical"],
-        otherFormes: ["Genesect-Douse", "Genesect-Shock", "Genesect-Burn", "Genesect-Chill"],
-        formeOrder: ["Genesect", "Genesect-Douse", "Genesect-Shock", "Genesect-Burn", "Genesect-Chill"],
+        otherFormes: [
+            "Genesect-Douse",
+            "Genesect-Shock",
+            "Genesect-Burn",
+            "Genesect-Chill",
+        ],
+        formeOrder: [
+            "Genesect",
+            "Genesect-Douse",
+            "Genesect-Shock",
+            "Genesect-Burn",
+            "Genesect-Chill",
+        ],
+        tier: "Ubers",
+        doublesTier: "Doubles OU",
+        natDexTier: "Ubers",
     },
     genesectdouse: {
         num: 649,
@@ -20140,6 +22174,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Quilladin"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     quilladin: {
         num: 651,
@@ -20168,6 +22205,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Chesnaught"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     chesnaught: {
         num: 652,
@@ -20195,6 +22235,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Quilladin",
         evoLevel: 36,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     fennekin: {
         num: 653,
@@ -20221,6 +22264,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Braixen"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     braixen: {
         num: 654,
@@ -20249,6 +22295,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Delphox"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     delphox: {
         num: 655,
@@ -20276,6 +22325,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Braixen",
         evoLevel: 36,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     froakie: {
         num: 656,
@@ -20302,6 +22354,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Frogadier"],
         eggGroups: ["Water 1"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     frogadier: {
         num: 657,
@@ -20330,6 +22385,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Greninja"],
         eggGroups: ["Water 1"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     greninja: {
         num: 658,
@@ -20360,6 +22418,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Water 1"],
         otherFormes: ["Greninja-Ash"],
         formeOrder: ["Greninja", "Greninja", "Greninja-Ash"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "OU",
     },
     greninjaash: {
         num: 658,
@@ -20386,6 +22447,9 @@ export const dex: { [id: string]: Species } = {
         requiredAbility: "Battle Bond",
         battleOnly: "Greninja",
         gen: 7,
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "OU",
     },
     bunnelby: {
         num: 659,
@@ -20409,6 +22473,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Diggersby"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     diggersby: {
         num: 660,
@@ -20433,6 +22498,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Bunnelby",
         evoLevel: 20,
         eggGroups: ["Field"],
+        tier: "RUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     fletchling: {
         num: 661,
@@ -20455,6 +22523,7 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Fletchinder"],
         eggGroups: ["Flying"],
+        tier: "LC",
     },
     fletchinder: {
         num: 662,
@@ -20479,6 +22548,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 17,
         evos: ["Talonflame"],
         eggGroups: ["Flying"],
+        tier: "NFE",
     },
     talonflame: {
         num: 663,
@@ -20502,6 +22572,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Fletchinder",
         evoLevel: 35,
         eggGroups: ["Flying"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     scatterbug: {
         num: 664,
@@ -20525,6 +22598,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         evos: ["Spewpa"],
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     spewpa: {
         num: 665,
@@ -20549,6 +22625,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 9,
         evos: ["Vivillon"],
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     vivillon: {
         num: 666,
@@ -20616,6 +22695,9 @@ export const dex: { [id: string]: Species } = {
             "Vivillon-Fancy",
             "Vivillon-Pokeball",
         ],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     vivillonfancy: {
         num: 666,
@@ -20639,6 +22721,7 @@ export const dex: { [id: string]: Species } = {
         weightkg: 17,
         color: "Black",
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
     },
     vivillonpokeball: {
         num: 666,
@@ -20662,6 +22745,7 @@ export const dex: { [id: string]: Species } = {
         weightkg: 17,
         color: "Black",
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
     },
     litleo: {
         num: 667,
@@ -20689,6 +22773,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Pyroar"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     pyroar: {
         num: 668,
@@ -20717,6 +22804,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Litleo",
         evoLevel: 35,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     flabebe: {
         num: 669,
@@ -20741,8 +22831,22 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Floette"],
         eggGroups: ["Fairy"],
-        cosmeticFormes: ["Flabébé-Blue", "Flabébé-Orange", "Flabébé-White", "Flabébé-Yellow"],
-        formeOrder: ["Flabébé", "Flabébé-Blue", "Flabébé-Orange", "Flabébé-White", "Flabébé-Yellow"],
+        cosmeticFormes: [
+            "Flabébé-Blue",
+            "Flabébé-Orange",
+            "Flabébé-White",
+            "Flabébé-Yellow",
+        ],
+        formeOrder: [
+            "Flabébé",
+            "Flabébé-Blue",
+            "Flabébé-Orange",
+            "Flabébé-White",
+            "Flabébé-Yellow",
+        ],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     floette: {
         num: 670,
@@ -20770,8 +22874,23 @@ export const dex: { [id: string]: Species } = {
         evos: ["Florges"],
         eggGroups: ["Fairy"],
         otherFormes: ["Floette-Eternal"],
-        cosmeticFormes: ["Floette-Blue", "Floette-Orange", "Floette-White", "Floette-Yellow"],
-        formeOrder: ["Floette", "Floette-Blue", "Floette-Orange", "Floette-White", "Floette-Yellow", "Floette-Eternal"],
+        cosmeticFormes: [
+            "Floette-Blue",
+            "Floette-Orange",
+            "Floette-White",
+            "Floette-Yellow",
+        ],
+        formeOrder: [
+            "Floette",
+            "Floette-Blue",
+            "Floette-Orange",
+            "Floette-White",
+            "Floette-Yellow",
+            "Floette-Eternal",
+        ],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     floetteeternal: {
         num: 670,
@@ -20795,6 +22914,8 @@ export const dex: { [id: string]: Species } = {
         weightkg: 0.9,
         color: "White",
         eggGroups: ["Undiscovered"],
+        isNonstandard: "Past",
+        tier: "Illegal",
     },
     florges: {
         num: 671,
@@ -20821,8 +22942,22 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Shiny Stone",
         eggGroups: ["Fairy"],
-        cosmeticFormes: ["Florges-Blue", "Florges-Orange", "Florges-White", "Florges-Yellow"],
-        formeOrder: ["Florges", "Florges-Blue", "Florges-Orange", "Florges-White", "Florges-Yellow"],
+        cosmeticFormes: [
+            "Florges-Blue",
+            "Florges-Orange",
+            "Florges-White",
+            "Florges-Yellow",
+        ],
+        formeOrder: [
+            "Florges",
+            "Florges-Blue",
+            "Florges-Orange",
+            "Florges-White",
+            "Florges-Yellow",
+        ],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     skiddo: {
         num: 672,
@@ -20845,6 +22980,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Gogoat"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     gogoat: {
         num: 673,
@@ -20868,6 +23006,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Skiddo",
         evoLevel: 32,
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     pancham: {
         num: 674,
@@ -20891,6 +23032,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Pangoro"],
         eggGroups: ["Field", "Human-Like"],
+        tier: "LC",
     },
     pangoro: {
         num: 675,
@@ -20916,6 +23058,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 32,
         evoCondition: "with a Dark-type in the party",
         eggGroups: ["Field", "Human-Like"],
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     furfrou: {
         num: 676,
@@ -20960,6 +23105,9 @@ export const dex: { [id: string]: Species } = {
             "Furfrou-Kabuki",
             "Furfrou-Pharaoh",
         ],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     espurr: {
         num: 677,
@@ -20983,6 +23131,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Meowstic", "Meowstic-F"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     meowstic: {
         num: 678,
@@ -21011,6 +23160,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Meowstic-F"],
         formeOrder: ["Meowstic", "Meowstic-F"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     meowsticf: {
         num: 678,
@@ -21038,6 +23190,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Espurr",
         evoLevel: 25,
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     honedge: {
         num: 679,
@@ -21059,6 +23214,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Doublade"],
         eggGroups: ["Mineral"],
+        tier: "LC",
     },
     doublade: {
         num: 680,
@@ -21082,6 +23238,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 35,
         evos: ["Aegislash"],
         eggGroups: ["Mineral"],
+        tier: "PU",
+        doublesTier: "NFE",
+        natDexTier: "NFE",
     },
     aegislash: {
         num: 681,
@@ -21108,6 +23267,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Mineral"],
         otherFormes: ["Aegislash-Blade"],
         formeOrder: ["Aegislash", "Aegislash-Blade"],
+        tier: "UUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     aegislashblade: {
         num: 681,
@@ -21154,6 +23316,7 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         evos: ["Aromatisse"],
         eggGroups: ["Fairy"],
+        tier: "LC",
     },
     aromatisse: {
         num: 683,
@@ -21178,6 +23341,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "trade",
         evoItem: "Sachet",
         eggGroups: ["Fairy"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     swirlix: {
         num: 684,
@@ -21200,6 +23366,8 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Slurpuff"],
         eggGroups: ["Fairy"],
+        tier: "NFE",
+        natDexTier: "LC",
     },
     slurpuff: {
         num: 685,
@@ -21224,6 +23392,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "trade",
         evoItem: "Whipped Dream",
         eggGroups: ["Fairy"],
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     inkay: {
         num: 686,
@@ -21247,6 +23418,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Malamar"],
         eggGroups: ["Water 1", "Water 2"],
+        tier: "LC",
     },
     malamar: {
         num: 687,
@@ -21272,6 +23444,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 30,
         evoCondition: "with the console turned upside-down",
         eggGroups: ["Water 1", "Water 2"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     binacle: {
         num: 688,
@@ -21295,6 +23470,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Barbaracle"],
         eggGroups: ["Water 3"],
+        tier: "LC",
     },
     barbaracle: {
         num: 689,
@@ -21319,6 +23495,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Binacle",
         evoLevel: 39,
         eggGroups: ["Water 3"],
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     skrelp: {
         num: 690,
@@ -21342,6 +23521,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Dragalge"],
         eggGroups: ["Water 1", "Dragon"],
+        tier: "LC",
     },
     dragalge: {
         num: 691,
@@ -21366,6 +23546,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Skrelp",
         evoLevel: 48,
         eggGroups: ["Water 1", "Dragon"],
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     clauncher: {
         num: 692,
@@ -21387,6 +23570,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Clawitzer"],
         eggGroups: ["Water 1", "Water 3"],
+        tier: "LC",
     },
     clawitzer: {
         num: 693,
@@ -21409,6 +23593,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Clauncher",
         evoLevel: 37,
         eggGroups: ["Water 1", "Water 3"],
+        tier: "PUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     helioptile: {
         num: 694,
@@ -21432,6 +23619,7 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         evos: ["Heliolisk"],
         eggGroups: ["Monster", "Dragon"],
+        tier: "LC",
     },
     heliolisk: {
         num: 695,
@@ -21457,6 +23645,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "useItem",
         evoItem: "Sun Stone",
         eggGroups: ["Monster", "Dragon"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     tyrunt: {
         num: 696,
@@ -21483,6 +23674,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Tyrantrum"],
         eggGroups: ["Monster", "Dragon"],
+        tier: "LC",
     },
     tyrantrum: {
         num: 697,
@@ -21510,6 +23702,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Tyrunt",
         evoLevel: 39,
         eggGroups: ["Monster", "Dragon"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     amaura: {
         num: 698,
@@ -21536,6 +23731,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Aurorus"],
         eggGroups: ["Monster"],
+        tier: "LC",
     },
     aurorus: {
         num: 699,
@@ -21563,6 +23759,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Amaura",
         evoLevel: 39,
         eggGroups: ["Monster"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     sylveon: {
         num: 700,
@@ -21591,6 +23790,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelExtra",
         evoCondition: "with a Fairy-type move and two levels of Affection",
         eggGroups: ["Field"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     hawlucha: {
         num: 701,
@@ -21613,6 +23815,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 21.5,
         color: "Green",
         eggGroups: ["Flying", "Human-Like"],
+        tier: "UUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "UUBL",
     },
     dedenne: {
         num: 702,
@@ -21635,6 +23840,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 2.2,
         color: "Yellow",
         eggGroups: ["Field", "Fairy"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     carbink: {
         num: 703,
@@ -21657,6 +23865,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 5.7,
         color: "Gray",
         eggGroups: ["Fairy", "Mineral"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     goomy: {
         num: 704,
@@ -21680,6 +23891,7 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Sliggoo"],
         eggGroups: ["Dragon"],
+        tier: "LC",
     },
     sliggoo: {
         num: 705,
@@ -21705,6 +23917,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 40,
         evos: ["Goodra"],
         eggGroups: ["Dragon"],
+        tier: "NFE",
     },
     goodra: {
         num: 706,
@@ -21729,6 +23942,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Sliggoo",
         evoLevel: 50,
         eggGroups: ["Dragon"],
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     klefki: {
         num: 707,
@@ -21750,6 +23966,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 3,
         color: "Gray",
         eggGroups: ["Mineral"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     phantump: {
         num: 708,
@@ -21773,6 +23992,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Trevenant"],
         eggGroups: ["Grass", "Amorphous"],
+        tier: "LC",
     },
     trevenant: {
         num: 709,
@@ -21797,6 +24017,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Phantump",
         evoType: "trade",
         eggGroups: ["Grass", "Amorphous"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     pumpkaboo: {
         num: 710,
@@ -21822,7 +24045,13 @@ export const dex: { [id: string]: Species } = {
         evos: ["Gourgeist"],
         eggGroups: ["Amorphous"],
         otherFormes: ["Pumpkaboo-Small", "Pumpkaboo-Large", "Pumpkaboo-Super"],
-        formeOrder: ["Pumpkaboo", "Pumpkaboo-Small", "Pumpkaboo-Large", "Pumpkaboo-Super"],
+        formeOrder: [
+            "Pumpkaboo",
+            "Pumpkaboo-Small",
+            "Pumpkaboo-Large",
+            "Pumpkaboo-Super",
+        ],
+        tier: "LC",
     },
     pumpkaboosmall: {
         num: 710,
@@ -21848,6 +24077,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Gourgeist-Small"],
         eggGroups: ["Amorphous"],
+        tier: "LC",
     },
     pumpkaboolarge: {
         num: 710,
@@ -21873,6 +24103,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Gourgeist-Large"],
         eggGroups: ["Amorphous"],
+        tier: "LC",
     },
     pumpkaboosuper: {
         num: 710,
@@ -21898,6 +24129,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Gourgeist-Super"],
         eggGroups: ["Amorphous"],
+        tier: "LC",
     },
     gourgeist: {
         num: 711,
@@ -21924,7 +24156,15 @@ export const dex: { [id: string]: Species } = {
         evoType: "trade",
         eggGroups: ["Amorphous"],
         otherFormes: ["Gourgeist-Small", "Gourgeist-Large", "Gourgeist-Super"],
-        formeOrder: ["Gourgeist", "Gourgeist-Small", "Gourgeist-Large", "Gourgeist-Super"],
+        formeOrder: [
+            "Gourgeist",
+            "Gourgeist-Small",
+            "Gourgeist-Large",
+            "Gourgeist-Super",
+        ],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     gourgeistsmall: {
         num: 711,
@@ -21951,6 +24191,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Pumpkaboo-Small",
         evoType: "trade",
         eggGroups: ["Amorphous"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     gourgeistlarge: {
         num: 711,
@@ -21977,6 +24220,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Pumpkaboo-Large",
         evoType: "trade",
         eggGroups: ["Amorphous"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     gourgeistsuper: {
         num: 711,
@@ -22003,6 +24249,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Pumpkaboo-Super",
         evoType: "trade",
         eggGroups: ["Amorphous"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     bergmite: {
         num: 712,
@@ -22026,6 +24275,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Avalugg"],
         eggGroups: ["Monster", "Mineral"],
+        tier: "LC",
     },
     avalugg: {
         num: 713,
@@ -22050,6 +24300,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Bergmite",
         evoLevel: 37,
         eggGroups: ["Monster", "Mineral"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     noibat: {
         num: 714,
@@ -22073,6 +24326,7 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Noivern"],
         eggGroups: ["Flying", "Dragon"],
+        tier: "LC",
     },
     noivern: {
         num: 715,
@@ -22097,6 +24351,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Noibat",
         evoLevel: 48,
         eggGroups: ["Flying", "Dragon"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     xerneas: {
         num: 716,
@@ -22122,6 +24379,9 @@ export const dex: { [id: string]: Species } = {
         tags: ["Restricted Legendary"],
         otherFormes: ["Xerneas-Neutral"],
         formeOrder: ["Xerneas-Neutral", "Xerneas"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     xerneasneutral: {
         num: 716,
@@ -22145,6 +24405,8 @@ export const dex: { [id: string]: Species } = {
         weightkg: 215,
         color: "Blue",
         eggGroups: ["Undiscovered"],
+        isNonstandard: "Custom",
+        tier: "Illegal",
     },
     yveltal: {
         num: 717,
@@ -22167,6 +24429,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         tags: ["Restricted Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     zygarde: {
         num: 718,
@@ -22192,7 +24457,16 @@ export const dex: { [id: string]: Species } = {
         tags: ["Restricted Legendary"],
         eggGroups: ["Undiscovered"],
         otherFormes: ["Zygarde-10%", "Zygarde-Complete"],
-        formeOrder: ["Zygarde", "Zygarde-10%", "Zygarde-10%", "Zygarde", "Zygarde-Complete"],
+        formeOrder: [
+            "Zygarde",
+            "Zygarde-10%",
+            "Zygarde-10%",
+            "Zygarde",
+            "Zygarde-Complete",
+        ],
+        tier: "Ubers",
+        doublesTier: "Doubles OU",
+        natDexTier: "Ubers",
     },
     zygarde10: {
         num: 718,
@@ -22219,6 +24493,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         changesFrom: "Zygarde",
         gen: 7,
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     zygardecomplete: {
         num: 718,
@@ -22245,6 +24522,9 @@ export const dex: { [id: string]: Species } = {
         requiredAbility: "Power Construct",
         battleOnly: ["Zygarde", "Zygarde-10%"],
         gen: 7,
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     diancie: {
         num: 719,
@@ -22269,6 +24549,9 @@ export const dex: { [id: string]: Species } = {
         tags: ["Mythical"],
         otherFormes: ["Diancie-Mega"],
         formeOrder: ["Diancie", "Diancie-Mega"],
+        tier: "NU",
+        doublesTier: "Doubles OU",
+        natDexTier: "RU",
     },
     dianciemega: {
         num: 719,
@@ -22293,6 +24576,9 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         eggGroups: ["Undiscovered"],
         requiredItem: "Diancite",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "OU",
     },
     hoopa: {
         num: 720,
@@ -22318,6 +24604,9 @@ export const dex: { [id: string]: Species } = {
         tags: ["Mythical"],
         otherFormes: ["Hoopa-Unbound"],
         formeOrder: ["Hoopa", "Hoopa-Unbound"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     hoopaunbound: {
         num: 720,
@@ -22342,6 +24631,9 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         eggGroups: ["Undiscovered"],
         changesFrom: "Hoopa",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "UUBL",
     },
     volcanion: {
         num: 721,
@@ -22364,6 +24656,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         tags: ["Mythical"],
         eggGroups: ["Undiscovered"],
+        tier: "OU",
+        doublesTier: "Doubles OU",
+        natDexTier: "RU",
     },
     rowlet: {
         num: 722,
@@ -22390,6 +24685,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Dartrix"],
         eggGroups: ["Flying"],
+        tier: "LC",
     },
     dartrix: {
         num: 723,
@@ -22418,6 +24714,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 17,
         evos: ["Decidueye"],
         eggGroups: ["Flying"],
+        tier: "NFE",
     },
     decidueye: {
         num: 724,
@@ -22445,6 +24742,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Dartrix",
         evoLevel: 34,
         eggGroups: ["Flying"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     litten: {
         num: 725,
@@ -22471,6 +24771,7 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Torracat"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     torracat: {
         num: 726,
@@ -22499,6 +24800,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 17,
         evos: ["Incineroar"],
         eggGroups: ["Field"],
+        tier: "NFE",
     },
     incineroar: {
         num: 727,
@@ -22526,6 +24828,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Torracat",
         evoLevel: 34,
         eggGroups: ["Field"],
+        tier: "RU",
+        doublesTier: "Doubles OU",
+        natDexTier: "RU",
     },
     popplio: {
         num: 728,
@@ -22552,6 +24857,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Brionne"],
         eggGroups: ["Water 1", "Field"],
+        tier: "LC",
     },
     brionne: {
         num: 729,
@@ -22580,6 +24886,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 17,
         evos: ["Primarina"],
         eggGroups: ["Water 1", "Field"],
+        tier: "NFE",
     },
     primarina: {
         num: 730,
@@ -22607,6 +24914,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Brionne",
         evoLevel: 34,
         eggGroups: ["Water 1", "Field"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     pikipek: {
         num: 731,
@@ -22630,6 +24940,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         evos: ["Trumbeak"],
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     trumbeak: {
         num: 732,
@@ -22655,6 +24968,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 14,
         evos: ["Toucannon"],
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "NFE",
     },
     toucannon: {
         num: 733,
@@ -22679,6 +24995,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Trumbeak",
         evoLevel: 28,
         eggGroups: ["Flying"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     yungoos: {
         num: 734,
@@ -22702,6 +25021,9 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Gumshoos"],
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     gumshoos: {
         num: 735,
@@ -22728,6 +25050,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Gumshoos-Totem"],
         formeOrder: ["Gumshoos", "Gumshoos-Totem"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     gumshoostotem: {
         num: 735,
@@ -22750,6 +25075,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 60,
         color: "Brown",
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     grubbin: {
         num: 736,
@@ -22771,6 +25099,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Charjabug"],
         eggGroups: ["Bug"],
+        tier: "LC",
     },
     charjabug: {
         num: 737,
@@ -22794,6 +25123,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 20,
         evos: ["Vikavolt"],
         eggGroups: ["Bug"],
+        tier: "NFE",
     },
     vikavolt: {
         num: 738,
@@ -22819,6 +25149,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Bug"],
         otherFormes: ["Vikavolt-Totem"],
         formeOrder: ["Vikavolt", "Vikavolt-Totem"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     vikavolttotem: {
         num: 738,
@@ -22841,6 +25174,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 147.5,
         color: "Blue",
         eggGroups: ["Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     crabrawler: {
         num: 739,
@@ -22864,6 +25200,9 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Crabominable"],
         eggGroups: ["Water 3"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "LC",
     },
     crabominable: {
         num: 740,
@@ -22889,6 +25228,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelExtra",
         evoCondition: "at Mount Lanakila",
         eggGroups: ["Water 3"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     oricorio: {
         num: 741,
@@ -22915,7 +25257,15 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Flying"],
         otherFormes: ["Oricorio-Pom-Pom", "Oricorio-Pa'u", "Oricorio-Sensu"],
-        formeOrder: ["Oricorio", "Oricorio-Pom-Pom", "Oricorio-Pa'u", "Oricorio-Sensu"],
+        formeOrder: [
+            "Oricorio",
+            "Oricorio-Pom-Pom",
+            "Oricorio-Pa'u",
+            "Oricorio-Sensu",
+        ],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     oricoriopompom: {
         num: 741,
@@ -22943,6 +25293,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Flying"],
         changesFrom: "Oricorio",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     oricoriopau: {
         num: 741,
@@ -22970,6 +25323,9 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         eggGroups: ["Flying"],
         changesFrom: "Oricorio",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     oricoriosensu: {
         num: 741,
@@ -22997,6 +25353,9 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         eggGroups: ["Flying"],
         changesFrom: "Oricorio",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     cutiefly: {
         num: 742,
@@ -23020,6 +25379,8 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         evos: ["Ribombee"],
         eggGroups: ["Bug", "Fairy"],
+        tier: "NFE",
+        natDexTier: "LC",
     },
     ribombee: {
         num: 743,
@@ -23046,6 +25407,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Bug", "Fairy"],
         otherFormes: ["Ribombee-Totem"],
         formeOrder: ["Ribombee", "Ribombee-Totem"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     ribombeetotem: {
         num: 743,
@@ -23068,6 +25432,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 2,
         color: "Yellow",
         eggGroups: ["Bug", "Fairy"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     rockruff: {
         num: 744,
@@ -23094,6 +25461,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Lycanroc", "Lycanroc-Midnight", "Lycanroc-Dusk"],
         eggGroups: ["Field"],
         formeOrder: ["Rockruff", "Rockruff"],
+        tier: "LC",
     },
     lycanroc: {
         num: 745,
@@ -23122,6 +25490,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field"],
         otherFormes: ["Lycanroc-Midnight", "Lycanroc-Dusk"],
         formeOrder: ["Lycanroc", "Lycanroc-Midnight", "Lycanroc-Dusk"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     lycanrocmidnight: {
         num: 745,
@@ -23149,6 +25520,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 25,
         evoCondition: "during the night",
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     lycanrocdusk: {
         num: 745,
@@ -23174,6 +25548,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 25,
         evoCondition: "from a special Rockruff",
         eggGroups: ["Field"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     wishiwashi: {
         num: 746,
@@ -23197,6 +25574,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Water 2"],
         otherFormes: ["Wishiwashi-School"],
         formeOrder: ["Wishiwashi", "Wishiwashi-School"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     wishiwashischool: {
         num: 746,
@@ -23244,6 +25624,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Toxapex"],
         eggGroups: ["Water 1"],
+        tier: "LC",
     },
     toxapex: {
         num: 748,
@@ -23268,6 +25649,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Mareanie",
         evoLevel: 38,
         eggGroups: ["Water 1"],
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "OU",
     },
     mudbray: {
         num: 749,
@@ -23291,6 +25675,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Mudsdale"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     mudsdale: {
         num: 750,
@@ -23315,6 +25700,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Mudbray",
         evoLevel: 30,
         eggGroups: ["Field"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     dewpider: {
         num: 751,
@@ -23337,6 +25725,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Araquanid"],
         eggGroups: ["Water 1", "Bug"],
+        tier: "LC",
     },
     araquanid: {
         num: 752,
@@ -23362,6 +25751,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Water 1", "Bug"],
         otherFormes: ["Araquanid-Totem"],
         formeOrder: ["Araquanid", "Araquanid-Totem"],
+        tier: "PUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     araquanidtotem: {
         num: 752,
@@ -23384,6 +25776,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 217.5,
         color: "Green",
         eggGroups: ["Water 1", "Bug"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     fomantis: {
         num: 753,
@@ -23406,6 +25801,7 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         evos: ["Lurantis"],
         eggGroups: ["Grass"],
+        tier: "LC",
     },
     lurantis: {
         num: 754,
@@ -23432,6 +25828,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Grass"],
         otherFormes: ["Lurantis-Totem"],
         formeOrder: ["Lurantis", "Lurantis-Totem"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     lurantistotem: {
         num: 754,
@@ -23454,6 +25853,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 58,
         color: "Pink",
         eggGroups: ["Grass"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     morelull: {
         num: 755,
@@ -23477,6 +25879,7 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Shiinotic"],
         eggGroups: ["Grass"],
+        tier: "LC",
     },
     shiinotic: {
         num: 756,
@@ -23501,6 +25904,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Morelull",
         evoLevel: 24,
         eggGroups: ["Grass"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     salandit: {
         num: 757,
@@ -23527,6 +25933,7 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         evos: ["Salazzle"],
         eggGroups: ["Monster", "Dragon"],
+        tier: "LC",
     },
     salazzle: {
         num: 758,
@@ -23553,6 +25960,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Monster", "Dragon"],
         otherFormes: ["Salazzle-Totem"],
         formeOrder: ["Salazzle", "Salazzle-Totem"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     salazzletotem: {
         num: 758,
@@ -23576,6 +25986,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 81,
         color: "Black",
         eggGroups: ["Monster", "Dragon"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     stufful: {
         num: 759,
@@ -23599,6 +26012,7 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         evos: ["Bewear"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     bewear: {
         num: 760,
@@ -23623,6 +26037,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Stufful",
         evoLevel: 27,
         eggGroups: ["Field"],
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     bounsweet: {
         num: 761,
@@ -23647,6 +26064,7 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Steenee"],
         eggGroups: ["Grass"],
+        tier: "LC",
     },
     steenee: {
         num: 762,
@@ -23673,6 +26091,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 18,
         evos: ["Tsareena"],
         eggGroups: ["Grass"],
+        tier: "NFE",
     },
     tsareena: {
         num: 763,
@@ -23699,6 +26118,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelMove",
         evoMove: "Stomp",
         eggGroups: ["Grass"],
+        tier: "NU",
+        doublesTier: "Doubles OU",
+        natDexTier: "RU",
     },
     comfey: {
         num: 764,
@@ -23725,6 +26147,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 0.3,
         color: "Green",
         eggGroups: ["Grass"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     oranguru: {
         num: 765,
@@ -23747,6 +26172,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 76,
         color: "White",
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     passimian: {
         num: 766,
@@ -23768,6 +26196,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 82.8,
         color: "White",
         eggGroups: ["Field"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     wimpod: {
         num: 767,
@@ -23789,6 +26220,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Golisopod"],
         eggGroups: ["Bug", "Water 3"],
+        tier: "LC",
     },
     golisopod: {
         num: 768,
@@ -23811,6 +26243,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Wimpod",
         evoLevel: 30,
         eggGroups: ["Bug", "Water 3"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     sandygast: {
         num: 769,
@@ -23833,6 +26268,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Palossand"],
         eggGroups: ["Amorphous"],
+        tier: "LC",
     },
     palossand: {
         num: 770,
@@ -23856,6 +26292,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Sandygast",
         evoLevel: 42,
         eggGroups: ["Amorphous"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     pyukumuku: {
         num: 771,
@@ -23877,6 +26316,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 1.2,
         color: "Black",
         eggGroups: ["Water 1"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     typenull: {
         num: 772,
@@ -23900,6 +26342,7 @@ export const dex: { [id: string]: Species } = {
         tags: ["Sub-Legendary"],
         evos: ["Silvally"],
         eggGroups: ["Undiscovered"],
+        tier: "NFE",
     },
     silvally: {
         num: 773,
@@ -23963,6 +26406,9 @@ export const dex: { [id: string]: Species } = {
             "Silvally-Dark",
             "Silvally-Fairy",
         ],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallybug: {
         num: 773,
@@ -23988,6 +26434,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Bug Memory",
         changesFrom: "Silvally",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallydark: {
         num: 773,
@@ -24013,6 +26462,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Dark Memory",
         changesFrom: "Silvally",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallydragon: {
         num: 773,
@@ -24038,6 +26490,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Dragon Memory",
         changesFrom: "Silvally",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallyelectric: {
         num: 773,
@@ -24063,6 +26518,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Electric Memory",
         changesFrom: "Silvally",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallyfairy: {
         num: 773,
@@ -24088,6 +26546,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Fairy Memory",
         changesFrom: "Silvally",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallyfighting: {
         num: 773,
@@ -24113,6 +26574,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Fighting Memory",
         changesFrom: "Silvally",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallyfire: {
         num: 773,
@@ -24138,6 +26602,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Fire Memory",
         changesFrom: "Silvally",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallyflying: {
         num: 773,
@@ -24163,6 +26630,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Flying Memory",
         changesFrom: "Silvally",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallyghost: {
         num: 773,
@@ -24188,6 +26658,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Ghost Memory",
         changesFrom: "Silvally",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallygrass: {
         num: 773,
@@ -24213,6 +26686,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Grass Memory",
         changesFrom: "Silvally",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallyground: {
         num: 773,
@@ -24238,6 +26714,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Ground Memory",
         changesFrom: "Silvally",
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallyice: {
         num: 773,
@@ -24263,6 +26742,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Ice Memory",
         changesFrom: "Silvally",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallypoison: {
         num: 773,
@@ -24288,6 +26770,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Poison Memory",
         changesFrom: "Silvally",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallypsychic: {
         num: 773,
@@ -24313,6 +26798,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Psychic Memory",
         changesFrom: "Silvally",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallyrock: {
         num: 773,
@@ -24338,6 +26826,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Rock Memory",
         changesFrom: "Silvally",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallysteel: {
         num: 773,
@@ -24363,6 +26854,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Steel Memory",
         changesFrom: "Silvally",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     silvallywater: {
         num: 773,
@@ -24388,6 +26882,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Water Memory",
         changesFrom: "Silvally",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     minior: {
         num: 774,
@@ -24411,7 +26908,14 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Mineral"],
         otherFormes: ["Minior-Meteor"],
-        cosmeticFormes: ["Minior-Orange", "Minior-Yellow", "Minior-Green", "Minior-Blue", "Minior-Indigo", "Minior-Violet"],
+        cosmeticFormes: [
+            "Minior-Orange",
+            "Minior-Yellow",
+            "Minior-Green",
+            "Minior-Blue",
+            "Minior-Indigo",
+            "Minior-Violet",
+        ],
         formeOrder: [
             "Minior-Meteor",
             "Minior-Meteor",
@@ -24428,6 +26932,9 @@ export const dex: { [id: string]: Species } = {
             "Minior-Indigo",
             "Minior-Violet",
         ],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     miniormeteor: {
         num: 774,
@@ -24453,6 +26960,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Mineral"],
         requiredAbility: "Shields Down",
         battleOnly: "Minior",
+        isNonstandard: "Past",
     },
     komala: {
         num: 775,
@@ -24473,6 +26981,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 19.9,
         color: "Blue",
         eggGroups: ["Field"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     turtonator: {
         num: 776,
@@ -24493,6 +27004,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 212,
         color: "Red",
         eggGroups: ["Monster", "Dragon"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     togedemaru: {
         num: 777,
@@ -24517,6 +27031,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field", "Fairy"],
         otherFormes: ["Togedemaru-Totem"],
         formeOrder: ["Togedemaru", "Togedemaru-Totem"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     togedemarutotem: {
         num: 777,
@@ -24539,6 +27056,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 13,
         color: "Gray",
         eggGroups: ["Field", "Fairy"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     mimikyu: {
         num: 778,
@@ -24560,8 +27080,20 @@ export const dex: { [id: string]: Species } = {
         weightkg: 0.7,
         color: "Yellow",
         eggGroups: ["Amorphous"],
-        otherFormes: ["Mimikyu-Busted", "Mimikyu-Totem", "Mimikyu-Busted-Totem"],
-        formeOrder: ["Mimikyu", "Mimikyu-Busted", "Mimikyu-Totem", "Mimikyu-Busted-Totem"],
+        otherFormes: [
+            "Mimikyu-Busted",
+            "Mimikyu-Totem",
+            "Mimikyu-Busted-Totem",
+        ],
+        formeOrder: [
+            "Mimikyu",
+            "Mimikyu-Busted",
+            "Mimikyu-Totem",
+            "Mimikyu-Busted-Totem",
+        ],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     mimikyubusted: {
         num: 778,
@@ -24608,6 +27140,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 2.8,
         color: "Yellow",
         eggGroups: ["Amorphous"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     mimikyubustedtotem: {
         num: 778,
@@ -24632,6 +27167,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Amorphous"],
         requiredAbility: "Disguise",
         battleOnly: "Mimikyu-Totem",
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     bruxish: {
         num: 779,
@@ -24654,6 +27192,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 19,
         color: "Pink",
         eggGroups: ["Water 2"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "RU",
     },
     drampa: {
         num: 780,
@@ -24676,6 +27217,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 185,
         color: "White",
         eggGroups: ["Monster", "Dragon"],
+        tier: "PUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     dhelmise: {
         num: 781,
@@ -24697,6 +27241,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 210,
         color: "Green",
         eggGroups: ["Mineral"],
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     jangmoo: {
         num: 782,
@@ -24720,6 +27267,7 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         evos: ["Hakamo-o"],
         eggGroups: ["Dragon"],
+        tier: "LC",
     },
     hakamoo: {
         num: 783,
@@ -24745,6 +27293,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 35,
         evos: ["Kommo-o"],
         eggGroups: ["Dragon"],
+        tier: "NFE",
     },
     kommoo: {
         num: 784,
@@ -24771,6 +27320,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Dragon"],
         otherFormes: ["Kommo-o-Totem"],
         formeOrder: ["Kommo-o", "Kommo-o-Totem"],
+        tier: "UUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "OU",
     },
     kommoototem: {
         num: 784,
@@ -24793,6 +27345,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 207.5,
         color: "Gray",
         eggGroups: ["Dragon"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "OU",
     },
     tapukoko: {
         num: 785,
@@ -24816,6 +27371,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "OU",
+        doublesTier: "Doubles OU",
+        natDexTier: "OU",
     },
     tapulele: {
         num: 786,
@@ -24839,6 +27397,9 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "OU",
+        doublesTier: "Doubles OU",
+        natDexTier: "OU",
     },
     tapubulu: {
         num: 787,
@@ -24862,6 +27423,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     tapufini: {
         num: 788,
@@ -24885,6 +27449,9 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "OU",
+        doublesTier: "Doubles OU",
+        natDexTier: "OU",
     },
     cosmog: {
         num: 789,
@@ -24908,6 +27475,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Cosmoem"],
         tags: ["Restricted Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "LC",
     },
     cosmoem: {
         num: 790,
@@ -24933,6 +27501,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 43,
         evos: ["Solgaleo", "Lunala"],
         eggGroups: ["Undiscovered"],
+        tier: "NFE",
     },
     solgaleo: {
         num: 791,
@@ -24957,6 +27526,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Cosmoem",
         evoLevel: 53,
         eggGroups: ["Undiscovered"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     lunala: {
         num: 792,
@@ -24981,6 +27553,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Cosmoem",
         evoLevel: 53,
         eggGroups: ["Undiscovered"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     nihilego: {
         num: 793,
@@ -25003,6 +27578,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UU",
     },
     buzzwole: {
         num: 794,
@@ -25025,6 +27603,9 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     pheromosa: {
         num: 795,
@@ -25047,6 +27628,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "Ubers",
+        doublesTier: "Doubles UU",
+        natDexTier: "Ubers",
     },
     xurkitree: {
         num: 796,
@@ -25069,6 +27653,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UUBL",
     },
     celesteela: {
         num: 797,
@@ -25091,6 +27678,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "UU",
+        doublesTier: "Doubles OU",
+        natDexTier: "UU",
     },
     kartana: {
         num: 798,
@@ -25113,6 +27703,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "OU",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "OU",
     },
     guzzlord: {
         num: 799,
@@ -25135,6 +27728,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "PUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     necrozma: {
         num: 800,
@@ -25157,8 +27753,20 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         tags: ["Restricted Legendary"],
         eggGroups: ["Undiscovered"],
-        otherFormes: ["Necrozma-Dusk-Mane", "Necrozma-Dawn-Wings", "Necrozma-Ultra"],
-        formeOrder: ["Necrozma", "Necrozma-Dusk-Mane", "Necrozma-Dawn-Wings", "Necrozma-Ultra"],
+        otherFormes: [
+            "Necrozma-Dusk-Mane",
+            "Necrozma-Dawn-Wings",
+            "Necrozma-Ultra",
+        ],
+        formeOrder: [
+            "Necrozma",
+            "Necrozma-Dusk-Mane",
+            "Necrozma-Dawn-Wings",
+            "Necrozma-Ultra",
+        ],
+        tier: "RUBL",
+        doublesTier: "Doubles OU",
+        natDexTier: "RUBL",
     },
     necrozmaduskmane: {
         num: 800,
@@ -25183,6 +27791,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         eggGroups: ["Undiscovered"],
         changesFrom: "Necrozma",
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     necrozmadawnwings: {
         num: 800,
@@ -25207,6 +27818,9 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Undiscovered"],
         changesFrom: "Necrozma",
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     necrozmaultra: {
         num: 800,
@@ -25232,6 +27846,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         requiredItem: "Ultranecrozium Z",
         battleOnly: ["Necrozma-Dawn-Wings", "Necrozma-Dusk-Mane"],
+        isNonstandard: "Past",
+        tier: "Illegal",
+        natDexTier: "Ubers",
     },
     magearna: {
         num: 801,
@@ -25256,6 +27873,9 @@ export const dex: { [id: string]: Species } = {
         tags: ["Mythical"],
         otherFormes: ["Magearna-Original"],
         formeOrder: ["Magearna", "Magearna-Original"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     magearnaoriginal: {
         num: 801,
@@ -25301,6 +27921,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         tags: ["Mythical"],
         eggGroups: ["Undiscovered"],
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     poipole: {
         num: 803,
@@ -25324,6 +27947,7 @@ export const dex: { [id: string]: Species } = {
         tags: ["Sub-Legendary"],
         evos: ["Naganadel"],
         eggGroups: ["Undiscovered"],
+        tier: "NFE",
     },
     naganadel: {
         num: 804,
@@ -25349,6 +27973,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelMove",
         evoMove: "Dragon Pulse",
         eggGroups: ["Undiscovered"],
+        tier: "Ubers",
+        doublesTier: "Doubles UU",
+        natDexTier: "Ubers",
     },
     stakataka: {
         num: 805,
@@ -25371,6 +27998,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "NU",
+        doublesTier: "Doubles OU",
+        natDexTier: "RU",
     },
     blacephalon: {
         num: 806,
@@ -25393,6 +28023,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "UUBL",
     },
     zeraora: {
         num: 807,
@@ -25415,6 +28048,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         tags: ["Mythical"],
         eggGroups: ["Undiscovered"],
+        tier: "OU",
+        doublesTier: "Doubles OU",
+        natDexTier: "UU",
     },
     meltan: {
         num: 808,
@@ -25437,6 +28073,9 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         tags: ["Mythical"],
         eggGroups: ["Undiscovered"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     melmetal: {
         num: 809,
@@ -25460,6 +28099,9 @@ export const dex: { [id: string]: Species } = {
         tags: ["Mythical"],
         eggGroups: ["Undiscovered"],
         canGigantamax: "G-Max Meltdown",
+        tier: "OU",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "UUBL",
     },
     melmetalgmax: {
         num: 809,
@@ -25484,6 +28126,10 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         eggGroups: ["Undiscovered"],
         changesFrom: "Melmetal",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     grookey: {
         num: 810,
@@ -25510,6 +28156,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Thwackey"],
         eggGroups: ["Field", "Grass"],
+        tier: "LC",
     },
     thwackey: {
         num: 811,
@@ -25538,6 +28185,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Rillaboom"],
         eggGroups: ["Field", "Grass"],
+        tier: "NFE",
     },
     rillaboom: {
         num: 812,
@@ -25566,6 +28214,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 35,
         eggGroups: ["Field", "Grass"],
         canGigantamax: "G-Max Drum Solo",
+        tier: "OU",
+        doublesTier: "Doubles OU",
+        natDexTier: "OU",
     },
     rillaboomgmax: {
         num: 812,
@@ -25594,6 +28245,10 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         eggGroups: ["Field", "Grass"],
         changesFrom: "Rillaboom",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     scorbunny: {
         num: 813,
@@ -25620,6 +28275,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Raboot"],
         eggGroups: ["Field", "Human-Like"],
+        tier: "LC",
     },
     raboot: {
         num: 814,
@@ -25648,6 +28304,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Cinderace"],
         eggGroups: ["Field", "Human-Like"],
+        tier: "NFE",
     },
     cinderace: {
         num: 815,
@@ -25676,6 +28333,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 35,
         eggGroups: ["Field", "Human-Like"],
         canGigantamax: "G-Max Fireball",
+        tier: "Ubers",
+        doublesTier: "Doubles UU",
+        natDexTier: "Ubers",
     },
     cinderacegmax: {
         num: 815,
@@ -25704,6 +28364,10 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         eggGroups: ["Field", "Human-Like"],
         changesFrom: "Cinderace",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     sobble: {
         num: 816,
@@ -25730,6 +28394,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Drizzile"],
         eggGroups: ["Water 1", "Field"],
+        tier: "LC",
     },
     drizzile: {
         num: 817,
@@ -25758,6 +28423,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 16,
         evos: ["Inteleon"],
         eggGroups: ["Water 1", "Field"],
+        tier: "NFE",
     },
     inteleon: {
         num: 818,
@@ -25786,6 +28452,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 35,
         eggGroups: ["Water 1", "Field"],
         canGigantamax: "G-Max Hydrosnipe",
+        tier: "PUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     inteleongmax: {
         num: 818,
@@ -25814,6 +28483,10 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         eggGroups: ["Water 1", "Field"],
         changesFrom: "Inteleon",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     skwovet: {
         num: 819,
@@ -25836,6 +28509,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Greedent"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     greedent: {
         num: 820,
@@ -25859,6 +28533,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Skwovet",
         evoLevel: 24,
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     rookidee: {
         num: 821,
@@ -25882,6 +28559,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Corvisquire"],
         eggGroups: ["Flying"],
+        tier: "LC",
     },
     corvisquire: {
         num: 822,
@@ -25907,6 +28585,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 18,
         evos: ["Corviknight"],
         eggGroups: ["Flying"],
+        tier: "NFE",
     },
     corviknight: {
         num: 823,
@@ -25932,6 +28611,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 38,
         eggGroups: ["Flying"],
         canGigantamax: "G-Max Wind Rage",
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "OU",
     },
     corviknightgmax: {
         num: 823,
@@ -25957,6 +28639,10 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         eggGroups: ["Flying"],
         changesFrom: "Corviknight",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     blipbug: {
         num: 824,
@@ -25980,6 +28666,7 @@ export const dex: { [id: string]: Species } = {
         color: "Blue",
         evos: ["Dottler"],
         eggGroups: ["Bug"],
+        tier: "LC",
     },
     dottler: {
         num: 825,
@@ -26005,6 +28692,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 10,
         evos: ["Orbeetle"],
         eggGroups: ["Bug"],
+        tier: "NFE",
     },
     orbeetle: {
         num: 826,
@@ -26030,6 +28718,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 30,
         eggGroups: ["Bug"],
         canGigantamax: "G-Max Gravitas",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     orbeetlegmax: {
         num: 826,
@@ -26055,6 +28746,10 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Bug"],
         changesFrom: "Orbeetle",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     nickit: {
         num: 827,
@@ -26078,6 +28773,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Thievul"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     thievul: {
         num: 828,
@@ -26102,6 +28798,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Nickit",
         evoLevel: 18,
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     gossifleur: {
         num: 829,
@@ -26125,6 +28824,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Eldegoss"],
         eggGroups: ["Grass"],
+        tier: "LC",
     },
     eldegoss: {
         num: 830,
@@ -26149,6 +28849,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Gossifleur",
         evoLevel: 20,
         eggGroups: ["Grass"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     wooloo: {
         num: 831,
@@ -26172,6 +28875,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Dubwool"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     dubwool: {
         num: 832,
@@ -26196,6 +28900,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Wooloo",
         evoLevel: 24,
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     chewtle: {
         num: 833,
@@ -26219,6 +28926,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Drednaw"],
         eggGroups: ["Monster", "Water 1"],
+        tier: "LC",
     },
     drednaw: {
         num: 834,
@@ -26244,6 +28952,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 22,
         eggGroups: ["Monster", "Water 1"],
         canGigantamax: "G-Max Stonesurge",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     drednawgmax: {
         num: 834,
@@ -26269,6 +28980,10 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         eggGroups: ["Monster", "Water 1"],
         changesFrom: "Drednaw",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     yamper: {
         num: 835,
@@ -26291,6 +29006,7 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         evos: ["Boltund"],
         eggGroups: ["Field"],
+        tier: "LC",
     },
     boltund: {
         num: 836,
@@ -26314,6 +29030,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Yamper",
         evoLevel: 25,
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     rolycoly: {
         num: 837,
@@ -26337,6 +29056,7 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         evos: ["Carkol"],
         eggGroups: ["Mineral"],
+        tier: "LC",
     },
     carkol: {
         num: 838,
@@ -26362,6 +29082,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 18,
         evos: ["Coalossal"],
         eggGroups: ["Mineral"],
+        tier: "NFE",
     },
     coalossal: {
         num: 839,
@@ -26387,6 +29108,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 34,
         eggGroups: ["Mineral"],
         canGigantamax: "G-Max Volcalith",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     coalossalgmax: {
         num: 839,
@@ -26412,6 +29136,10 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         eggGroups: ["Mineral"],
         changesFrom: "Coalossal",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     applin: {
         num: 840,
@@ -26435,6 +29163,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Flapple", "Appletun"],
         eggGroups: ["Grass", "Dragon"],
+        tier: "LC",
     },
     flapple: {
         num: 841,
@@ -26461,6 +29190,9 @@ export const dex: { [id: string]: Species } = {
         evoItem: "Tart Apple",
         eggGroups: ["Grass", "Dragon"],
         canGigantamax: "G-Max Tartness",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     flapplegmax: {
         num: 841,
@@ -26486,6 +29218,10 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         eggGroups: ["Grass", "Dragon"],
         changesFrom: "Flapple",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     appletun: {
         num: 842,
@@ -26512,6 +29248,9 @@ export const dex: { [id: string]: Species } = {
         evoItem: "Sweet Apple",
         eggGroups: ["Grass", "Dragon"],
         canGigantamax: "G-Max Sweetness",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     appletungmax: {
         num: 842,
@@ -26537,6 +29276,10 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         eggGroups: ["Grass", "Dragon"],
         changesFrom: "Appletun",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     silicobra: {
         num: 843,
@@ -26560,6 +29303,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Sandaconda"],
         eggGroups: ["Field", "Dragon"],
+        tier: "LC",
     },
     sandaconda: {
         num: 844,
@@ -26585,6 +29329,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 36,
         eggGroups: ["Field", "Dragon"],
         canGigantamax: "G-Max Sandblast",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     sandacondagmax: {
         num: 844,
@@ -26610,6 +29357,10 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         eggGroups: ["Field", "Dragon"],
         changesFrom: "Sandaconda",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     cramorant: {
         num: 845,
@@ -26632,6 +29383,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Water 1", "Flying"],
         otherFormes: ["Cramorant-Gulping", "Cramorant-Gorging"],
         formeOrder: ["Cramorant", "Cramorant-Gulping", "Cramorant-Gorging"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     cramorantgulping: {
         num: 845,
@@ -26702,6 +29456,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Barraskewda"],
         eggGroups: ["Water 2"],
+        tier: "LC",
     },
     barraskewda: {
         num: 847,
@@ -26725,6 +29480,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Arrokuda",
         evoLevel: 26,
         eggGroups: ["Water 2"],
+        tier: "OU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     toxel: {
         num: 848,
@@ -26749,6 +29507,7 @@ export const dex: { [id: string]: Species } = {
         evos: ["Toxtricity", "Toxtricity-Low-Key"],
         eggGroups: ["Undiscovered"],
         canHatch: true,
+        tier: "LC",
     },
     toxtricity: {
         num: 849,
@@ -26777,6 +29536,9 @@ export const dex: { [id: string]: Species } = {
         otherFormes: ["Toxtricity-Low-Key"],
         formeOrder: ["Toxtricity", "Toxtricity-Low-Key"],
         canGigantamax: "G-Max Stun Shock",
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     toxtricitylowkey: {
         num: 849,
@@ -26804,6 +29566,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 30,
         eggGroups: ["Human-Like"],
         canGigantamax: "G-Max Stun Shock",
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     toxtricitygmax: {
         num: 849,
@@ -26829,6 +29594,10 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         eggGroups: ["Human-Like"],
         changesFrom: "Toxtricity",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     toxtricitylowkeygmax: {
         num: 849,
@@ -26855,6 +29624,10 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Human-Like"],
         battleOnly: "Toxtricity-Low-Key",
         changesFrom: "Toxtricity-Low-Key",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     sizzlipede: {
         num: 850,
@@ -26878,6 +29651,7 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         evos: ["Centiskorch"],
         eggGroups: ["Bug"],
+        tier: "LC",
     },
     centiskorch: {
         num: 851,
@@ -26903,6 +29677,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 28,
         eggGroups: ["Bug"],
         canGigantamax: "G-Max Centiferno",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     centiskorchgmax: {
         num: 851,
@@ -26928,6 +29705,10 @@ export const dex: { [id: string]: Species } = {
         color: "Red",
         eggGroups: ["Bug"],
         changesFrom: "Centiskorch",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     clobbopus: {
         num: 852,
@@ -26950,6 +29731,7 @@ export const dex: { [id: string]: Species } = {
         color: "Brown",
         evos: ["Grapploct"],
         eggGroups: ["Water 1", "Human-Like"],
+        tier: "LC",
     },
     grapploct: {
         num: 853,
@@ -26974,6 +29756,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelMove",
         evoMove: "Taunt",
         eggGroups: ["Water 1", "Human-Like"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     sinistea: {
         num: 854,
@@ -27000,6 +29785,7 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Mineral", "Amorphous"],
         otherFormes: ["Sinistea-Antique"],
         formeOrder: ["Sinistea", "Sinistea-Antique"],
+        tier: "LC",
     },
     sinisteaantique: {
         num: 854,
@@ -27025,6 +29811,7 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         evos: ["Polteageist-Antique"],
         eggGroups: ["Undiscovered"],
+        tier: "LC",
     },
     polteageist: {
         num: 855,
@@ -27053,6 +29840,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Mineral", "Amorphous"],
         otherFormes: ["Polteageist-Antique"],
         formeOrder: ["Polteageist", "Polteageist-Antique"],
+        tier: "RU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     polteageistantique: {
         num: 855,
@@ -27104,6 +29894,7 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         evos: ["Hattrem"],
         eggGroups: ["Fairy"],
+        tier: "LC",
     },
     hattrem: {
         num: 857,
@@ -27130,6 +29921,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 32,
         evos: ["Hatterene"],
         eggGroups: ["Fairy"],
+        tier: "NFE",
     },
     hatterene: {
         num: 858,
@@ -27156,6 +29948,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 42,
         eggGroups: ["Fairy"],
         canGigantamax: "G-Max Smite",
+        tier: "UU",
+        doublesTier: "Doubles OU",
+        natDexTier: "UU",
     },
     hatterenegmax: {
         num: 858,
@@ -27182,6 +29977,10 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         eggGroups: ["Fairy"],
         changesFrom: "Hatterene",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     impidimp: {
         num: 859,
@@ -27206,6 +30005,7 @@ export const dex: { [id: string]: Species } = {
         color: "Pink",
         evos: ["Morgrem"],
         eggGroups: ["Fairy", "Human-Like"],
+        tier: "LC",
     },
     morgrem: {
         num: 860,
@@ -27232,6 +30032,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 32,
         evos: ["Grimmsnarl"],
         eggGroups: ["Fairy", "Human-Like"],
+        tier: "NFE",
     },
     grimmsnarl: {
         num: 861,
@@ -27258,6 +30059,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 42,
         eggGroups: ["Fairy", "Human-Like"],
         canGigantamax: "G-Max Snooze",
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     grimmsnarlgmax: {
         num: 861,
@@ -27284,6 +30088,10 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         eggGroups: ["Fairy", "Human-Like"],
         changesFrom: "Grimmsnarl",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     obstagoon: {
         num: 862,
@@ -27309,6 +30117,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 35,
         evoCondition: "at night",
         eggGroups: ["Field"],
+        tier: "RUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     perrserker: {
         num: 863,
@@ -27333,6 +30144,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Meowth-Galar",
         evoLevel: 28,
         eggGroups: ["Field"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     cursola: {
         num: 864,
@@ -27360,6 +30174,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Corsola-Galar",
         evoLevel: 38,
         eggGroups: ["Water 1", "Water 3"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     sirfetchd: {
         num: 865,
@@ -27384,6 +30201,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "other",
         evoCondition: "Land 3 critical hits in 1 battle",
         eggGroups: ["Flying", "Field"],
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     mrrime: {
         num: 866,
@@ -27408,6 +30228,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Mr. Mime-Galar",
         evoLevel: 42,
         eggGroups: ["Human-Like"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     runerigus: {
         num: 867,
@@ -27429,8 +30252,12 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         prevo: "Yamask-Galar",
         evoType: "other",
-        evoCondition: "Have 49+ HP lost and walk under stone sculpture in Dusty Bowl",
+        evoCondition:
+            "Have 49+ HP lost and walk under stone sculpture in Dusty Bowl",
         eggGroups: ["Mineral", "Amorphous"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     milcery: {
         num: 868,
@@ -27454,6 +30281,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Alcremie"],
         eggGroups: ["Fairy", "Amorphous"],
+        tier: "LC",
     },
     alcremie: {
         num: 869,
@@ -27502,6 +30330,9 @@ export const dex: { [id: string]: Species } = {
             "Alcremie-Rainbow-Swirl",
         ],
         canGigantamax: "G-Max Finale",
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     alcremiegmax: {
         num: 869,
@@ -27527,6 +30358,10 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         eggGroups: ["Fairy", "Amorphous"],
         changesFrom: "Alcremie",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     falinks: {
         num: 870,
@@ -27549,6 +30384,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 62,
         color: "Yellow",
         eggGroups: ["Fairy", "Mineral"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     pincurchin: {
         num: 871,
@@ -27570,6 +30408,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 1,
         color: "Purple",
         eggGroups: ["Water 1", "Amorphous"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     snom: {
         num: 872,
@@ -27592,6 +30433,7 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         evos: ["Frosmoth"],
         eggGroups: ["Bug"],
+        tier: "LC",
     },
     frosmoth: {
         num: 873,
@@ -27616,6 +30458,9 @@ export const dex: { [id: string]: Species } = {
         evoType: "levelFriendship",
         evoCondition: "at night",
         eggGroups: ["Bug"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     stonjourner: {
         num: 874,
@@ -27636,6 +30481,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 520,
         color: "Gray",
         eggGroups: ["Mineral"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     eiscue: {
         num: 875,
@@ -27658,6 +30506,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Water 1", "Field"],
         otherFormes: ["Eiscue-Noice"],
         formeOrder: ["Eiscue", "Eiscue-Noice"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     eiscuenoice: {
         num: 875,
@@ -27708,6 +30559,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Fairy"],
         otherFormes: ["Indeedee-F"],
         formeOrder: ["Indeedee", "Indeedee-F"],
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     indeedeef: {
         num: 876,
@@ -27733,6 +30587,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 28,
         color: "Purple",
         eggGroups: ["Fairy"],
+        tier: "NU",
+        doublesTier: "Doubles OU",
+        natDexTier: "RU",
     },
     morpeko: {
         num: 877,
@@ -27755,6 +30612,9 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Field", "Fairy"],
         otherFormes: ["Morpeko-Hangry"],
         formeOrder: ["Morpeko", "Morpeko-Hangry"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     morpekohangry: {
         num: 877,
@@ -27801,6 +30661,7 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         evos: ["Copperajah"],
         eggGroups: ["Field", "Mineral"],
+        tier: "LC",
     },
     copperajah: {
         num: 879,
@@ -27825,6 +30686,9 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 34,
         eggGroups: ["Field", "Mineral"],
         canGigantamax: "G-Max Steelsurge",
+        tier: "NU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     copperajahgmax: {
         num: 879,
@@ -27849,6 +30713,10 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         eggGroups: ["Field", "Mineral"],
         changesFrom: "Copperajah",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     dracozolt: {
         num: 880,
@@ -27872,6 +30740,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 190,
         color: "Green",
         eggGroups: ["Undiscovered"],
+        tier: "UUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RUBL",
     },
     arctozolt: {
         num: 881,
@@ -27895,6 +30766,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 150,
         color: "Blue",
         eggGroups: ["Undiscovered"],
+        tier: "UUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     dracovish: {
         num: 882,
@@ -27918,6 +30792,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 215,
         color: "Green",
         eggGroups: ["Undiscovered"],
+        tier: "Ubers",
+        doublesTier: "Doubles OU",
+        natDexTier: "Ubers",
     },
     arctovish: {
         num: 883,
@@ -27941,6 +30818,9 @@ export const dex: { [id: string]: Species } = {
         weightkg: 175,
         color: "Blue",
         eggGroups: ["Undiscovered"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     duraludon: {
         num: 884,
@@ -27964,6 +30844,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         eggGroups: ["Mineral", "Dragon"],
         canGigantamax: "G-Max Depletion",
+        tier: "PUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     duraludongmax: {
         num: 884,
@@ -27989,6 +30872,10 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         eggGroups: ["Mineral", "Dragon"],
         changesFrom: "Duraludon",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     dreepy: {
         num: 885,
@@ -28012,6 +30899,7 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         evos: ["Drakloak"],
         eggGroups: ["Amorphous", "Dragon"],
+        tier: "LC",
     },
     drakloak: {
         num: 886,
@@ -28037,6 +30925,7 @@ export const dex: { [id: string]: Species } = {
         evoLevel: 50,
         evos: ["Dragapult"],
         eggGroups: ["Amorphous", "Dragon"],
+        tier: "NFE",
     },
     dragapult: {
         num: 887,
@@ -28061,6 +30950,9 @@ export const dex: { [id: string]: Species } = {
         prevo: "Drakloak",
         evoLevel: 60,
         eggGroups: ["Amorphous", "Dragon"],
+        tier: "OU",
+        doublesTier: "Doubles OU",
+        natDexTier: "Ubers",
     },
     zacian: {
         num: 888,
@@ -28087,6 +30979,9 @@ export const dex: { [id: string]: Species } = {
         otherFormes: ["Zacian-Crowned"],
         formeOrder: ["Zacian", "Zacian-Crowned"],
         cannotDynamax: true,
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     zaciancrowned: {
         num: 888,
@@ -28113,6 +31008,9 @@ export const dex: { [id: string]: Species } = {
         requiredItem: "Rusted Sword",
         changesFrom: "Zacian",
         cannotDynamax: true,
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     zamazenta: {
         num: 889,
@@ -28139,6 +31037,9 @@ export const dex: { [id: string]: Species } = {
         otherFormes: ["Zamazenta-Crowned"],
         formeOrder: ["Zamazenta", "Zamazenta-Crowned"],
         cannotDynamax: true,
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     zamazentacrowned: {
         num: 889,
@@ -28165,6 +31066,9 @@ export const dex: { [id: string]: Species } = {
         requiredItem: "Rusted Shield",
         changesFrom: "Zamazenta",
         cannotDynamax: true,
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     eternatus: {
         num: 890,
@@ -28190,6 +31094,9 @@ export const dex: { [id: string]: Species } = {
         otherFormes: ["Eternatus-Eternamax"],
         formeOrder: ["Eternatus", "Eternatus-Eternamax"],
         cannotDynamax: true,
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     eternatuseternamax: {
         num: 890,
@@ -28214,6 +31121,8 @@ export const dex: { [id: string]: Species } = {
         color: "Purple",
         eggGroups: ["Undiscovered"],
         cannotDynamax: true,
+        isNonstandard: "Unobtainable",
+        tier: "Illegal",
     },
     kubfu: {
         num: 891,
@@ -28240,6 +31149,7 @@ export const dex: { [id: string]: Species } = {
         tags: ["Sub-Legendary"],
         evos: ["Urshifu", "Urshifu-Rapid-Strike"],
         eggGroups: ["Undiscovered"],
+        tier: "NFE",
     },
     urshifu: {
         num: 892,
@@ -28272,6 +31182,9 @@ export const dex: { [id: string]: Species } = {
         otherFormes: ["Urshifu-Rapid-Strike"],
         formeOrder: ["Urshifu", "Urshifu-Rapid-Strike"],
         canGigantamax: "G-Max One Blow",
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     urshifurapidstrike: {
         num: 892,
@@ -28302,6 +31215,9 @@ export const dex: { [id: string]: Species } = {
         evoCondition: "Defeat the Rapid Strike Tower",
         eggGroups: ["Undiscovered"],
         canGigantamax: "G-Max Rapid Flow",
+        tier: "OU",
+        doublesTier: "Doubles OU",
+        natDexTier: "UU",
     },
     urshifugmax: {
         num: 892,
@@ -28329,6 +31245,10 @@ export const dex: { [id: string]: Species } = {
         color: "Gray",
         eggGroups: ["Undiscovered"],
         changesFrom: "Urshifu",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     urshifurapidstrikegmax: {
         num: 892,
@@ -28357,6 +31277,10 @@ export const dex: { [id: string]: Species } = {
         eggGroups: ["Undiscovered"],
         battleOnly: "Urshifu-Rapid-Strike",
         changesFrom: "Urshifu-Rapid-Strike",
+        isNonstandard: "Gigantamax",
+        tier: "Anything Goes",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     zarude: {
         num: 893,
@@ -28381,6 +31305,9 @@ export const dex: { [id: string]: Species } = {
         tags: ["Mythical"],
         otherFormes: ["Zarude-Dada"],
         formeOrder: ["Zarude", "Zarude-Dada"],
+        tier: "UU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     zarudedada: {
         num: 893,
@@ -28426,6 +31353,9 @@ export const dex: { [id: string]: Species } = {
         color: "Yellow",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "UU",
+        doublesTier: "Doubles OU",
+        natDexTier: "UU",
     },
     regidrago: {
         num: 895,
@@ -28448,6 +31378,9 @@ export const dex: { [id: string]: Species } = {
         color: "Green",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "NUBL",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     glastrier: {
         num: 896,
@@ -28470,6 +31403,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     spectrier: {
         num: 897,
@@ -28492,6 +31428,9 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         tags: ["Sub-Legendary"],
         eggGroups: ["Undiscovered"],
+        tier: "Ubers",
+        doublesTier: "Doubles UU",
+        natDexTier: "Ubers",
     },
     calyrex: {
         num: 898,
@@ -28516,6 +31455,9 @@ export const dex: { [id: string]: Species } = {
         tags: ["Restricted Legendary"],
         otherFormes: ["Calyrex-Ice", "Calyrex-Shadow"],
         formeOrder: ["Calyrex", "Calyrex-Ice", "Calyrex-Shadow"],
+        tier: "PU",
+        doublesTier: "Doubles UU",
+        natDexTier: "RU",
     },
     calyrexice: {
         num: 898,
@@ -28540,6 +31482,9 @@ export const dex: { [id: string]: Species } = {
         color: "White",
         eggGroups: ["Undiscovered"],
         changesFrom: "Calyrex",
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
     calyrexshadow: {
         num: 898,
@@ -28564,5 +31509,8 @@ export const dex: { [id: string]: Species } = {
         color: "Black",
         eggGroups: ["Undiscovered"],
         changesFrom: "Calyrex",
+        tier: "Ubers",
+        doublesTier: "Doubles Ubers",
+        natDexTier: "Ubers",
     },
 };
