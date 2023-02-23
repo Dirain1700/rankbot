@@ -4,7 +4,7 @@ export interface ModchatSetting {
     startTime: number;
     endTime: number;
     always?: boolean;
-    rank?: boolean;
+    rank?: GroupSymbol;
     ignoreGlobals?: boolean;
     allowBusy?: boolean;
 }
