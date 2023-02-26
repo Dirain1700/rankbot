@@ -150,7 +150,7 @@ export class CommandContext<T extends Room | User = Room | User> {
                 return this.say(prefix + command + " " + args);
             } else {
                 this.room.hasRank("+", PS.user);
-                return this.room.useCommand(prefix + command + " " + args);
+                return this.room.send(prefix + command + " " + args);
             }
         } else {
             if (prefix === "!" && command === "show") PS.user.hasRank("%");

@@ -349,5 +349,5 @@ function destroyWordle(this: CommandContext, wordleRoom: Room, force?: boolean):
     if (!wordleRoom.hasRank("%", this.user)) return;
     // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
     Wordles[wordleRoom.roomid]!.destroyGame();
-    wordleRoom.useCommand("/announce The game of Wordle have " + force ? "forcibly" : "" + " ended!");
+    wordleRoom.announce("The game of Wordle have " + (force ? "forcibly" : "") + " ended!");
 }

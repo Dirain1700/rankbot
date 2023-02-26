@@ -57,7 +57,7 @@ export default () => {
         });
         setTimeout(() => {
             new CommandContext("wordle", "wordle", "restore", PS.user!, developer, 0).run();
-        });
+        }, 3 * 1000);
     });
 
     /* eslint-enable */
