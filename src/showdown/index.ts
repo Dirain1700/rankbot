@@ -21,7 +21,6 @@ export default () => {
 
     PS.on("rawData", (message: string, room: Room): void => {
         announceModchat(message, room);
-        console.log(message);
     });
 
     PS.on("userRename", async (NewU) => {
