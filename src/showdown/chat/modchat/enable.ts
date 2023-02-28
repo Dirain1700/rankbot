@@ -6,8 +6,8 @@ const IDLE_STATUS = "!(Idle) ";
 const BUSY_STATUS = "!(Busy) ";
 
 export default async (targetUser: User, room?: Room) => {
-    if (!room && !targetUser.rooms) return;
     if (room) return runModchatSetter(targetUser, room.roomid);
+    else if (!targetUser.rooms) return;
 
     for (const r of Object.keys(targetUser.rooms).map(Tools.toRoomId)) {
         runModchatSetter(targetUser, r);
