@@ -14,6 +14,18 @@ export default async (targetUser: User, room?: Room) => {
     }
 };
 
+function checkCondition(startTime: number, endTime: number, always: boolean, time: number) {
+    if (always) return true;
+    if (startTime === endTime) return true;
+    if (startTime > endTime) {
+        if (time >= startTime || time <= endTime) return true;
+        else return false;
+    } else {
+        if (time < startTime || time >= endTime) return false;
+        else return true;
+    }
+}
+
 async function runModchatSetter(targetUser: User, r: string): Promise<void> {
     if (!Config.modchatTime[r]) return;
     const targetRoom: Room | undefined = PS.rooms.cache.get(r);
@@ -24,8 +36,7 @@ async function runModchatSetter(targetUser: User, r: string): Promise<void> {
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const { startTime, endTime, always, rank, ignoreGlobals, allowBusy } = Config.modchatTime[r]!;
-    if (!always && !(new Date().getHours() < startTime && new Date().getHours() > endTime)) return;
-    if (!targetRoom.users?.length) return targetRoom.setModchat(rank || "+");
+    if (!checkCondition(startTime, endTime, always, new Date().getHours())) return;
     /* eslint-disable @typescript-eslint/no-non-null-assertion */
     const staffs = targetRoom!.users.filter((u: string) => {
         let auth: GroupSymbol = " ";
