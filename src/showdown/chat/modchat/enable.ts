@@ -24,7 +24,7 @@ async function runModchatSetter(targetUser: User, r: string): Promise<void> {
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const { startTime, endTime, always, rank, ignoreGlobals, allowBusy } = Config.modchatTime[r]!;
-    if (!always && (new Date().getHours() < startTime || new Date().getHours() > endTime)) return;
+    if (!always && !(new Date().getHours() < startTime && new Date().getHours() > endTime)) return;
     if (!targetRoom.users?.length) return targetRoom.setModchat(rank || "+");
     /* eslint-disable @typescript-eslint/no-non-null-assertion */
     const staffs = targetRoom!.users.filter((u: string) => {
