@@ -1,6 +1,5 @@
 "use strict";
 
-import { Tools } from "@dirain/client";
 import type { Room, User, Client } from "@dirain/client";
 
 import { blank, incorrect, correct, notHere } from "./html/main";

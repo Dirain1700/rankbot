@@ -11,7 +11,7 @@ declare global {
     var Config: typeof import("../config/config");
     var discord: typeof import("../src/index").DiscordClient;
     var PS: typeof import("../src/index").PSClient;
-    var Tools: typeof import("@dirain/client").Tools;
+    var Tools: typeof import("../src/Tools").Tools;
     var pendingVerification: Map<string, Snowflake>;
     var Wordles: Dict<Wordle>;
     var Dex: Collection<string, Species>;

@@ -4,7 +4,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { createServer } from "http";
 import * as config from "../config/config";
-import { Tools } from "@dirain/client";
+import { Tools } from "./Tools";
 import { parse } from "querystring";
 import { Collection, Client as disClient } from "discord.js";
 import { Client as PSC } from "@dirain/client";
