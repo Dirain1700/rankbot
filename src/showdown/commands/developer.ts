@@ -24,7 +24,7 @@ export const commands: BaseCommandDefinitions = {
                 } else if (typeof result === "boolean" && !result) {
                     result = "false";
                 }
-                this.say(result as string);
+                this.say(Tools.toString(result));
             } catch (e) {
                 this.say((e as Error).message);
                 console.log((e as Error).stack);
