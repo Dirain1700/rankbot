@@ -54,7 +54,7 @@ async function runModchatSetter(targetUser: User, r: string): Promise<void> {
         return true;
     });
     if (!staffs.length) {
-        targetRoom.send("This room has no staffs so modchat will be set to +.")
+        targetRoom.send("This room has no staffs so modchat will be set to +.");
         targetRoom!.setModchat(rank || "+");
     }
     /* eslint-enable */
