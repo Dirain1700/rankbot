@@ -281,7 +281,7 @@ function send(this: CommandContext, wordleRoom: Room): void {
     // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
     if (Wordles[wordleRoom.roomid]!.endedPl.includes(this.user.userid)) {
         resend(wordleRoom, this.user.userid);
-        return wordleRoom.sendHtmlBox("You are already played Wordle today, so you can't play more today!");
+        return wordleRoom.sendPrivateHtmlBox(this.user.userid, "You have already played Wordle today, so you can't play more today!");
     }
     // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
     if (this.user.id in Wordles[wordleRoom.roomid]!.pl) return resend(wordleRoom, this.user.userid);
@@ -306,7 +306,6 @@ function parse(this: CommandContext, roomId: string, guess: string): void {
     if (Wordles[roomId]!.ended) return this.say("Today's Wordle have ended, Try tomorrow!");
     // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
     if (this.user.id in Wordles[roomId]!.endedPl) {
-        wordleRoom.sendHtmlBox("You are already played Wordle today, so you can't play more today!");
         resend(wordleRoom, this.user.userid);
         return;
     }
@@ -339,7 +338,7 @@ function commend(this: CommandContext, wordleRoom: Room): void {
         }
     }
     let message: string;
-    if (!winners.length) message = "No one wins in today's Wordle!";
+    if (!winners.length) message = "No one wins from today's Wordle!";
     else message = "**Today's Wordle winners: " + winnersList.join(", ") + "**";
     wordleRoom.send(message);
     destroyWordle.call(this, wordleRoom);
