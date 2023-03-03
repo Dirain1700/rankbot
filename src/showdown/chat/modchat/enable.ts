@@ -38,20 +38,24 @@ async function runModchatSetter(targetUser: User, r: string): Promise<void> {
     const { startTime, endTime, always, rank, ignoreGlobals, allowBusy } = Config.modchatTime[r]!;
     if (!checkCondition(startTime, endTime, always, new Date().getHours())) return;
     /* eslint-disable @typescript-eslint/no-non-null-assertion */
-    const staffs = targetRoom!.users.filter((u: string) => {
+    const staffs = targetRoom!.users.filter(async (u: string) => {
         let auth: GroupSymbol = " ";
-        if (ignoreGlobals) auth = targetRoom!.getRoomRank(u);
+        if (ignoreGlobals) auth = targetRoom.getRoomRank(u);
         else auth = targetRoom!.getRank(u);
         if (!Tools.isHigherRank(auth, "%")) return false;
         if (auth === "*") return false;
-        const user = PS.getUser(u);
-        if (!user) return false;
+        let user = PS.getUser(u);
+        if (!user) user = await PS.fetchUser(u);
+        if (!user.online) return false;
         if (!user.status) return true;
         if (user.status.startsWith(IDLE_STATUS)) return false;
         if (!allowBusy && user.status.startsWith(BUSY_STATUS)) return false;
         if (PS.user?.userid === user.userid) return false;
         return true;
     });
-    if (!staffs.length) targetRoom!.setModchat(rank || "+");
+    if (!staffs.length) {
+        targetRoom.send("This room has no staffs so modchat will be set to +.")
+        targetRoom!.setModchat(rank || "+");
+    }
     /* eslint-enable */
 }
