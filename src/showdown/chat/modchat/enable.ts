@@ -39,22 +39,21 @@ async function runModchatSetter(targetUser: User, r: string): Promise<void> {
     if (!checkCondition(startTime, endTime, always, new Date().getHours())) return;
     /* eslint-disable @typescript-eslint/no-non-null-assertion */
     let isStaffOnline: boolean = true;
-    for (const u of targetRoom!.users) {
+    for (const u of targetRoom!.userCollection.values()) {
+        u.update();
         let auth: GroupSymbol = " ";
-        if (ignoreGlobals) auth = targetRoom.getRoomRank(u);
+        if (ignoreGlobals) auth = targetRoom.getRoomRank(u.userid);
         else auth = targetRoom!.getRank(u);
         if (!Tools.isHigherRank(auth, "%")) continue;
         if (auth === "*") continue;
-        let user = PS.getUser(u);
-        if (!user) user = await PS.fetchUser(u);
-        if (!user.online) continue;
-        if (!user.status) {
+        if (!u.online) continue;
+        if (!u.status) {
             isStaffOnline = true;
             break;
         }
-        if (user.status.startsWith(IDLE_STATUS)) continue;
-        if (!allowBusy && user.status.startsWith(BUSY_STATUS)) continue;
-        if (PS.user?.userid === user.userid) continue;
+        if (u.status.startsWith(IDLE_STATUS)) continue;
+        if (!allowBusy && u.status.startsWith(BUSY_STATUS)) continue;
+        if (PS.user?.userid === u.userid) continue;
         isStaffOnline = true;
         break;
     }

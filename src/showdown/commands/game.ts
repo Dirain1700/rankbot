@@ -124,7 +124,7 @@ export const commands: BaseCommandDefinitions = {
                     let targetRoom: Room | undefined;
                     if (this.inRoom()) targetRoom = this.room;
                     else targetRoom = PS.rooms.cache.get(roomId);
-                    if (!targetRoom || !targetRoom.isExist) return this.sayError("INVALID_ROOM");
+                    if (!targetRoom || !targetRoom.exists) return this.sayError("INVALID_ROOM");
                     announce.call(this, targetRoom);
                     break;
                 }
@@ -219,7 +219,7 @@ export const commands: BaseCommandDefinitions = {
 function initWordle(this: CommandContext, r: string): void {
     r = Tools.toRoomId(r);
     const wordleRoom = PS.rooms.cache.get(r);
-    if (!wordleRoom || !wordleRoom.isExist) return this.sayError("INVALID_ROOM");
+    if (!wordleRoom || !wordleRoom.exists) return this.sayError("INVALID_ROOM");
     global.Wordles[r] = new Wordle(wordleRoom);
     announce.call(this, wordleRoom);
 }
