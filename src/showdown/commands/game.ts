@@ -185,7 +185,7 @@ export const commands: BaseCommandDefinitions = {
                         let targetRoom: Room | undefined;
                         if (this.inRoom()) targetRoom = this.room;
                         else targetRoom = PS.rooms.cache.get(roomId);
-                        if (!targetRoom || !Wordles[roomId]) return this.sayError("WORDLE_DISABLED", targetRoom.title);
+                        if (!targetRoom || !Wordles[roomId]) return this.sayError("WORDLE_DISABLED", targetRoom ? targetRoom.title : "");
                         commend.call(this, targetRoom);
                     }
                     break;
