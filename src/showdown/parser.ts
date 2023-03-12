@@ -129,7 +129,7 @@ export class CommandContext<T extends Room | User = Room | User> {
     }
 
     say(content: string): void {
-        this.room.send(content);
+        this.room.send(Tools.toString(content));
     }
 
     sayError(content: string): void {
