@@ -22,3 +22,5 @@ export type BaseCommandGuide = Omit<BaseCommandData, "run">;
 export type BaseCommandDefinitions = Dict<CommandDefinitions<CommandContext, void>>;
 
 export type BaseCommandGuides = Dict<Omit<CommandDefinitions<CommandContext, void>, "run">>;
+
+export type CommandErrorInputType = "INVALID_ROOM" | "INVALID_BOT_ROOM" | "MISSING_BOT_RANK" | "PERMISSION_DENIED" | "WORDLE_DISABLED";

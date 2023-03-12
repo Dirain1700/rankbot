@@ -3,8 +3,9 @@
 import { cloneDeep } from "lodash";
 import { Room, User } from "@dirain/client";
 
-import type { Message } from "@dirain/client";
-import type { BaseCommandDefinitions, BaseCommandData, BaseCommandGuide } from "../../types/commands";
+import type { Message, GroupSymbol } from "@dirain/client";
+
+import type { BaseCommandDefinitions, BaseCommandData, BaseCommandGuide, CommandErrorInputType } from "../../types/commands";
 
 export class CommandParser {
     commandsDir = "./commands";
@@ -132,8 +133,50 @@ export class CommandContext<T extends Room | User = Room | User> {
         this.room.send(Tools.toString(content));
     }
 
-    sayError(content: string): void {
-        return this.say(content);
+    sayError(err: CommandErrorInputType, ...args: string[]): void {
+        if (!PS.user) return;
+        let message: string;
+
+        switch (err) {
+            case "INVALID_ROOM":
+            case "INVALID_BOT_ROOM": {
+                if (args[0]) message = args[0] + " is not one of " + PS.user.name + "'s room.";
+                else message = "You must specifiy at least one room.";
+                break;
+            }
+            case "MISSING_BOT_RANK": {
+                if (args[0]) message = "Required Bot (*) rank for " + args[0] + " but not provided.";
+                else message = "Required Bot (*) rank but jot provided.";
+                break;
+            }
+            case "PERMISSION_DENIED": {
+                if (args[0]) {
+                    const index = Tools.rankSymbols.indexOf(args[0] as GroupSymbol);
+                    if (index === -1) message = "Access denied.";
+                    message =
+                        "Access denied. Requires: " +
+                        Tools.rankSymbols
+                            .filter((_, i) => i <= index)
+                            .slice(1)
+                            .join(" ");
+                } else {
+                    message = "Access denied.";
+                }
+                break;
+            }
+            case "WORDLE_DISABLED": {
+                if (args[0]) {
+                    message = "Wordle disabled for room " + args[0] + ".";
+                } else {
+                    message = "Wordle disabled.";
+                }
+                break;
+            }
+
+            default:
+                message = "Unknown error type: " + (err satisfies never);
+        }
+        this.say(message);
     }
 
     sayCode(code: string): void {
