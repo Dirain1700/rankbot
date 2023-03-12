@@ -11,7 +11,7 @@ import type { arrayOf } from "../../../types/utils";
 const WORDLE_ALIASES = ["initwordle", "createwordle", "newwordle", "announcewordle",
     "sendwordle", "requestwordle", "guesswordle", "endwordle", "wordle"] as const;
 // prettier-ignore
-const WORDLE_SUBCOMMANDS = ["init", "initialize", "new", "create", "announce", "store", "save",
+const WORDLE_SUBCOMMANDS = ["init", "initialize", "n", "new", "create", "announce", "store", "save",
     "restore", "reload", "rebuild", "send", "request", "guess", "commend", "end"] as const;
 
 export const commands: BaseCommandDefinitions = {
@@ -95,6 +95,7 @@ export const commands: BaseCommandDefinitions = {
             switch (subCommand) {
                 case "init":
                 case "initialize":
+                case "n":
                 case "new":
                 case "create": {
                     if (this.inPm()) {
