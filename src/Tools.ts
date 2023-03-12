@@ -67,9 +67,9 @@ export class Tools extends PSTools {
                 }
                 const stringProps = props.map(([k, v]) => k + ": " + v).join(", ");
                 if (input.constructor?.name && input.constructor.name !== "Object") {
-                    if (stringProps.length) return input.constructor.name + " { " + props.map(([k, v]) => k + ": " + v).join(", ") + " }";
+                    if (stringProps.length) return "{ " + stringProps + " }";
                     else return input.constructor.name + " {}";
-                } else if (stringProps.length) return "{ " + props.map(([k, v]) => k + ": " + v).join(", ") + " }";
+                } else if (stringProps.length) return "{ " + stringProps + " }";
                 else return "{}";
             }
             default:
