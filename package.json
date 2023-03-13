@@ -18,7 +18,7 @@
         "@dirain/client": "^0.0.22-dev.1678559400-ead7157.0",
         "@types/lodash": "^4.14.191",
         "axios": "^1.3.4",
-        "discord.js": "^14.7.1",
+        "discord.js": "^14.8.0",
         "lodash": "^4.17.21",
         "node-schedule": "^2.1.1"
     },
