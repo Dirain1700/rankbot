@@ -3,13 +3,13 @@
 import { Tools as PSTools } from "@dirain/client";
 
 export class Tools extends PSTools {
-    static override toString(input: unknown, nest?: number): string {
+    static override toString(input: unknown, depth?: number): string {
         if (!input) {
             if (arguments.length === 0) return super.toString();
             if (input === null) return "null";
             if (input === undefined) return "undefined";
         }
-        nest ??= 0;
+        depth ??= 0;
         const inputType = typeof input;
         switch (typeof input) {
             case "undefined": {
@@ -39,9 +39,10 @@ export class Tools extends PSTools {
                 if (input === null) return "null";
                 if (input === undefined) return "undefined";
                 if (Array.isArray(input)) {
-                    return "[" + input.map(this.toString).join(", ") + "]";
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                    return "[" + input.map((e) => this.toString(e, depth! + 1)).join(", ") + "]";
                 }
-                if (nest > 0) {
+                if (depth > 0) {
                     if (input.constructor?.name && input.constructor.name !== "Object") {
                         return "[class " + input.constructor.name + "]";
                     } else if (Reflect.ownKeys(JSON).every((key) => key in input)) {
@@ -56,14 +57,14 @@ export class Tools extends PSTools {
                         return "[object Intl]";
                     } else if (Reflect.ownKeys(WebAssembly).every((key) => key in input)) {
                         return "[object WebAssembly]";
-                    } else if (nest > 2) {
+                    } else if (depth > 2) {
                         return "[object Object]";
                     }
                 }
                 const props: [string, string][] = [];
                 for (const [k, v] of Object.entries(input)) {
-                    if (k.toString().startsWith(input.constructor.name || "constructor")) continue;
-                    props.push([this.toString(k, nest + 1), this.toString(v, nest + 1)]);
+                    if (k.toString().startsWith(input.constructor?.name || "constructor")) continue;
+                    props.push([this.toString(k, depth + 1), this.toString(v, depth + 1)]);
                 }
                 const stringProps = props.map(([k, v]) => k + ": " + v).join(", ");
                 if (input.constructor?.name && input.constructor.name !== "Object") {
