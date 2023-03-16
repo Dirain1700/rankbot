@@ -5,7 +5,6 @@ import * as path from "node:path";
 import { build } from "esbuild";
 import { globSync } from "glob";
 
-const targetDir = "./src";
 const targetFiles = globSync(["src/**/*.ts", "data/**/*.ts", "config/**/*.ts"]);
 const tsconfig = path.resolve(__dirname, "tsconfig.json");
 
