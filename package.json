@@ -5,10 +5,11 @@
     "main": "index.js",
     "scripts": {
         "start": "npm run build && node --enable-source-maps --trace-warnings dist/src/index.js",
-        "pre-tsc": "tsc -p tsconfig.json --noEmit",
         "tsc": "tsc -p tsconfig.json",
-        "build": "npm run write && npm run lint-fix && npm run tsc",
-        "ci": "npm run check && npm run lint && npm run pre-tsc",
+        "esbuild": "node --enable-source-maps build.js",
+        "build-esbuild": "tsc -p tsconfig.build.json",
+        "build": "npm run write && npm run lint-fix && npm run esbuild",
+        "ci": "npm run check && npm run lint && npm run tsc",
         "lint": "eslint \"src/**/*.ts\"",
         "lint-fix": "eslint --fix \"src/**/*.ts\"",
         "write": "prettier --write .",
@@ -22,13 +23,15 @@
         "node-schedule": "^2.1.1"
     },
     "devDependencies": {
+        "@types/lodash": "^4.14.191",
         "@types/node": "^18.15.3",
         "@types/node-schedule": "^2.1.0",
-        "@types/lodash": "^4.14.191",
         "@types/prettier": "^2.7.2",
         "@typescript-eslint/eslint-plugin": "5.55.0",
         "@typescript-eslint/parser": "^5.55.0",
+        "esbuild": "^0.17.11",
         "eslint": "^8.36.0",
+        "glob": "^9.3.0",
         "prettier": "^2.8.4",
         "ts-node": "^10.9.1",
         "typescript": "^4.9.5"

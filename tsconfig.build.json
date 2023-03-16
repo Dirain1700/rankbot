@@ -2,18 +2,15 @@
     "compilerOptions": {
         // module settings
         "module": "commonjs",
-        "outDir": "./dist",
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
 
         // emit settings
         "target": "esnext",
-        "rootDir": "./",
+        "sourceMap": true,
         "importsNotUsedAsValues": "error",
         "esModuleInterop": true,
-        "sourceMap": true,
+        "noEmitOnError": true,
         "forceConsistentCasingInFileNames": true,
-        "incremental": true,
+        "incremental": false,
 
         // type checks
         "strict": true,
@@ -23,7 +20,7 @@
         "noUncheckedIndexedAccess": true,
         "strictBindCallApply": true,
         "noPropertyAccessFromIndexSignature": false,
-        "typeRoots": ["node_modules/@types", "types"]
+        "typeRoots": ["node_modules/@types"]
     },
-    "include": ["src/**/*.ts", "config/*.ts", "data/**/*.ts"]
+    "include": ["build.ts"]
 }

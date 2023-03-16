@@ -1,6 +1,7 @@
 # TypeScript outputs
 dist/*
-config/config.ts
+build.*
+!build.ts
 
 # Test files
 foo*
@@ -20,7 +21,7 @@ lerna-debug.log*
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Runtime data
-config/config.js
+config/config.ts
 .replit
 replit.*
 pids

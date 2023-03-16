@@ -9,8 +9,8 @@ export default function (message: Message<Room>): void {
     /* eslint-disable no-useless-escape */
     if (message.target.isStaff(message.author) || /[\u{3000}-\u{301C}\u{3041}-\u{3093}\u{309B}-\u{309E}]/mu.test(message.content)) return;
     if (/^[^A-Za-z0-9]/.test(message.content.charAt(0))) return;
-    const stretchRegex: RegExp = new RegExp(`(.)\1{${STRETCH_LIMIT - 1},}`, "gimsu");
-    const wordStretchRegex: RegExp = new RegExp(`(\S+?)${"\1".repeat(STRETCH_LIMIT - 1)}`, "gimsu");
+    const stretchRegex: RegExp = new RegExp(`(.)\\1{${STRETCH_LIMIT - 1},}`, "gimsu");
+    const wordStretchRegex: RegExp = new RegExp(`(\S+?)${"\\1".repeat(STRETCH_LIMIT - 1)}`, "gimsu");
     /* eslint-enable */
 
     const stretchFilter: (str: string) => boolean = (str: string) => {

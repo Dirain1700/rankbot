@@ -5,7 +5,9 @@ config/*.json
 .cache/*
 .upm/*
 dist/*
+build.*
+!build.ts
 logs/*
 !logs/README.md
 data/*
-data/**/*.md
+!data/**/*.md
