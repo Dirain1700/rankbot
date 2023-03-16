@@ -25,8 +25,12 @@ export abstract class Game extends Activity {
         // prettier-ignore
         let html = "<div class=\"infobox\">";
         html += `<b>Players(${this.players.size}):&nbsp;`;
-        html += this.players.map((p) => p.name).join(", ");
+        html += this.players.map((p) => "<username>" + Tools.escapeHTML(p.name) + "</username>").join(", ");
         html += "</b></div>";
         return html;
+    }
+
+    getSignupsEndMessage(): string {
+        return "<center>(signups have closed)</center>";
     }
 }
