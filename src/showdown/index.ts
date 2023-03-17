@@ -14,7 +14,7 @@ export default () => {
         PSCommandParser.parse(message);
     });
 
-    PS.on("roomUserRemove", (room: Room, user: User): Promise<void> => enableModchat(user, room));
+    PS.on("roomUserRemove", (room: Room, user: User): boolean => enableModchat(user, room));
 
     PS.on("chatError", (e) => console.log(e));
     PS.on("error", (e) => console.log(e));

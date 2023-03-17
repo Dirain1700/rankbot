@@ -5,13 +5,16 @@ import type { User, Room, GroupSymbol } from "@dirain/client";
 const IDLE_STATUS = "!(Idle) ";
 const BUSY_STATUS = "!(Busy) ";
 
-export default async (targetUser: User, room?: Room) => {
-    if (room) return runModchatSetter(targetUser, room.roomid);
-    else if (!targetUser.rooms) return;
+export default (targetUser: User, room?: Room): boolean => {
+    if (room) return runModchatSetter(targetUser, room);
+    else if (!targetUser.update().rooms.size) return false;
 
-    for (const r of Object.keys(targetUser.rooms).map(Tools.toRoomId)) {
-        runModchatSetter(targetUser, r);
+    let result: boolean = false;
+    for (const r of targetUser.rooms.values()) {
+        if (!result) result = runModchatSetter(targetUser, r);
+        else runModchatSetter(targetUser, r);
     }
+    return result;
 };
 
 function checkCondition(startTime: number, endTime: number, always: boolean, time: number) {
@@ -26,22 +29,22 @@ function checkCondition(startTime: number, endTime: number, always: boolean, tim
     }
 }
 
-async function runModchatSetter(targetUser: User, r: string): Promise<void> {
-    if (!Config.modchatTime[r]) return;
-    const targetRoom: Room | undefined = PS.rooms.cache.get(r);
-    if (!targetRoom) return;
+function runModchatSetter(targetUser: User, targetRoom: Room): boolean {
+    if (!Config.modchatTime[targetRoom.roomid]) return false;
     targetRoom.removeUser(targetUser.userid);
-    if (!targetRoom.hasRank("%", targetUser)) return;
-    if (targetRoom.modchat && targetRoom.modchat !== "autoconfirmed") return;
+    if (!targetRoom.hasRank("%", targetUser)) return false;
+    if (targetRoom.modchat && targetRoom.modchat !== "autoconfirmed") return false;
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const { startTime, endTime, always, rank, ignoreGlobals, allowBusy } = Config.modchatTime[r]!;
-    if (!checkCondition(startTime, endTime, always, new Date().getHours())) return;
+    const { startTime, endTime, always, rank, ignoreGlobals, allowBusy } = Config.modchatTime[targetRoom.roomid]!;
+    if (!checkCondition(startTime, endTime, always, new Date().getHours())) return false;
     /* eslint-disable @typescript-eslint/no-non-null-assertion */
-    let isStaffOnline: boolean = true;
-    for (const u of targetRoom!.userCollection.values()) {
+    let isStaffOnline: boolean = false;
+    targetRoom.update().users.forEach((u) => targetRoom.addUser(u));
+    for (const u of targetRoom!.update().userCollection.values()) {
         u.update();
-        let auth: GroupSymbol = " ";
+        if (u.locked) continue;
+        let auth: GroupSymbol;
         if (ignoreGlobals) auth = targetRoom.getRoomRank(u.userid);
         else auth = targetRoom!.getRank(u);
         if (!Tools.isHigherRank(auth, "%")) continue;
@@ -59,7 +62,8 @@ async function runModchatSetter(targetUser: User, r: string): Promise<void> {
     }
     if (!isStaffOnline) {
         targetRoom.send("This room has no staffs so modchat will be set to +.");
-        targetRoom!.setModchat(rank || "+");
-    }
+        targetRoom.setModchat(rank || "+");
+        return true;
+    } else return false;
     /* eslint-enable */
 }
