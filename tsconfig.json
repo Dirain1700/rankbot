@@ -2,18 +2,15 @@
     "compilerOptions": {
         // module settings
         "module": "commonjs",
-        "outDir": "./dist",
         "moduleResolution": "node",
         "resolveJsonModule": true,
 
         // emit settings
         "target": "esnext",
-        "rootDir": "./",
         "importsNotUsedAsValues": "error",
         "esModuleInterop": true,
-        "sourceMap": true,
+        "noEmit": true,
         "forceConsistentCasingInFileNames": true,
-        "incremental": true,
 
         // type checks
         "strict": true,
