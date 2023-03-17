@@ -16,7 +16,7 @@
         "check": "prettier --check ."
     },
     "dependencies": {
-        "@dirain/client": "0.0.22-dev.1678978918-227659a.0",
+        "@dirain/client": "^0.0.22",
         "axios": "^1.3.4",
         "discord.js": "^14.8.0",
         "lodash": "^4.17.21",
