@@ -29,7 +29,7 @@ export default () => {
 
     PS.on("tourCreate", (room) => {
         if (!Config.onTournamentCreate[room.roomid] || !room.tour) return;
-        // eslint-disable-nextline @typescript-eslint/no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         Config.onTournamentCreate[room.roomid]!.call(room.tour);
     });
 
