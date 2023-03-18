@@ -56,9 +56,7 @@ export default () => {
         });
 
         scheduleJob("0 0 14 * * *", () => {
-            for (const r of Object.keys(Wordles)) {
-                new CommandContext("wordle", "wordle", "commend," + r, PS.user!, developer, 0).run();
-            }
+            new CommandContext("wordle", "wordle", "commend", PS.user!, developer, 0).run();
         });
         setTimeout(() => {
             new CommandContext("wordle", "wordle", "restore", PS.user!, developer, 0).run();
