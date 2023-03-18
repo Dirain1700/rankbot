@@ -31,7 +31,7 @@ export default () => {
         if (!Config.onTournamentCreate[room.roomid] || !room.tour) return;
         // eslint-disable-nextline @typescript-eslint/no-non-null-assertion
         Config.onTournamentCreate[room.roomid]!.call(room.tour);
-    })
+    });
 
     /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
