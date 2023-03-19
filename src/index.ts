@@ -9,7 +9,7 @@ import { parse } from "querystring";
 import { Collection, Client as disClient } from "discord.js";
 import { Client as PSC } from "@dirain/client";
 import { dex } from "../data/dex/pokedex";
-import { CommandParser as PSCommandParser } from "./showdown/parser";
+import { CommandParser as PSCommandParser, CommandContext } from "./showdown/parser";
 
 global.fs = fs;
 global.Config = config;
@@ -19,6 +19,7 @@ global.Wordles = {};
 global.Dex = new Collection([...Object.entries(dex)]);
 global.Commands = {};
 global.PSCommandParser = new PSCommandParser();
+global.CommandContext = CommandContext;
 
 global.PSCommandParser.loadCommands();
 const html = fs.readFileSync("./config/index.html", "utf-8");

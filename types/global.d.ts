@@ -2,7 +2,7 @@ import type { Collection, Snowflake } from "discord.js";
 import type { Wordle } from "../src/showdown/wordle/main";
 import type { Species } from "./dex";
 import type { BaseCommandDefinitions } from "./commands";
-import type { CommandParser } from "../src/showdown/parser";
+import type { CommandParser, CommandContext } from "../src/showdown/parser";
 import type { Dict } from "./utils";
 
 declare global {
@@ -17,6 +17,7 @@ declare global {
     var Dex: Collection<string, Species>;
     var Commands: BaseCommandDefinitions;
     var PSCommandParser: CommandParser;
+    var CommandContext: CommandContext["constructor"];
 }
 
 export {};
