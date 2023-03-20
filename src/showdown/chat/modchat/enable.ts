@@ -6,13 +6,13 @@ const IDLE_STATUS = "!(Idle) ";
 const BUSY_STATUS = "!(Busy) ";
 
 export default (targetUser: User, room?: Room): boolean => {
-    if (room) return runModchatSetter(targetUser, room);
+    if (room) return runModchatSetter(targetUser, room.update());
     else if (!targetUser.update().rooms.size) return false;
 
     let result: boolean = false;
     for (const r of targetUser.rooms.values()) {
         if (!result) result = runModchatSetter(targetUser, r);
-        else runModchatSetter(targetUser, r);
+        else runModchatSetter(targetUser, r.update());
     }
     return result;
 };
