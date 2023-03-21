@@ -42,5 +42,8 @@ jobs:
             - name: Check type definitions
               run: tsc -p tsconfig.json
 
+            - name: Compile build.ts
+              run: npm run build-esbuild
+
             - name: Test esbuild
               run: npm run esbuild
