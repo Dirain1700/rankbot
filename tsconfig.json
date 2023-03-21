@@ -7,7 +7,7 @@
 
         // emit settings
         "target": "esnext",
-        "importsNotUsedAsValues": "error",
+        "verbatimModuleSyntax": true,
         "esModuleInterop": true,
         "noEmit": true,
         "forceConsistentCasingInFileNames": true,
