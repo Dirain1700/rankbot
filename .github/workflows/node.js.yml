@@ -11,22 +11,36 @@ on:
 
 jobs:
     Build:
-        runs-on: ubuntu-latest
-
         strategy:
             matrix:
+                platform: [ubuntu-latest, windows-latest]
                 node-version: [18.x]
-                # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+        runs-on: ${{ matrix.platform }}
 
         steps:
             - uses: actions/checkout@v3
+
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v3
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "npm"
-            - run: npm ci
-            - run: cp config/config-example.ts config/config.ts
-            - run: npm run check
-            - run: npm run lint
-            - run: tsc -p tsconfig.json
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Restore config.ts
+              run: cp config/config-example.ts config/config.ts
+
+            - name: Run prettier formatting
+              run: npm run check
+
+            - name: Run ESLint
+              run: npm run lint
+
+            - name: Check type definitions
+              run: tsc -p tsconfig.json
+
+            - name: Test esbuild
+              run: npm run esbuild
