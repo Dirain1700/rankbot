@@ -3,6 +3,7 @@ package-lock.json
 node_modules/*
 config/*.json
 .cache/*
+.config/*
 .upm/*
 dist/*
 build.*
