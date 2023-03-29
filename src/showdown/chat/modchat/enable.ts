@@ -30,8 +30,6 @@ function checkCondition(startTime: number, endTime: number, always: boolean, tim
 }
 
 function runModchatSetter(targetUser: User, targetRoom: Room): boolean {
-    console.log(targetUser);
-    console.log(targetRoom);
     if (!Config.modchatTime[targetRoom.roomid]) return false;
     targetRoom.removeUser(targetUser.userid);
     if (!targetRoom.hasRank("%", targetUser)) return false;
