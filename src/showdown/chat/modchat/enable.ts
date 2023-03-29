@@ -6,13 +6,13 @@ const IDLE_STATUS = "!(Idle) ";
 const BUSY_STATUS = "!(Busy) ";
 
 export default (targetUser: User, room?: Room): boolean => {
-    if (room) return runModchatSetter(targetUser, room.update());
-    else if (!targetUser.update().rooms.size) return false;
+    if (room) return runModchatSetter(targetUser, room);
+    else if (!targetUser.rooms.size) return false;
 
     let result: boolean = false;
     for (const r of targetUser.rooms.values()) {
-        if (!result) result = runModchatSetter(targetUser, r.update());
-        else runModchatSetter(targetUser, r.update());
+        if (!result) result = runModchatSetter(targetUser, r);
+        else runModchatSetter(targetUser, r);
     }
     return result;
 };
@@ -30,6 +30,8 @@ function checkCondition(startTime: number, endTime: number, always: boolean, tim
 }
 
 function runModchatSetter(targetUser: User, targetRoom: Room): boolean {
+    console.log(targetUser);
+    console.log(targetRoom);
     if (!Config.modchatTime[targetRoom.roomid]) return false;
     targetRoom.removeUser(targetUser.userid);
     if (!targetRoom.hasRank("%", targetUser)) return false;
