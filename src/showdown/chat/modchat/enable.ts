@@ -11,7 +11,7 @@ export default (targetUser: User, room?: Room): boolean => {
 
     let result: boolean = false;
     for (const r of targetUser.rooms.values()) {
-        if (!result) result = runModchatSetter(targetUser, r);
+        if (!result) result = runModchatSetter(targetUser, r.update());
         else runModchatSetter(targetUser, r.update());
     }
     return result;
@@ -63,6 +63,7 @@ function runModchatSetter(targetUser: User, targetRoom: Room): boolean {
     if (!isStaffOnline) {
         targetRoom.send("This room has no staffs so modchat will be set to +.");
         targetRoom.setModchat(rank || "+");
+        targetRoom.modchat = "+";
         return true;
     } else return false;
     /* eslint-enable */
