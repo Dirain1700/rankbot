@@ -109,14 +109,16 @@ export const commands: BaseCommandDefinitions = {
                         } else {
                             const targetRoom = PS.rooms.cache.get(roomId);
                             if (!targetRoom) return this.sayError("INVALID_BOT_ROOM", roomId);
+                            if (!Config.enableWordle.includes(roomId)) return this.sayError("WORDLE_DISABLED", targetRoom.title);
                             if (!targetRoom.hasRank("%", this.user)) return this.sayError("PERMISSION_DENIED", "%");
-                            initWordle.call(this, targetRoom.roomid);
+                            initWordle.call(this, targetRoom.roomid, guess);
                         }
                     } else {
                         if (!this.inRoom()) return;
+                        if (!Config.enableWordle.includes(this.room.roomid)) return this.sayError("WORDLE_DISABLED", this.room.title);
                         if (!this.room.hasRank("%", user) && !Config.developers.includes(user.id))
                             return this.sayError("PERMISSION_DENIED", "%");
-                        initWordle.call(this, this.room.roomid);
+                        initWordle.call(this, this.room.roomid, guess);
                     }
                     break;
                 }
@@ -221,11 +223,13 @@ export const commands: BaseCommandDefinitions = {
     },
 };
 
-function initWordle(this: CommandContext, r: string): void {
+function initWordle(this: CommandContext, r: string, answer?: string): void {
     r = Tools.toRoomId(r);
+    if (answer) answer = Tools.toId(answer);
     const wordleRoom = PS.rooms.cache.get(r);
     if (!wordleRoom || !wordleRoom.exists) return this.sayError("INVALID_ROOM");
-    global.Wordles[r] = new Wordle(wordleRoom);
+    if (answer) global.Wordles[r] = new Wordle(wordleRoom, { answer });
+    else global.Wordles[r] = new Wordle(wordleRoom);
     announce.call(this, wordleRoom);
 }
 
@@ -322,7 +326,8 @@ function parse(this: CommandContext, roomId: string, guess: string): void {
         return;
     }
     const wordList = fs.readFileSync(`./src/showdown/wordle/words/${guess.charAt(0)}.txt`, "utf-8").split("\n");
-    if (!wordList.includes(guess)) {
+    // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
+    if (guess !== Wordles[roomId]!.answer && !wordList.includes(guess)) {
         wordleRoom.sendPrivateHtmlBox(this.user.userid, "Not in word list");
         resend(wordleRoom, this.user.userid);
         return;

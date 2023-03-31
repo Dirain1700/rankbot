@@ -17,7 +17,7 @@ export class Wordle {
     correctedPl: Map<string, EndedPlData>; // Map<User ID, WordleData>
     eliminatedPl: Map<string, EndedPlData>; // Map<User ID, WordleData>;
 
-    constructor(room: Room, data?: StoredWordleDataType) {
+    constructor(room: Room, data?: Partial<StoredWordleDataType>) {
         let answer: string = "";
         if (!data || !data?.answer) answer = this.setup();
         this.answer = data?.answer || answer;
