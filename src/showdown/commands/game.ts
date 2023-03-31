@@ -225,7 +225,10 @@ export const commands: BaseCommandDefinitions = {
 
 function initWordle(this: CommandContext, r: string, answer?: string): void {
     r = Tools.toRoomId(r);
-    if (answer) answer = Tools.toId(answer);
+    if (answer) {
+        answer = Tools.toId(answer);
+        if (answer.length !== 5) return this.say("Invalid syntax. Length of the answer should be 5.");
+    }
     const wordleRoom = PS.rooms.cache.get(r);
     if (!wordleRoom || !wordleRoom.exists) return this.sayError("INVALID_ROOM");
     if (answer) global.Wordles[r] = new Wordle(wordleRoom, { answer });
