@@ -17,4 +17,4 @@ export const correctNotice = (time: number) =>
     } time!</span>`;
 
 // prettier-ignore
-export const incorrectNotice = (ans: string) => `<span style="font-weight: bold; font-size: 1.2vw;">Incorrect! You failed to guess! The answer was: ${ans} !</span>`;
+export const incorrectNotice = (ans: string) => `<span style="font-weight: bold; font-size: 1.2vw;">Incorrect! You failed to guess! The answer was: ${ans.charAt(0).toUpperCase() + ans.slice(1)} !</span>`;

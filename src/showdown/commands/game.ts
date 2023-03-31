@@ -353,7 +353,11 @@ function commend(this: CommandContext, wordleRoom: Room): void {
     let message: string;
     if (!winners.length) message = "No one wins from today's Wordle!";
     else message = "**Today's Wordle winners: " + winnersList.join(", ") + "**";
+    // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
+    const answer = Wordles[wordleRoom.roomid]!.answer;
+    const ansMessage = "The answer was: __" + answer.charAt(0).toUpperCase() + answer.slice(1) + "__";
     wordleRoom.send(message);
+    wordleRoom.send(ansMessage);
     destroyWordle.call(this, wordleRoom);
 }
 
