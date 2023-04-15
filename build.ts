@@ -25,7 +25,10 @@ console.log("Running CommonJS esbuild...");
 
 // @ts-expect-error format should be assignable
 build(config)
-    .then(() => console.log("Sucessfully built files!"))
+    .then(() => {
+        console.log("Sucessfully built files!");
+        console.log();
+    })
     .catch((e) => {
         console.log("Failed to build files.");
         console.error(e);
