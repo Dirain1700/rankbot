@@ -17,7 +17,7 @@ export default (targetUser: User, room?: Room): boolean => {
     return result;
 };
 
-function checkCondition(startTime: number, endTime: number, always: boolean, time: number) {
+export function checkCondition(startTime: number, endTime: number, always: boolean, time: number) {
     if (always) return true;
     if (startTime === endTime) return true;
     if (startTime > endTime) {
@@ -40,8 +40,7 @@ function runModchatSetter(targetUser: User, targetRoom: Room): boolean {
     if (!checkCondition(startTime, endTime, always, new Date().getHours())) return false;
     /* eslint-disable @typescript-eslint/no-non-null-assertion */
     let isStaffOnline: boolean = false;
-    targetRoom.update().users.forEach((u) => targetRoom.addUser(u));
-    for (const u of targetRoom!.update().userCollection.values()) {
+    for (const u of targetRoom!.getOnlineStaffs(!!ignoreGlobals).values()) {
         u.update();
         if (u.locked) continue;
         let auth: GroupSymbol;
@@ -63,7 +62,6 @@ function runModchatSetter(targetUser: User, targetRoom: Room): boolean {
     if (!isStaffOnline) {
         targetRoom.send("This room has no staffs so modchat will be set to +.");
         targetRoom.setModchat(rank || "+");
-        targetRoom.modchat = "+";
         return true;
     } else return false;
     /* eslint-enable */

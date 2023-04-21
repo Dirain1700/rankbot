@@ -1,14 +1,14 @@
 "use strict";
 
-import type { Room } from "@dirain/client";
+import { checkCondition } from "./enable";
 
-export default (message: string, room: Room): void => {
-    const modchatRegex =
-        /<div class="broadcast-red"><strong>Moderated chat was set to (?<level>(autoconfirmed|trusted|\+|%|@|\*|player|#|&))!<\/strong><br \/>Only users of rank (autoconfirmed|trusted|\+|%|@|\*|player|#|&) and higher can talk.<\/div>/;
-    if (!message.match(modchatRegex)) return;
+import type { Room, ModchatLevel } from "@dirain/client";
+
+export default (modchatLevel: ModchatLevel, targetRoom: Room): void => {
+    if (!Config.modchatTime[targetRoom.roomid]) return;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const { level } = message.match(modchatRegex)!.groups ?? {};
-    if (!level || !["off", "autoconfirmed"].includes(level)) {
-        room.send("!rfaq modchat");
+    const { startTime, endTime, always, rank } = Config.modchatTime[targetRoom.roomid]!;
+    if (modchatLevel === rank && checkCondition(startTime, endTime, !!always, Date.now())) {
+        targetRoom.send("!rfaq modchat");
     }
 };

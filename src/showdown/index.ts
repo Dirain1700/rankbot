@@ -2,7 +2,7 @@
 
 import { scheduleJob } from "node-schedule";
 import { Room, User } from "@dirain/client";
-import type { Message } from "@dirain/client";
+import type { Message, ModchatLevel } from "@dirain/client";
 
 import enableModchat from "./chat/modchat/enable";
 import announceModchat from "./chat/modchat/detect";
@@ -19,8 +19,8 @@ export default () => {
     PS.on("chatError", (e) => console.log(e));
     PS.on("error", (e) => console.log(e));
 
-    PS.on("rawData", (message: string, room: Room): void => {
-        announceModchat(message, room);
+    PS.on("modchat", (modchatLevel: ModchatLevel, room: Room): void => {
+        announceModchat(modchatLevel, room);
     });
 
     PS.on("userRename", (NewU) => {
