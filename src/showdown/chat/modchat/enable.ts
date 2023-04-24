@@ -17,7 +17,7 @@ export default (targetUser: User, room?: Room): boolean => {
     return result;
 };
 
-export function checkCondition(startTime: number, endTime: number, always: boolean, time: number) {
+export function checkCondition(startTime: number, endTime: number, always: boolean, time: ReturnType<Date["getHours"]>) {
     if (always) return true;
     if (startTime === endTime) return true;
     if (startTime > endTime) {
