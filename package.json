@@ -16,8 +16,8 @@
         "check": "prettier --check ."
     },
     "dependencies": {
-        "@dirain/client": "^0.0.25-dev.1682052372-1eed3be.0",
-        "axios": "^1.3.5",
+        "@dirain/client": "^0.0.25-dev.1682339506-c9bec3e.0",
+        "axios": "^1.3.6",
         "discord.js": "^14.9.0",
         "lodash": "^4.17.21",
         "node-schedule": "^2.1.1"
@@ -29,10 +29,10 @@
         "@types/prettier": "^2.7.2",
         "@typescript-eslint/eslint-plugin": "5.58.0",
         "@typescript-eslint/parser": "^5.58.0",
-        "esbuild": "^0.17.17",
+        "esbuild": "^0.17.18",
         "eslint": "^8.38.0",
         "glob": "^10.1.0",
-        "prettier": "^2.8.7",
+        "prettier": "^2.8.8",
         "ts-node": "^10.9.1",
         "typescript": "^4.9.5"
     },
