@@ -1,5 +1,6 @@
 ///<reference types="../types/global"/>
 
+process.exit();
 import * as fs from "fs";
 import * as path from "path";
 import { createServer } from "http";
@@ -112,5 +113,5 @@ function onError(errType: string, err: string) {
     if (!fs.existsSync(dirName)) fs.mkdirSync(dirName, { recursive: true });
     fs.writeFileSync(file, err);
 
-    //process.exit(1);
+    process.exit(1);
 }
