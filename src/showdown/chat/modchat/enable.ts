@@ -40,12 +40,12 @@ function runModchatSetter(targetUser: User, targetRoom: Room): boolean {
     if (!checkCondition(startTime, endTime, always, new Date().getHours())) return false;
     /* eslint-disable @typescript-eslint/no-non-null-assertion */
     let isStaffOnline: boolean = false;
-    for (const u of targetRoom!.getOnlineStaffs(!!ignoreGlobals).values()) {
+    for (const u of targetRoom.getOnlineStaffs(!!ignoreGlobals).values()) {
         u.update();
         if (u.locked) continue;
         let auth: GroupSymbol;
         if (ignoreGlobals) auth = targetRoom.getRoomRank(u.userid);
-        else auth = targetRoom!.getRank(u);
+        else auth = targetRoom.getRank(u);
         if (!Tools.isHigherRank(auth, "%")) continue;
         if (auth === "*") continue;
         if (!u.online) continue;

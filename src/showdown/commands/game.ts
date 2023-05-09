@@ -2,10 +2,11 @@
 
 import { Wordle } from "../wordle/main";
 
-import type { Room } from "@dirain/client";
-import type { CommandContext } from "../parser";
 import type { BaseCommandDefinitions } from "../../../types/commands";
 import type { arrayOf } from "../../../types/utils";
+import type { StoredWordleDataType } from "../../../types/wordle";
+import type { CommandContext } from "../parser";
+import type { Room } from "@dirain/client";
 
 // prettier-ignore
 const WORDLE_ALIASES = ["initwordle", "createwordle", "newwordle", "announcewordle",
@@ -165,10 +166,7 @@ export const commands: BaseCommandDefinitions = {
                 case "guess": {
                     if (!roomId) return this.sayError("INVALID_ROOM");
                     if (!Config.enableWordle.includes(roomId) || !Wordles[roomId]) return this.sayError("WORDLE_DISABLED", roomId);
-                    if (this.inRoom()) {
-                        this.room.hidetext(user.userid, true, 1, "Leaking Wordle");
-                        return;
-                    }
+                    if (this.inRoom()) return;
                     parse.call(this, roomId, guess ?? "");
                     break;
                 }
@@ -279,9 +277,9 @@ function rebuild(): void {
         const path = `./logs/wordle/${r}/${year}/${month}/${day}.json`;
         if (!fs.existsSync(path)) continue;
         try {
-            const data = JSON.parse(fs.readFileSync(path, "utf-8"));
+            const data: StoredWordleDataType = JSON.parse(fs.readFileSync(path, "utf-8")) as StoredWordleDataType;
             Wordles[r] = new Wordle(room, data);
-        } catch (e) {
+        } catch (e: unknown) {
             console.error(e);
         }
     }

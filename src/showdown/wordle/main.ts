@@ -1,10 +1,10 @@
 "use strict";
 
-import type { Room, User, Client } from "@dirain/client";
-
-import { blank, incorrect, correct, notHere } from "./html/main";
 import { head, closeDiv, partsHead, form, correctNotice, incorrectNotice } from "./html/heads";
+import { blank, incorrect, correct, notHere } from "./html/main";
+
 import type { StoredWordleDataType, GuessType, WordlePlayer, EndedPlData } from "../../../types/wordle";
+import type { Room, User, Client } from "@dirain/client";
 
 export class Wordle {
     readonly path = "./src/showdown/wordle/words/";

@@ -2,8 +2,8 @@
 
 import { exec } from "child_process";
 
-import type { ExecException } from "child_process";
 import type { BaseCommandDefinitions } from "../../../types/commands";
+import type { ExecException } from "child_process";
 
 export const commands: BaseCommandDefinitions = {
     eval: {

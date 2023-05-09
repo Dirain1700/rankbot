@@ -1,6 +1,7 @@
 "use strict";
 
 import { time, PermissionsBitField } from "discord.js";
+
 import type { ChatInputCommandInteraction } from "discord.js";
 
 export default (interaction: ChatInputCommandInteraction<"cached">): void => {
@@ -19,17 +20,19 @@ export default (interaction: ChatInputCommandInteraction<"cached">): void => {
     interaction.guild.members
         .kick(targetMember, `by ${interaction.user.tag}. reason: ${reasons}`)
         .then(() => {
-            interaction.reply({
+            void interaction.reply({
                 content: `${time(new Date(), "T")} ${targetMember.user.tag} was kicked from ${interaction.guild.name} by ${
                     interaction.user.tag
                 }.(${reasons})`,
                 ephemeral: false,
             });
-            targetMember.user.send(
+            void targetMember.user.send(
                 `${time(new Date(), "T")} You (${targetMember.user.tag}) were kicked from ${interaction.guild.name} by ${
                     interaction.user.tag
                 }.(${reasons})`
             );
         })
-        .catch((e) => interaction.reply(`Error: failed to kick ${targetMember.user.tag}.\nReason: ${e.toString()}`));
+        .catch(
+            (e: unknown) => void interaction.reply(`Error: failed to kick ${targetMember.user.tag}.\nReason: ${(e as Error).toString()}`)
+        );
 };

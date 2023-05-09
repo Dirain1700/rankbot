@@ -1,6 +1,7 @@
 "use strict";
 
 import { time, PermissionsBitField } from "discord.js";
+
 import type { ChatInputCommandInteraction } from "discord.js";
 
 export default (interaction: ChatInputCommandInteraction<"cached">): void => {
@@ -18,19 +19,21 @@ export default (interaction: ChatInputCommandInteraction<"cached">): void => {
 
     const reasons = interaction.options.getString("reason");
     interaction.guild.bans
-        .create(targetMember, { reason: `by ${interaction.user.tag}. reason: ${reasons}` })
+        .create(targetMember, { reason: `by ${interaction.user.tag}${reasons ? " reason: " + reasons : ""}` })
         .then(() => {
-            interaction.reply({
+            void interaction.reply({
                 content: `${time(new Date(), "T")} ${targetMember.user.tag} was banned from ${interaction.guild.name} by ${
                     interaction.user.tag
-                }.(${reasons})`,
+                }.${reasons ? " (" + reasons + ")" : ""}`,
                 ephemeral: false,
             });
-            targetMember.user.send(
+            void targetMember.user.send(
                 `${time(new Date(), "T")} You (${targetMember.user.tag}) were banned from ${interaction.guild.name} by ${
                     interaction.user.tag
-                }.(${reasons})`
+                }.${reasons ? " (" + reasons + ")" : ""}`
             );
         })
-        .catch((e) => interaction.reply(`Error: failed to ban ${targetMember.user.tag}.\nReason: ${e.toString()}`));
+        .catch(
+            (e: unknown) => void interaction.reply(`Error: failed to ban ${targetMember.user.tag}.\nReason: ${(e as Error).toString()}`)
+        );
 };

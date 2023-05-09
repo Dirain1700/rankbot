@@ -12,7 +12,7 @@ export default (message: Message<Room>): void => {
         user: string;
         time: number;
     }
-    const messages: chatLogType[] = JSON.parse(fs.readFileSync(file, "utf-8"));
+    const messages: chatLogType[] = JSON.parse(fs.readFileSync(file, "utf-8")) as chatLogType[];
     let chatLogs: chatLogType[] = [];
     const targetChannel: undefined | Channel = discord.channels.cache.get(Config.logch);
     if (!targetChannel || !targetChannel.isTextBased()) return;
@@ -82,7 +82,7 @@ export default (message: Message<Room>): void => {
     } else if (log.match(promoteRegex)) {
         isPunish = false;
         const { target, auth } = log.match(promoteRegex)!.groups ?? {};
-        log = `${log}\nCongrats ${target} to ${auth!}!`;
+        log = `${log}\nCongrats ${target!} to ${auth!}!`;
     } else if (log.match(demoteRegex)) {
         isPunish = false;
     }

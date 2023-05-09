@@ -1,6 +1,7 @@
 "use strict";
 
 import { time, PermissionsBitField } from "discord.js";
+
 import type { ChatInputCommandInteraction } from "discord.js";
 
 export default async (interaction: ChatInputCommandInteraction<"cached">): Promise<void> => {
@@ -13,12 +14,12 @@ export default async (interaction: ChatInputCommandInteraction<"cached">): Promi
     await interaction.guild.bans
         .remove(targetUser, `by ${interaction.user.tag}. reason: ${reasons}`)
         .then(() => {
-            interaction.reply({
+            void interaction.reply({
                 content: `${time(new Date(), "T")} ${targetUser.tag} was unbanned from ${interaction.guild.name} by ${
                     interaction.user.tag
                 }.(${reasons})`,
                 ephemeral: false,
             });
         })
-        .catch((e) => interaction.reply(`Error: failed to unban ${targetUser.tag}.\nReason: ${e.toString()}`));
+        .catch((e: unknown) => void interaction.reply(`Error: failed to unban ${targetUser.tag}.\nReason: ${(e as Error).toString()}`));
 };

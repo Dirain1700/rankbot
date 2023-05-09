@@ -1,7 +1,7 @@
 "use strict";
 
-export default async () => {
+export default () => {
     if (!discord.isReady()) return;
     console.log(`Logged in as ${discord.user.tag}`);
-    discord.user.setPresence({ activities: [{ name: "未来は風のように", type: 2 }], status: "online" });
+    discord.user.setPresence({ activities: [{ name: "NEO SKY, NEO MAP!", type: 2 }], status: "online" });
 };

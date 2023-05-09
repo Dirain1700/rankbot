@@ -1,24 +1,23 @@
 "use strict";
 
-import { cloneDeep } from "lodash";
 import { Room, User } from "@dirain/client";
-
-import type { Message, GroupSymbol } from "@dirain/client";
+import { cloneDeep } from "lodash";
 
 import type { BaseCommandDefinitions, BaseCommandData, BaseCommandGuide, CommandErrorInputType } from "../../types/commands";
+import type { Message, GroupSymbol } from "@dirain/client";
 
 export class CommandParser {
     commandsDir = "./commands";
 
     constructor() {} // eslint-disable-line @typescript-eslint/no-empty-function
 
-    async loadCommands(): Promise<void> {
+    async loadCommands(): Promise<PromiseSettledResult<void>[]> {
         const files = fs
             .readdirSync(path.resolve(__dirname, this.commandsDir))
             .filter((f) => f.endsWith(".js"))
             .map((f) => f.trim());
 
-        return void Promise.allSettled(
+        return Promise.allSettled(
             files.map((file) => {
                 const filePath = this.commandsDir + "/" + file.trim();
                 import(filePath)

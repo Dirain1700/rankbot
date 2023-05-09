@@ -1,6 +1,7 @@
 "use strict";
 
 import { PermissionsBitField } from "discord.js";
+
 import type { ChatInputCommandInteraction } from "discord.js";
 
 export default (interaction: ChatInputCommandInteraction<"cached">): void => {
@@ -9,5 +10,5 @@ export default (interaction: ChatInputCommandInteraction<"cached">): void => {
 
     const file = path.resolve(__dirname, "./../../config/rank.json");
     fs.writeFileSync(file, "{}");
-    interaction.reply("Reset successed!");
+    void interaction.reply("Reset successed!");
 };

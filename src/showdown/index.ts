@@ -1,12 +1,13 @@
 "use strict";
 
+import { User } from "@dirain/client";
 import { scheduleJob } from "node-schedule";
-import { Room, User } from "@dirain/client";
-import type { Message, ModchatLevel } from "@dirain/client";
 
-import enableModchat from "./chat/modchat/enable";
 import announceModchat from "./chat/modchat/detect";
+import enableModchat from "./chat/modchat/enable";
 import { CommandContext } from "./parser";
+
+import type { Message, ModchatLevel, Room } from "@dirain/client";
 
 export default () => {
     PS.on("messageCreate", (message: Message) => {
@@ -35,7 +36,7 @@ export default () => {
 
     /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-    PS.on("ready", async () => {
+    PS.on("ready", () => {
         console.log("Logged in as", PS.user!.name);
 
         if (!Config.developers[0]) return;

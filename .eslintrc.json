@@ -28,16 +28,57 @@
     "overrides": [
         {
             "files": ["**/**/*.ts", "build.ts"],
-            "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+            "extends": [
+                "eslint:recommended",
+                "plugin:@typescript-eslint/recommended",
+                "plugin:@typescript-eslint/recommended-requiring-type-checking"
+            ],
             "parser": "@typescript-eslint/parser",
-            "plugins": ["@typescript-eslint"],
+            "parserOptions": {
+                "project": ["./tsconfig.json"]
+            },
+            "plugins": ["@typescript-eslint", "eslint-plugin-import"],
             "rules": {
                 "no-var": "off",
+                "no-unused-vars": "off",
+                "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+                "@typescript-eslint/consistent-type-imports": "error",
                 "@typescript-eslint/no-inferrable-types": "off",
                 "@typescript-eslint/no-this-alias": "off",
-                "@typescript-eslint/no-non-null-assertion": "error",
+                "@typescript-eslint/no-non-null-assertion": "off",
                 "@typescript-eslint/no-unused-vars": "error",
-                "@typescript-eslint/triple-slash-reference": "off"
+                "@typescript-eslint/prefer-ts-expect-error": "error",
+                "@typescript-eslint/restrict-plus-operands": "off",
+                "@typescript-eslint/triple-slash-reference": "off",
+                "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
+                "import/order": [
+                    "error",
+                    {
+                        "groups": ["builtin", "external", "internal", "object", ["parent", "sibling"], "index", "type"],
+                        "pathGroups": [
+                            {
+                                "pattern": "[!/]",
+                                "group": "type",
+                                "position": "before"
+                            },
+                            {
+                                "pattern": "../src/*",
+                                "group": "type",
+                                "position": "before"
+                            },
+                            {
+                                "pattern": "../types/*",
+                                "group": "type",
+                                "position": "after"
+                            }
+                        ],
+                        "distinctGroup": false,
+                        "alphabetize": {
+                            "order": "asc"
+                        },
+                        "newlines-between": "always-and-inside-groups"
+                    }
+                ]
             }
         }
     ]

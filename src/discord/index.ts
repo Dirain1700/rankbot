@@ -1,8 +1,9 @@
 "use strict";
 
-import type { ChatInputCommandInteraction, BaseInteraction } from "discord.js";
-
 import ready from "./ready";
+
+import type { BaseInteraction } from "discord.js";
+
 const PING = "./interaction/ping";
 const SEND = "./interaction/send";
 const HOTPATCH = "./interaction/hotpatch";
@@ -80,6 +81,7 @@ export default () => {
 
         if (!file || fs.existsSync(path.resolve(__dirname, file))) return void interaction.reply("Error: Command not found");
 
-        (await import(file)).default(interaction as ChatInputCommandInteraction<"cached">);
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+        (await import(file)).default(interaction);
     });
 };

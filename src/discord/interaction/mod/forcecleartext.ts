@@ -1,6 +1,7 @@
 "use strict";
 
 import { time, PermissionsBitField } from "discord.js";
+
 import type { ChatInputCommandInteraction } from "discord.js";
 
 export default async (interaction: ChatInputCommandInteraction<"cached">): Promise<void> => {
@@ -30,13 +31,13 @@ export default async (interaction: ChatInputCommandInteraction<"cached">): Promi
         .catch(() => {
             Promise.all(messages.map((m) => m.delete()))
                 .then(() => {
-                    interaction.reply({
+                    void interaction.reply({
                         content: log,
                         ephemeral: false,
                     });
                 })
                 .catch(() => {
-                    interaction.reply({
+                    void interaction.reply({
                         content: "Error: Couldn't delete messages.",
                         ephemeral: true,
                     });

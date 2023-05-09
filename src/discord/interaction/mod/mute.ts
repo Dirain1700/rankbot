@@ -1,6 +1,7 @@
 "use strict";
 
 import { time, PermissionsBitField } from "discord.js";
+
 import type { ChatInputCommandInteraction } from "discord.js";
 
 export default (interaction: ChatInputCommandInteraction<"cached">): void => {
@@ -28,7 +29,7 @@ export default (interaction: ChatInputCommandInteraction<"cached">): void => {
                     interaction.user.tag
                 }. (${reasons})`;
             }
-            interaction.reply({ content: log, ephemeral: false });
+            void interaction.reply({ content: log, ephemeral: false });
         })
-        .catch((e) => interaction.reply(`Error: failed to mute ${targetMember.user.tag}.\nReason: ${e.toString()}`));
+        .catch((e) => void interaction.reply(`Error: failed to mute ${targetMember.user.tag}.\nReason: ${(e as Error).toString()}`));
 };

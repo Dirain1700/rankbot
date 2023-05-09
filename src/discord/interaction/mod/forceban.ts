@@ -1,6 +1,7 @@
 "use strict";
 
 import { time } from "discord.js";
+
 import type { ChatInputCommandInteraction } from "discord.js";
 
 export default async (interaction: ChatInputCommandInteraction<"cached">): Promise<void> => {
@@ -14,17 +15,17 @@ export default async (interaction: ChatInputCommandInteraction<"cached">): Promi
     interaction.guild.bans
         .create(targetUser, { reason: `by ${interaction.user.tag}. Force-BAN. reason: ${reasons}` })
         .then(() => {
-            interaction.reply({
+            void interaction.reply({
                 content: `${time(new Date(), "T")} ${targetUser.tag} was force-banned from ${interaction.guild.name} by ${
                     interaction.user.tag
                 }.(${reasons})`,
                 ephemeral: false,
             });
-            targetUser.send(
+            void targetUser.send(
                 `${time(new Date(), "T")} You (${targetUser.tag}) were banned from ${interaction.guild.name} by ${
                     interaction.user.tag
                 }.(${reasons})`
             );
         })
-        .catch((e) => interaction.reply(`Error: failed to ban ${targetUser.tag}.\nReason: ${e.toString()}`));
+        .catch((e: unknown) => void interaction.reply(`Error: failed to ban ${targetUser.tag}.\nReason: ${(e as Error).toString()}`));
 };

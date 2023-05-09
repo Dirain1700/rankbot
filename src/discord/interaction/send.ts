@@ -14,10 +14,13 @@ export default async (interaction: ChatInputCommandInteraction<"cached">): Promi
     if ([2, 4, 12, 13, 14, 15].includes(channel.type))
         return void interaction.reply("Cannot send messages to Voice channels and Private Threads!");
 
-    interaction.reply(`Please send ${type} in 2 minutes!`);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    interaction.reply(`Please send ${type} in 2 minutes!`).catch((e) => {
+        throw e;
+    });
 
     const awaitMessageFilter = (m: Message) => m.author === interaction.user;
-    const content = await interaction.channel
+    const content: string[] | null = await interaction.channel
         .awaitMessages({
             filter: awaitMessageFilter,
             max: 5,
@@ -37,29 +40,33 @@ export default async (interaction: ChatInputCommandInteraction<"cached">): Promi
         case "embeds": {
             const embeds: APIEmbed[] = [];
             try {
-                content.forEach((e) => embeds.push(JSON.parse(e)));
+                content.forEach((e: string) => embeds.push(JSON.parse(e) as APIEmbed));
             } catch (e: unknown) {
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 interaction.channel.send((e as SyntaxError).toString());
             }
             try {
                 message = { embeds: embeds.map((e) => new EmbedBuilder(e)) };
             } catch (e: unknown) {
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 interaction.channel.send((e as Error).toString());
             }
             break;
         }
         case "string with embed": {
             const embeds: APIEmbed[] = [];
-            const objects = content.filter((e) => e.startsWith("{"));
-            const string = content.filter((e) => !e.startsWith("{"));
+            const objects: string[] = content.filter((e) => e.startsWith("{"));
+            const string: string[] = content.filter((e) => !e.startsWith("{"));
             try {
-                objects.forEach((e) => embeds.push(JSON.parse(e)));
+                objects.forEach((e: string) => embeds.push(JSON.parse(e) as APIEmbed));
             } catch (e: unknown) {
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 interaction.channel.send((e as SyntaxError).toString());
             }
             try {
                 message = { content: string.join("\n"), embeds: embeds.map((e) => new EmbedBuilder(e)) };
             } catch (e: unknown) {
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 interaction.channel.send((e as Error).toString());
             }
             break;
@@ -67,5 +74,6 @@ export default async (interaction: ChatInputCommandInteraction<"cached">): Promi
     }
     if (!message?.content?.length && !message?.embeds?.length) return void interaction.channel.send("Can't send empty message!");
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     (channel as GuildTextBasedChannel).send(message);
 };

@@ -1,9 +1,11 @@
 "use strict";
 
 import { PermissionsBitField } from "discord.js";
+
 import sort from "../../ranksort";
-import type { ChatInputCommandInteraction } from "discord.js";
+
 import type { PointsDB } from "../../ranksort";
+import type { ChatInputCommandInteraction } from "discord.js";
 
 export default (interaction: ChatInputCommandInteraction<"cached">): void => {
     if (!interaction.memberPermissions.has(PermissionsBitField.Flags.Administrator))
@@ -12,7 +14,7 @@ export default (interaction: ChatInputCommandInteraction<"cached">): void => {
     sort();
     //JSONを読み込む
     const file = path.resolve(__dirname, "./../../config/rank.json");
-    const db: PointsDB = JSON.parse(fs.readFileSync(file, "utf-8"));
+    const db: PointsDB = JSON.parse(fs.readFileSync(file, "utf-8")) as PointsDB;
     const targetUser = interaction.options?.getUser("user") ?? interaction.user;
     // userIDのあるデータ
     const data = db[targetUser.id];
@@ -27,5 +29,5 @@ export default (interaction: ChatInputCommandInteraction<"cached">): void => {
             rank += 1;
         }
     }
-    interaction.reply({ content: `${targetUser.tag} has ${data.points}points now and ${rank}th.`, ephemeral: true });
+    void interaction.reply({ content: `${targetUser.tag} has ${data.points}points now and ${rank}th.`, ephemeral: true });
 };

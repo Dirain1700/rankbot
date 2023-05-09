@@ -2,15 +2,15 @@
 
 process.exit();
 import * as fs from "fs";
-import * as path from "path";
 import { createServer } from "http";
-import * as config from "../config/config";
-import { Tools } from "./Tools";
+import * as path from "path";
+
 import { parse } from "querystring";
-import { Collection, Client as disClient } from "discord.js";
+
 import { Client as PSC } from "@dirain/client";
-import { dex } from "../data/dex/pokedex";
-import { CommandParser as PSCommandParser, CommandContext } from "./showdown/parser";
+import { Collection, Client as disClient } from "discord.js";
+
+import { Tools } from "./Tools";
 
 global.fs = fs;
 global.Config = config;
@@ -22,6 +22,7 @@ global.Commands = {};
 global.PSCommandParser = new PSCommandParser();
 global.CommandContext = CommandContext;
 
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
 global.PSCommandParser.loadCommands();
 const html = fs.readFileSync("./config/index.html", "utf-8");
 
@@ -33,8 +34,10 @@ global.discord = DiscordClient;
 
 import discordHandler from "./discord/index";
 import PShandler from "./showdown/index";
+import { CommandParser as PSCommandParser, CommandContext } from "./showdown/parser";
+import * as config from "../config/config";
+import { dex } from "../data/dex/pokedex";
 
-global.pendingVerification = new Map();
 discordHandler();
 PShandler();
 
@@ -61,6 +64,7 @@ createServer((req, res) => {
     }
 }).listen(3000);
 
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
 DiscordClient.login(process.env.DISCORD as string);
 PSClient.connect();
 

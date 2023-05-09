@@ -1,6 +1,7 @@
 "use strict";
 
 import { Message, EmbedBuilder } from "discord.js";
+
 import type { MessageReaction, User, MessageReplyOptions } from "discord.js";
 
 export {};
