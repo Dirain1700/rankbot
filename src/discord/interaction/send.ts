@@ -42,14 +42,12 @@ export default async (interaction: ChatInputCommandInteraction<"cached">): Promi
             try {
                 content.forEach((e: string) => embeds.push(JSON.parse(e) as APIEmbed));
             } catch (e: unknown) {
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                interaction.channel.send((e as SyntaxError).toString());
+                void interaction.channel.send((e as SyntaxError).toString());
             }
             try {
                 message = { embeds: embeds.map((e) => new EmbedBuilder(e)) };
             } catch (e: unknown) {
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                interaction.channel.send((e as Error).toString());
+                void interaction.channel.send((e as Error).toString());
             }
             break;
         }
@@ -60,20 +58,17 @@ export default async (interaction: ChatInputCommandInteraction<"cached">): Promi
             try {
                 objects.forEach((e: string) => embeds.push(JSON.parse(e) as APIEmbed));
             } catch (e: unknown) {
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                interaction.channel.send((e as SyntaxError).toString());
+                void interaction.channel.send((e as SyntaxError).toString());
             }
             try {
                 message = { content: string.join("\n"), embeds: embeds.map((e) => new EmbedBuilder(e)) };
             } catch (e: unknown) {
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                interaction.channel.send((e as Error).toString());
+                void interaction.channel.send((e as Error).toString());
             }
             break;
         }
     }
     if (!message?.content?.length && !message?.embeds?.length) return void interaction.channel.send("Can't send empty message!");
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    (channel as GuildTextBasedChannel).send(message);
+    void (channel as GuildTextBasedChannel).send(message);
 };

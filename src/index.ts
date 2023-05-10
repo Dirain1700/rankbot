@@ -1,6 +1,5 @@
 ///<reference types="../types/global"/>
 
-process.exit();
 import * as fs from "fs";
 import { createServer } from "http";
 import * as path from "path";
@@ -22,8 +21,7 @@ global.Commands = {};
 global.PSCommandParser = new PSCommandParser();
 global.CommandContext = CommandContext;
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-global.PSCommandParser.loadCommands();
+void global.PSCommandParser.loadCommands();
 const html = fs.readFileSync("./config/index.html", "utf-8");
 
 export const PSClient = new PSC(config.PSOptions);
@@ -64,8 +62,7 @@ createServer((req, res) => {
     }
 }).listen(3000);
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-DiscordClient.login(process.env.DISCORD as string);
+void DiscordClient.login(process.env.DISCORD as string);
 PSClient.connect();
 
 const UNCAUGHT_ERR_PATH = "./logs/uncaught";
