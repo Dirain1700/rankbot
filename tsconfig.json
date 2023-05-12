@@ -13,6 +13,7 @@
         "forceConsistentCasingInFileNames": true,
 
         // type checks
+        "skipLibCheck": true,
         "strict": true,
         "noImplicitReturns": true,
         "noImplicitAny": true,
