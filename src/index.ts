@@ -72,13 +72,15 @@ process.on("unhandledRejection", (reason) => {
     let str: string;
     if (reason instanceof Error) str = reason.stack ?? reason.toString();
     else throw reason;
-    onError("PromiseRejection", str);
     console.error(reason);
+    onError("PromiseRejection", str);
 });
 
 process.on("uncaughtException", (err, origin) => {
-    if (origin === "uncaughtException") onError("NormalError", err.stack ?? err.toString());
-    console.error(err);
+    if (origin === "uncaughtException") {
+        console.error(err);
+        onError("NormalError", err.stack ?? err.toString());
+    }
 });
 
 function onError(errType: string, err: string) {
