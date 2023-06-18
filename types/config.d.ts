@@ -7,4 +7,6 @@ export interface ModchatSetting {
     rank?: GroupSymbol;
     ignoreGlobals?: boolean;
     allowBusy?: boolean;
+    allowAlts?: boolean;
+    showRfaq?: boolean;
 }

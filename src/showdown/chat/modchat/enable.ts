@@ -32,22 +32,26 @@ export function checkCondition(startTime: number, endTime: number, always: boole
 function runModchatSetter(targetUser: User, targetRoom: Room): boolean {
     if (!Config.modchatTime[targetRoom.roomid]) return false;
     targetRoom.removeUser(targetUser.userid);
-    if (!targetRoom.hasRank("%", targetUser)) return false;
+    if (!targetRoom.hasRank("%", targetUser) && !targetUser.alts.every((u) => targetRoom.hasRank("%", u))) return false;
     if (targetRoom.modchat && targetRoom.modchat !== "autoconfirmed") return false;
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const { startTime, endTime, always, rank, ignoreGlobals, allowBusy } = Config.modchatTime[targetRoom.roomid]!;
+    const { startTime, endTime, always, rank, ignoreGlobals, allowBusy, allowAlts } = Config.modchatTime[targetRoom.roomid]!;
     if (!checkCondition(startTime, endTime, always, new Date().getHours())) return false;
     /* eslint-disable @typescript-eslint/no-non-null-assertion */
     let isStaffOnline: boolean = false;
-    for (const u of targetRoom.getOnlineStaffs(!!ignoreGlobals).values()) {
+    for (const u of targetRoom.getOnlineStaffs(!!ignoreGlobals, !!allowAlts).values()) {
         u.update();
         if (u.locked) continue;
-        let auth: GroupSymbol;
-        if (ignoreGlobals) auth = targetRoom.getRoomRank(u.userid);
-        else auth = targetRoom.getRank(u);
-        if (!Tools.isHigherRank(auth, "%")) continue;
-        if (auth === "*") continue;
+        if (ignoreGlobals) {
+            if (allowAlts && u.alts.length) {
+                if (u.alts.every((a) => !targetRoom.isRoomStaff(a))) continue;
+            }
+        } else { 
+            if (allowAlts && u.alts.length) {
+                if (u.alts.every((a) => !PS.users.cache.has(a) || !targetRoom.isStaff(PS.users.cache.get(a)!))) continue;
+            }
+        }
         if (!u.online) continue;
         if (!u.status) {
             isStaffOnline = true;

@@ -20,8 +20,8 @@ export default () => {
     PS.on("chatError", (e) => console.log(e));
     PS.on("error", (e) => console.log(e));
 
-    PS.on("modchat", (modchatLevel: ModchatLevel, room: Room): void => {
-        announceModchat(modchatLevel, room);
+    PS.on("modchat", (room: Room, currentModchatLevel: ModchatLevel, previousModchatLevel: ModchatLevel): void => {
+        announceModchat(room, currentModchatLevel, previousModchatLevel);
     });
 
     PS.on("userRename", (NewU) => {
