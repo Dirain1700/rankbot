@@ -1,5 +1,5 @@
 ///<reference types="../types/global"/>
-process.exit()
+
 import * as fs from "fs";
 import { createServer } from "http";
 import * as path from "path";
