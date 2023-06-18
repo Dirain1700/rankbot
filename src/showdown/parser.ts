@@ -140,12 +140,12 @@ export class CommandContext<T extends Room | User = Room | User> {
             case "INVALID_ROOM":
             case "INVALID_BOT_ROOM": {
                 if (args[0]) message = args[0] + " is not one of " + PS.user.name + "'s room.";
-                else message = "You must specifiy at least one room.";
+                else message = "You must specifiy at least one of " PS.user.name + "'s room.";
                 break;
             }
             case "MISSING_BOT_RANK": {
                 if (args[0]) message = "Required Bot (*) rank for " + args[0] + " but not provided.";
-                else message = "Required Bot (*) rank but jot provided.";
+                else message = "Required Bot (*) rank but not provided.";
                 break;
             }
             case "PERMISSION_DENIED": {
