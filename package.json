@@ -17,7 +17,7 @@
         "ncu": "npx -p npm-check-updates  -c \"ncu -u\""
     },
     "dependencies": {
-        "@dirain/client": "^0.0.26-dev.1687061674-198d438.0",
+        "@dirain/client": "^0.0.26-dev.1687065949-05d15d5.0",
         "axios": "^1.4.0",
         "discord.js": "^14.11.0",
         "eslint-plugin-import": "^2.27.5",
