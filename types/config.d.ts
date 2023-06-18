@@ -9,4 +9,5 @@ export interface ModchatSetting {
     allowBusy?: boolean;
     allowAlts?: boolean;
     showRfaq?: boolean;
+    disabled?: NodeJS.Timer | undefined;
 }
