@@ -140,7 +140,7 @@ export class CommandContext<T extends Room | User = Room | User> {
             case "INVALID_ROOM":
             case "INVALID_BOT_ROOM": {
                 if (args[0]) message = args[0] + " is not one of " + PS.user.name + "'s room.";
-                else message = "You must specifiy at least one of " PS.user.name + "'s room.";
+                else message = "You must specifiy at least one of " + PS.user.name + "'s room.";
                 break;
             }
             case "MISSING_BOT_RANK": {
