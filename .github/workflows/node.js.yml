@@ -43,7 +43,7 @@ jobs:
               run: npm run tsc
 
             - name: Compile build.ts
-              run: npm run build-esbuild
+              run: npm run pre-build
 
             - name: Test esbuild
               run: npm run esbuild
