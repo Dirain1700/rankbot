@@ -1,6 +1,6 @@
 import { GatewayIntentBits } from "discord.js";
 import type { ClientOptions as DiscordClientOptions, Snowflake } from "discord.js";
-import type { ClientOptions as PSClientOptions, Tournament } from "@dirain/client";
+import type { ClientOptions as PSClientOptions, Tournament, Message } from "@dirain/client";
 
 import type { ModchatSetting } from "../types/config";
 import type { Dict } from "../types/utils";
@@ -28,4 +28,5 @@ export const admin: Snowflake[] = [];
 export const enableWordle: string[] = [];
 export const acRole: Snowflake = "";
 
+export const onRoomMessage: Dict<(this: Message) => void> = {};
 export const onTournamentCreate: Dict<(this: Tournament) => void> = {};
