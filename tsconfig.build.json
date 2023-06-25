@@ -16,5 +16,5 @@
         // type checks
         "typeRoots": ["node_modules/@types"]
     },
-    "include": ["build.ts"]
+    "include": ["build.ts", "tsc.ts"]
 }

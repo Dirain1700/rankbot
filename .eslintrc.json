@@ -27,7 +27,7 @@
     },
     "overrides": [
         {
-            "files": ["**/**/*.ts", "build.ts"],
+            "files": ["**/**/*.ts", "build.ts", "tsc.ts"],
             "extends": [
                 "eslint:recommended",
                 "plugin:@typescript-eslint/recommended",

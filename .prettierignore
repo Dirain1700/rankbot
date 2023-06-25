@@ -8,6 +8,10 @@ config/*.json
 dist/*
 build.*
 !build.ts
+tsc.*
+!tsc.ts
+src/detect-zh/src/*.ts
+!src/detect-zh/src/*-source.ts
 logs/*
 !logs/README.md
 data/*
