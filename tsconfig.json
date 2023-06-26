@@ -7,8 +7,12 @@
 
         // emit settings
         "target": "esnext",
+        "declaration": true,
         "esModuleInterop": true,
-        "noEmit": true,
+        "emitDeclarationOnly": true,
+        "incremental": true,
+        "outDir": "./dist",
+        "noEmit": false,
         "forceConsistentCasingInFileNames": true,
 
         // type checks

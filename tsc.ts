@@ -48,6 +48,7 @@ function getTranspileOptions(args: string[]): tsconfigOptions {
         if (!tsconfig.exclude) tsconfig.exclude = [];
         tsconfig.exclude.push("*/**/*-detect.ts");
     }
+    tsconfig.incremental = false;
 
     return tsconfig;
 }
