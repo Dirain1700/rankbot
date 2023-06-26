@@ -14,6 +14,7 @@ export default () => {
         if (message.author.userid === PS.status.id) return;
         PSCommandParser.parse(message);
         if (message.inRoom() && Config.onRoomMessage[message.target.roomid]) {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             Config.onRoomMessage[message.target.roomid]!.call(message);
         }
     });
