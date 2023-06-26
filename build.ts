@@ -12,9 +12,8 @@ const mainTargetFiles = globSync(["src/**/*.ts", "data/**/*.ts", "config/**/*.ts
     .map((e) => path.resolve(__dirname, e));
 const utilityFiles = ["build.ts", "tsc.ts"].map((e) => path.resolve(__dirname, e));
 const setupFiles = globSync(["setup/**/*.ts"]).map((e) => path.resolve(__dirname, e));
-const targetFiles = globSync(["src/**/*.ts"]).map((e) => path.resolve(__dirname, e));
 const detectZhDir = path.resolve(__dirname, "src/detect-zh");
-const unihanDataFiles = globSync([path.join(detectZhDir, "data/result/*.txt")]);
+const unihanDataFiles = globSync(["data/Unihan/result/*.txt"]);
 const mainUnihanSourceFileName = path.join(detectZhDir, "src/detect-source.ts");
 const mainUnihanFileName = path.join(detectZhDir, "src/detect.ts");
 const exportUnihanSourceFileName = path.join(detectZhDir, "src/index-source.ts");
