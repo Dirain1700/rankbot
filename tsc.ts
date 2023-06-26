@@ -141,9 +141,7 @@ function compile(fileNames: string[], options: ts.CompilerOptions): void {
         console.error(
             "Found " + (allDiagnostics.length - errorsWithoutFile) + " errors in the same file, starting at:",
             /* eslint-disable @typescript-eslint/no-non-null-assertion */
-            removeResolvedPath(Object.keys(errorsFiles)[0]!) +
-                "\x1b[2m:" +
-                errorsFiles[Object.keys(errorsFiles)[0]!]!.starting
+            removeResolvedPath(Object.keys(errorsFiles)[0]!) + "\x1b[2m:" + errorsFiles[Object.keys(errorsFiles)[0]!]!.starting
             /* eslint-enable */
         );
     } else if (allDiagnostics.length !== 0 && allDiagnostics.length !== errorsWithoutFile) {
@@ -151,8 +149,7 @@ function compile(fileNames: string[], options: ts.CompilerOptions): void {
         console.log();
         let message =
             "Found " +
-            (allDiagnostics.length -
-            errorsWithoutFile) +
+            (allDiagnostics.length - errorsWithoutFile) +
             " errors in " +
             Object.keys(errorsFiles).length +
             " files.\n\nErrors  Files\n";
