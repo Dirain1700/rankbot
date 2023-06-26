@@ -7,7 +7,9 @@
         // emit settings
         "target": "esnext",
         "sourceMap": true,
+        "declaration": false,
         "esModuleInterop": true,
+        "emitDeclarationOnly": false,
         "outDir": "./",
         "noEmit": false,
         "noEmitOnError": true,
@@ -17,5 +19,6 @@
         // type checks
         "typeRoots": ["node_modules/@types"]
     },
-    "include": ["build.ts", "tsc.ts"]
+    "files": ["build.ts", "tsc.ts"],
+    "include": []
 }
