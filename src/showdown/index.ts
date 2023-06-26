@@ -13,6 +13,9 @@ export default () => {
     PS.on("messageCreate", (message: Message) => {
         if (message.author.userid === PS.status.id) return;
         PSCommandParser.parse(message);
+        if (message.inRoom() && Config.onRoomMessage[message.target.roomid]) {
+            Config.onRoomMessage[message.target.roomid]!.call(message);
+        }
     });
 
     PS.on("roomUserRemove", (room: Room, user: User): boolean => enableModchat(user, room));
@@ -29,9 +32,10 @@ export default () => {
     });
 
     PS.on("tourCreate", (room) => {
-        if (!Config.onTournamentCreate[room.roomid] || !room.tour) return;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        Config.onTournamentCreate[room.roomid]!.call(room.tour);
+        if (Config.onTournamentCreate[room.roomid] && room.tour) {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            Config.onTournamentCreate[room.roomid]!.call(room.tour);
+        }
     });
 
     /* eslint-disable @typescript-eslint/no-non-null-assertion */
