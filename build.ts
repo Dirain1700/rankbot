@@ -88,5 +88,10 @@ buildSync(merge(cloneDeep(config), {
     tsconfig: path.resolve(__dirname, "tsconfig.json"),
 }));
 
+if (unihanDataFiles.length === 2) {
+    fs.unlinkSync(mainUnihanFileName);
+    fs.unlinkSync(exportUnihanFileName);
+}
+
 console.log("Sucessfully built files!");
 console.log();
