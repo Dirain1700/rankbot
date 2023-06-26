@@ -1,7 +1,6 @@
-import type { Room, User } from "@dirain/client";
-
+import type { Dict } from "./utils";
 import type { CommandContext } from "../src/showdown/parser";
-import type { Dict, arrayOf } from "./utils";
+import type { Room, User } from "@dirain/client";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface CommandDefinitions<T, returns = any> {

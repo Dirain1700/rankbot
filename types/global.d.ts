@@ -1,13 +1,15 @@
-import type { Collection } from "discord.js";
-import type { Wordle } from "../src/showdown/wordle/main";
-import type { Species } from "./dex";
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+
 import type { BaseCommandDefinitions } from "./commands";
-import type { CommandParser, CommandContext } from "../src/showdown/parser";
+import type { Species } from "./dex";
 import type { Dict } from "./utils";
+import type { CommandParser, CommandContext } from "../src/showdown/parser";
+import type { Wordle } from "../src/showdown/wordle/main";
+import type { Collection } from "discord.js";
 
 declare global {
-    var fs: typeof import("fs");
-    var path: typeof import("path");
+    var fs: typeof import("node:fs");
+    var path: typeof import("node:path");
     var Config: typeof import("../config/config");
     var discord: typeof import("../src/index").DiscordClient;
     var PS: typeof import("../src/index").PSClient;

@@ -1,6 +1,7 @@
 import { GatewayIntentBits } from "discord.js";
-import type { ClientOptions as DiscordClientOptions, Snowflake } from "discord.js";
+
 import type { ClientOptions as PSClientOptions, Tournament, Message } from "@dirain/client";
+import type { ClientOptions as DiscordClientOptions, Snowflake } from "discord.js";
 
 import type { ModchatSetting } from "../types/config";
 import type { Dict } from "../types/utils";

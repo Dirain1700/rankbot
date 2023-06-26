@@ -58,6 +58,7 @@ if (unihanDataFiles.length === 2) {
     let zhUnicodes: string = "";
 
     for (const dataFileName of unihanDataFiles) {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const dataFile = fs.readFileSync(dataFileName, "utf-8").trim().split("\n")[0]!;
 
         if (dataFileName.endsWith("chinese.txt")) zhUnicodes = dataFile;

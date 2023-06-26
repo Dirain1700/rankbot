@@ -11,8 +11,8 @@
         "pre-build": "tsc -p tsconfig.build.json",
         "build": "npm run write && npm run lint-fix && npm run esbuild",
         "ci": "npm run check && npm run lint && npm run tsc",
-        "lint": "eslint \"src/**/*.ts\"",
-        "lint-fix": "eslint --fix \"src/**/*.ts\"",
+        "lint": "eslint .",
+        "lint-fix": "eslint --fix .",
         "write": "prettier --write .",
         "check": "prettier --check .",
         "ncu": "npx -p npm-check-updates  -c \"ncu -u\""

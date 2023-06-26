@@ -23,11 +23,11 @@
         "comma-spacing": "error",
         "no-extra-semi": "error",
         "quotes": ["error", "double"],
-        "no-var": "off"
+        "no-var": "error"
     },
     "overrides": [
         {
-            "files": ["**/**/*.ts", "build.ts", "tsc.ts"],
+            "files": ["**/**/*.ts", "*.ts"],
             "extends": [
                 "eslint:recommended",
                 "plugin:@typescript-eslint/recommended",
@@ -79,6 +79,12 @@
                         "newlines-between": "always-and-inside-groups"
                     }
                 ]
+            }
+        },
+        {
+            "files": ["build.ts", "tsc.ts"],
+            "parserOptions": {
+                "project": ["./tsconfig.build.json"]
             }
         }
     ]

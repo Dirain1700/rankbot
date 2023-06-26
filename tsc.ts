@@ -1,9 +1,7 @@
 "use strict";
 
-import * as fs from "node:fs";
 import * as path from "node:path";
 
-import { globSync } from "glob";
 import { merge } from "lodash";
 import * as ts from "typescript";
 
@@ -23,15 +21,16 @@ function getTranspileOptions(args: string[]): tsconfigOptions {
 
     const tsconfigFileName = ts.findConfigFile(
         process.cwd(),
-        ts.sys.fileExists,
+        ts.sys.fileExists.bind(ts.sys),
         toPath(argv.reverse().find((a) => a.startsWith(tsconfigFlag)) ?? "").replace(tsconfigFlag, "")
     );
 
     if (!tsconfigFileName) throw new Error("TSConfig file not found");
 
+    // eslint-disable-next-line prefer-const
     let { config: tsconfig, error }: { config: tsconfigOptions; error: ts.Diagnostic } = ts.readConfigFile(
         path.resolve(__dirname, tsconfigFileName),
-        ts.sys.readFile
+        ts.sys.readFile.bind(ts.sys)
     ) as { config: tsconfigOptions; error: ts.Diagnostic };
     if (error) {
         console.error(error);
@@ -57,7 +56,7 @@ function getBaseTSConfigFile(tsconfig: tsconfigOptions): tsconfigOptions {
     if (tsconfig.extends) {
         const { config: baseTSConfig, error }: { config: tsconfigOptions; error: ts.Diagnostic } = ts.readConfigFile(
             path.resolve(__dirname, tsconfig.extends),
-            ts.sys.readFile
+            ts.sys.readFile.bind(ts.sys)
         ) as { config: tsconfigOptions; error: ts.Diagnostic };
         if (error) {
             console.error(error);
@@ -81,10 +80,12 @@ function compile(fileNames: string[], options: ts.CompilerOptions): void {
         starting: number;
     }
     const errorsFiles: { [k: string]: fileErrors } = {};
-    allDiagnostics.reduce((previousDiagnosticFileName: string, diagnostic) => {
+    let errorsWithoutFile = 0;
+    allDiagnostics.reduce((previousDiagnosticFileName: string, diagnostic, index) => {
         if (diagnostic.file) {
             let errorText = "";
             errorText += "\x1b[36m" + removeResolvedPath(diagnostic.file.fileName);
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             let { line, character } = ts.getLineAndCharacterOfPosition(diagnostic.file, diagnostic.start!);
             line++;
             character++;
@@ -94,6 +95,7 @@ function compile(fileNames: string[], options: ts.CompilerOptions): void {
                     starting: line,
                 };
             } else {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 errorsFiles[diagnostic.file.fileName]!.numbers++;
             }
             errorText += "\x1b[37m:\x1b[33m" + line + "\x1b[37m:\x1b[33m" + character;
@@ -103,6 +105,7 @@ function compile(fileNames: string[], options: ts.CompilerOptions): void {
                 "\x1b[39m\x1b[2mTS" + diagnostic.code + ": \x1b[0m" + ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n");
             errorText += "\n\n";
             errorText += "\x1b[47m\x1b[30m" + line;
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             const wrongLine = diagnostic.file.text.split("\n")[line - 1]!;
             errorText += "\x1b[0m " + wrongLine + "\n";
             errorText += "\x1b[47m" + " ".repeat(line.toString().length) + "\x1b[49m " + " ".repeat(character - 1);
@@ -115,39 +118,55 @@ function compile(fileNames: string[], options: ts.CompilerOptions): void {
             return diagnostic.file.fileName;
         } else {
             console.log(ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n"));
+            if (index + 1 < allDiagnostics.length) console.log();
+            errorsWithoutFile++;
             return "";
         }
     }, "");
     process.stdout.write("\x1b[0m");
 
-    if (allDiagnostics.length === 0) {
-    } else if (allDiagnostics.length === 1) {
+    if (allDiagnostics.length === 1 && allDiagnostics.length !== errorsWithoutFile) {
         console.log();
         console.error(
             "Found 1 error in " +
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 removeResolvedPath(allDiagnostics[0]!.file!.fileName) +
                 "\x1b[2m" +
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 errorsFiles[allDiagnostics[0]!.file!.fileName]!.starting
         );
-    } else if (areAllErrorsOnSameFile && allDiagnostics.length > 1) {
+    } else if (areAllErrorsOnSameFile && allDiagnostics.length > 1 && allDiagnostics.length !== errorsWithoutFile) {
         console.log();
         console.error(
-            "Found " + allDiagnostics.length + " errors in the same file, starting at:",
-            removeResolvedPath(allDiagnostics[0]!.file!.fileName) + "\x1b[2m:" + errorsFiles[allDiagnostics[0]!.file!.fileName]!.starting
+            "Found " + allDiagnostics.length - errorsWithoutFile + " errors in the same file, starting at:",
+            /* eslint-disable @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access */
+            removeResolvedPath(Object.keys(errorsFiles)[0]!.file!.fileName as string) +
+                "\x1b[2m:" +
+                errorsFiles[Object.keys(errorsFiles)[0]!.file!.fileName]!.starting
+            /* eslint-enable */
         );
-    } else {
+    } else if (allDiagnostics.length !== 0 && allDiagnostics.length !== errorsWithoutFile) {
+        const maxError = Object.values(errorsFiles).reduce((p, c) => Math.max(c, p));
         console.log();
-        let message = "Found " + allDiagnostics.length + " errors in " + Object.keys(errorsFiles).length + " files.\n\nErrors  Files\n";
+        let message =
+            "Found " +
+            allDiagnostics.length -
+            errorsWithoutFile +
+            " errors in " +
+            Object.keys(errorsFiles).length +
+            " files.\n\nErrors  Files\n";
 
         let remainingFiles = Object.keys(errorsFiles).length;
         for (const file in errorsFiles) {
             message +=
                 "\x1b[0m" +
-                " ".repeat(5) +
+                " ".repeat(5 - maxError) +
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 errorsFiles[file]!.numbers +
                 "  " +
                 removeResolvedPath(file) +
                 "\x1b[2m:" +
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 errorsFiles[file]!.starting;
             if (remainingFiles > 1) {
                 remainingFiles--;
