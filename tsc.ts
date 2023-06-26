@@ -47,6 +47,7 @@ function getTranspileOptions(args: string[]): tsconfigOptions {
         if (!tsconfig.exclude) tsconfig.exclude = [];
         tsconfig.exclude.push("*/**/*-detect.ts");
     }
+    // @ts-expect-error incremental does not exist on ts.CompilerOptions
     tsconfig.incremental = false;
 
     return tsconfig;
@@ -138,20 +139,20 @@ function compile(fileNames: string[], options: ts.CompilerOptions): void {
     } else if (areAllErrorsOnSameFile && allDiagnostics.length > 1 && allDiagnostics.length !== errorsWithoutFile) {
         console.log();
         console.error(
-            "Found " + allDiagnostics.length - errorsWithoutFile + " errors in the same file, starting at:",
-            /* eslint-disable @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access */
-            removeResolvedPath(Object.keys(errorsFiles)[0]!.file!.fileName as string) +
+            "Found " + (allDiagnostics.length - errorsWithoutFile) + " errors in the same file, starting at:",
+            /* eslint-disable @typescript-eslint/no-non-null-assertion */
+            removeResolvedPath(Object.keys(errorsFiles)[0]!) +
                 "\x1b[2m:" +
-                errorsFiles[Object.keys(errorsFiles)[0]!.file!.fileName]!.starting
+                errorsFiles[Object.keys(errorsFiles)[0]!]!.starting
             /* eslint-enable */
         );
     } else if (allDiagnostics.length !== 0 && allDiagnostics.length !== errorsWithoutFile) {
-        const maxError = Object.values(errorsFiles).reduce((p, c) => Math.max(c, p));
+        const maxError = Object.values(errorsFiles).reduce((p, c) => Math.max(c.numbers, p), 0);
         console.log();
         let message =
             "Found " +
-            allDiagnostics.length -
-            errorsWithoutFile +
+            (allDiagnostics.length -
+            errorsWithoutFile) +
             " errors in " +
             Object.keys(errorsFiles).length +
             " files.\n\nErrors  Files\n";

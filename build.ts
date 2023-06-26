@@ -75,9 +75,13 @@ if (unihanDataFiles.length === 2) {
 
     fs.writeFileSync(mainUnihanFileName, mainUnihanFileSource);
 
+    mainTargetFiles.push(mainUnihanFileName);
+
     const exportUnihanFileSource = fs.readFileSync(exportUnihanSourceFileName, "utf-8").replaceAll("-source", "");
 
     fs.writeFileSync(exportUnihanFileName, exportUnihanFileSource);
+
+    mainTargetFiles.push(exportUnihanFileName);
 }
 
 // @ts-expect-error format should be assignable
