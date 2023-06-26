@@ -8,6 +8,7 @@
         "target": "esnext",
         "sourceMap": true,
         "esModuleInterop": true,
+        "outDir": "./",
         "noEmit": false,
         "noEmitOnError": true,
         "forceConsistentCasingInFileNames": true,
