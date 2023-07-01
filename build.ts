@@ -70,8 +70,8 @@ if (unihanDataFiles.length === 2) {
 
     const mainUnihanFileSource = fs
         .readFileSync(mainUnihanSourceFileName, "utf-8")
-        .replaceAll("CHINESE_REGXEP", zhUnicodes)
-        .replaceAll("JAPANESE_REGEXP", jaUnicodes);
+        .replaceAll("{ZH_REGEXP}", zhUnicodes)
+        .replaceAll("{JA_REGEXP}", jaUnicodes);
 
     fs.writeFileSync(mainUnihanFileName, mainUnihanFileSource);
 

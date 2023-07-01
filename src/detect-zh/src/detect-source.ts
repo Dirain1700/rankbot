@@ -2,32 +2,26 @@
 
 import type { LangDetectionResult } from "../types/detect";
 
+/**
+ * Start of auto-generated lines
+ * Do not touch strings that surrounded by {}
+ */
+const zhUnicodes = "[{ZH_REGEXP}]";
+const jaUnicodes = "[{JA_REGEXP}\u3040-\u309F\u30A0-\u30FF]";
+/**
+ * End of auto-generated lines
+ */
+
+const zhRegExp = new RegExp(zhUnicodes, "gimu");
+const jaRegExp = new RegExp(jaUnicodes, "gimu");
+
 export class detectChineseStatic {
-    /**
-     * Start of auto-generated lines
-     * Do not touch strings that surrounded by []
-     */
-    static readonly chineseUnicode: string = "[CHINESE_REGXEP]";
-    static readonly japaneseUnicode: string = "[JAPANESE_REGEXP]";
-    /**
-     * End of auto-generated lines
-     */
-
-    static readonly hiraganaUnicode: string = "[\u3040-\u309F]";
-    static readonly katakanaUnicode: string = "[\u30A0-\u30FF]";
-
-    static readonly chineseRegExp: RegExp = new RegExp(this.chineseUnicode, "gimu");
-    static readonly japaneseRegExp: RegExp = new RegExp(
-        this.japaneseUnicode + "|" + this.hiraganaUnicode + "|" + this.katakanaUnicode,
-        "gimu"
-    );
-
     static hasChineseCharacters(text: string): boolean {
-        return this.chineseRegExp.test(text);
+        return zhRegExp.test(text);
     }
 
     static hasJapaneseCharacters(text: string): boolean {
-        return this.japaneseRegExp.test(text);
+        return jaRegExp.test(text);
     }
 
     static isChineseSentence(text: string): boolean {
@@ -35,15 +29,15 @@ export class detectChineseStatic {
     }
 
     static isJapaneseSentence(text: string): boolean {
-        return this.hasJapaneseCharacters(text) && !this.hasChineseCharacters(text);
+        return this.hasJapaneseCharacters(text);
     }
 
     static getChineseCharacters(text: string): string[] {
-        return text.match(this.chineseRegExp) ?? [];
+        return text.split("").filter((e) => zhRegExp.test(e));
     }
 
     static getJapaneseCharacters(text: string): string[] {
-        return text.match(this.japaneseRegExp) ?? [];
+        return text.split("").filter((e) => jaRegExp.test(e));
     }
 
     static match(text: string): LangDetectionResult {
@@ -78,22 +72,6 @@ export class detectChineseStatic {
 }
 
 export class detectChinese {
-    /**
-     * Start of auto-generated lines
-     * Do not touch strings that surrounded by {}
-     */
-    readonly chineseUnicode: string = "[CHINESE_REGXEP]";
-    readonly japaneseUnicode: string = "[JAPANESE_REGEXP]";
-    /**
-     * End of auto-generated lines
-     */
-
-    readonly hiraganaUnicode: string = "[\u3040-\u309F]";
-    readonly katakanaUnicode: string = "[\u30A0-\u30FF]";
-
-    readonly chineseRegExp: RegExp = new RegExp(this.chineseUnicode, "gimu");
-    readonly japaneseRegExp: RegExp = new RegExp(this.japaneseUnicode + "|" + this.hiraganaUnicode + "|" + this.katakanaUnicode, "gimu");
-
     hasChineseCharacters: boolean;
     hasJapaneseCharacters: boolean;
     isChineseSentence: boolean;
@@ -111,14 +89,14 @@ export class detectChinese {
             otherStrings: [],
         };
 
-        const jaMatch = text.match(this.japaneseUnicode) ?? [];
+        const jaMatch = text.split("").filter((e) => jaRegExp.test(e));
         result.japaneseStrings = jaMatch;
         if (jaMatch.length) {
             for (const str of jaMatch) {
                 text = text.replace(str, "");
             }
         }
-        const zhMatch = text.match(this.chineseUnicode) ?? [];
+        const zhMatch = text.split("").filter((e) => zhRegExp.test(e));
         result.chineseStrings = zhMatch;
         if (zhMatch.length) {
             result.lang = "ZH";
