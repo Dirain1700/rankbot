@@ -31,10 +31,13 @@ export const commands: BaseCommandDefinitions = {
 
             const staff = Tools.clone(this.user);
             /* eslint-disable @typescript-eslint/no-non-null-assertion */
-            Config.modchatTime[targetRoom.roomid]!.disabled = setTimeout(() => {
-                Config.modchatTime[targetRoom!.roomid]!.disabled = undefined;
-                runModchatSetter(staff, targetRoom!.update());
-            }, amount * 60 * 1000);
+            Config.modchatTime[targetRoom.roomid]!.disabled = setTimeout(
+                () => {
+                    Config.modchatTime[targetRoom!.roomid]!.disabled = undefined;
+                    runModchatSetter(staff, targetRoom!.update());
+                },
+                amount * 60 * 1000
+            );
             /* eslint-enable */
 
             this.say("Disabled automodchat for " + amount + " minutes.");
