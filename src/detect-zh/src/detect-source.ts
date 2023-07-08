@@ -12,8 +12,8 @@ const jaUnicodes = "[{JA_REGEXP}\u3040-\u309F\u30A0-\u30FF]";
  * End of auto-generated lines
  */
 
-const zhRegExp = new RegExp(zhUnicodes, "gimu");
-const jaRegExp = new RegExp(jaUnicodes, "gimu");
+const zhRegExp = new RegExp(zhUnicodes, "imu");
+const jaRegExp = new RegExp(jaUnicodes, "imu");
 
 export class detectChineseStatic {
     static hasChineseCharacters(text: string): boolean {
