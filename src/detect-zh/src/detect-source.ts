@@ -25,11 +25,11 @@ export class detectChineseStatic {
     }
 
     static isChineseSentence(text: string): boolean {
-        return this.hasChineseCharacters(text) && !this.hasJapaneseCharacters(text);
+        return this.match(text).lang === "ZH"
     }
 
     static isJapaneseSentence(text: string): boolean {
-        return this.hasJapaneseCharacters(text);
+        return this.match(text).lang === "JA";
     }
 
     static getChineseCharacters(text: string): string[] {
@@ -59,13 +59,12 @@ export class detectChineseStatic {
         const zhMatch = this.getChineseCharacters(text);
         result.chineseStrings = zhMatch;
         if (zhMatch.length) {
-            result.lang = "ZH";
             for (const str of zhMatch) {
                 text = text.replace(str, "");
             }
         }
         result.otherStrings = text.split("");
-        result.lang = jaMatch.length ? "JA" : zhMatch.length ? "ZH" : "";
+        result.lang = zhMatch.length ? "ZH" : jaMatch.length ? "JA" : "";
 
         return result;
     }
@@ -105,7 +104,7 @@ export class detectChinese {
             }
         }
         result.otherStrings = text.split("");
-        result.lang = jaMatch.length ? "JA" : zhMatch.length ? "ZH" : "";
+        result.lang = zhMatch.length ? "ZH" : jaMatch.length ? "JA" : "";
 
         this.hasChineseCharacters = !!result.chineseStrings.length;
         this.hasJapaneseCharacters = !!result.japaneseStrings.length;
