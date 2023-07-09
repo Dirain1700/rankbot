@@ -25,7 +25,7 @@ export class detectChineseStatic {
     }
 
     static isChineseSentence(text: string): boolean {
-        return this.match(text).lang === "ZH"
+        return this.match(text).lang === "ZH";
     }
 
     static isJapaneseSentence(text: string): boolean {
