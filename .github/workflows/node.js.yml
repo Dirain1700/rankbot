@@ -30,8 +30,10 @@ jobs:
             - name: Install dependencies
               run: npm install
 
-            - name: Restore config.ts
-              run: cp config/config-example.ts config/config.ts
+            - name: Restore config files
+              run: |
+                  cp config/config-example.ts config/config.ts
+                  cp src/detect-zh/setup/config-example.ts src/detect-zh/setup/config.ts
 
             - name: Run prettier formatting
               run: npm run check

@@ -3,6 +3,7 @@
 import * as fs from "fs";
 import * as path from "path";
 
+import * as config from "./config";
 import { execSync } from "./tools";
 
 const UnihanURL = "http://www.unicode.org/Public/UNIDATA/Unihan.zip";
@@ -71,8 +72,29 @@ console.log();
 console.log("---------------------------------------------------");
 console.log();
 
-const Japanese: number[] = Array.from(new Set([...JapaneseKun, ...JapaneseOn])).map((e) => parseInt(e.slice(2), 16));
-const Chinese: number[] = Array.from(new Set([...Mandarin, ...Cantonese])).map((e) => parseInt(e.slice(2), 16));
+let Japanese: number[] = Array.from(new Set([...JapaneseKun, ...JapaneseOn])).map((e) => parseInt(e.slice(2), 16));
+let Chinese: number[] = Array.from(new Set([...Mandarin, ...Cantonese])).map((e) => parseInt(e.slice(2), 16));
+
+for (const str of config.includeCodesForZh) {
+    const unicode = str.codePointAt(0);
+    if (unicode && !Chinese.includes(unicode)) Chinese.push(unicode);
+}
+
+for (const str of config.excludeCodesForZh) {
+    const unicode = str.codePointAt(0);
+    if (unicode) Chinese = Chinese.filter((e) => e !== unicode);
+}
+
+for (const str of config.includeCodesForJa) {
+    const unicode = str.codePointAt(0);
+    if (unicode && !Japanese.includes(unicode)) Japanese.push(unicode);
+}
+
+for (const str of config.excludeCodesForJa) {
+    const unicode = str.codePointAt(0);
+    if (unicode) Japanese = Japanese.filter((e) => e !== unicode);
+}
+
 Japanese.sort((a, b) => a - b);
 Chinese.sort((a, b) => a - b);
 
