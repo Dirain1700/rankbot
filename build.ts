@@ -84,11 +84,18 @@ if (unihanDataFiles.length === 2) {
     mainTargetFiles.push(exportUnihanFileName);
 }
 
+const distDir = path.resolve(__dirname, "dist");
+const stats = fs.readdirSync(distDir, { withFileTypes: true });
+
+for (const stat of stats) {
+    if (!stat.isFile()) fs.rmSync(path.join(distDir, stat.name), { recursive: true });
+}
+
 // @ts-expect-error format should be assignable
 // prettier-ignore
 buildSync(merge(cloneDeep(config), {
     entryPoints: mainTargetFiles,
-    outdir: path.resolve(__dirname, "dist"),
+    outdir: distDir,
     tsconfig: path.resolve(__dirname, "tsconfig.json"),
 }));
 
