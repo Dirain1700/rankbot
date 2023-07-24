@@ -1,9 +1,15 @@
 import type { Dict } from "./utils";
-import type { CommandContext } from "../src/showdown/parser";
+import type { DiscordCommandContext } from "../src/discord/parser";
+import type { PSCommandContext } from "../src/showdown/parser";
 import type { Room, User } from "@dirain/client";
+import type { ApplicationCommandData } from "discord.js";
+
+/**
+ * PS Commands type definitions
+ */
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface CommandDefinitions<T, returns = any> {
+export interface PSCommandDefinitions<T, returns = any> {
     run: (this: T, argument: string, room: Room | User, user: User, command: string, timestamp: number) => returns;
     original?: string | true;
     pmOnly?: boolean;
@@ -14,12 +20,44 @@ export interface CommandDefinitions<T, returns = any> {
     aliases?: string[];
 }
 
-export type BaseCommandData = CommandDefinitions<CommandContext, void>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface PSCommandRunTimeDefinitions<T, K = any> extends PSCommandDefinitions<T, K> {
+    originalName: string;
+}
 
-export type BaseCommandGuide = Omit<BaseCommandData, "run">;
+export type BasePSCommandData = PSCommandRunTimeDefinitions<PSCommandContext, void>;
 
-export type BaseCommandDefinitions = Dict<CommandDefinitions<CommandContext, void>>;
+export type BasePSCommandGuide = Omit<BasePSCommandData, "run">;
 
-export type BaseCommandGuides = Dict<Omit<CommandDefinitions<CommandContext, void>, "run">>;
+export type BasePSCommandDefinitions = Dict<PSCommandDefinitions<PSCommandContext, void>>;
 
-export type CommandErrorInputType = "INVALID_ROOM" | "INVALID_BOT_ROOM" | "MISSING_BOT_RANK" | "PERMISSION_DENIED" | "WORDLE_DISABLED";
+export type PSCommandErrorInputType = "INVALID_ROOM" | "INVALID_BOT_ROOM" | "MISSING_BOT_RANK" | "PERMISSION_DENIED" | "WORDLE_DISABLED";
+
+/**
+ * Discord Command type definitions
+ */
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface DiscordCommandDefinitions<T, returns = any> {
+    run: (this: T) => returns;
+    dmOnly?: boolean;
+    guildOnly?: boolean;
+    dmSyntax?: string[];
+    syntax?: string[];
+    developerOnly?: boolean;
+    aliases?: string[];
+    resolvable: ApplicationCommandData;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface DiscordCommandRunTimeDefinitions<T, K = any> extends DiscordCommandDefinitions<T, K> {
+    originalName: string;
+}
+
+export type BaseDiscordCommandData = DiscordCommandRunTimeDefinitions<DiscordCommandContext>;
+
+export type BaseDiscordCommandGuide = Omit<BaseDiscordCommandData, "run">;
+
+export type BaseDiscordCommandDefinitions = Dict<DiscordCommandDefinitions<DiscordCommandContext>>;
+
+export type DiscordCommandErrorInputType = "INVALID_GUILD" | "INVALID_CHANNEL" | "MISSING_PERMISSION" | "PERMISSION_DENIED";

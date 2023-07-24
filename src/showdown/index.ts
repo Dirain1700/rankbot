@@ -6,7 +6,7 @@ import { scheduleJob } from "node-schedule";
 import checkChat from "./chat/filter";
 import announceModchat from "./chat/modchat/detect";
 import enableModchat from "./chat/modchat/enable";
-import { CommandContext } from "./parser";
+import { PSCommandContext } from "./parser";
 
 import type { Message, ModchatLevel, Room } from "@dirain/client";
 
@@ -64,14 +64,14 @@ export default () => {
         );
 
         scheduleJob("0 0 23 * * *", () => {
-            new CommandContext("wordle", "wordle", "create", PS.user!, developer, 0).run();
+            new PSCommandContext("wordle", "wordle", "create", PS.user!, developer, 0).run();
         });
 
         scheduleJob("0 0 14 * * *", () => {
-            new CommandContext("wordle", "wordle", "commend", PS.user!, developer, 0).run();
+            new PSCommandContext("wordle", "wordle", "commend", PS.user!, developer, 0).run();
         });
         setTimeout(() => {
-            new CommandContext("wordle", "wordle", "restore", PS.user!, developer, 0).run();
+            new PSCommandContext("wordle", "wordle", "restore", PS.user!, developer, 0).run();
         }, 3 * 1000);
     });
 

@@ -1,10 +1,32 @@
 "use strict";
 
+import { exec as execShell, execSync as execShellSync } from "node:child_process";
 import { inspect } from "node:util";
 
 import { Tools as PSTools } from "@dirain/client";
 
+import type { User } from "discord.js";
+
+import type { ChildProcess, ExecException, ExecOptions, ExecSyncOptions, ExecSyncOptionsWithStringEncoding } from "node:child_process";
+import type { ObjectEncodingOptions } from "node:fs";
+
+import type { ModlogType } from "../types/index";
+
 export class Tools extends PSTools {
+    static exec(
+        cmd: string,
+        options?: ObjectEncodingOptions | ExecOptions,
+        callback?: (error: ExecException | null, stdout: string, stderr: string) => void
+    ): ChildProcess {
+        // @ts-expect-error options must be assignable
+        return execShell(cmd, Object.assign({ encoding: "utf-8" }, options ?? {}), callback);
+    }
+
+    static execSync(cmd: string, options?: ExecSyncOptions | ExecSyncOptionsWithStringEncoding): string {
+        // @ts-expect-error return type should be string
+        return execShellSync(cmd, Object.assign({ encoding: "utf-8", stdio: "inherit" }, options ?? {}));
+    }
+
     static override toString(input: unknown, depth?: number): string {
         if (!input) {
             if (arguments.length === 0) return super.toString();
@@ -50,5 +72,12 @@ export class Tools extends PSTools {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 throw new Error("Type " + (inputType as any as never) + " does not satisfy any types");
         }
+    }
+
+    static generateModlog(staff: User, targetUser: User, action: ModlogType, reason: string | null | undefined): string {
+        let log = action + " [" + targetUser.tag + "] by " + staff.tag;
+        if (reason) log += " : " + reason;
+
+        return log;
     }
 }

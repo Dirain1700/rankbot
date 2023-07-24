@@ -1,8 +1,8 @@
 "use strict";
 
-import type { BaseCommandDefinitions } from "../../../types/commands";
+import type { BasePSCommandDefinitions } from "../../../types/commands";
 
-export const commands: BaseCommandDefinitions = {
+export const commands: BasePSCommandDefinitions = {
     help: {
         // eslint-disable-next-line  @typescript-eslint/no-unused-vars
         run(argument, room, user): void {

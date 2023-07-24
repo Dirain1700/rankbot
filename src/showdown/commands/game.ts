@@ -2,10 +2,10 @@
 
 import { Wordle } from "../wordle/main";
 
-import type { BaseCommandDefinitions } from "../../../types/commands";
+import type { BasePSCommandDefinitions } from "../../../types/commands";
 import type { arrayOf } from "../../../types/utils";
 import type { StoredWordleDataType } from "../../../types/wordle";
-import type { CommandContext } from "../parser";
+import type { PSCommandContext } from "../parser";
 import type { Room } from "@dirain/client";
 
 // prettier-ignore
@@ -15,7 +15,7 @@ const WORDLE_ALIASES = ["initwordle", "createwordle", "newwordle", "announceword
 const WORDLE_SUBCOMMANDS = ["init", "initialize", "n", "new", "create", "announce", "store", "save",
     "restore", "reload", "rebuild", "send", "request", "guess", "commend", "end"] as const;
 
-export const commands: BaseCommandDefinitions = {
+export const commands: BasePSCommandDefinitions = {
     /*
     createtourgame: {
         run(argument, room, user): void {
@@ -50,7 +50,7 @@ export const commands: BaseCommandDefinitions = {
                 return (Array.of(...WORDLE_SUBCOMMANDS) as string[]).includes(str);
             }
 
-            if (!isValidCommand(this.command, this.originalCommand)) return this.say("Alias " + this.command + " not found");
+            if (!isValidCommand(this.command, this.originalName)) return this.say("Alias " + this.command + " not found");
 
             switch (this.command) {
                 case "initwordle":
@@ -221,7 +221,7 @@ export const commands: BaseCommandDefinitions = {
     },
 };
 
-function initWordle(this: CommandContext, r: string, answer?: string): void {
+function initWordle(this: PSCommandContext, r: string, answer?: string): void {
     r = Tools.toRoomId(r);
     if (answer) {
         answer = Tools.toId(answer);
@@ -234,7 +234,7 @@ function initWordle(this: CommandContext, r: string, answer?: string): void {
     announce.call(this, wordleRoom);
 }
 
-function announce(this: CommandContext, r: Room): void {
+function announce(this: PSCommandContext, r: Room): void {
     if (!r.hasRank("%", this.user) && !Config.developers.includes(this.user.id)) return;
     // prettier-ignore
     const announce =
@@ -285,7 +285,7 @@ function rebuild(): void {
     }
 }
 
-function send(this: CommandContext, wordleRoom: Room): void {
+function send(this: PSCommandContext, wordleRoom: Room): void {
     if (!Wordles[wordleRoom.roomid]) return this.sayError("WORDLE_DISABLED", wordleRoom.title);
     // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
     if (Wordles[wordleRoom.roomid]!.ended) return this.say("Today's Wordle have ended, Try tomorrow!");
@@ -308,7 +308,7 @@ function resend(wordleRoom: Room, user: string): void {
     wordleRoom.sendPrivateUhtml(user, "wordle", Wordles[wordleRoom.roomid]!.generate(user));
 }
 
-function parse(this: CommandContext, roomId: string, guess: string): void {
+function parse(this: PSCommandContext, roomId: string, guess: string): void {
     roomId = Tools.toRoomId(roomId);
     guess = Tools.toId(guess);
     if (!roomId) return this.say("You must input a valid room id.");
@@ -339,7 +339,7 @@ function parse(this: CommandContext, roomId: string, guess: string): void {
     store();
 }
 
-function commend(this: CommandContext, wordleRoom: Room): void {
+function commend(this: PSCommandContext, wordleRoom: Room): void {
     if (!wordleRoom.hasRank("%", this.user) && !Config.developers.includes(this.user.id)) return;
     if (!Wordles[wordleRoom.roomid]) return this.sayError("WORDLE_DISABLED", wordleRoom.title);
     // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
@@ -362,7 +362,7 @@ function commend(this: CommandContext, wordleRoom: Room): void {
     destroyWordle.call(this, wordleRoom);
 }
 
-function destroyWordle(this: CommandContext, wordleRoom: Room, force?: boolean): void {
+function destroyWordle(this: PSCommandContext, wordleRoom: Room, force?: boolean): void {
     if (!Wordles[wordleRoom.roomid]) return;
     if (!wordleRoom.hasRank("%", this.user) && !Config.developers.includes(this.user.userid)) return;
     // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion

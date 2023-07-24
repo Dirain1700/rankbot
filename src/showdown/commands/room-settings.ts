@@ -2,10 +2,10 @@
 
 import { runModchatSetter } from "../chat/modchat/enable";
 
-import type { BaseCommandDefinitions } from "../../../types/commands";
+import type { BasePSCommandDefinitions } from "../../../types/commands";
 import type { Room } from "@dirain/client";
 
-export const commands: BaseCommandDefinitions = {
+export const commands: BasePSCommandDefinitions = {
     disableautomodchat: {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         run(target, room, user) {

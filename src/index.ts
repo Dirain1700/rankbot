@@ -11,16 +11,27 @@ import { Collection, Client as disClient } from "discord.js";
 
 import { Tools } from "./Tools";
 
+import discordHandler from "./discord/index";
+import { DiscordCommandParser, DiscordCommandContext } from "./discord/parser";
+import PShandler from "./showdown/index";
+import { PSCommandParser, PSCommandContext } from "./showdown/parser";
+import * as config from "../config/config";
+import { dex } from "../data/dex/pokedex";
+
 global.fs = fs;
 global.Config = config;
 global.path = path;
 global.Tools = Tools;
 global.Wordles = {};
 global.Dex = new Collection([...Object.entries(dex)]);
-global.Commands = {};
+global.DiscordCommands = {};
+global.DiscordCommandParser = new DiscordCommandParser();
+global.DiscordCommandContext = DiscordCommandContext;
+global.PSCommands = {};
 global.PSCommandParser = new PSCommandParser();
-global.CommandContext = CommandContext;
+global.PSCommandContext = PSCommandContext;
 
+void global.DiscordCommandParser.loadCommands();
 void global.PSCommandParser.loadCommands();
 const html = fs.readFileSync("./config/index.html", "utf-8");
 
@@ -29,12 +40,6 @@ export const DiscordClient = new disClient(config.DiscordOptions);
 
 global.PS = PSClient;
 global.discord = DiscordClient;
-
-import discordHandler from "./discord/index";
-import PShandler from "./showdown/index";
-import { CommandParser as PSCommandParser, CommandContext } from "./showdown/parser";
-import * as config from "../config/config";
-import { dex } from "../data/dex/pokedex";
 
 discordHandler();
 PShandler();
