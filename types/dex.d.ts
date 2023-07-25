@@ -12,7 +12,7 @@ export interface Species {
     /**
      * Generation. Any one of 1 to 9. Possibly undefined.
      */
-    gen?: number & (1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9);
+    gen?: number;
     /**
      * Base species. Species, but without the forme name.
      *
