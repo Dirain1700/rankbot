@@ -54,7 +54,7 @@ export const commands: BasePSCommandDefinitions = {
             if (filePath === "git") {
                 exec("git pull", (error: ExecException | null, stdout: string, stderr: string): void => {
                     let result = "";
-                    if (error) result += error.toString() + "\n";
+                    if (error) result += (error.stack ?? error.message) + "\n";
                     if (stdout === "Already up-to-date.") {
                         return this.sayCode(stdout);
                     } else {
@@ -63,15 +63,14 @@ export const commands: BasePSCommandDefinitions = {
                     }
                     if (result) this.sayCode(result);
                 });
-            } else if (filePath === "tsc") {
-                this.say("Compiling...");
-                exec("npm run build", (error: ExecException | null, stdout: string): void => {
-                    if (error) {
-                        this.sayCommand("!", "code", error.toString() + stdout);
-                    } else this.say("Compile sucessed.");
-                });
             } else {
                 if (!filePath || !fs.existsSync(filePath)) return this.say("Error: The file does not exist.");
+
+                try {
+                    Tools.execSync("npm run esbuild");
+                } catch (e: unknown) {
+                    return void this.sayCommand("!", "code", (e as ExecException).stack ?? (e as ExecException).message);
+                }
 
                 const resolvedPath = Object.keys(require.cache).find((e) => e.includes(filePath.slice(1)));
                 if (!resolvedPath) return void this.say("Error: The file does not exist");

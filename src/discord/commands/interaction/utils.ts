@@ -69,7 +69,7 @@ export const commands: BaseDiscordCommandDefinitions = {
                     try {
                         content.forEach((e: string) => embeds.push(JSON.parse(e) as APIEmbed));
                     } catch (e: unknown) {
-                        void this.interaction.channel.send((e as SyntaxError).toString());
+                        void this.interaction.channel.send((e as SyntaxError).stack ?? (e as SyntaxError).message);
                     }
                     try {
                         message = { embeds: embeds.map((e) => new EmbedBuilder(e)) };
@@ -85,7 +85,7 @@ export const commands: BaseDiscordCommandDefinitions = {
                     try {
                         objects.forEach((e: string) => embeds.push(JSON.parse(e) as APIEmbed));
                     } catch (e: unknown) {
-                        void this.interaction.channel.send((e as SyntaxError).toString());
+                        void this.interaction.channel.send((e as SyntaxError).stack ?? (e as SyntaxError).message);
                     }
                     try {
                         message = { content: string.join("\n"), embeds: embeds.map((e) => new EmbedBuilder(e)) };
