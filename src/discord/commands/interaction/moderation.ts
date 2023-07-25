@@ -193,10 +193,10 @@ export const commands: BaseDiscordCommandDefinitions = {
             if (this.interaction.channel.isDMBased()) return;
 
             const targetCount = this.interaction.options.getInteger("lines") ?? 1;
+            const targetUser = this.interaction.options.getUser("user", true);
             const messages = await this.interaction.channel.messages
                 .fetch({ limit: 100 })
                 .then((m) => m.filter((msg) => msg.author.id === targetUser.id).first(targetCount));
-            const targetUser = this.interaction.options.getUser("user", true);
 
             const log = `${time(new Date(), "T")} ${targetCount} of ${targetUser.tag}'s messages were cleard from ${
                 this.interaction.channel.name
