@@ -45,8 +45,8 @@ export function sendModlog(message: Message<Room>): void {
     let log = message.content.replace("/log ", "");
     const filePath = `./logs/chat/${message.target.roomid}.json`;
     if (!fs.existsSync(filePath)) return;
-    const messages: chatLogType[] = JSON.parse(fs.readFileSync(filePath, "utf-8")) as chatLogType[];
-    let chatLogs: chatLogType[] = [];
+    let originalChatlog: chatLogType[] = JSON.parse(fs.readFileSync(filePath, "utf-8")) as chatLogType[];
+    let targetMessages: chatLogType[] = [];
     const targetChannel: undefined | Channel = discord.channels.cache.get(targetChannelId);
     if (!targetChannel || !targetChannel.isTextBased()) return;
 
@@ -78,40 +78,40 @@ export function sendModlog(message: Message<Room>): void {
     if (log.match(clearLinesRegex)) {
         isPunish = true;
         const { lines, target } = log.match(clearLinesRegex)!.groups ?? {};
-        chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
-        chatLogs.sort(sortLogFunction);
-        chatLogs.length = parseInt(lines as string);
+        targetMessages = originalChatlog.filter((m) => m.user == Tools.toId(target as string));
+        targetMessages.sort(sortLogFunction);
+        targetMessages.length = parseInt(lines as string);
     } else if (log.match(clearTextRegex)) {
         isPunish = true;
         const { target } = log.match(clearTextRegex)!.groups ?? {};
-        chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
-        chatLogs.sort(sortLogFunction);
+        targetMessages = originalChatlog.filter((m) => m.user == Tools.toId(target as string));
+        targetMessages.sort(sortLogFunction);
     } else if (log.match(warnRegex)) {
         isPunish = true;
         const { target } = log.match(warnRegex)!.groups ?? {};
-        chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
-        chatLogs.sort(sortLogFunction);
+        targetMessages = originalChatlog.filter((m) => m.user == Tools.toId(target as string));
+        targetMessages.sort(sortLogFunction);
     }
     if (log.match(roomBanRegex)) {
         isPunish = true;
         const { target } = log.match(roomBanRegex)!.groups ?? {};
-        chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
-        chatLogs.sort(sortLogFunction);
+        targetMessages = originalChatlog.filter((m) => m.user == Tools.toId(target as string));
+        targetMessages.sort(sortLogFunction);
     } else if (log.match(weekBanRegex)) {
         isPunish = true;
         const { target } = log.match(weekBanRegex)!.groups ?? {};
-        chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
-        chatLogs.sort(sortLogFunction);
+        targetMessages = originalChatlog.filter((m) => m.user == Tools.toId(target as string));
+        targetMessages.sort(sortLogFunction);
     } else if (log.match(lockRegex)) {
         isPunish = true;
         const { target } = log.match(lockRegex)!.groups ?? {};
-        chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
-        chatLogs.sort(sortLogFunction);
+        targetMessages = originalChatlog.filter((m) => m.user == Tools.toId(target as string));
+        targetMessages.sort(sortLogFunction);
     } else if (log.match(muteRegex)) {
         isPunish = true;
         const { target } = log.match(muteRegex)!.groups ?? {};
-        chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
-        chatLogs.sort(sortLogFunction);
+        targetMessages = originalChatlog.filter((m) => m.user == Tools.toId(target as string));
+        targetMessages.sort(sortLogFunction);
     } else if (log.match(promoteRegex)) {
         isPunish = false;
         const { target, auth } = log.match(promoteRegex)!.groups ?? {};
@@ -124,7 +124,15 @@ export function sendModlog(message: Message<Room>): void {
 
     let logsToSend: string = "";
 
-    if (chatLogs.length) logsToSend = chatLogs.map((i) => `<t:${i.time}:T> ${i.user}: ${i.content}`).join("\n");
+    if (targetMessages.length) {
+        logsToSend = targetMessages.map((i) => `<t:${i.time}:T> ${i.user}: ${i.content}`).join("\n");
+
+        if (!isPunish) return;
+        const targetMessageTimes = targetMessages.map((m) => m.time);
+        originalChatlog = originalChatlog.filter((c) => !targetMessageTimes.includes(c.time));
+
+        fs.writeFileSync(filePath, JSON.stringify(originalChatlog, null, 4));
+    }
 
     targetChannel.send(log + "\n" + logsToSend).catch(() => console.error("content:", log + "\n" + logsToSend));
 }
