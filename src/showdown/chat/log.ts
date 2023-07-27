@@ -3,18 +3,51 @@
 import type { Message, Room } from "@dirain/client";
 import type { Channel } from "discord.js";
 
-export default (message: Message<Room>): void => {
-    if (message.target.roomid !== "japanese" || !discord.isReady()) return;
-    let log = message.content.replace("/log ", "");
-    const file = "./config/chatlog.json";
-    interface chatLogType {
-        content: string;
-        user: string;
-        time: number;
+interface chatLogType {
+    user: string;
+    content: string;
+    time: number;
+}
+
+const sortLogFunction = (a: chatLogType, b: chatLogType) => a.time - b.time;
+
+const MAX_STORED_MESSAGES_LENGTH = 50;
+
+export function storeChat(message: Message<Room>): void {
+    if (!(message.target.roomid in Config.logChannels) || !discord.isReady()) return;
+    if (message.content.startsWith("/") && !message.content.startsWith("/log")) return;
+    const content = message.content.replace("/log ", "");
+    const filePath = `./logs/chat/${message.target.roomid}.json`;
+    let chatlog: chatLogType[] = [];
+
+    if (fs.existsSync(filePath)) {
+        chatlog = JSON.parse(fs.readFileSync(filePath, "utf-8")) as chatLogType[];
+        if (chatlog.length > MAX_STORED_MESSAGES_LENGTH) {
+            chatlog.length = MAX_STORED_MESSAGES_LENGTH - 1;
+            chatlog.sort(sortLogFunction);
+        } else if (chatlog.length === MAX_STORED_MESSAGES_LENGTH) {
+            chatlog.shift();
+        }
     }
-    const messages: chatLogType[] = JSON.parse(fs.readFileSync(file, "utf-8")) as chatLogType[];
+
+    chatlog.push({
+        user: message.author.id,
+        content,
+        time: message.time,
+    });
+
+    fs.writeFileSync(filePath, JSON.stringify(chatlog, null, 4));
+}
+
+export function sendModlog(message: Message<Room>): void {
+    const targetChannelId = Config.logChannels[message.target.roomid];
+    if (!targetChannelId || !discord.isReady()) return;
+    let log = message.content.replace("/log ", "");
+    const filePath = `./logs/chat/${message.target.roomid}.json`;
+    if (!fs.existsSync(filePath)) return;
+    const messages: chatLogType[] = JSON.parse(fs.readFileSync(filePath, "utf-8")) as chatLogType[];
     let chatLogs: chatLogType[] = [];
-    const targetChannel: undefined | Channel = discord.channels.cache.get(Config.logch);
+    const targetChannel: undefined | Channel = discord.channels.cache.get(targetChannelId);
     if (!targetChannel || !targetChannel.isTextBased()) return;
 
     /* eslint-disable no-useless-escape */
@@ -46,39 +79,39 @@ export default (message: Message<Room>): void => {
         isPunish = true;
         const { lines, target } = log.match(clearLinesRegex)!.groups ?? {};
         chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
-        chatLogs.sort((a: chatLogType, b: chatLogType) => a.time - b.time);
+        chatLogs.sort(sortLogFunction);
         chatLogs.length = parseInt(lines as string);
     } else if (log.match(clearTextRegex)) {
         isPunish = true;
         const { target } = log.match(clearTextRegex)!.groups ?? {};
         chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
-        chatLogs.sort((a: chatLogType, b: chatLogType) => a.time - b.time);
+        chatLogs.sort(sortLogFunction);
     } else if (log.match(warnRegex)) {
         isPunish = true;
         const { target } = log.match(warnRegex)!.groups ?? {};
         chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
-        chatLogs.sort((a: chatLogType, b: chatLogType) => a.time - b.time);
+        chatLogs.sort(sortLogFunction);
     }
     if (log.match(roomBanRegex)) {
         isPunish = true;
         const { target } = log.match(roomBanRegex)!.groups ?? {};
         chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
-        chatLogs.sort((a: chatLogType, b: chatLogType) => a.time - b.time);
+        chatLogs.sort(sortLogFunction);
     } else if (log.match(weekBanRegex)) {
         isPunish = true;
         const { target } = log.match(weekBanRegex)!.groups ?? {};
         chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
-        chatLogs.sort((a: chatLogType, b: chatLogType) => a.time - b.time);
+        chatLogs.sort(sortLogFunction);
     } else if (log.match(lockRegex)) {
         isPunish = true;
         const { target } = log.match(lockRegex)!.groups ?? {};
         chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
-        chatLogs.sort((a: chatLogType, b: chatLogType) => a.time - b.time);
+        chatLogs.sort(sortLogFunction);
     } else if (log.match(muteRegex)) {
         isPunish = true;
         const { target } = log.match(muteRegex)!.groups ?? {};
         chatLogs = messages.filter((m) => m.user == Tools.toId(target as string));
-        chatLogs.sort((a: chatLogType, b: chatLogType) => a.time - b.time);
+        chatLogs.sort(sortLogFunction);
     } else if (log.match(promoteRegex)) {
         isPunish = false;
         const { target, auth } = log.match(promoteRegex)!.groups ?? {};
@@ -94,4 +127,4 @@ export default (message: Message<Room>): void => {
     if (chatLogs.length) logsToSend = chatLogs.map((i) => `<t:${i.time}:T> ${i.user}: ${i.content}`).join("\n");
 
     targetChannel.send(log + "\n" + logsToSend).catch(() => console.error("content:", log + "\n" + logsToSend));
-};
+}

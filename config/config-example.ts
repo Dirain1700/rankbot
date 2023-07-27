@@ -22,12 +22,10 @@ export const modchatTime: Dict<ModchatSetting> = {};
 export const commandPrefix = "";
 export const readme = "";
 export const enableStretchFilter: string[] = [];
-export const logch: Snowflake = "";
-export const aptguild: Snowflake = "";
+export const logChannels: Dict<Snowflake> = {};
 export const developers: string[] = [];
 export const admin: Snowflake[] = [];
 export const enableWordle: string[] = [];
-export const acRole: Snowflake = "";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 export function onConnectDiscord(this: DiscordClientUser): void {}

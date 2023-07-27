@@ -4,6 +4,7 @@ import { User } from "@dirain/client";
 import { scheduleJob } from "node-schedule";
 
 import checkChat from "./chat/filter";
+import { storeChat, sendModlog } from "./chat/log";
 import announceModchat from "./chat/modchat/detect";
 import enableModchat from "./chat/modchat/enable";
 import { PSCommandContext } from "./parser";
@@ -21,6 +22,10 @@ export default () => {
             }
             if (Config.enableStretchFilter.includes(message.target.roomid)) {
                 checkChat(message);
+            }
+            if (message.target.roomid in Config.logChannels) {
+                storeChat(message);
+                sendModlog(message);
             }
         }
     });
