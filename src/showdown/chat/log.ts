@@ -9,15 +9,17 @@ interface chatLogType {
     time: number;
 }
 
-const sortLogFunction = (a: chatLogType, b: chatLogType) => a.time - b.time;
+const sortLogFunction = (a: chatLogType, b: chatLogType) => b.time - a.time;
 
 const MAX_STORED_MESSAGES_LENGTH = 50;
 
 export function storeChat(message: Message<Room>): void {
+    console.log(message);
     if (!(message.target.roomid in Config.logChannels) || !discord.isReady()) return;
     if (message.content.startsWith("/") && !message.content.startsWith("/log")) return;
     const content = message.content.replace("/log ", "");
-    const filePath = `./logs/chat/${message.target.roomid}.json`;
+    const dirPath = "./logs/chat";
+    const filePath = dirPath + `/${message.target.roomid}.json`;
     let chatlog: chatLogType[] = [];
 
     if (fs.existsSync(filePath)) {
@@ -28,6 +30,8 @@ export function storeChat(message: Message<Room>): void {
         } else if (chatlog.length === MAX_STORED_MESSAGES_LENGTH) {
             chatlog.shift();
         }
+    } else if (!fs.existsSync(dirPath)) {
+        fs.mkdir(dirPath);
     }
 
     chatlog.push({
