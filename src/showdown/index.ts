@@ -4,7 +4,7 @@ import { User } from "@dirain/client";
 import { scheduleJob } from "node-schedule";
 
 import checkChat from "./chat/filter";
-import { storeChat, sendModlog } from "./chat/log";
+import { storeChat, sendModlog } from "./chat/logger";
 import announceModchat from "./chat/modchat/detect";
 import enableModchat from "./chat/modchat/enable";
 import { PSCommandContext } from "./parser";

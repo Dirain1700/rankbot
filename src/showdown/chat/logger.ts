@@ -118,7 +118,7 @@ export function sendModlog(message: Message<Room>): void {
     } else if (log.match(promoteRegex)) {
         isPunish = false;
         const { target, auth } = log.match(promoteRegex)!.groups ?? {};
-        log = `${log}\nCongrats ${target!} to ${auth!}!`;
+        log = `${log}\nCongrats ${target!} on ${auth!}!`;
     } else if (log.match(demoteRegex)) {
         isPunish = false;
     }
