@@ -30,7 +30,7 @@
         "@types/node": "^20.4.4",
         "@types/node-schedule": "^2.1.0",
         "@types/prettier": "^2.7.3",
-        "@typescript-eslint/eslint-plugin": "6.2.0",
+        "@typescript-eslint/eslint-plugin": "6.2.1",
         "@typescript-eslint/parser": "^6.2.0",
         "esbuild": "^0.18.17",
         "eslint": "^8.45.0",
