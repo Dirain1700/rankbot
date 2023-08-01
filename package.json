@@ -32,7 +32,7 @@
         "@types/prettier": "^2.7.3",
         "@typescript-eslint/eslint-plugin": "6.2.0",
         "@typescript-eslint/parser": "^6.2.0",
-        "esbuild": "^0.18.16",
+        "esbuild": "^0.18.17",
         "eslint": "^8.45.0",
         "glob": "^10.3.3",
         "prettier": "^3.0.0",
