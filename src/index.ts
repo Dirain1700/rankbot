@@ -71,7 +71,7 @@ createServer((req, res) => {
 }).listen(3000);
 
 void DiscordClient.login(process.env.DISCORD as string);
-// PSClient.connect();
+PSClient.connect();
 
 const UNCAUGHT_ERR_PATH = "./logs/uncaught";
 const UNHANDLED_ERR_PATH = "./logs/unhandled";
