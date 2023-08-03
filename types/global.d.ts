@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 
-import type { BasePSCommandData, BaseDiscordCommandData } from "./commands";
+import type { BasePSCommandData, DiscordCommandSingleData } from "./commands";
 import type { Species } from "./dex";
 import type { Dict } from "./utils";
 import type { DiscordCommandParser, DiscordCommandContext } from "../src/discord/parser";
@@ -17,7 +17,7 @@ declare global {
     var Tools: typeof import("../src/Tools").Tools;
     var Wordles: Dict<Wordle>;
     var Dex: Collection<string, Species>;
-    var DiscordCommands: Dict<BaseDiscordCommandData>;
+    var DiscordCommands: Record<Snowflake, DiscordCommandSingleData>;
     var DiscordCommandParser: DiscordCommandParser;
     var DiscordCommandContext: DiscordCommandContext["constructor"];
     var PSCommands: Dict<BasePSCommandData>;

@@ -4,68 +4,227 @@ import { cloneDeep } from "lodash";
 
 import type {
     BaseDiscordCommandDefinitions,
-    BaseDiscordCommandData,
-    BaseDiscordCommandGuide,
+    BaseDiscordRunTimeCommandDefinitions,
+    BaseDiscordRunTimeGuildCommandDefinitions,
+    BaseDiscordGuildCommandDefinitions,
+    DiscordCommandSingleData,
+    DiscordCommandSingleGuide,
     DiscordCommandErrorInputType,
 } from "../../types/commands";
-import type { ApplicationCommandData, ChatInputCommandInteraction, BaseMessageOptions, InteractionReplyOptions } from "discord.js";
+import type { Collection } from "discord.js";
+import type {
+    ApplicationCommand,
+    ApplicationCommandData,
+    ChatInputCommandInteraction,
+    BaseMessageOptions,
+    InteractionReplyOptions,
+    Snowflake,
+} from "discord.js";
+
+const GUILD_COMMAND_DEFINITION_FILE = "guilds.js";
+const COMMAND_DATA_FILE_PATH = "./config/commands.json";
 
 export class DiscordCommandParser {
     commandsDir = "./commands/interaction";
 
     constructor() {} // eslint-disable-line @typescript-eslint/no-empty-function
 
-    async loadCommands(): Promise<PromiseSettledResult<void>[]> {
+    async loadCommands(): Promise<[BaseDiscordRunTimeCommandDefinitions, BaseDiscordRunTimeGuildCommandDefinitions]> {
         const files = fs
             .readdirSync(path.resolve(__dirname, this.commandsDir))
             .filter((f) => f.endsWith(".js"))
             .map((f) => f.trim());
 
         return Promise.allSettled(
-            files.map((file) => {
+            files.map((file): Promise<[BaseDiscordRunTimeCommandDefinitions, BaseDiscordRunTimeGuildCommandDefinitions]> => {
+                const loadedGlobalCommands: BaseDiscordRunTimeCommandDefinitions = {};
+                const loadedGuildCommands: BaseDiscordRunTimeGuildCommandDefinitions = {};
+
                 const filePath = this.commandsDir + "/" + file.trim();
-                import(filePath)
-                    .then(({ commands }) => {
-                        for (const [commandName, commandData] of Object.entries(commands as BaseDiscordCommandDefinitions)) {
-                            const clone = cloneDeep(commandData);
-                            /* eslint-disable @typescript-eslint/no-explicit-any */
-                            (clone as any as BaseDiscordCommandData).originalName = commandName;
-                            DiscordCommands[commandName] = clone as any as BaseDiscordCommandData;
-                            if (commandData.aliases)
-                                for (const alias of commandData.aliases) {
-                                    const cloneNeo = commandData;
-                                    (cloneNeo as any as BaseDiscordCommandData).originalName = commandName;
-                                    DiscordCommands[alias] = cloneNeo as any as BaseDiscordCommandData;
+                return (
+                    import(filePath)
+                        /* eslint-disable @typescript-eslint/no-explicit-any */
+                        .then(({ commands }): [BaseDiscordRunTimeCommandDefinitions, BaseDiscordRunTimeGuildCommandDefinitions] => {
+                            if (file.endsWith(GUILD_COMMAND_DEFINITION_FILE)) {
+                                for (const [guildId, guildCommands] of Object.entries(commands as BaseDiscordGuildCommandDefinitions)) {
+                                    loadedGuildCommands[guildId] = {};
+
+                                    for (const [commandName, commandData] of Object.entries(guildCommands)) {
+                                        const clone = cloneDeep(commandData);
+                                        (clone as any as DiscordCommandSingleData).name = commandName;
+                                        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                                        loadedGuildCommands[guildId]![commandName] = clone as any as DiscordCommandSingleData;
+                                        if (commandData.aliases)
+                                            for (const alias of commandData.aliases) {
+                                                const cloneNeo = cloneDeep(commandData);
+                                                (cloneNeo as any as DiscordCommandSingleData).name = alias;
+                                                (cloneNeo as any as DiscordCommandSingleData).resolvable.name = alias;
+                                                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                                                loadedGuildCommands[guildId]![alias] = cloneNeo as any as DiscordCommandSingleData;
+                                            }
+                                    }
                                 }
-                            /* eslint-enable */
-                        }
-                    })
-                    .catch(console.error);
+                            } else {
+                                for (const [commandName, commandData] of Object.entries(commands as BaseDiscordCommandDefinitions)) {
+                                    const clone = cloneDeep(commandData);
+                                    (clone as any as DiscordCommandSingleData).name = commandName;
+                                    loadedGlobalCommands[commandName] = clone as any as DiscordCommandSingleData;
+                                    if (commandData.aliases)
+                                        for (const alias of commandData.aliases) {
+                                            const cloneNeo = cloneDeep(commandData);
+                                            (cloneNeo as any as DiscordCommandSingleData).name = alias;
+                                            (cloneNeo as any as DiscordCommandSingleData).resolvable.name = alias;
+                                            loadedGlobalCommands[alias] = cloneNeo as any as DiscordCommandSingleData;
+                                        }
+                                }
+                            }
+                            return [loadedGlobalCommands, loadedGuildCommands];
+                        })
+                        .catch((e) => {
+                            console.error(e);
+                            return [loadedGlobalCommands, loadedGuildCommands];
+                        })
+                );
+                /* eslint-enable */
             })
-        );
+        ).then((loadedCommands) => {
+            const globalCommandsCollection: BaseDiscordRunTimeCommandDefinitions = {};
+            const guildCommandsCollection: BaseDiscordRunTimeGuildCommandDefinitions = {};
+
+            for (const [loadedGlobalCommands, loadedGuildCommands] of loadedCommands
+                .filter(
+                    (r): r is PromiseFulfilledResult<[BaseDiscordRunTimeCommandDefinitions, BaseDiscordRunTimeGuildCommandDefinitions]> =>
+                        Tools.isPromiseFulfilled(r)
+                )
+                .map((e) => e.value)) {
+                for (const [commandName, commandData] of Object.entries(loadedGlobalCommands)) {
+                    if (commandName in globalCommandsCollection) {
+                        throw new Error("Duplication detected on loadCommands: " + commandName);
+                    } else {
+                        globalCommandsCollection[commandName] = commandData;
+                    }
+                }
+
+                for (const [guildId, commands] of Object.entries(loadedGuildCommands)) {
+                    if (!guildCommandsCollection[guildId]) {
+                        guildCommandsCollection[guildId] = {};
+                    }
+                    for (const [commandName, commandData] of Object.entries(commands)) {
+                        /* eslint-disable @typescript-eslint/no-non-null-assertion */
+                        if (commandName in guildCommandsCollection[guildId]!) {
+                            throw new Error("Duplication detected on loadCommands: " + commandName + " (Guild ID: " + guildId + ")");
+                        } else {
+                            guildCommandsCollection[guildId]![commandName] = commandData;
+                        }
+                        /* eslint-enable */
+                    }
+                }
+            }
+            return [globalCommandsCollection, guildCommandsCollection];
+        });
     }
 
-    getCommandData(name: string): BaseDiscordCommandData | null {
-        name = Tools.toId(name);
-        const command = DiscordCommands[name];
+    async register(): Promise<{ result: Collection<Snowflake, ApplicationCommand>[]; errors: unknown[] }> {
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises, no-async-promise-executor
+        return new Promise(async (resolve) => {
+            const returnObject: { result: Collection<Snowflake, ApplicationCommand>[]; errors: unknown[] } = { result: [], errors: [] };
+
+            if (!discord.application) return resolve(returnObject);
+            const [globalCommands, guildCommands] = await this.loadCommands();
+            const uploadableGlobalCommandData: ApplicationCommandData[] = Object.values(globalCommands).map((c) =>
+                this.getResolvableCommandData(c)
+            );
+            const uploadableGuildCommandData: [Snowflake, ApplicationCommandData[]][] = [];
+            for (const [guildId, commands] of Object.entries(guildCommands)) {
+                const guildCommand = Object.values(commands).map((c) => this.getResolvableCommandData(c));
+                if (guildCommand.length) {
+                    uploadableGuildCommandData.push([guildId, guildCommand]);
+                }
+            }
+
+            if (uploadableGlobalCommandData.length) {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                await discord.application.commands
+                    .set(uploadableGlobalCommandData)
+                    .then((d) => returnObject.result.push(d))
+                    .catch((e) => returnObject.errors.push(e));
+            }
+
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-misused-promises
+            let timer: NodeJS.Timeout | undefined = undefined;
+
+            if (uploadableGuildCommandData) {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-misused-promises
+                timer = setInterval(async () => {
+                    await uploadGuildCommand();
+                }, 500);
+            }
+
+            async function uploadGuildCommand() {
+                if (!uploadableGuildCommandData.length) {
+                    timer = undefined;
+                    const data: Record<Snowflake, { name: string; guildId: Snowflake | null }> = {};
+                    for (const collection of returnObject.result) {
+                        for (const [id, cmd] of collection.entries()) {
+                            data[id] = {
+                                name: cmd.name,
+                                guildId: cmd.guildId ?? null,
+                            };
+                        }
+                    }
+                    fs.writeFileSync(COMMAND_DATA_FILE_PATH, JSON.stringify(data, null, 4));
+                    return resolve(returnObject);
+                }
+                /* eslint-disable @typescript-eslint/no-non-null-assertion */
+                const command = uploadableGuildCommandData.shift()!;
+                await discord
+                    .application!.commands.set(command[1]!, command[0]!)
+                    .then((d) => returnObject.result.push(d))
+                    .catch((e) => returnObject.errors.push(e));
+                /* eslint-enable */
+            }
+        });
+    }
+
+    async setupGlobal(): Promise<Record<Snowflake, DiscordCommandSingleData>> {
+        const obj: Record<Snowflake, DiscordCommandSingleData> = {};
+        const [globalCommands, guildCommands] = await this.loadCommands();
+        const CommandIds: [Snowflake, { name: string; guild: Snowflake | null }][] = Object.entries(
+            JSON.parse(fs.readFileSync(COMMAND_DATA_FILE_PATH, "utf-8")) as { [id: Snowflake]: { name: string; guild: Snowflake | null } }
+        );
+        for (const [commandName, commandData] of Object.entries(globalCommands)) {
+            for (const [id, { name, guild }] of CommandIds) {
+                if (name === commandName && guild === null) obj[id] = commandData;
+            }
+        }
+
+        for (const [guildId, commands] of Object.entries(guildCommands)) {
+            for (const [commandName, commandData] of Object.entries(commands)) {
+                for (const [id, { name, guild }] of CommandIds) {
+                    if (name === commandName && guild === guildId) obj[id] = commandData;
+                }
+            }
+        }
+        return obj;
+    }
+
+    getCommandData(id: Snowflake): DiscordCommandSingleData | null {
+        const command = DiscordCommands[id];
         if (!command) return null;
         else return cloneDeep(command);
     }
 
-    getCommandGuide(name: string): BaseDiscordCommandGuide | null {
-        const command = this.getCommandData(name);
+    getCommandGuide(id: Snowflake): DiscordCommandSingleGuide | null {
+        const command = this.getCommandData(id);
         if (!command) return null;
         const guide = (({ run, ...data }) => data)(command); // eslint-disable-line @typescript-eslint/no-unused-vars
         return guide;
     }
 
-    getResolvableCommandData(name: string): ApplicationCommandData | null {
-        const command = this.getCommandData(name);
-        if (!command) return null;
-        name = Tools.toId(name);
-        if (command.guildOnly) command.resolvable.dmPermission = false;
-        if (command.resolvable.name !== name) command.resolvable.name = name;
-        return command.resolvable;
+    getResolvableCommandData(data: DiscordCommandSingleGuide | DiscordCommandSingleData): ApplicationCommandData {
+        data.name = Tools.toId(data.name);
+        if (data.guildOnly) data.resolvable.dmPermission = false;
+        return data.resolvable;
     }
 
     parse(interaction: ChatInputCommandInteraction): boolean {
@@ -77,13 +236,13 @@ export class DiscordCommandParser {
             return false;
         }
 
-        const cmd = this.getCommandData(interaction.commandName);
+        const cmd = this.getCommandData(interaction.commandId);
         if (!cmd) return false;
 
         let result: boolean = true;
 
         try {
-            new DiscordCommandContext(cmd.originalName, interaction).run();
+            new DiscordCommandContext(interaction).run();
         } catch (e: unknown) {
             console.error(e);
             result = false;
@@ -94,17 +253,15 @@ export class DiscordCommandParser {
 }
 
 export class DiscordCommandContext {
-    originalName: string;
     interaction: ChatInputCommandInteraction;
 
-    constructor(originalName: string, interaction: ChatInputCommandInteraction) {
-        this.originalName = originalName;
+    constructor(interaction: ChatInputCommandInteraction) {
         this.interaction = interaction;
     }
 
     run(): void {
         /* eslint-disable @typescript-eslint/no-non-null-assertion */
-        const command = DiscordCommands[this.originalName];
+        const command = DiscordCommands[this.interaction.commandId];
         if (!command || !this.interaction.channel) return;
         if (command.developerOnly && !Config.admin.includes(this.interaction.user.id)) return;
         if (command.dmOnly && !this.interaction.channel.isDMBased()) {

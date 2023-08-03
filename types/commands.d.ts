@@ -2,7 +2,7 @@ import type { Dict } from "./utils";
 import type { DiscordCommandContext } from "../src/discord/parser";
 import type { PSCommandContext } from "../src/showdown/parser";
 import type { Room, User } from "@dirain/client";
-import type { ApplicationCommandData } from "discord.js";
+import type { ApplicationCommandData, Snowflake } from "discord.js";
 
 /**
  * PS Commands type definitions
@@ -51,13 +51,22 @@ export interface DiscordCommandDefinitions<T, returns = any> {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface DiscordCommandRunTimeDefinitions<T, K = any> extends DiscordCommandDefinitions<T, K> {
-    originalName: string;
+    name: string;
+    guildId?: Snowflake;
 }
 
-export type BaseDiscordCommandData = DiscordCommandRunTimeDefinitions<DiscordCommandContext>;
+export type DiscordCommandSingleData = DiscordCommandRunTimeDefinitions<DiscordCommandContext>;
 
-export type BaseDiscordCommandGuide = Omit<BaseDiscordCommandData, "run">;
+export type DiscordCommandSingleGuide = Omit<DiscordCommandSingleData, "run">;
 
-export type BaseDiscordCommandDefinitions = Dict<DiscordCommandDefinitions<DiscordCommandContext>>;
+export type DiscordCommandSingleDefiniton = DiscordCommandDefinitions<DiscordCommandContext>;
+
+export type BaseDiscordCommandDefinitions = Dict<DiscordCommandSingleDefiniton>;
+
+export type BaseDiscordGuildCommandDefinitions = Record<Snowflake, BaseDiscordCommandDefinitions>;
+
+export type BaseDiscordRunTimeCommandDefinitions = Dict<DiscordCommandSingleData>;
+
+export type BaseDiscordRunTimeGuildCommandDefinitions = Record<Snowflake, BaseDiscordRunTimeCommandDefinitions>;
 
 export type DiscordCommandErrorInputType = "INVALID_GUILD" | "INVALID_CHANNEL" | "MISSING_PERMISSION" | "PERMISSION_DENIED";

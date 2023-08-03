@@ -5,7 +5,7 @@ import { inspect } from "node:util";
 
 import { Tools as PSTools } from "@dirain/client";
 
-import type { User } from "discord.js";
+import type { User, Snowflake } from "discord.js";
 
 import type { ChildProcess, ExecException, ExecOptions, ExecSyncOptions, ExecSyncOptionsWithStringEncoding } from "node:child_process";
 import type { ObjectEncodingOptions } from "node:fs";
@@ -80,4 +80,18 @@ export class Tools extends PSTools {
 
         return log;
     }
+
+    static isSnowflake(input: string): input is Snowflake {
+        return input.split("").every((s) => /\d/.test(s)) && input.length >= 17;
+    }
+
+    /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access */
+    static isPromiseFulfilled<T>(result: PromiseSettledResult<T>): result is PromiseFulfilledResult<T> {
+        return (result as any)?.status === "fulfilled";
+    }
+
+    static isPromiseRejected<T>(result: PromiseSettledResult<T>): result is PromiseRejectedResult {
+        return (result as any)?.status === "rejected";
+    }
+    /* eslint-enable */
 }

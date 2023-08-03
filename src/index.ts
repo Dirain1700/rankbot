@@ -24,14 +24,17 @@ global.path = path;
 global.Tools = Tools;
 global.Wordles = {};
 global.Dex = new Collection([...Object.entries(dex)]);
-global.DiscordCommands = {};
 global.DiscordCommandParser = new DiscordCommandParser();
 global.DiscordCommandContext = DiscordCommandContext;
 global.PSCommands = {};
 global.PSCommandParser = new PSCommandParser();
 global.PSCommandContext = PSCommandContext;
 
-void global.DiscordCommandParser.loadCommands();
+global.DiscordCommandParser.setupGlobal()
+    .then((data) => {
+        global.DiscordCommands = data;
+    })
+    .catch(console.error);
 void global.PSCommandParser.loadCommands();
 const html = fs.readFileSync("./config/index.html", "utf-8");
 
@@ -68,7 +71,7 @@ createServer((req, res) => {
 }).listen(3000);
 
 void DiscordClient.login(process.env.DISCORD as string);
-PSClient.connect();
+// PSClient.connect();
 
 const UNCAUGHT_ERR_PATH = "./logs/uncaught";
 const UNHANDLED_ERR_PATH = "./logs/unhandled";
