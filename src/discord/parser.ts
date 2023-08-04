@@ -189,21 +189,39 @@ export class DiscordCommandParser {
     async setupGlobal(): Promise<Record<Snowflake, DiscordCommandSingleData>> {
         const obj: Record<Snowflake, DiscordCommandSingleData> = {};
         const [globalCommands, guildCommands] = await this.loadCommands();
-        const CommandIds: [Snowflake, { name: string; guild: Snowflake | null }][] = Object.entries(
-            JSON.parse(fs.readFileSync(COMMAND_DATA_FILE_PATH, "utf-8")) as { [id: Snowflake]: { name: string; guild: Snowflake | null } }
+        const CommandIds: [Snowflake, { name: string; guildId: Snowflake | null }][] = Object.entries(
+            JSON.parse(fs.readFileSync(COMMAND_DATA_FILE_PATH, "utf-8")) as { [id: Snowflake]: { name: string; guildId: Snowflake | null } }
         );
+        const nonExistentCommands: [DiscordCommandSingleData, Snowflake | null][] = [];
         for (const [commandName, commandData] of Object.entries(globalCommands)) {
-            for (const [id, { name, guild }] of CommandIds) {
-                if (name === commandName && guild === null) obj[id] = commandData;
+            let dataExist = false;
+            for (const [id, { name, guildId }] of CommandIds) {
+                if (name === commandName && guildId === null) {
+                    obj[id] = commandData;
+                    dataExist = true;
+                    break;
+                }
             }
+            if (!dataExist) nonExistentCommands.push([commandData, null]);
         }
 
         for (const [guildId, commands] of Object.entries(guildCommands)) {
+            if (!Tools.isSnowflake(guildId)) throw new Error("Invalid guildId given: " + guildId);
             for (const [commandName, commandData] of Object.entries(commands)) {
-                for (const [id, { name, guild }] of CommandIds) {
-                    if (name === commandName && guild === guildId) obj[id] = commandData;
+                let dataExist = false;
+                for (const [id, { name, guildId: guild }] of CommandIds) {
+                    if (name === commandName && guild === guildId) {
+                        obj[id] = commandData;
+                        dataExist = true;
+                        break;
+                    }
                 }
+                if (!dataExist) nonExistentCommands.push([commandData, null]);
             }
+        }
+        if (nonExistentCommands.length) {
+            console.error("Some commands was not found on Command ID List:");
+            console.error(nonExistentCommands);
         }
         return obj;
     }

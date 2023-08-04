@@ -34,7 +34,10 @@ global.DiscordCommandParser.setupGlobal()
     .then((data) => {
         global.DiscordCommands = data;
     })
-    .catch(console.error);
+    .catch((e) => {
+        throw e;
+    });
+
 void global.PSCommandParser.loadCommands();
 const html = fs.readFileSync("./config/index.html", "utf-8");
 
