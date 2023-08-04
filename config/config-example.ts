@@ -1,6 +1,6 @@
 import { GatewayIntentBits } from "discord.js";
 
-import type { ClientOptions as PSClientOptions, Tournament, Message } from "@dirain/client";
+import type { ClientOptions as PSClientOptions, Tournament, Message, User } from "@dirain/client";
 import type { ClientOptions as DiscordClientOptions, ClientUser as DiscordClientUser, Snowflake } from "discord.js";
 
 import type { ModchatSetting } from "../types/config";
@@ -30,5 +30,6 @@ export const enableWordle: string[] = [];
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 export function onConnectDiscord(this: DiscordClientUser): void {}
 
+export const onUserJoin: Dict<{ run: (this: User) => void; cooldown: number; lastTime: number }> = {};
 export const onRoomMessage: Dict<(this: Message) => void> = {};
 export const onTournamentCreate: Dict<(this: Tournament) => void> = {};

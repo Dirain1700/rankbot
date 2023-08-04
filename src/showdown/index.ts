@@ -30,6 +30,17 @@ export default () => {
         }
     });
 
+    PS.on("roomUserAdd", (room: Room, user: User): void => {
+        if (user.id in Config.onUserJoin) {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            const runtimeData = Config.onUserJoin[user.id]!;
+            if (Date.now() - runtimeData.lastTime >= runtimeData.cooldown) {
+                runtimeData.run.call(user);
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                Config.onUserJoin[user.id]!.lastTime = Date.now();
+            }
+        }
+    });
     PS.on("roomUserRemove", (room: Room, user: User): boolean => enableModchat(user, room));
 
     PS.on("chatError", (e) => console.log(e));
