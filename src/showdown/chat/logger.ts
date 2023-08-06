@@ -70,7 +70,7 @@ export function sendModlog(message: Message<Room>): void {
     const lockRegex: RegExp = /(?<target>^.{2,20}) was locked from talking by (?<staff>.{2,20})\.( \((?<reason>.*)\))?/;
     const muteRegex: RegExp = /(?<target>^.{2,20}) was muted by (?<staff>.{2,20}) for (?<time>(7 minutes|1 hour))\.( \((?<reason>.*)\))?/;
     const promoteRegex: RegExp =
-        /(?<target>^.{2,20}) was ((promoted to (?<auth>(Room|Global) (Voice|Driver|Moderator)))|appointed to Room Owner) by (?<staff>.{2,20})\./;
+        /(?<target>^.{2,20}) was ((promoted to (?<auth>(Room|Global) (Voice|Driver|Moderator)))|appointed Room Owner) by (?<staff>.{2,20})\./;
     const demoteRegex: RegExp =
         /\((?<target>.{2,20}) was demoted to (?<auth>(Room|Global) (regular user|Voice|Driver|Moderator)) by (?<staff>.{2,20})\.\)/;
     /* eslint-enable */
@@ -118,7 +118,7 @@ export function sendModlog(message: Message<Room>): void {
     } else if (log.match(promoteRegex)) {
         isPunish = false;
         const { target, auth } = log.match(promoteRegex)!.groups ?? {};
-        log = `${log}\nCongrats ${target!} on ${auth!}!`;
+        log = `${log}\nCongrats ${target!} on ${auth || "Room Owner"}!`;
     } else if (log.match(demoteRegex)) {
         isPunish = false;
     }
