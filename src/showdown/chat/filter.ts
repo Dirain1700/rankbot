@@ -53,7 +53,7 @@ export default function (message: Message<Room>): void {
         return hasStretchSentence;
     };
 
-    let content: string = "Bot moderation: this message have been by ";
+    let content: string = "Bot moderation: this message have been caught by ";
 
     if (stretchFilter(message.content)) content += "stretchFilter";
     else if (wordStretchFilter(message.content)) content += "wordStretchFilter" + message.content;
