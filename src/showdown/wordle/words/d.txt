@@ -5,6 +5,7 @@ daisy
 dally
 dance
 dandy
+darts
 datum
 daunt
 dealt
