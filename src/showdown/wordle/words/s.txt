@@ -361,5 +361,6 @@ sword
 swore
 sworn
 swung
+sylph
 synod
 syrup
