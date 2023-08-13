@@ -16,3 +16,8 @@ export interface WordlePlayer {
 export interface EndedPlData extends WordlePlayer {
     name: string;
 }
+
+export interface IWordleConfig {
+    announce: boolean;
+    commend: boolean;
+}

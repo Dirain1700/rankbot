@@ -8,6 +8,7 @@ import { storeChat, sendModlog } from "./chat/logger";
 import announceModchat from "./chat/modchat/detect";
 import enableModchat from "./chat/modchat/enable";
 import { PSCommandContext } from "./parser";
+import { Wordle } from "./wordle/main";
 
 import type { Message, ModchatLevel, Room } from "@dirain/client";
 
@@ -87,7 +88,7 @@ export default () => {
             new PSCommandContext("wordle", "wordle", "commend", PS.user!, developer, 0).run();
         });
         setTimeout(() => {
-            new PSCommandContext("wordle", "wordle", "restore", PS.user!, developer, 0).run();
+            Wordle.rebuild();
         }, 3 * 1000);
     });
 

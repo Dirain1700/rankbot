@@ -29,6 +29,26 @@ export class Wordle {
         this.eliminatedPl = new Map(data?.eliminatedPl || []);
     }
 
+    static rebuild(): void {
+        const date = new Date(Date.now() + 9 * 60 * 60 * 1000);
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, "0");
+        const day = date.getDate().toString().padStart(2, "0");
+
+        for (const r in Config.enableWordle) {
+            const room = PS.rooms.cache.get(r);
+            if (!room) continue;
+            const path = `./logs/wordle/${r}/${year}/${month}/${day}.json`;
+            if (!fs.existsSync(path)) continue;
+            try {
+                const data: StoredWordleDataType = JSON.parse(fs.readFileSync(path, "utf-8")) as StoredWordleDataType;
+                Wordles[r] = new Wordle(room, data);
+            } catch (e: unknown) {
+                console.error(e);
+            }
+        }
+    }
+
     setup(): string {
         const str = "abcdefghijklmnopqrstuvwxyz";
         const pick = (arr: string[]): string => arr[~~(Math.random() * arr.length)] as string;
