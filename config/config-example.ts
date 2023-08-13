@@ -5,6 +5,7 @@ import type { ClientOptions as DiscordClientOptions, ClientUser as DiscordClient
 
 import type { ModchatSetting } from "../types/config";
 import type { Dict } from "../types/utils";
+import type { IWordleConfig } from "../types/wordle";
 
 const { Guilds, GuildMessages, MessageContent, GuildMessageReactions, GuildMembers, GuildPresences, GuildBans } = GatewayIntentBits;
 
@@ -25,7 +26,7 @@ export const enableStretchFilter: string[] = [];
 export const logChannels: Dict<Snowflake> = {};
 export const developers: string[] = [];
 export const admin: Snowflake[] = [];
-export const enableWordle: string[] = [];
+export const enableWordle: Dict<IWordleConfig> = {};
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 export function onConnectDiscord(this: DiscordClientUser): void {}
