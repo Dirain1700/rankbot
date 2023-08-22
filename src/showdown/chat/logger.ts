@@ -9,7 +9,7 @@ interface chatLogType {
     time: number;
 }
 
-const sortLogFunction = (a: chatLogType, b: chatLogType) => b.time - a.time;
+const sortLogFunction = (a: chatLogType, b: chatLogType) => a.time - b.time;
 
 const MAX_STORED_MESSAGES_LENGTH = 50;
 
