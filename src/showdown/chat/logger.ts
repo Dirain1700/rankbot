@@ -68,6 +68,7 @@ export function sendModlog(message: Message<Room>): void {
         case "warn":
         case "mute":
         case "roomban":
+        case "blacklist":
         case "lock": {
             targetMessages = originalChatlog.filter((m) => m.user == Tools.toId(logDetails.target));
             targetMessages.sort(sortLogFunction);
