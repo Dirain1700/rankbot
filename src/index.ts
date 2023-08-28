@@ -13,8 +13,8 @@ import { Tools } from "./Tools";
 
 import discordHandler from "./discord/index";
 import { DiscordCommandParser, DiscordCommandContext } from "./discord/parser";
-import PShandler from "./showdown/index";
-import { PSCommandParser, PSCommandContext } from "./showdown/parser";
+import PShandler from "./ps/index";
+import { PSCommandParser, PSCommandContext } from "./ps/parser";
 import * as config from "../config/config";
 import { dex } from "../data/dex/pokedex";
 

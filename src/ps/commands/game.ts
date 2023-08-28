@@ -314,7 +314,7 @@ function parse(this: PSCommandContext, roomId: string, guess: string): void {
         resend(wordleRoom, this.user.userid);
         return;
     }
-    const wordList = fs.readFileSync(`./src/showdown/wordle/words/${guess.charAt(0)}.txt`, "utf-8").split("\n");
+    const wordList = fs.readFileSync(`./src/ps/wordle/words/${guess.charAt(0)}.txt`, "utf-8").split("\n");
     // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
     if (guess !== Wordles[roomId]!.answer && !wordList.includes(guess)) {
         wordleRoom.sendPrivateHtmlBox(this.user.userid, "Not in word list");

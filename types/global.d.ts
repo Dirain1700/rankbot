@@ -4,8 +4,8 @@ import type { BasePSCommandData, DiscordCommandSingleData } from "./commands";
 import type { Species } from "./dex";
 import type { Dict } from "./utils";
 import type { DiscordCommandParser, DiscordCommandContext } from "../src/discord/parser";
-import type { PSCommandParser, PSCommandContext } from "../src/showdown/parser";
-import type { Wordle } from "../src/showdown/wordle/main";
+import type { PSCommandParser, PSCommandContext } from "../src/ps/parser";
+import type { Wordle } from "../src/ps/wordle/main";
 import type { Collection } from "discord.js";
 
 declare global {
