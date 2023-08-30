@@ -18,6 +18,7 @@ const mainUnihanSourceFileName = path.join(detectZhDir, "src/detect-source.ts");
 const mainUnihanFileName = path.join(detectZhDir, "src/detect.ts");
 const exportUnihanSourceFileName = path.join(detectZhDir, "src/index-source.ts");
 const exportUnihanFileName = path.join(detectZhDir, "src/index.ts");
+const distDir = path.resolve(__dirname, "dist");
 
 const config = {
     allowOverwrite: true,
@@ -41,6 +42,16 @@ buildSync(merge(cloneDeep(config), {
 }));
 
 console.log("Transpiling Unihan database setup files...");
+
+if (fs.existsSync(distDir)) {
+    const stats = fs.readdirSync(distDir, { withFileTypes: true });
+
+    for (const stat of stats) {
+        if (!stat.isFile()) fs.rmSync(path.join(distDir, stat.name), { recursive: true });
+    }
+} else {
+    fs.mkdirSync(distDir, { recursive: true });
+}
 
 // @ts-expect-error format should be assignable
 // prettier-ignore
@@ -82,13 +93,6 @@ if (unihanDataFiles.length === 2) {
     fs.writeFileSync(exportUnihanFileName, exportUnihanFileSource);
 
     mainTargetFiles.push(exportUnihanFileName);
-}
-
-const distDir = path.resolve(__dirname, "dist");
-const stats = fs.readdirSync(distDir, { withFileTypes: true });
-
-for (const stat of stats) {
-    if (!stat.isFile()) fs.rmSync(path.join(distDir, stat.name), { recursive: true });
 }
 
 // @ts-expect-error format should be assignable

@@ -1,10 +1,11 @@
 "use strict";
 
-import { Room, User } from "@dirain/client";
 import { cloneDeep } from "lodash";
 
+import { Room, User } from "./client/src/index";
+
+import type { Message, GroupSymbol } from "./client/src";
 import type { BasePSCommandDefinitions, BasePSCommandData, BasePSCommandGuide, PSCommandErrorInputType } from "../../types/commands";
-import type { Message, GroupSymbol } from "@dirain/client";
 
 export class PSCommandParser {
     commandsDir = "./commands";
@@ -16,6 +17,7 @@ export class PSCommandParser {
             .readdirSync(path.resolve(__dirname, this.commandsDir))
             .filter((f) => f.endsWith(".js"))
             .map((f) => f.trim());
+        if (!global.PSCommands) global.PSCommands = {};
 
         return Promise.allSettled(
             files.map((file) => {
@@ -190,11 +192,11 @@ export class PSCommandContext<T extends Room | User = Room | User> {
         command = Tools.toId(command);
         if (this.inRoom()) {
             if (prefix === "!") {
-                if (command === "show") this.room.hasRank("%", PS.user);
-                else this.room.hasRank("+", PS.user);
+                if (command === "show") this.room.hasRank("%", PS.user.id);
+                else this.room.hasRank("+", PS.user.id);
                 return this.say(prefix + command + " " + args);
             } else {
-                this.room.hasRank("+", PS.user);
+                this.room.hasRank("+", PS.user.id);
                 return this.room.send(prefix + command + " " + args);
             }
         } else if (this.inPm()) {

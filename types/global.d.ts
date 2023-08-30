@@ -4,16 +4,19 @@ import type { BasePSCommandData, DiscordCommandSingleData } from "./commands";
 import type { Species } from "./dex";
 import type { Dict } from "./utils";
 import type { DiscordCommandParser, DiscordCommandContext } from "../src/discord/parser";
+import type { Client, Rooms, Users } from "../src/ps/client/src";
 import type { PSCommandParser, PSCommandContext } from "../src/ps/parser";
 import type { Wordle } from "../src/ps/wordle/main";
-import type { Collection } from "discord.js";
+import type { Client as DiscordClient, Collection } from "discord.js";
 
 declare global {
     var fs: typeof import("node:fs");
     var path: typeof import("node:path");
     var Config: typeof import("../config/config");
-    var discord: typeof import("../src/index").DiscordClient;
-    var PS: typeof import("../src/index").PSClient;
+    var Discord: DiscordClient<boolean>;
+    var Rooms: Rooms;
+    var Users: Users;
+    var PS: Client;
     var Tools: typeof import("../src/Tools").Tools;
     var Wordles: Dict<Wordle>;
     var Dex: Collection<string, Species>;

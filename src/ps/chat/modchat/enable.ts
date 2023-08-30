@@ -1,13 +1,12 @@
 "use strict";
 
-import type { User, Room } from "@dirain/client";
+import type { User, Room } from "../../client/src/index";
 
 const IDLE_STATUS = "!(Idle) ";
 const BUSY_STATUS = "!(Busy) ";
 
 export default (targetUser: User, room?: Room): boolean => {
     if (room) return runModchatSetter(targetUser, room);
-    else if (!targetUser.rooms.size) return false;
 
     let result: boolean = false;
     for (const r of targetUser.rooms.values()) {
@@ -35,7 +34,7 @@ export function runModchatSetter(targetUser: User, targetRoom: Room): boolean {
     if (!targetRoom.hasRank("%", targetUser) && !targetUser.alts.every((u) => targetRoom.hasRank("%", u))) return false;
     if (targetRoom.modchat && targetRoom.modchat !== "autoconfirmed") return false;
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-assignment
     const { startTime, endTime, always, rank, ignoreGlobals, allowBusy, allowAlts, disabled } = Config.modchatTime[targetRoom.roomid]!;
     if (!checkCondition(startTime, endTime, always, new Date().getHours())) return false;
     if (disabled) return false;
@@ -50,7 +49,7 @@ export function runModchatSetter(targetUser: User, targetRoom: Room): boolean {
             }
         } else {
             if (allowAlts && u.alts.length) {
-                if (u.alts.every((a) => !PS.users.cache.has(a) || !targetRoom.isStaff(PS.users.cache.get(a)!))) continue;
+                if (u.alts.every((a) => !Users.has(a) || !targetRoom.isStaff(Users.get(a)!))) continue;
             }
         }
         if (!u.online) continue;
@@ -66,6 +65,7 @@ export function runModchatSetter(targetUser: User, targetRoom: Room): boolean {
     }
     if (!isStaffOnline) {
         targetRoom.send("This room has no staffs so modchat will be set to +.");
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         targetRoom.setModchat(rank || "+");
         return true;
     } else return false;

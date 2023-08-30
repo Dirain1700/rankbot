@@ -1,6 +1,6 @@
 "use strict";
 
-import type { Message, Room } from "@dirain/client";
+import type { Message, Room } from "../client/src";
 import type { Channel } from "discord.js";
 
 interface chatLogType {
@@ -14,7 +14,7 @@ const sortLogFunction = (a: chatLogType, b: chatLogType) => a.time - b.time;
 const MAX_STORED_MESSAGES_LENGTH = 50;
 
 export function storeChat(message: Message<Room>): void {
-    if (!(message.target.roomid in Config.logChannels) || !discord.isReady()) return;
+    if (!(message.target.roomid in Config.logChannels) || !Discord.isReady()) return;
     if (message.content.startsWith("/") && !message.content.startsWith("/log")) return;
     const content = message.content.replace("/log ", "");
     const dirPath = "./logs/chat";
@@ -44,13 +44,13 @@ export function storeChat(message: Message<Room>): void {
 
 export function sendModlog(message: Message<Room>): void {
     const targetChannelId = Config.logChannels[message.target.roomid];
-    if (!targetChannelId || !discord.isReady()) return;
+    if (!targetChannelId || !Discord.isReady()) return;
     const log = message.content.replace("/log ", "");
     const filePath = `./logs/chat/${message.target.roomid}.json`;
     if (!fs.existsSync(filePath)) return;
     let originalChatlog: chatLogType[] = JSON.parse(fs.readFileSync(filePath, "utf-8")) as chatLogType[];
     let targetMessages: chatLogType[] = [];
-    const targetChannel: undefined | Channel = discord.channels.cache.get(targetChannelId);
+    const targetChannel: undefined | Channel = Discord.channels.cache.get(targetChannelId);
     if (!targetChannel || !targetChannel.isTextBased()) return;
 
     const logDetails = Tools.getLogDetails(log);

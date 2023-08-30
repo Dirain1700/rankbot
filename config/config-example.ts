@@ -1,6 +1,6 @@
 import { GatewayIntentBits } from "discord.js";
 
-import type { ClientOptions as PSClientOptions, Tournament, Message, User } from "@dirain/client";
+import type { ClientOptions as PSClientOptions, Tournament, Message, User } from "../src/ps/client/src";
 import type { ClientOptions as DiscordClientOptions, ClientUser as DiscordClientUser, Snowflake } from "discord.js";
 
 import type { ModchatSetting } from "../types/config";
@@ -19,6 +19,9 @@ export const PSOptions: PSClientOptions = {
     status: "",
     autoJoin: [],
 };
+
+export const roomAliases: Dict<string> = {};
+
 export const modchatTime: Dict<ModchatSetting> = {};
 export const commandPrefix = "";
 export const readme = "";
