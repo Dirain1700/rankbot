@@ -14,7 +14,7 @@ const DISPLAY_HTML_PATH = path.resolve(__dirname, "..", "config/index.html");
 const UNCAUGHT_ERR_PATH = "./logs/uncaught";
 const UNHANDLED_ERR_PATH = "./logs/unhandled";
 
-const SingleModulePaths = {
+export const SingleModulePaths = {
     activity: "./ps/client/src/Activity.js",
     psclient: "./ps/client/src/Client.js",
     clientuser: "./ps/client/src/ClientUser.js",
@@ -35,10 +35,11 @@ const SingleModulePaths = {
     tools: "./Tools.js",
 } as const;
 
-const DirectoryModulePaths = {
+export const DirectoryModulePaths = {
     pscommands: "./ps/commands",
     wordle: "./ps/wordle",
     discordcommands: "./discord/commands",
+    chat: "./ps/chat",
 } as const;
 
 export function startServer() {
@@ -141,8 +142,8 @@ export function setupGlobal() {
     global.Users = new Users();
     global.Discord = new DiscordClient(Config.DiscordOptions);
     global.PS = new PSClient(Config.PSOptions);
-    require("./ps/index");
-    require("./discord/index");
+    (require(SingleModulePaths.pshandler) as typeof import("./ps/index")).setEventListeners();
+    (require(SingleModulePaths.discordhandler) as typeof import("./discord/index")).setEventListeners();
     global.DiscordCommandParser = new DiscordCommandParser();
     global.DiscordCommandParser.setupGlobal()
         .then((data) => {
@@ -203,6 +204,11 @@ export function reloadModule(modules: Array<keyof typeof SingleModulePaths | key
                 void global.PSCommandParser.loadCommands();
                 break;
             }
+            case "pshandler": {
+                PS.removeAllListeners();
+                (require(SingleModulePaths.pshandler) as typeof import("./ps/index")).setEventListeners();
+                break;
+            }
             case "dex": {
                 const dexdataIndex = modules.indexOf("dexdata");
                 if (!dexdataIndex || dexdataIndex < modules.indexOf("dex")) {
@@ -231,6 +237,11 @@ export function reloadModule(modules: Array<keyof typeof SingleModulePaths | key
                     .catch((e) => {
                         throw e;
                     });
+                break;
+            }
+            case "discordhandler": {
+                Discord.removeAllListeners();
+                (require(SingleModulePaths.discordhandler) as typeof import("./discord/index")).setEventListeners();
                 break;
             }
             case "pstools": {

@@ -2,8 +2,14 @@
 
 import { exec } from "child_process";
 
+import { reloadModule } from "../../setup";
+
 import type { BasePSCommandDefinitions } from "../../../types/commands";
+import type { SingleModulePaths, DirectoryModulePaths } from "../../setup";
+
 import type { ExecException } from "child_process";
+
+const loadableModules = ["games", "commands", "client", "handler", "config", "dex"] as const;
 
 export const commands: BasePSCommandDefinitions = {
     eval: {
@@ -35,8 +41,8 @@ export const commands: BasePSCommandDefinitions = {
     },
     export: {
         // eslint-disable-next-line  @typescript-eslint/no-unused-vars
-        run(argument, room, user): void {
-            const targetFilePath = argument.trim();
+        run(target, room, user): void {
+            const targetFilePath = target.trim();
             if (!fs.existsSync(targetFilePath)) return this.say("Module not found. Check spelling?");
 
             const result = fs.readFileSync(targetFilePath, "utf-8");
@@ -46,38 +52,61 @@ export const commands: BasePSCommandDefinitions = {
         aliases: ["output"],
         developerOnly: true,
     },
+    gitpull: {
+        // eslint-disable-next-line  @typescript-eslint/no-unused-vars
+        run(target, room, user): void {
+            exec("git pull", (error: ExecException | null, stdout: string, stderr: string): void => {
+                let result = "";
+                if (error) result += (error.stack ?? error.message) + "\n";
+                if (stdout === "Already up-to-date.") {
+                    return this.sayCode(stdout);
+                } else {
+                    result += stdout;
+                    result += stderr;
+                }
+                if (result) this.sayCode(result);
+            });
+        },
+        syntax: [""],
+        developerOnly: true,
+    },
     hotpatch: {
         // eslint-disable-next-line  @typescript-eslint/no-unused-vars
-        run(argument, room, user): void {
-            const filePath = argument.trim();
-            if (!filePath) return;
-            if (filePath === "git") {
-                exec("git pull", (error: ExecException | null, stdout: string, stderr: string): void => {
-                    let result = "";
-                    if (error) result += (error.stack ?? error.message) + "\n";
-                    if (stdout === "Already up-to-date.") {
-                        return this.sayCode(stdout);
-                    } else {
-                        result += stdout;
-                        result += stderr;
-                    }
-                    if (result) this.sayCode(result);
-                });
-            } else {
-                if (!filePath || !fs.existsSync(filePath)) return this.say("Error: The file does not exist.");
+        run(target, room, user) {
+            const modules: Array<keyof typeof SingleModulePaths | keyof typeof DirectoryModulePaths> = [];
 
-                try {
-                    Tools.execSync("npm run esbuild");
-                } catch (e: unknown) {
-                    return void this.sayCommand("!", "code", (e as ExecException).stack ?? (e as ExecException).message);
+            const possibleModule: (typeof loadableModules)[number] = target as (typeof loadableModules)[number];
+            switch (possibleModule) {
+                case "client": {
+                    modules.push(...(["room", "user", "clientuser"] as typeof modules));
+                    break;
                 }
-
-                const resolvedPath = Object.keys(require.cache).find((e) => e.includes(filePath.slice(1)));
-                if (!resolvedPath) return void this.say("Error: The file does not exist");
-                delete require.cache[resolvedPath];
-                this.say(`Hotpatch successed: ${resolvedPath}`);
+                case "commands": {
+                    modules.push(...(["psparser", "pscommands"] as typeof modules));
+                    break;
+                }
+                case "config": {
+                    modules.push(...(["config", "room"] as typeof modules));
+                    break;
+                }
+                case "dex": {
+                    modules.push(...(["dex", "dexdata"] as typeof modules));
+                    break;
+                }
+                case "games": {
+                    modules.push(...(["activity", "psgame", "pscommands", "tournament", "wordle"] as typeof modules));
+                    break;
+                }
+                case "handler": {
+                    modules.push(...(["pshandler"] as typeof modules));
+                    break;
+                }
+                default:
+                    return this.say("Module " + (possibleModule satisfies never) + " not found");
             }
+            reloadModule(modules);
         },
+        aliases: ["reload"],
         syntax: ["[module]"],
         developerOnly: true,
     },

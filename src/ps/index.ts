@@ -12,7 +12,7 @@ import { Wordle } from "./wordle/main";
 
 import type { Message, ModchatLevel, Room } from "./client/src";
 
-PS.on("messageCreate", (message: Message) => {
+export const onMessage = (message: Message) => {
     if (message.author.userid === PS.status.id) return;
     PSCommandParser.parse(message);
     if (message.inRoom()) {
@@ -28,9 +28,8 @@ PS.on("messageCreate", (message: Message) => {
             sendModlog(message);
         }
     }
-});
-
-PS.on("roomUserAdd", (room: Room, user: User): void => {
+};
+export const onUserAdd = (room: Room, user: User): void => {
     if (user.id in Config.onUserJoin) {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const runtimeData = Config.onUserJoin[user.id]!;
@@ -40,30 +39,20 @@ PS.on("roomUserAdd", (room: Room, user: User): void => {
             Config.onUserJoin[user.id]!.lastTime = Date.now();
         }
     }
-});
-PS.on("roomUserRemove", (room: Room, user: User): boolean => enableModchat(user, room));
-
-PS.on("chatError", (e) => console.log(e));
-PS.on("error", (e) => console.log(e));
-
-PS.on("modchat", (room: Room, currentModchatLevel: ModchatLevel, previousModchatLevel: ModchatLevel): void => {
+};
+export const onUserRemove = (room: Room, user: User): boolean => enableModchat(user, room);
+export const onModchat = (room: Room, currentModchatLevel: ModchatLevel, previousModchatLevel: ModchatLevel): void => {
     announceModchat(room, currentModchatLevel, previousModchatLevel);
-});
-
-PS.on("userRename", (NewU) => {
-    enableModchat(NewU);
-});
-
-PS.on("tourCreate", (room) => {
+};
+export const onUserRename = (NewU: User) => enableModchat(NewU);
+export const onTournamentCreate = (room: Room) => {
     if (Config.onTournamentCreate[room.roomid] && room.tour) {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         Config.onTournamentCreate[room.roomid]!.call(room.tour);
     }
-});
-
+};
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-
-PS.on("ready", () => {
+export const onReady = () => {
     console.log("Logged in as", PS.user!.name);
 
     if (!Config.developers[0]) return;
@@ -86,6 +75,17 @@ PS.on("ready", () => {
     setTimeout(() => {
         Wordle.rebuild();
     }, 3 * 1000);
-});
+};
 
 /* eslint-enable */
+export function setEventListeners() {
+    PS.on("messageCreate", onMessage);
+    PS.on("roomUserAdd", onUserAdd);
+    PS.on("roomUserRemove", onUserRemove);
+    PS.on("chatError", console.log);
+    PS.on("error", console.log);
+    PS.on("modchat", onModchat);
+    PS.on("userRename", onUserRename);
+    PS.on("tourCreate", onTournamentCreate);
+    PS.on("ready", onReady);
+}
