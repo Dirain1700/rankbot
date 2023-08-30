@@ -10,7 +10,7 @@ import { Client as DiscordClient } from "discord.js";
 
 import { Client as PSClient } from "./ps/client/src/Client";
 
-const DISPLAY_HTML_PATH = path.resolve(__dirname, "..", "config/index.html");
+const DISPLAY_HTML_PATH = "./config/index.html";
 const UNCAUGHT_ERR_PATH = "./logs/uncaught";
 const UNHANDLED_ERR_PATH = "./logs/unhandled";
 
