@@ -264,6 +264,7 @@ export class Client extends EventEmitter {
 
     public disconnect(): void {
         if (!this.ws) return;
+        this.ws.send("/logout");
         this.connected = false;
         this.loggedIn = false;
         this.closed = true;
