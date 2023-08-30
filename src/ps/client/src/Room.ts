@@ -650,7 +650,7 @@ export class Rooms extends Collection<string, Room> {
     constructor(iterable?: Iterable<readonly [string, Room]> | null | undefined) {
         super(iterable);
         if (global.Config) {
-            this.aliases = cloneDeep(Config.roomAliases);
+            this.aliases = Config.roomAliases ? cloneDeep(Config.roomAliases) : {};
         }
     }
 
