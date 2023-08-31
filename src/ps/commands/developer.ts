@@ -109,7 +109,7 @@ export const commands: BasePSCommandDefinitions = {
             (require("../../../build.js") as typeof import("../../../build")).build();
             reloadModule(modules);
 
-            this.say("Successfully hotpatched.")
+            this.say("Successfully hotpatched.");
         },
         aliases: ["reload"],
         syntax: ["[module]"],
