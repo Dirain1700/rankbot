@@ -104,6 +104,9 @@ export const commands: BasePSCommandDefinitions = {
                 default:
                     return this.say("Module " + (possibleModule satisfies never) + " not found");
             }
+            reloadModule(["build"]);
+            // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/consistent-type-imports
+            (require("../../../build.js") as typeof import("../../../build")).build();
             reloadModule(modules);
         },
         aliases: ["reload"],
