@@ -106,7 +106,7 @@ export const commands: BasePSCommandDefinitions = {
             }
             reloadModule(["build"]);
             // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/consistent-type-imports
-            (require("../../../build.js") as typeof import("../../../build")).build();
+            (require("../../../../build.js") as typeof import("../../../build")).build();
             reloadModule(modules);
 
             this.say("Successfully hotpatched.");

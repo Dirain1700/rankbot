@@ -33,7 +33,7 @@ export const SingleModulePaths = {
     discordparser: "./discord/parser.js",
     config: "../config/config.js",
     tools: "./Tools.js",
-    build: "../build.js",
+    build: "../../build.js",
 } as const;
 
 export const DirectoryModulePaths = {
