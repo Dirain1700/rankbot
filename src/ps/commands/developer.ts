@@ -114,5 +114,6 @@ export const commands: BasePSCommandDefinitions = {
         aliases: ["reload"],
         syntax: ["[module]"],
         developerOnly: true,
+        disabled: true,
     },
 };
