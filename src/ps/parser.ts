@@ -126,6 +126,7 @@ export class PSCommandContext<T extends Room | User = Room | User> {
         if (command.developerOnly && !Config.developers.includes(this.user.userid)) return;
         if (this.inRoom() && command.pmOnly) return;
         else if (this.inPm() && command.chatOnly) return;
+        if (command.disabled) return this.say("This command is currently disabled.");
 
         command.run.call(this, this.argument, this.room, this.user, this.command, this.timestamp);
     }

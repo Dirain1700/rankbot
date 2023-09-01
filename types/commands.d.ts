@@ -19,6 +19,7 @@ export interface PSCommandDefinitions<T, returns = any> {
     syntax?: string[];
     developerOnly?: boolean;
     aliases?: string[];
+    disabled?: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -47,6 +48,7 @@ export interface DiscordCommandDefinitions<T, returns = any> {
     syntax?: string[];
     developerOnly?: boolean;
     aliases?: string[];
+    disabled?: boolean;
     resolvable: ApplicationCommandData;
 }
 

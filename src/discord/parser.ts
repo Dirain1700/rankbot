@@ -292,6 +292,7 @@ export class DiscordCommandContext {
                 return;
             }
         }
+        if (command.disabled) return this.reply("This command is currently disbled.");
 
         command.run.call(this);
     }
