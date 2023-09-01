@@ -20,7 +20,7 @@
     "dependencies": {
         "@dirain/client": "^0.0.26-dev.1691478359-ac16c80.0",
         "axios": "^1.4.0",
-        "discord.js": "^14.12.1",
+        "discord.js": "^14.13.0",
         "eslint-plugin-import": "^2.28.0",
         "lodash": "^4.17.21",
         "node-schedule": "^2.1.1"
