@@ -4,8 +4,8 @@ import { Wordle } from "../wordle/main";
 
 import type { BasePSCommandDefinitions } from "../../../types/commands";
 import type { arrayOf } from "../../../types/utils";
+import type { Room } from "../client/src";
 import type { PSCommandContext } from "../parser";
-import type { Room } from "@dirain/client";
 
 // prettier-ignore
 const WORDLE_ALIASES = ["initwordle", "createwordle", "newwordle", "announcewordle",
@@ -107,7 +107,7 @@ export const commands: BasePSCommandDefinitions = {
                             }
                             return;
                         } else {
-                            const targetRoom = PS.rooms.cache.get(roomId);
+                            const targetRoom = Rooms.get(roomId);
                             if (!targetRoom) return this.sayError("INVALID_BOT_ROOM", roomId);
                             if (!(roomId in Config.enableWordle)) return this.sayError("WORDLE_DISABLED", targetRoom.title);
                             if (!targetRoom.hasRank("%", this.user)) return this.sayError("PERMISSION_DENIED", "%");
@@ -127,7 +127,7 @@ export const commands: BasePSCommandDefinitions = {
                     if (!roomId) return this.sayError("INVALID_ROOM");
                     let targetRoom: Room | undefined;
                     if (this.inRoom()) targetRoom = this.room;
-                    else targetRoom = PS.rooms.cache.get(roomId);
+                    else targetRoom = Rooms.get(roomId);
                     if (!targetRoom || !targetRoom.exists) return this.sayError("INVALID_ROOM", roomId);
                     announce.call(this, targetRoom);
                     break;
@@ -153,9 +153,9 @@ export const commands: BasePSCommandDefinitions = {
                 case "send":
                 case "request": {
                     if (!this.inPm()) return void user.send("You must use this command in PM.");
-                    if (!roomId || !PS.rooms.cache.has(roomId)) return this.sayError("INVALID_ROOM", roomId ? roomId : "");
+                    if (!roomId || !Rooms.has(roomId)) return this.sayError("INVALID_ROOM", roomId ? roomId : "");
                     // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
-                    const targetRoom = PS.rooms.cache.get(roomId)!;
+                    const targetRoom = Rooms.get(roomId)!;
                     if (!(roomId in Config.enableWordle) || !Wordles[roomId]) return this.sayError("WORDLE_DISABLED", targetRoom.title);
                     send.call(this, targetRoom);
                     break;
@@ -175,7 +175,7 @@ export const commands: BasePSCommandDefinitions = {
                             return this.sayError("INVALID_ROOM");
                         } else {
                             for (const r in Wordles) {
-                                const targetRoom = PS.rooms.cache.get(r);
+                                const targetRoom = Rooms.get(r);
                                 if (!targetRoom || !Wordles[r]) continue;
                                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                                 if (!Config.enableWordle[r]!.commend) {
@@ -188,7 +188,7 @@ export const commands: BasePSCommandDefinitions = {
                     } else {
                         let targetRoom: Room | undefined;
                         if (this.inRoom()) targetRoom = this.room;
-                        else targetRoom = PS.rooms.cache.get(roomId);
+                        else targetRoom = Rooms.get(roomId);
                         if (!targetRoom || !Wordles[roomId]) return this.sayError("WORDLE_DISABLED", targetRoom ? targetRoom.title : "");
                         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                         if (!Config.enableWordle[targetRoom.id]!.commend) {
@@ -205,7 +205,7 @@ export const commands: BasePSCommandDefinitions = {
                     if (this.inPm() && !roomId) {
                         if (!user.hasRank("%") && !Config.developers.includes(user.id)) return this.sayError("PERMISSION_DENIED", "%");
                         for (const r in Wordles) {
-                            const targetRoom = PS.rooms.cache.get(r);
+                            const targetRoom = Rooms.get(r);
                             if (!targetRoom || !Wordles[roomId])
                                 return this.sayError("WORDLE_DISABLED", targetRoom ? targetRoom.title : "");
                             destroyWordle.call(this, targetRoom, true);
@@ -215,7 +215,7 @@ export const commands: BasePSCommandDefinitions = {
                     if (!roomId) return this.sayError("INVALID_ROOM");
                     let targetRoom: Room | undefined;
                     if (this.inRoom()) targetRoom = this.room;
-                    else targetRoom = PS.rooms.cache.get(roomId);
+                    else targetRoom = Rooms.get(roomId);
                     if (!targetRoom || !Wordles[roomId]) return this.sayError("WORDLE_DISABLED", targetRoom ? targetRoom.title : "");
                     destroyWordle.call(this, targetRoom, true);
                     break;
@@ -235,7 +235,7 @@ function initWordle(this: PSCommandContext, r: string, answer?: string): void {
         answer = Tools.toId(answer);
         if (answer.length !== 5) return this.say("Invalid syntax. Length of the answer should be 5.");
     }
-    const wordleRoom = PS.rooms.cache.get(r);
+    const wordleRoom = Rooms.get(r);
     if (!wordleRoom || !wordleRoom.exists) return this.sayError("INVALID_ROOM");
     if (answer) global.Wordles[r] = new Wordle(wordleRoom, { answer });
     else global.Wordles[r] = new Wordle(wordleRoom);
@@ -300,7 +300,7 @@ function parse(this: PSCommandContext, roomId: string, guess: string): void {
     roomId = Tools.toRoomId(roomId);
     guess = Tools.toId(guess);
     if (!roomId) return this.say("You must input a valid room id.");
-    const wordleRoom = PS.rooms.cache.get(roomId);
+    const wordleRoom = Rooms.get(roomId);
     if (!wordleRoom || !Wordles[roomId]) return this.sayError("WORDLE_DISABLED");
     // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
     if (Wordles[roomId]!.ended) return this.say("Today's Wordle have ended, Try tomorrow!");
@@ -314,7 +314,7 @@ function parse(this: PSCommandContext, roomId: string, guess: string): void {
         resend(wordleRoom, this.user.userid);
         return;
     }
-    const wordList = fs.readFileSync(`./src/showdown/wordle/words/${guess.charAt(0)}.txt`, "utf-8").split("\n");
+    const wordList = fs.readFileSync(`./src/ps/wordle/words/${guess.charAt(0)}.txt`, "utf-8").split("\n");
     // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
     if (guess !== Wordles[roomId]!.answer && !wordList.includes(guess)) {
         wordleRoom.sendPrivateHtmlBox(this.user.userid, "Not in word list");

@@ -129,7 +129,7 @@ export class DiscordCommandParser {
         return new Promise(async (resolve) => {
             const returnObject: { result: Collection<Snowflake, ApplicationCommand>[]; errors: unknown[] } = { result: [], errors: [] };
 
-            if (!discord.application) return resolve(returnObject);
+            if (!Discord.application) return resolve(returnObject);
             const [globalCommands, guildCommands] = await this.loadCommands();
             const uploadableGlobalCommandData: ApplicationCommandData[] = Object.values(globalCommands).map((c) =>
                 this.getResolvableCommandData(c)
@@ -144,7 +144,7 @@ export class DiscordCommandParser {
 
             if (uploadableGlobalCommandData.length) {
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                await discord.application.commands
+                await Discord.application.commands
                     .set(uploadableGlobalCommandData)
                     .then((d) => returnObject.result.push(d))
                     .catch((e) => returnObject.errors.push(e));
@@ -177,8 +177,7 @@ export class DiscordCommandParser {
                 }
                 /* eslint-disable @typescript-eslint/no-non-null-assertion */
                 const command = uploadableGuildCommandData.shift()!;
-                await discord
-                    .application!.commands.set(command[1]!, command[0]!)
+                await Discord.application!.commands.set(command[1]!, command[0]!)
                     .then((d) => returnObject.result.push(d))
                     .catch((e) => returnObject.errors.push(e));
                 /* eslint-enable */
@@ -189,6 +188,7 @@ export class DiscordCommandParser {
     async setupGlobal(): Promise<Record<Snowflake, DiscordCommandSingleData>> {
         const obj: Record<Snowflake, DiscordCommandSingleData> = {};
         const [globalCommands, guildCommands] = await this.loadCommands();
+        if (!fs.existsSync(COMMAND_DATA_FILE_PATH)) return obj;
         const CommandIds: [Snowflake, { name: string; guildId: Snowflake | null }][] = Object.entries(
             JSON.parse(fs.readFileSync(COMMAND_DATA_FILE_PATH, "utf-8")) as { [id: Snowflake]: { name: string; guildId: Snowflake | null } }
         );
@@ -292,6 +292,7 @@ export class DiscordCommandContext {
                 return;
             }
         }
+        if (command.disabled) return this.reply("This command is currently disbled.");
 
         command.run.call(this);
     }
@@ -317,19 +318,19 @@ export class DiscordCommandContext {
     }
 
     sayError(err: DiscordCommandErrorInputType, options: InteractionReplyOptions, ...args: string[]): void {
-        if (!discord.user?.username) return;
+        if (!Discord.user?.username) return;
         let content: string;
 
         switch (err) {
             case "INVALID_CHANNEL": {
-                if (args[0]) content = args[0] + " is not one of " + discord.user.username + "'s channel.";
-                else content = "You must specifiy at least one of " + discord.user.username + "'s chennel.";
+                if (args[0]) content = args[0] + " is not one of " + Discord.user.username + "'s channel.";
+                else content = "You must specifiy at least one of " + Discord.user.username + "'s chennel.";
                 break;
             }
 
             case "INVALID_GUILD": {
-                if (args[0]) content = args[0] + " is not one of " + discord.user.username + "'s guild.";
-                else content = "You must specifiy at least one of " + discord.user.username + "'s guild.";
+                if (args[0]) content = args[0] + " is not one of " + Discord.user.username + "'s guild.";
+                else content = "You must specifiy at least one of " + Discord.user.username + "'s guild.";
                 break;
             }
 

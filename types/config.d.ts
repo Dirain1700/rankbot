@@ -1,4 +1,4 @@
-import type { GroupSymbol } from "@dirain/client";
+import type { GroupSymbol } from "../src/ps/client/index";
 
 export interface ModchatSetting {
     startTime: number;

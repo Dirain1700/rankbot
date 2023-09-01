@@ -4,15 +4,14 @@ import { head, closeDiv, partsHead, form, correctNotice, incorrectNotice } from 
 import { blank, incorrect, correct, notHere } from "./html/main";
 
 import type { StoredWordleDataType, GuessType, WordlePlayer, EndedPlData } from "../../../types/wordle";
-import type { Room, User, Client } from "@dirain/client";
+import type { Room, User } from "../client/src";
 
 export class Wordle {
-    readonly path = "./src/showdown/wordle/words/";
+    readonly path = path.resolve(__dirname, "words");
     pl: Map<string, WordlePlayer>;
     room: Room;
     answer: string;
     ended: boolean = false;
-    client: Client;
     endedPl: string[]; // User ID[]
     correctedPl: Map<string, EndedPlData>; // Map<User ID, WordleData>
     eliminatedPl: Map<string, EndedPlData>; // Map<User ID, WordleData>;
@@ -22,7 +21,6 @@ export class Wordle {
         if (!data || !data?.answer) answer = this.setup();
         this.answer = data?.answer || answer;
         this.room = room;
-        this.client = room.client;
         this.pl = new Map(data?.pl ?? []);
         this.endedPl = data?.endedPl || [];
         this.correctedPl = new Map(data?.correctedPl || []);
@@ -36,7 +34,7 @@ export class Wordle {
         const day = date.getDate().toString().padStart(2, "0");
 
         for (const r in Config.enableWordle) {
-            const room = PS.rooms.cache.get(r);
+            const room = Rooms.get(r);
             if (!room) continue;
             const path = `./logs/wordle/${r}/${year}/${month}/${day}.json`;
             if (!fs.existsSync(path)) continue;
@@ -125,12 +123,12 @@ export class Wordle {
 
                 const isCorrect = i === 5;
                 if (isCorrect) {
-                    const user = this.client.users.cache.get(pl);
+                    const user = Users.get(pl);
                     if (!user) break;
                     this.destroy(user, { round, html }, true);
                     html += correctNotice(round);
                 } else if (round === 6) {
-                    const user = this.client.users.cache.get(pl);
+                    const user = Users.get(pl);
                     if (!user) break;
                     this.destroy(user, { round, html }, false);
                     html += incorrectNotice(this.answer);

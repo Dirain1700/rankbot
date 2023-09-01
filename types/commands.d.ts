@@ -1,7 +1,8 @@
 import type { Dict } from "./utils";
 import type { DiscordCommandContext } from "../src/discord/parser";
-import type { PSCommandContext } from "../src/showdown/parser";
-import type { Room, User } from "@dirain/client";
+import type { Room } from "../src/ps/client/src/Room";
+import type { User } from "../src/ps/client/src/User";
+import type { PSCommandContext } from "../src/ps/parser";
 import type { ApplicationCommandData, Snowflake } from "discord.js";
 
 /**
@@ -18,6 +19,7 @@ export interface PSCommandDefinitions<T, returns = any> {
     syntax?: string[];
     developerOnly?: boolean;
     aliases?: string[];
+    disabled?: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -46,6 +48,7 @@ export interface DiscordCommandDefinitions<T, returns = any> {
     syntax?: string[];
     developerOnly?: boolean;
     aliases?: string[];
+    disabled?: boolean;
     resolvable: ApplicationCommandData;
 }
 

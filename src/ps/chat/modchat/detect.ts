@@ -2,11 +2,11 @@
 
 import { checkCondition } from "./enable";
 
-import type { Room, ModchatLevel } from "@dirain/client";
+import type { Room, ModchatLevel } from "../../client/src";
 
-export default (targetRoom: Room, currentModchatLevel: ModchatLevel, previousModchatLevel: ModchatLevel): void => {
+function detectModchat(targetRoom: Room, currentModchatLevel: ModchatLevel, previousModchatLevel: ModchatLevel): void {
     if (!Config.modchatTime[targetRoom.roomid]) return;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-assignment
     const { startTime, endTime, always, rank, showRfaq } = Config.modchatTime[targetRoom.roomid]!;
     if (
         showRfaq &&
@@ -16,4 +16,6 @@ export default (targetRoom: Room, currentModchatLevel: ModchatLevel, previousMod
     ) {
         targetRoom.send("!rfaq modchat");
     }
-};
+}
+
+export default detectModchat;

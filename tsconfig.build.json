@@ -3,9 +3,10 @@
     "compilerOptions": {
         // module settings
         "module": "commonjs",
+        "lib": ["ES2023"],
 
         // emit settings
-        "target": "esnext",
+        "target": "ESNext",
         "sourceMap": true,
         "declaration": false,
         "esModuleInterop": true,

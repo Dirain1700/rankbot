@@ -1,9 +1,10 @@
 "use strict";
 
-import { Activity } from "@dirain/client";
 import { Collection } from "discord.js";
 
-import type { Player } from "@dirain/client";
+import { Activity } from "./client/src";
+
+import type { Player } from "./client/src";
 
 export abstract class Game extends Activity {
     freejoin!: boolean;

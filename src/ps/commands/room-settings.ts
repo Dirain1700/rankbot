@@ -3,7 +3,7 @@
 import { runModchatSetter } from "../chat/modchat/enable";
 
 import type { BasePSCommandDefinitions } from "../../../types/commands";
-import type { Room } from "@dirain/client";
+import type { Room } from "../client/src";
 
 export const commands: BasePSCommandDefinitions = {
     disableautomodchat: {

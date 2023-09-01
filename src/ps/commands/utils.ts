@@ -7,6 +7,9 @@ export const commands: BasePSCommandDefinitions = {
         // eslint-disable-next-line  @typescript-eslint/no-unused-vars
         run(argument, room, user): void {
             if (this.inRoom() && !this.user.hasRank("+")) return;
+            if (!Config.readme.length) {
+                return this.say(`Sorry, documentation for ${PS.user?.name ?? ""} is unavailable now!`);
+            }
             this.say(`${PS.user?.name ?? ""}'s Guide: ${Config.readme}`);
         },
         aliases: ["commands"],

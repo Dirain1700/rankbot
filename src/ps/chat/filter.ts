@@ -1,6 +1,6 @@
 "use strict";
 
-import type { Room, Message } from "@dirain/client";
+import type { Room, Message } from "../client/src";
 
 const STRETCH_LIMIT = 10;
 

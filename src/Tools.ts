@@ -3,7 +3,7 @@
 import { exec as execShell, execSync as execShellSync } from "node:child_process";
 import { inspect } from "node:util";
 
-import { Tools as PSTools } from "@dirain/client";
+import { Tools as PSTools } from "./ps/client/src";
 
 import type { User, Snowflake } from "discord.js";
 
@@ -94,4 +94,18 @@ export class Tools extends PSTools {
         return (result as any)?.status === "rejected";
     }
     /* eslint-enable */
+
+    static loadSubmodules(absolutePath: string): string[] {
+        const paths: string[] = [];
+
+        for (const submodule of fs.readdirSync(absolutePath)) {
+            const stat = fs.statSync(path.join(absolutePath, submodule));
+            if (stat.isFile()) {
+                paths.push(path.join(absolutePath, submodule));
+            } else {
+                paths.push(...this.loadSubmodules(path.join(absolutePath, submodule)));
+            }
+        }
+        return paths;
+    }
 }
