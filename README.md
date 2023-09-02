@@ -23,11 +23,20 @@ cd rankbot
 npm install
 
 cp config/config-example.ts config/config.ts
+```
 
+Edit config.ts and run `npm start`!
+
+## Detecting unique characters for Chinese
+
+You can detect unique characters for Chinese:
+
+```
 cp src/detect-zh/setup/config-example.ts src/detect-zh/setup/config.ts
 ```
 
-Edit config.ts, run `npm start`!
+Edit `src/detect-zh/setup/config.ts` if you need.
+Run `npm run setup-zh` to build zh-detector!
 
 # Futures
 
