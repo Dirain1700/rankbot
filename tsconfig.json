@@ -4,6 +4,7 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "resolveJsonModule": true,
+        "lib": ["ESNext"],
 
         // emit settings
         "target": "esnext",

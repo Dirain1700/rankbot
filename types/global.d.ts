@@ -6,6 +6,7 @@ import type { Dict } from "./utils";
 import type { DiscordCommandParser, DiscordCommandContext } from "../src/discord/parser";
 import type { Client, Rooms, Users } from "../src/ps/client/src";
 import type { PSCommandParser, PSCommandContext } from "../src/ps/parser";
+import type { Database } from "../src/ps/storage";
 import type { Wordle } from "../src/ps/wordle/main";
 import type { Client as DiscordClient, Collection } from "discord.js";
 
@@ -17,6 +18,7 @@ declare global {
     var Rooms: Rooms;
     var Users: Users;
     var PS: Client;
+    var Database: Database;
     var Tools: typeof import("../src/Tools").Tools;
     var Wordles: Dict<Wordle>;
     var Dex: Collection<string, Species>;

@@ -29,6 +29,7 @@ export const SingleModulePaths = {
     psparser: "./ps/parser.js",
     psgame: "./ps/game.js",
     pshandler: "./ps/index.js",
+    psstorage: "./ps/storage.js",
     discordhandler: "./discord/index.js",
     discordparser: "./discord/parser.js",
     config: "../config/config.js",
@@ -143,6 +144,7 @@ export function setupGlobal() {
     global.Users = new Users();
     global.Discord = new DiscordClient(Config.DiscordOptions);
     global.PS = new PSClient(Config.PSOptions);
+    (require(SingleModulePaths.psstorage) as typeof import("./ps/storage")).initializeGlobalDatabase();
     (require(SingleModulePaths.pshandler) as typeof import("./ps/index")).setEventListeners();
     (require(SingleModulePaths.discordhandler) as typeof import("./discord/index")).setEventListeners();
     global.DiscordCommandParser = new DiscordCommandParser();
@@ -267,7 +269,7 @@ export function reloadModule(modules: Array<keyof typeof SingleModulePaths | key
             }
             case "room": {
                 const { Rooms: oldRooms } = global;
-                global.Rooms = new (require(SingleModulePaths.room) as typeof import("./ps/client/src/Room")).Rooms();
+                (require(SingleModulePaths.room) as typeof import("./ps/client/src/Room")).initializeGlobalRooms();
                 for (const r of oldRooms.keys()) {
                     void global.Rooms.fetch(r);
                 }
@@ -279,7 +281,11 @@ export function reloadModule(modules: Array<keyof typeof SingleModulePaths | key
             case "user": {
                 global.Users.raw.clear();
                 global.Users.clear();
-                global.Users = new (require(SingleModulePaths.user) as typeof import("./ps/client/src/User")).Users();
+                (require(SingleModulePaths.user) as typeof import("./ps/client/src/User")).initializeGlobalUsers();
+                break;
+            }
+            case "psstorage": {
+                (require(SingleModulePaths.psstorage) as typeof import("./ps/storage")).initializeGlobalDatabase();
                 break;
             }
             case "config": {

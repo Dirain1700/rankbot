@@ -5,6 +5,7 @@ build.*
 tsc.*
 !tsc.ts
 
+
 # Test files
 foo*
 
@@ -14,6 +15,8 @@ src/discord/commands/interaction/guilds.ts
 # Logs
 config/chatlog.json
 logs/*
+databases/*
+!databases/README.md
 !logs/README.md
 *.log
 npm-debug.log*
