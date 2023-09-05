@@ -23,7 +23,8 @@ export const commands: BasePSCommandDefinitions = {
             }
             if (!targetRoom.isStaff(this.user)) return;
 
-            if (!Config.modchatTime[targetRoom.roomid]) return this.say("Automodchat future is not enabled in " + targetRoom.title);
+            if (!Config.roomSettings[targetRoom.roomid]?.["modchat"])
+                return this.say("Automodchat future is not enabled in " + targetRoom.title);
 
             if (!durationString) return this.say("Please specify the amount between 5 minutes and 120 minutes.");
             const amount = parseInt(durationString);
@@ -31,9 +32,9 @@ export const commands: BasePSCommandDefinitions = {
 
             const staff = Tools.clone(this.user);
             /* eslint-disable @typescript-eslint/no-non-null-assertion */
-            Config.modchatTime[targetRoom.roomid]!.disabled = setTimeout(
+            Config.roomSettings[targetRoom.roomid]!["modchat"]!.disabled = setTimeout(
                 () => {
-                    Config.modchatTime[targetRoom!.roomid]!.disabled = undefined;
+                    Config.roomSettings[targetRoom!.roomid]!["modchat"]!.disabled = undefined;
                     runModchatSetter(staff, targetRoom!.update());
                 },
                 amount * 60 * 1000

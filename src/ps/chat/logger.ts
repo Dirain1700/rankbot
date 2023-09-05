@@ -14,7 +14,7 @@ const sortLogFunction = (a: chatLogType, b: chatLogType) => a.time - b.time;
 const MAX_STORED_MESSAGES_LENGTH = 50;
 
 export function storeChat(message: Message<Room>): void {
-    if (!(message.target.roomid in Config.logChannels) || !Discord.isReady()) return;
+    if (!Config.roomSettings[message.target.id]?.["logChannel"] || !Discord.isReady()) return;
     if (message.content.startsWith("/") && !message.content.startsWith("/log")) return;
     const content = message.content.replace("/log ", "");
     const dirPath = "./logs/chat";
@@ -43,7 +43,7 @@ export function storeChat(message: Message<Room>): void {
 }
 
 export function sendModlog(message: Message<Room>): void {
-    const targetChannelId = Config.logChannels[message.target.roomid];
+    const targetChannelId = Config.roomSettings[message.target.roomid]?.["logChannel"];
     if (!targetChannelId || !Discord.isReady()) return;
     const log = message.content.replace("/log ", "");
     const filePath = `./logs/chat/${message.target.roomid}.json`;

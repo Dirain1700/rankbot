@@ -29,13 +29,14 @@ export function checkCondition(startTime: number, endTime: number, always: boole
 }
 
 export function runModchatSetter(targetUser: User, targetRoom: Room): boolean {
-    if (!Config.modchatTime[targetRoom.roomid]) return false;
+    if (!Config.roomSettings[targetRoom.roomid]?.["modchat"]) return false;
     targetRoom.removeUser(targetUser.userid);
     if (!targetRoom.hasRank("%", targetUser) && !targetUser.alts.every((u) => targetRoom.hasRank("%", u))) return false;
     if (targetRoom.modchat && targetRoom.modchat !== "autoconfirmed") return false;
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-assignment
-    const { startTime, endTime, always, rank, ignoreGlobals, allowBusy, allowAlts, disabled } = Config.modchatTime[targetRoom.roomid]!;
+    const { startTime, endTime, always, rank, ignoreGlobals, allowBusy, allowAlts, disabled } =
+        Config.roomSettings[targetRoom.roomid]!["modchat"]!;
     if (!checkCondition(startTime, endTime, always, new Date().getHours())) return false;
     if (disabled) return false;
     /* eslint-disable @typescript-eslint/no-non-null-assertion */

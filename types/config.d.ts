@@ -1,4 +1,5 @@
 import type { GroupSymbol } from "../src/ps/client/index";
+import type { Snowflake } from "discord.js";
 
 export interface ModchatSetting {
     startTime: number;
@@ -10,4 +11,14 @@ export interface ModchatSetting {
     allowAlts?: boolean;
     showRfaq?: boolean;
     disabled?: NodeJS.Timer | undefined;
+}
+
+type ActionType = "punish" | "hidetext" | "notify";
+
+export interface IRoomSettings {
+    modchat?: ModchatSetting;
+    stretchFilter?: ActionType;
+    floodFilter?: ActionType;
+    useAPI?: ActionType;
+    logChannel?: Snowflake;
 }

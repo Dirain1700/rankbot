@@ -3,62 +3,70 @@
 import type { Room, Message } from "../client/src";
 
 const STRETCH_LIMIT = 10;
+/* eslint-disable no-useless-escape */
+const stretchRegex: RegExp = new RegExp(`(.)\\1{${STRETCH_LIMIT - 1},}`, "gimsu");
+const wordStretchRegex: RegExp = new RegExp(`(\S+?)${"\\1".repeat(STRETCH_LIMIT - 1)}`, "gimsu");
+/* eslint-enable */
 
-export default function (message: Message<Room>): void {
-    if (!Config.enableStretchFilter.includes(message.target.id)) return;
-    /* eslint-disable no-useless-escape */
-    if (message.target.isStaff(message.author) || /[\u{3000}-\u{301C}\u{3041}-\u{3093}\u{309B}-\u{309E}]/mu.test(message.content)) return;
-    if (/^[^A-Za-z0-9]/.test(message.content.charAt(0))) return;
-    const stretchRegex: RegExp = new RegExp(`(.)\\1{${STRETCH_LIMIT - 1},}`, "gimsu");
-    const wordStretchRegex: RegExp = new RegExp(`(\S+?)${"\\1".repeat(STRETCH_LIMIT - 1)}`, "gimsu");
-    /* eslint-enable */
+function stretchFilter(str: string): boolean {
+    const result = str.match(stretchRegex);
+    if (Array.isArray(result)) return !str.toLowerCase().startsWith("w".repeat(STRETCH_LIMIT));
+    else return false;
+}
 
-    const stretchFilter: (str: string) => boolean = (str: string) => {
-        const result = str.match(stretchRegex);
-        if (Array.isArray(result)) return !str.toLowerCase().startsWith("w".repeat(STRETCH_LIMIT));
-        else return false;
-    };
+function wordStretchFilter(str: string): boolean {
+    const result = str.match(wordStretchRegex);
+    if (Array.isArray(result)) return !str.toLowerCase().startsWith("w".repeat(STRETCH_LIMIT));
+    else return false;
+}
 
-    const wordStretchFilter: (str: string) => boolean = (str: string) => {
-        const result = str.match(wordStretchRegex);
-        if (Array.isArray(result)) return !str.toLowerCase().startsWith("w".repeat(STRETCH_LIMIT));
-        else return false;
-    };
+function wordStretchWithBlankFilter(str: string): boolean {
+    let hasStretchSentence: boolean = false;
+    for (const sentence of str.split(". ")) {
+        const arr = sentence.split(" ");
+        let latestWord = "";
+        const set = new Set();
+        const duplicatedWords: { [word: string]: number } = {};
+        let i = 1;
+        let count = 0;
 
-    const wordStretchWithBlankFilter: (str: string) => boolean = (str: string) => {
-        let hasStretchSentence: boolean = false;
-        for (const sentence of str.split(". ")) {
-            const arr = sentence.split(" ");
-            let latestWord = "";
-            const set = new Set();
-            const duplicatedWords: { [word: string]: number } = {};
-            let i = 1;
-            let count = 0;
-
-            for (const word of arr) {
-                set.add(word);
-                if (latestWord === word) count++;
-                else if (set.size !== arr.length) {
-                    duplicatedWords[word] ? duplicatedWords[word]++ : (duplicatedWords[word] = 1);
-                    arr.slice(i);
-                    i--;
-                }
-
-                latestWord = word;
-                i++;
+        for (const word of arr) {
+            set.add(word);
+            if (latestWord === word) count++;
+            else if (set.size !== arr.length) {
+                duplicatedWords[word] ? duplicatedWords[word]++ : (duplicatedWords[word] = 1);
+                arr.slice(i);
+                i--;
             }
-            if (count > 3) hasStretchSentence = true;
-            else if (Object.values(duplicatedWords).filter((e) => e > STRETCH_LIMIT).length) hasStretchSentence = true;
+
+            latestWord = word;
+            i++;
         }
-        return hasStretchSentence;
-    };
+        if (count > 3) hasStretchSentence = true;
+        else if (Object.values(duplicatedWords).some((e) => e > STRETCH_LIMIT)) hasStretchSentence = true;
+    }
+    return hasStretchSentence;
+}
 
-    let content: string = "Bot moderation: this message have been caught by ";
+export function stretchDetector(message: Message<Room>): boolean {
+    if (!Config.roomSettings[message.target.id]?.["stretchFilter"]) return false;
+    if (message.target.isStaff(message.author) || message.content.length < STRETCH_LIMIT) return false;
 
-    if (stretchFilter(message.content)) content += "stretchFilter";
-    else if (wordStretchFilter(message.content)) content += "wordStretchFilter" + message.content;
-    else if (wordStretchWithBlankFilter(message.content)) content += "wordStretchFilter" + message.content;
-    else return;
-    content += ": " + message.content;
-    message.target.modnote(content);
+    if (!stretchFilter(message.content) && !wordStretchFilter(message.content) && !wordStretchWithBlankFilter(message.content))
+        return false;
+
+    if (Config.roomSettings[message.target.id]!["stretchFilter"] === "punish") {
+        message.target.mute(message.author, false, "Stretch");
+    } else if (Config.roomSettings[message.target.id]!["stretchFilter"] === "hidetext") {
+        void message.target.hidetext(message.author.id, true, 1, "Stretch");
+    } else {
+        const content: string = "Bot moderation: this message have been caught by stretch filter.";
+        message.target.modnote(content);
+    }
+
+    return true;
+}
+
+export function checkChat(message: Message<Room>): void {
+    if (stretchDetector(message)) return;
 }

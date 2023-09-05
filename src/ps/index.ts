@@ -2,7 +2,7 @@
 
 import { scheduleJob } from "node-schedule";
 
-import checkChat from "./chat/filter";
+import { checkChat } from "./chat/filter";
 import { storeChat, sendModlog } from "./chat/logger";
 import announceModchat from "./chat/modchat/detect";
 import enableModchat from "./chat/modchat/enable";
@@ -20,10 +20,8 @@ export const onMessage = (message: Message) => {
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             Config.onRoomMessage[message.target.roomid]!.call(message);
         }
-        if (Config.enableStretchFilter.includes(message.target.roomid)) {
+        if (Config.roomSettings[message.target.id]) {
             checkChat(message);
-        }
-        if (message.target.roomid in Config.logChannels) {
             storeChat(message);
             sendModlog(message);
         }
