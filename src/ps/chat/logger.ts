@@ -94,6 +94,11 @@ export function sendModlog(message: Message<Room>): void {
         fs.writeFileSync(filePath, JSON.stringify(originalChatlog, null, 4));
     }
 
-    targetChannel.send(log).catch(console.error);
-    if (additionalMessage) targetChannel.send(additionalMessage).catch(console.error);
+    targetChannel.send(log).catch((e) => {
+        throw e;
+    });
+    if (additionalMessage)
+        targetChannel.send(additionalMessage).catch((e) => {
+            throw e;
+        });
 }
