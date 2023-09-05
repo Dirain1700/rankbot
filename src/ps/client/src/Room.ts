@@ -334,6 +334,14 @@ export class Room {
         this.send("/warn " + targetUser.userid + (reason ? "," + reason : ""), { type: "command", measure: false });
     }
 
+    mute(targetUser: User, hour?: boolean, reason?: string): void {
+        if (!targetUser.online) return;
+        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("mute", PS.user, true);
+        if (this.isStaff(targetUser)) return;
+        this.send("/mute " + targetUser.userid + (reason ? "," + reason : ""), { type: "command", measure: false });
+    }
+
     awaitMessages(options: awaitMessageOptions<Room>): Promise<Message<Room>[] | null> {
         const isValidOption = (arg: unknown): arg is awaitMessageOptions<Room> => {
             if (typeof arg !== "object") return false;
