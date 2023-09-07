@@ -137,7 +137,7 @@ export class User {
         alt = Tools.toId(alt);
         if (!this.alts.includes(alt) && this.userid !== alt) this.alts.push(alt);
         const userData = Database.get(this.id);
-        if (userData && !userData.alts.includes(alt)) {
+        if (alt !== this.id && userData && !userData.alts.includes(alt)) {
             userData.alts.push(alt);
             Database.set(this.id, userData);
         }
