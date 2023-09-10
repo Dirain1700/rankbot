@@ -135,9 +135,10 @@ export class User {
 
     addAlt(alt: string): void {
         alt = Tools.toId(alt);
-        if (!this.alts.includes(alt) && this.userid !== alt) this.alts.push(alt);
+        if (alt === this.id) return;
+        if (!this.alts.includes(alt)) this.alts.push(alt);
         const userData = Database.get(this.id);
-        if (alt !== this.id && userData && !userData.alts.includes(alt)) {
+        if (!userData.alts.includes(alt)) {
             userData.alts.push(alt);
             Database.set(this.id, userData);
         }
