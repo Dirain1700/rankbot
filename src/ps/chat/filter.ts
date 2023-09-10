@@ -58,7 +58,7 @@ export function stretchDetector(message: Message<Room>): boolean {
     if (Config.roomSettings[message.target.id]!["stretchFilter"] === "punish") {
         message.target.mute(message.author, false, "Stretch");
     } else if (Config.roomSettings[message.target.id]!["stretchFilter"] === "hidetext") {
-        void message.target.hidetext(message.author.id, true, 1, "Stretch");
+        void message.target.hidetext(message.author.id, true, 1, false, "Stretch");
     } else {
         const content: string = "Bot moderation: this message have been caught by stretch filter.";
         message.target.modnote(content);
