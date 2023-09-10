@@ -57,6 +57,11 @@ export class PSAPIError extends Error {
                 break;
             }
 
+            case "INVALID_ARGUMENT": {
+                message = "Invalid argument: " + args[0]!;
+                break;
+            }
+
             default:
                 // prettier-ignore
                 throw new Error("Unknown PSAPIError type: " + (errorType satisfies never));

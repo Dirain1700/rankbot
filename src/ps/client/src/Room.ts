@@ -306,15 +306,23 @@ export class Room {
         this.send("/modnote " + text, { type: "command", measure: false });
     }
 
-    hidetext(user: string, clear: boolean, lines?: number | null, reason?: string): Promise<Message<Room> | null> {
+    hidetext(user: string, clear: boolean, lines?: number | null, alts?: false, reason?: string): Promise<Message<Room> | null>;
+    hidetext(user: string, clear: boolean, lines: null, alts: true, reason?: string): Promise<Message<Room> | null>;
+    hidetext(user: string, clear: boolean, lines?: number | null, alts?: boolean, reason?: string): Promise<Message<Room> | null> {
         if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
+        if (lines && alts) throw new PSAPIError("INVALID_ARGUMENT", "alts and lines can't be specified at the same time");
         this.checkCan("hidetext", PS.user);
         const r = this;
         return new Promise((resolve, reject) => {
-            r.send(`/${clear ? "clear" : "hide"}${lines ? "lines" : "text"} ${user},${lines ? lines + "," : ""}${reason || ""}`, {
-                type: "command",
-                measure: false,
-            });
+            r.send(
+                `/${clear ? "clear" : "hide"}${lines ? "lines" : alts ? "altstext" : "text"} ${user},${lines ? lines + "," : ""}${
+                    reason || ""
+                }`,
+                {
+                    type: "command",
+                    measure: false,
+                }
+            );
             r.awaitMessages({
                 filter: (m: Message<Room>) =>
                     m.author.id === "&" && m.content.endsWith(`by ${PS.status.name}.${reason ? " (" + reason + ")" : ""}`),
