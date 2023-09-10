@@ -304,3 +304,13 @@ export function reloadModule(modules: Array<keyof typeof SingleModulePaths | key
         }
     }
 }
+
+export function listenShutdown() {
+    process.once("SIGHUP", () => process.exit(128));
+    process.once("SIGINT", () => process.exit(1));
+    process.once("SIGBREAK", () => process.exit(1));
+    process.once("SIGTERM", () => process.exit(1));
+    process.once("exit", () => {
+        Database.exportGlobal();
+    });
+}

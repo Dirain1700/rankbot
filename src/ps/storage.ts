@@ -106,6 +106,10 @@ export class Database extends Collection<string, IGeneralUserDataBase> {
         }
         fs.writeFileSync(this.globalDataPath, JSON.stringify(userJSON, null, 4));
     }
+
+    onShutdown(): void {
+        this.exportGlobal();
+    }
 }
 
 export const initializeGlobalDatabase = () => {
