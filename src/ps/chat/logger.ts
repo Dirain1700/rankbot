@@ -59,7 +59,8 @@ export function sendModlog(message: Message<Room>): void {
     /* eslint-disable @typescript-eslint/no-non-null-assertion */
     switch (logDetails.action) {
         case "cleartext": {
-            targetMessages = originalChatlog.filter((m) => m.user == Tools.toId(logDetails.target));
+            const userData = Database.get(logDetails.target);
+            targetMessages = originalChatlog.filter((m) => [Tools.toId(logDetails.target), ...userData.alts].includes(m.user));
             targetMessages.sort(sortLogFunction);
             if (logDetails.lines) targetMessages.length = logDetails.lines;
             break;
@@ -70,8 +71,12 @@ export function sendModlog(message: Message<Room>): void {
         case "roomban":
         case "blacklist":
         case "lock": {
-            targetMessages = originalChatlog.filter((m) => m.user == Tools.toId(logDetails.target));
+            const userData = Database.get(logDetails.target);
+            targetMessages = originalChatlog.filter((m) => [Tools.toId(logDetails.target), ...userData.alts].includes(m.user));
             targetMessages.sort(sortLogFunction);
+            if (PS.user && message.target.checkCan("hidetext", PS.user, false)) {
+                void message.target.hidetext(logDetails.target, true, null, true);
+            }
             break;
         }
 
