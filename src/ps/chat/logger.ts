@@ -62,7 +62,9 @@ export function sendModlog(message: Message<Room>): void {
             const userData = Database.get(logDetails.target);
             targetMessages = originalChatlog.filter((m) => [Tools.toId(logDetails.target), ...userData.alts].includes(m.user));
             targetMessages.sort(sortLogFunction);
-            if (logDetails.lines) targetMessages.length = logDetails.lines;
+            if (logDetails.lines) {
+                targetMessages.splice(0, targetMessages.length - logDetails.lines);
+            }
             break;
         }
 
