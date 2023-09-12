@@ -109,7 +109,7 @@ export function build() {
         fs.unlinkSync(exportUnihanFileName);
     }
 
-    console.log("Sucessfully built files!");
+    console.log(new Date().toLocaleString("ja-jp", { timeZone: "Asia/Tokyo" }), "Sucessfully built files!");
     console.log();
 }
 
