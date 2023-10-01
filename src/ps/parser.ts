@@ -62,7 +62,7 @@ export class PSCommandParser {
     }
 
     parse(message: Message): boolean {
-        if (!this.isCommandMessage(message.content)) return false;
+        if (message.author.userid === PS.status.id || !this.isCommandMessage(message.content)) return false;
 
         message.content = message.content.replace(Config.commandPrefix, "");
 

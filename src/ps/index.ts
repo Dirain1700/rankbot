@@ -13,19 +13,20 @@ import { Wordle } from "./wordle/main";
 import type { Message, ModchatLevel, Room } from "./client/src";
 
 export const onMessage = (message: Message) => {
-    if (message.author.userid === PS.status.id) return;
-    PSCommandParser.parse(message);
     if (message.inRoom()) {
-        if (Config.onRoomMessage[message.target.roomid]) {
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            Config.onRoomMessage[message.target.roomid]!.call(message);
-        }
         if (Config.roomSettings[message.target.id]) {
             checkChat(message);
             storeChat(message);
             sendModlog(message);
         }
+        if (message.author.userid === PS.status.id) return;
+        if (Config.onRoomMessage[message.target.roomid]) {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            Config.onRoomMessage[message.target.roomid]!.call(message);
+        }
     }
+    if (message.author.userid === PS.status.id) return;
+    PSCommandParser.parse(message);
 };
 export const onUserAdd = (room: Room, user: User): void => {
     if (user.id in Config.onUserJoin) {
