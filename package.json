@@ -23,7 +23,7 @@
         "discord.js": "^14.13.0",
         "lodash": "^4.17.21",
         "node-schedule": "^2.1.1",
-        "ws": "^8.13.0"
+        "ws": "^8.14.2"
     },
     "devDependencies": {
         "@types/lodash": "^4.14.197",
@@ -31,7 +31,7 @@
         "@types/node": "^20.5.7",
         "@types/node-schedule": "^2.1.0",
         "@types/prettier": "^2.7.3",
-        "@types/ws": "^8.5.5",
+        "@types/ws": "^8.5.6",
         "@typescript-eslint/eslint-plugin": "6.5.0",
         "@typescript-eslint/parser": "^6.5.0",
         "esbuild": "^0.19.2",
