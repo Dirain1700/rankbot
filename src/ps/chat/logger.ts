@@ -74,7 +74,9 @@ export function sendModlog(message: Message<Room>): void {
         case "blacklist":
         case "lock": {
             const userData = Database.get(logDetails.target);
-            targetMessages = originalChatlog.filter((m) => [Tools.toId(logDetails.target), ...userData.alts].includes(m.user));
+            targetMessages = originalChatlog.filter(
+                (m) => [Tools.toId(logDetails.target), ...userData.alts].includes(m.user) && message.time !== m.time
+            );
             targetMessages.sort(sortLogFunction);
             if (PS.user && message.target.checkCan("hidetext", PS.user, false)) {
                 void message.target.hidetext(logDetails.target, true, null, true);
