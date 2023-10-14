@@ -15,7 +15,7 @@ export const commands: BaseDiscordCommandDefinitions = {
             const now = Date.now();
             const msg = ["pong!", "", `gateway: ${this.interaction.client.ws.ping}ms`];
             await this.interaction.reply({ content: msg.join("\n"), ephemeral: true });
-            void this.interaction.editReply([...msg, `往復: ${Date.now() - now}ms`].join("\n"));
+            void this.interaction.editReply([...msg, `round trip: ${Date.now() - now}ms`].join("\n"));
         },
         resolvable: {
             name: "ping",
