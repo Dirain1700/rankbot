@@ -81,6 +81,13 @@ const ESCAPED_NUMBER_SLASH = "&#47;";
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 export class Tools {
+    static readonly second = 1000;
+    static readonly minute = 60 * this.second;
+    static readonly hour = 60 * this.minute;
+    static readonly day = 24 * this.hour;
+    static readonly week = 7 * this.day;
+    static readonly month = 30 * this.day;
+    static readonly year = 365 * this.day;
     static readonly auths: AuthLevel[] = [
         "~",
         "&",
@@ -157,6 +164,12 @@ export class Tools {
 
     static toRoomId(id: string): string {
         return id.toLowerCase().replace(/[^a-z0-9-]/g, "");
+    }
+
+    static joinList(list: string[]): string {
+        if (list.length < 2) return "";
+        const last = list.pop();
+        return list.join(", ") + " and " + last;
     }
 
     static sleep(t: number): Promise<void> {
@@ -407,5 +420,67 @@ export class Tools {
             } as IUnrecognizedMessage;
         }
         /* eslint-enable */
+    }
+
+    static getUsernameHTML(name: string): string {
+        return "<username>" + this.escapeHTML(name) + "</username>";
+    }
+
+    static fromTimeString(input: string): number {
+        const targets: string[] = input
+            .split(input.includes("and") ? "and" : ",")
+            .map((str) => str.toLowerCase().replaceAll(/[^a-z0-9.]/g, ""));
+        let time: number = 0;
+        for (const t of targets) {
+            if (t.includes("sec")) {
+                const possibleAmount = t.split("sec")[0]!;
+                if (!possibleAmount.includes("e")) {
+                    const amount = possibleAmount === "a" ? 1 : parseFloat(possibleAmount);
+                    if (!Number.isNaN(amount)) time += amount * 1000;
+                }
+            }
+            if (t.includes("min")) {
+                const possibleAmount = t.split("min")[0]!;
+                if (!possibleAmount.includes("e")) {
+                    const amount = possibleAmount === "a" ? 1 : parseFloat(possibleAmount);
+                    if (!Number.isNaN(amount)) time += amount * 60 * 1000;
+                }
+            }
+        }
+        if (time < 0) return 0;
+        return time;
+    }
+
+    static toDurationString(durationNum: number): string {
+        const durationArray: string[] = [];
+        if (durationNum >= this.year) {
+            const intYear = ~~(durationNum / this.year);
+            durationNum -= this.year * intYear;
+            durationArray.push(intYear.toString() + (intYear > 1 ? " years" : " year"));
+        }
+        if (durationNum >= this.month) {
+            const intMonth = ~~(durationNum / this.month);
+            durationNum -= this.month * intMonth;
+            durationArray.push(intMonth.toString() + (intMonth > 1 ? " months" : " month"));
+        }
+        if (durationNum >= this.day) {
+            const intDay = ~~(durationNum / this.day);
+            durationNum -= this.day * intDay;
+            durationArray.push(intDay.toString() + (intDay > 1 ? " days" : " day"));
+        }
+        if (durationNum >= this.hour) {
+            const intHour = ~~(durationNum / this.hour);
+            durationNum -= this.hour * intHour;
+            durationArray.push(intHour.toString() + (intHour > 1 ? " hours" : " hour"));
+        }
+        if (durationNum >= this.minute) {
+            const intMin = ~~(durationNum / this.minute);
+            durationNum -= this.minute * intMin;
+            durationArray.push(intMin.toString() + (intMin > 1 ? " minutes" : " minute"));
+        }
+        const intSec = ~~(durationNum / this.second);
+        durationArray.push(intSec.toString() + (intSec > 1 ? " seconds" : " second"));
+
+        return this.joinList(durationArray);
     }
 }

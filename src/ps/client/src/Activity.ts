@@ -26,8 +26,8 @@ export abstract class Activity {
     pastPlayers = new Collection<string, Player>();
     showSignupsHtml: boolean = false;
     startTime: number | null = null;
-    startTimer: NodeJS.Timer | null = null;
-    timeout: NodeJS.Timer | null = null;
+    startTimer: NodeJS.Timeout | undefined = undefined;
+    timeout: NodeJS.Timeout | undefined = undefined;
 
     // set in init();
     id!: string;
@@ -37,16 +37,28 @@ export abstract class Activity {
         if (user instanceof User) this.pm = user;
         else this.pm = null;
         this.room = target;
-        Object.defineProperty(this, "client", {
-            enumerable: false,
-            writable: true,
-        });
     }
 
-    abstract forceStart(): this;
     abstract onStart(): this;
-    abstract forceEnd(): this;
-    abstract onEnd(): this;
+    abstract onEnd(force?: boolean): this;
+
+    start(): this {
+        this.started = true;
+        this.startTime = Date.now();
+        this.startTimer = undefined;
+        this.onStart();
+        return this;
+    }
+
+    end(force?: boolean): this {
+        this.ended = true;
+        this.onEnd(force);
+        return this;
+    }
+
+    forceEnd(): this {
+        return this.end(true);
+    }
 
     getPlayer(name: string): Player | undefined {
         const id = Tools.toId(name);
