@@ -15,15 +15,16 @@ export interface MessageInput<T extends User | Room> {
 
 /* eslint-disable @typescript-eslint/ban-types, @typescript-eslint/no-explicit-any, no-unused-vars */
 export interface MessageWaits<T extends User | Room> {
-    id: string;
-    roomid?: string;
-    userid?: string;
+    timestamp: string;
+    roomid: T extends Room ? string : undefined;
+    userid: T extends User ? string : undefined;
     messages: Array<Message<T>>;
     filter: Function;
     max: number;
     time: number;
-    resolve: Function;
-    reject: Function;
+    resolve: (m: Message<T>[]) => void;
+    reject: (m: Message<T>[] | null) => void;
+    timeout: NodeJS.Timeout | undefined;
 }
 /* eslint-enable @typescript-eslint/ban-types */
 

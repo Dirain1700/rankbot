@@ -161,9 +161,11 @@ export class User {
         if (!isValidOption(options)) throw new Error("Input must be valid object with these keys: filter, max, time");
         const user = this;
         return new Promise((resolve, reject) => {
+            const timestamp = Date.now().toString();
             const CollectorOptions: MessageWaits<User> = {
-                id: Date.now().toString(),
+                timestamp,
                 userid: user.userid,
+                roomid: undefined,
                 messages: [],
                 filter: options.filter,
                 max: options.max,
@@ -171,23 +173,24 @@ export class User {
                 resolve: (m: Message<User>[]): void => {
                     PS.addUser(
                         Object.assign(user, {
-                            waits: user.waits.filter((wait: MessageWaits<User>) => !PS.resolvedUser.includes(wait.id)),
+                            waits: user.waits.filter((wait: MessageWaits<User>) => wait.timestamp !== timestamp),
                         }) as UserOptions
                     );
                     resolve(m);
                 },
-                reject: (m: Message<User>[] | undefined): void => {
+                reject: (m: Message<User>[] | null): void => {
                     PS.addUser(
                         Object.assign(user, {
-                            waits: user.waits.filter((wait: MessageWaits<User>) => !PS.resolvedUser.includes(wait.id)),
+                            waits: user.waits.filter((wait: MessageWaits<User>) => wait.timestamp !== timestamp),
                         }) as UserOptions
                     );
                     reject(m);
                 },
+                timeout: undefined,
             };
-            user.waits.push(CollectorOptions);
             const { messages, reject: rejectMessages } = CollectorOptions;
-            setTimeout(rejectMessages, CollectorOptions.time, messages.length ? messages : null);
+            CollectorOptions.timeout = setTimeout(() => void rejectMessages(messages.length ? messages : null), CollectorOptions.time);
+            user.waits.push(CollectorOptions);
         });
     }
 
@@ -318,6 +321,10 @@ export class Users extends Collection<string, User> {
 
     override set(userid: string, user: User): this {
         super.set(Tools.toId(userid), user);
+        if (!user.alts) {
+            console.log(user);
+            throw new Error();
+        }
         return this;
     }
 

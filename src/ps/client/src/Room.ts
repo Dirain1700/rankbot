@@ -363,8 +363,10 @@ export class Room {
         if (!isValidOption(options)) throw new Error("Input must be valid object with these keys: filter, max, time");
         const room = this;
         return new Promise((resolve, reject) => {
+            const timestamp = Date.now().toString();
             const CollectorOptions: MessageWaits<Room> = {
-                id: Date.now().toString(),
+                timestamp,
+                userid: undefined,
                 roomid: this.roomid,
                 messages: [],
                 filter: options.filter,
@@ -373,23 +375,24 @@ export class Room {
                 resolve: (m: Message<Room>[]): void => {
                     PS.addRoom(
                         Object.assign(room, {
-                            waits: room.waits.filter((wait: MessageWaits<Room>) => !PS.resolvedRoom.includes(wait.id)),
+                            waits: room.waits.filter((wait: MessageWaits<Room>) => wait.timestamp !== timestamp),
                         }) as RoomOptions
                     );
                     resolve(m);
                 },
-                reject: (m: Message<Room>[]): void => {
+                reject: (m: Message<Room>[] | null): void => {
                     PS.addRoom(
                         Object.assign(room, {
-                            waits: room.waits.filter((wait: MessageWaits<Room>) => !PS.resolvedRoom.includes(wait.id)),
+                            waits: room.waits.filter((wait: MessageWaits<Room>) => wait.timestamp !== timestamp),
                         }) as RoomOptions
                     );
                     reject(m);
                 },
+                timeout: undefined,
             };
-            room.waits.push(CollectorOptions);
             const { messages, reject: rejectMessages } = CollectorOptions;
-            setTimeout(rejectMessages, CollectorOptions.time, messages.length ? messages : null);
+            CollectorOptions.timeout = setTimeout(() => void rejectMessages(messages.length ? messages : null), CollectorOptions.time);
+            room.waits.push(CollectorOptions);
         });
     }
 

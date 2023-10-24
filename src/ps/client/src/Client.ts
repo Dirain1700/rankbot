@@ -1038,10 +1038,12 @@ export class Client extends EventEmitter {
                     time: Date.now(),
                     client: this,
                 } as MessageInput<Room>);
-                if (!this.user) return;
-                for (const element of this.PromisedChat) {
+                if (!this.user || !this.PromisedChat.length) return;
+                for (let i = 0; i < this.PromisedChat.length; i++) {
+                    const element = this.PromisedChat[i]!;
                     if (element.id === message.target.roomid && this.user.userid === message.author.userid) {
                         element.received = true;
+                        this.PromisedChat.splice(i, 1);
                         break;
                     }
                 }
@@ -1071,10 +1073,12 @@ export class Client extends EventEmitter {
                         client: this,
                         time: parseInt(event[0] as string),
                     } as MessageInput<Room>);
-                if (this.user) {
-                    for (const element of this.PromisedChat) {
+                if (this.user && this.PromisedChat.length) {
+                    for (let i = 0; i < this.PromisedChat.length; i++) {
+                        const element = this.PromisedChat[i]!;
                         if (element.id === message.target.roomid && this.user.userid === message.author.userid) {
                             element.received = true;
+                            this.PromisedChat.splice(i, 1);
                             break;
                         }
                     }
@@ -1110,14 +1114,11 @@ export class Client extends EventEmitter {
                     sendTo = await this.fetchUser(receiverName, true);
                 }
                 const value = event.slice(2).join("|")!;
-                let target: User;
-                if (author.id === this.status.id) target = sendTo;
-                else target = author;
                 const message = new Message<User>({
                     author: author,
                     content: value,
                     type: "PM",
-                    target: target,
+                    target: sendTo,
                     raw: rawMessage,
                     client: this,
                     time: Date.now(),
@@ -1125,10 +1126,12 @@ export class Client extends EventEmitter {
                 this.emit(Events.MESSAGE_CREATE, message);
                 if (this.options.prefix && value.startsWith(this.options.prefix)) this.emit(Events.COMMAND_EMIT);
 
-                if (!this.user) break;
-                for (const element of this.PromisedPM) {
+                if (!this.user || !this.PromisedPM.length) break;
+                for (let i = 0; i < this.PromisedPM.length; i++) {
+                    const element = this.PromisedPM[i]!;
                     if (element.id === message.target.userid && this.user.userid === message.author.userid) {
                         element.received = true;
+                        this.PromisedPM.splice(i, 1);
                         break;
                     }
                 }
@@ -1406,6 +1409,7 @@ export class Client extends EventEmitter {
 
     addUser(input: UserOptions, fetched?: boolean): User | null {
         if (typeof input !== "object" || !input.userid) return null;
+        if (!input.alts) input.alts = [];
         let user: User | undefined = global.Users.get(input.userid);
         if (user && user.status && !input.status) user.status = "";
         if (input.userid.startsWith("guest")) {
@@ -1451,8 +1455,13 @@ export class Client extends EventEmitter {
             user = new User(input);
             void this.fetchUser(input.userid, false);
         } else {
-            if (user.alts.length && input.alts?.length) for (const id of input.alts) if (!user.alts.includes(id)) user.alts.push(id);
-            delete input.alts;
+            if (user.alts.length && input.alts?.length) {
+                for (const id of input.alts) {
+                    if (!user.alts.includes(id)) {
+                        user.alts.push(id);
+                    }
+                }
+            }
             for (const [k, v] of Object.entries(input)) {
                 if (k === "rooms" || k === "client") continue;
                 // @ts-expect-error props exists in user

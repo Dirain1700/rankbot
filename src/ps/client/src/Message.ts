@@ -46,18 +46,19 @@ export class Message<T extends Room | User = Room | User> {
         if (this.inRoom()) {
             const message = this;
             this.target.waits.forEach((wait: MessageWaits<Room>) => {
-                if (message.type === "Room" && wait.filter(message) && wait.roomid! === message.target.id) {
+                if (message.type === "Room" && wait.filter(message) && wait.roomid === message.target.id) {
                     message.awaited = true;
                     wait.messages.push(message);
                     if (wait.max === wait.messages.length) {
-                        message.client.resolvedRoom.push(wait.id);
+                        clearTimeout(wait.timeout);
+                        message.client.resolvedRoom.push(wait.roomid);
                         wait.resolve(wait.messages);
                     } else message.awaited = false;
                 }
                 message.client.addRoom(
                     Object.assign(message.target as Room, {
                         waits: (message.target as Room).waits.filter(
-                            (wait: MessageWaits<Room>) => !message.client.resolvedRoom.includes(wait.id)
+                            (wait: MessageWaits<Room>) => !message.client.resolvedRoom.includes(wait.roomid)
                         ),
                     }) as RoomOptions
                 );
@@ -65,19 +66,20 @@ export class Message<T extends Room | User = Room | User> {
             this.awaited = message.awaited;
         } else if (this.inPm()) {
             const message = this;
-            this.target.waits.forEach((wait: MessageWaits<User>) => {
-                if (message.type === "PM" && wait.filter(message) && wait.userid! === message.author.userid) {
+            this.author.waits.forEach((wait: MessageWaits<User>) => {
+                if (message.type === "PM" && wait.filter(message) && wait.userid === message.author.userid) {
                     message.awaited = true;
                     wait.messages.push(message);
                     if (wait.max === wait.messages.length) {
-                        message.client.resolvedUser.push(wait.id);
+                        clearTimeout(wait.timeout);
+                        message.client.resolvedUser.push(wait.userid);
                         wait.resolve(wait.messages);
                     }
                 } else message.awaited = false;
                 message.client.addUser(
                     Object.assign(message.target as User, {
                         waits: (message.target as User).waits.filter(
-                            (wait: MessageWaits<User>) => !message.client.resolvedUser.includes(wait.id)
+                            (wait: MessageWaits<User>) => !message.client.resolvedUser.includes(wait.userid)
                         ),
                     }) as UserOptions
                 );

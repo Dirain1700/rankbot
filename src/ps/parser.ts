@@ -84,7 +84,11 @@ export class PSCommandParser {
 
         try {
             const { target, author, time } = message;
-            new PSCommandContext(commandData.originalName, command, argument, target, author, time).run();
+            if (message.inRoom()) {
+                new PSCommandContext(commandData.originalName, command, argument, target, author, time).run();
+            } else {
+                new PSCommandContext(commandData.originalName, command, argument, author, author, time).run();
+            }
         } catch (e: unknown) {
             console.error(e);
             result = false;
