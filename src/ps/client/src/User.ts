@@ -321,10 +321,6 @@ export class Users extends Collection<string, User> {
 
     override set(userid: string, user: User): this {
         super.set(Tools.toId(userid), user);
-        if (!user.alts) {
-            console.log(user);
-            throw new Error();
-        }
         return this;
     }
 
