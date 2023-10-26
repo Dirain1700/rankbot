@@ -7,9 +7,8 @@ import type { Room } from "../client/src";
 
 export const commands: BasePSCommandDefinitions = {
     disableautomodchat: {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        run(target, room, user) {
-            const targets = target.split(",");
+        run() {
+            const targets = this.argument.split(",");
             let targetRoom: Room | undefined;
             let durationString: string | undefined;
             if (this.inPm()) {
@@ -18,7 +17,7 @@ export const commands: BasePSCommandDefinitions = {
                 if (!targetRoom) return this.sayError("INVALID_BOT_ROOM", targets[0]);
                 durationString = targets[1];
             } else {
-                targetRoom = room as Room;
+                targetRoom = this.room as Room;
                 durationString = targets[0];
             }
             if (!targetRoom.isStaff(this.user)) return;

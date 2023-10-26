@@ -11,7 +11,7 @@ import type { ApplicationCommandData, Snowflake } from "discord.js";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface PSCommandDefinitions<T, returns = any> {
-    run: (this: T, argument: string, room: Room | User, user: User, command: string, timestamp: number) => returns;
+    run: (this: T) => returns;
     original?: string | true;
     pmOnly?: boolean;
     chatOnly?: boolean;

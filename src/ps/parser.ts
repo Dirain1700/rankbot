@@ -132,7 +132,7 @@ export class PSCommandContext<T extends Room | User = Room | User> {
         else if (this.inPm() && command.chatOnly) return;
         if (command.disabled) return this.say("This command is currently disabled.");
 
-        command.run.call(this, this.argument, this.room, this.user, this.command, this.timestamp);
+        command.run.call(this);
     }
 
     say(content: string): void {

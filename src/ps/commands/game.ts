@@ -36,11 +36,11 @@ export const commands: BasePSCommandDefinitions = {
     }
     */
     wordle: {
-        run(argument, room, user): void {
+        run(): void {
             if (this.inRoom()) this.room.checkCan("html", PS.status.id, true);
-            if (this.inRoom() && !this.room.hasRank("+", user)) return;
+            if (this.inRoom() && !this.room.hasRank("+", this.user)) return;
 
-            let [subCommand, roomId, guess] = argument.split(",");
+            let [subCommand, roomId, guess] = this.argument.split(",");
 
             function isValidCommand(str: string, original: string): str is arrayOf<typeof WORDLE_ALIASES> {
                 return Array.of(original, ...WORDLE_ALIASES).includes(str);
@@ -100,7 +100,8 @@ export const commands: BasePSCommandDefinitions = {
                 case "create": {
                     if (this.inPm()) {
                         if (!roomId) {
-                            if (!user.hasRank("%") && !Config.developers.includes(user.id)) return this.sayError("INVALID_BOT_ROOM");
+                            if (!this.user.hasRank("%") && !Config.developers.includes(this.user.id))
+                                return this.sayError("INVALID_BOT_ROOM");
                             global.Wordles = {};
                             for (const r in Config.enableWordle) {
                                 initWordle.call(this, r);
@@ -116,7 +117,7 @@ export const commands: BasePSCommandDefinitions = {
                     } else {
                         if (!this.inRoom()) return;
                         if (!(this.room.roomid in Config.enableWordle)) return this.sayError("WORDLE_DISABLED", this.room.title);
-                        if (!this.room.hasRank("%", user) && !Config.developers.includes(user.id))
+                        if (!this.room.hasRank("%", this.user) && !Config.developers.includes(this.user.id))
                             return this.sayError("PERMISSION_DENIED", "%");
                         initWordle.call(this, this.room.roomid, guess);
                     }
@@ -135,7 +136,8 @@ export const commands: BasePSCommandDefinitions = {
 
                 case "store":
                 case "save": {
-                    if (!user.hasRank("%") && !Config.developers.includes(user.id)) return this.sayError("PERMISSION_DENIED", "%");
+                    if (!this.user.hasRank("%") && !Config.developers.includes(this.user.id))
+                        return this.sayError("PERMISSION_DENIED", "%");
                     store();
                     this.say("Successfuly stored Wordle data!");
                     break;
@@ -144,7 +146,8 @@ export const commands: BasePSCommandDefinitions = {
                 case "rebuild":
                 case "restore":
                 case "reload": {
-                    if (!user.hasRank("%") && !Config.developers.includes(user.id)) return this.sayError("PERMISSION_DENIED", "%");
+                    if (!this.user.hasRank("%") && !Config.developers.includes(this.user.id))
+                        return this.sayError("PERMISSION_DENIED", "%");
                     Wordle.rebuild();
                     this.say("Successfuly loaded Wordle data!");
                     break;
@@ -152,7 +155,7 @@ export const commands: BasePSCommandDefinitions = {
 
                 case "send":
                 case "request": {
-                    if (!this.inPm()) return void user.send("You must use this command in PM.");
+                    if (!this.inPm()) return void this.user.send("You must use this command in PM.");
                     if (!roomId || !Rooms.has(roomId)) return this.sayError("INVALID_ROOM", roomId ? roomId : "");
                     // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
                     const targetRoom = Rooms.get(roomId)!;
@@ -171,7 +174,7 @@ export const commands: BasePSCommandDefinitions = {
 
                 case "commend": {
                     if (!roomId) {
-                        if (!user.hasRank("%") && !Config.developers.includes(user.id)) {
+                        if (!this.user.hasRank("%") && !Config.developers.includes(this.user.id)) {
                             return this.sayError("INVALID_ROOM");
                         } else {
                             for (const r in Wordles) {
@@ -203,7 +206,8 @@ export const commands: BasePSCommandDefinitions = {
                 case "end": {
                     if (!roomId) return this.sayError("INVALID_ROOM");
                     if (this.inPm() && !roomId) {
-                        if (!user.hasRank("%") && !Config.developers.includes(user.id)) return this.sayError("PERMISSION_DENIED", "%");
+                        if (!this.user.hasRank("%") && !Config.developers.includes(this.user.id))
+                            return this.sayError("PERMISSION_DENIED", "%");
                         for (const r in Wordles) {
                             const targetRoom = Rooms.get(r);
                             if (!targetRoom || !Wordles[roomId])

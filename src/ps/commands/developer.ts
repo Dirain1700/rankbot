@@ -13,11 +13,10 @@ const loadableModules = ["games", "commands", "client", "handler", "config", "de
 
 export const commands: BasePSCommandDefinitions = {
     eval: {
-        run(target, room, user) {
-            // eslint-disable-line @typescript-eslint/no-unused-vars
-            if (!Config.developers.includes(user.id)) return;
+        run() {
+            if (!Config.developers.includes(this.user.id)) return;
             try {
-                let result = eval(target) as unknown;
+                let result = eval(this.argument) as unknown;
                 if (result === null) {
                     result = "null";
                 } else if (result === undefined) {
@@ -40,9 +39,8 @@ export const commands: BasePSCommandDefinitions = {
         developerOnly: true,
     },
     export: {
-        // eslint-disable-next-line  @typescript-eslint/no-unused-vars
-        run(target, room, user): void {
-            const targetFilePath = target.trim();
+        run(): void {
+            const targetFilePath = this.argument.trim();
             if (!fs.existsSync(targetFilePath)) return this.say("Module not found. Check spelling?");
 
             const result = fs.readFileSync(targetFilePath, "utf-8");
@@ -53,8 +51,7 @@ export const commands: BasePSCommandDefinitions = {
         developerOnly: true,
     },
     gitpull: {
-        // eslint-disable-next-line  @typescript-eslint/no-unused-vars
-        run(target, room, user): void {
+        run(): void {
             exec("git pull", (error: ExecException | null, stdout: string, stderr: string): void => {
                 let result = "";
                 if (error) result += (error.stack ?? error.message) + "\n";
@@ -71,11 +68,10 @@ export const commands: BasePSCommandDefinitions = {
         developerOnly: true,
     },
     hotpatch: {
-        // eslint-disable-next-line  @typescript-eslint/no-unused-vars
-        run(target, room, user) {
+        run() {
             const modules: Array<keyof typeof SingleModulePaths | keyof typeof DirectoryModulePaths> = [];
 
-            const possibleModule: (typeof loadableModules)[number] = target as (typeof loadableModules)[number];
+            const possibleModule: (typeof loadableModules)[number] = this.argument as (typeof loadableModules)[number];
             switch (possibleModule) {
                 case "client": {
                     modules.push(...(["room", "user", "clientuser"] as typeof modules));

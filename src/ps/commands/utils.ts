@@ -4,8 +4,7 @@ import type { BasePSCommandDefinitions } from "../../../types/commands";
 
 export const commands: BasePSCommandDefinitions = {
     help: {
-        // eslint-disable-next-line  @typescript-eslint/no-unused-vars
-        run(argument, room, user): void {
+        run(): void {
             if (this.inRoom() && !this.user.hasRank("+")) return;
             if (!Config.readme.length) {
                 return this.say(`Sorry, documentation for ${PS.user?.name ?? ""} is unavailable now!`);
@@ -15,16 +14,15 @@ export const commands: BasePSCommandDefinitions = {
         aliases: ["commands"],
     },
     invite: {
-        // eslint-disable-next-line  @typescript-eslint/no-unused-vars
-        run(argument, room, user): void {
+        run(): void {
             if (this.inRoom()) return;
-            if (!argument) return this.say("Please specify the one valid room id.");
-            if (!user.hasRank("+") && !(user.id in Config.developers)) return;
+            if (!this.argument) return this.say("Please specify the one valid room id.");
+            if (!this.user.hasRank("+") && !(this.user.id in Config.developers)) return;
 
-            argument = Tools.toRoomId(argument);
-            if (!argument) return this.say("Please specify the one valid room id.");
+            this.argument = Tools.toRoomId(this.argument);
+            if (!this.argument) return this.say("Please specify the one valid room id.");
 
-            PS.joinRoom(argument);
+            PS.joinRoom(this.argument);
         },
         pmOnly: true,
     },
