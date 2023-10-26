@@ -10,7 +10,6 @@ import type { ApplicationCommandData, Snowflake } from "discord.js";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface PSCommandDefinitions<T, returns = any> {
     run: (this: T) => returns;
-    original?: string | true;
     pmOnly?: boolean;
     chatOnly?: boolean;
     pmSyntax?: string[];

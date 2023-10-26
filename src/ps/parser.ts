@@ -25,15 +25,14 @@ export class PSCommandParser {
                 import(filePath)
                     .then(({ commands }) => {
                         for (const [commandName, commandData] of Object.entries(commands as BasePSCommandDefinitions)) {
-                            const clone = cloneDeep(commandData);
-                            /* eslint-disable @typescript-eslint/no-explicit-any */
-                            (clone as any as BasePSCommandData).originalName = commandName;
-                            PSCommands[commandName] = clone as any as BasePSCommandData;
+                            const clone = cloneDeep(commandData) as BasePSCommandData;
+                            clone.originalName = commandName;
+                            PSCommands[commandName] = clone;
                             if (commandData.aliases)
                                 for (const alias of commandData.aliases) {
-                                    const cloneNeo = commandData;
-                                    (cloneNeo as any as BasePSCommandData).originalName = commandName;
-                                    PSCommands[alias] = cloneNeo as any as BasePSCommandData;
+                                    const cloneNeo = cloneDeep(commandData) as BasePSCommandData;
+                                    cloneNeo.originalName = commandName;
+                                    PSCommands[alias] = cloneNeo;
                                 }
                             /* eslint-enable */
                         }
