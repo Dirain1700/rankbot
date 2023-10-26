@@ -139,6 +139,15 @@ export class PSCommandContext<T extends Room | User = Room | User> {
         this.room.send(Tools.toString(content));
     }
 
+    parse(newCommandName: string, newArgument: string) {
+        const newCommand = global.PSCommandParser.getCommandData(newCommandName);
+        if (!newCommand) throw new Error("New command " + newCommandName + " not found");
+        this.originalName = newCommand.originalName;
+        this.command = newCommandName;
+        this.argument = newArgument;
+        this.run();
+    }
+
     sayError(err: PSCommandErrorInputType, ...args: string[]): void {
         if (!PS.user) return;
         let message: string;
