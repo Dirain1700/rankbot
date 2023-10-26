@@ -2,6 +2,7 @@
 
 import { cloneDeep } from "lodash";
 
+import type { arrayOf } from "../../../../types/utils";
 import type { ModchatLevel } from "../types/Room";
 import type {
     ILogMessageDetails,
@@ -170,6 +171,30 @@ export class Tools {
         if (list.length < 2) return "";
         const last = list.pop();
         return list.join(", ") + " and " + last;
+    }
+
+    static bold(content: string): string {
+        return "<b>" + content + "</b>";
+    }
+
+    static random(lim: number): number {
+        return Math.floor(Math.random() * lim);
+    }
+
+    static pick<T extends Array<unknown>>(arr: T): arrayOf<T> {
+        return arr[Math.floor(arr.length * Math.random())];
+    }
+
+    static shuffle<T extends Array<unknown>>(arr: T): T {
+        const copy = this.clone(arr);
+        for (let i = 0; i < arr.length - 1; i++) {
+            const randomIndex = this.random(arr.length);
+            copy.splice(randomIndex, 1);
+            const pre = this.clone(copy[randomIndex]);
+            copy[randomIndex] = this.clone(arr[i]);
+            copy[i] = pre;
+        }
+        return copy;
     }
 
     static sleep(t: number): Promise<void> {
