@@ -1,7 +1,5 @@
 import type { Dict } from "./utils";
 import type { DiscordCommandContext } from "../src/discord/parser";
-import type { Room } from "../src/ps/client/src/Room";
-import type { User } from "../src/ps/client/src/User";
 import type { PSCommandContext } from "../src/ps/parser";
 import type { ApplicationCommandData, Snowflake } from "discord.js";
 
