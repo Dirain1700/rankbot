@@ -1038,13 +1038,14 @@ export class Client extends EventEmitter {
                     time: Date.now(),
                     client: this,
                 } as MessageInput<Room>);
-                if (!this.user || !this.PromisedChat.length) return;
-                for (let i = 0; i < this.PromisedChat.length; i++) {
-                    const element = this.PromisedChat[i]!;
-                    if (element.id === message.target.roomid && this.user.userid === message.author.userid) {
-                        element.received = true;
-                        this.PromisedChat.splice(i, 1);
-                        break;
+                if (this.PromisedChat.length && this.user) {
+                    for (let i = 0; i < this.PromisedChat.length; i++) {
+                        const element = this.PromisedChat[i]!;
+                        if (element.id === message.target.roomid && this.user.userid === message.author.userid) {
+                            element.received = true;
+                            this.PromisedChat.splice(i, 1);
+                            break;
+                        }
                     }
                 }
                 this.emit(Events.MESSAGE_CREATE, message);
@@ -1073,7 +1074,7 @@ export class Client extends EventEmitter {
                         client: this,
                         time: parseInt(event[0] as string),
                     } as MessageInput<Room>);
-                if (this.user && this.PromisedChat.length) {
+                if (this.PromisedChat.length && this.user) {
                     for (let i = 0; i < this.PromisedChat.length; i++) {
                         const element = this.PromisedChat[i]!;
                         if (element.id === message.target.roomid && this.user.userid === message.author.userid) {
