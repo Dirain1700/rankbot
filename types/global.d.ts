@@ -5,10 +5,11 @@ import type { Species } from "./dex";
 import type { Dict } from "./utils";
 import type { DiscordCommandParser, DiscordCommandContext } from "../src/discord/parser";
 import type { Client, Rooms, Users } from "../src/ps/client/src";
+import type { Dex } from "../src/ps/dex";
 import type { PSCommandParser, PSCommandContext } from "../src/ps/parser";
 import type { Database } from "../src/ps/storage";
 import type { Wordle } from "../src/ps/wordle/main";
-import type { Client as DiscordClient, Collection } from "discord.js";
+import type { Client as DiscordClient } from "discord.js";
 
 declare global {
     var fs: typeof import("node:fs");
@@ -21,7 +22,7 @@ declare global {
     var Database: Database;
     var Tools: typeof import("../src/Tools").Tools;
     var Wordles: Dict<Wordle>;
-    var Dex: Collection<string, Species>;
+    var Dex: Dex<string, Species>;
     var DiscordCommands: Record<Snowflake, DiscordCommandSingleData>;
     var DiscordCommandParser: DiscordCommandParser;
     var DiscordCommandContext: DiscordCommandContext["constructor"];
