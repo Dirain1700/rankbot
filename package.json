@@ -23,7 +23,7 @@
         "discord.js": "^14.14.1",
         "lodash": "^4.17.21",
         "node-schedule": "^2.1.1",
-        "ws": "^8.14.2"
+        "ws": "^8.16.0"
     },
     "devDependencies": {
         "@types/jsdom": "^21.1.6",
