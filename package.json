@@ -4,7 +4,7 @@
     "description": "No bot, No life.",
     "main": "index.js",
     "scripts": {
-        "start": "npm run esbuild && node --enable-source-maps --trace-warnings dist/src/app.js",
+        "start": "npm run esbuild && node --env-file=.env --enable-source-maps --trace-warnings dist/src/app.js",
         "tsc": "tsc -p tsconfig.json",
         "esbuild": "node --enable-source-maps build.js",
         "setup-zh": "node --enable-source-maps dist/src/detect-zh/setup/setup.js",
