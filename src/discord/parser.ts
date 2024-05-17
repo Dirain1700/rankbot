@@ -177,7 +177,7 @@ export class DiscordCommandParser {
                 }
                 /* eslint-disable @typescript-eslint/no-non-null-assertion */
                 const command = uploadableGuildCommandData.shift()!;
-                await Discord.application!.commands.set(command[1]!, command[0]!)
+                await Discord.application!.commands.set(command[1], command[0])
                     .then((d) => returnObject.result.push(d))
                     .catch((e) => returnObject.errors.push(e));
                 /* eslint-enable */

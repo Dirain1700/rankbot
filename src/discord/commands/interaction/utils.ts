@@ -66,13 +66,13 @@ export const commands: BaseDiscordCommandDefinitions = {
                         elim.querySelector("em.name")!.innerHTML.replaceAll("\t", "").replaceAll("\n", "").split("<")[0]!.trim()
                     );
                     const codes = Details.map((elim) =>
-                        [...elim.querySelectorAll("div.lb-code")!.values()].map((e) =>
+                        [...elim.querySelectorAll("div.lb-code").values()].map((e) =>
                             (e.querySelector("dd")?.innerHTML ?? "").replaceAll("\t", "").replaceAll("\n", "").trim()
                         )
                     );
                     const CAS = Details.map((elim) =>
                         (
-                            [...elim.querySelector("div.product-set1")!.querySelectorAll("dl")!.values()]
+                            [...elim.querySelector("div.product-set1")!.querySelectorAll("dl").values()]
                                 .find((e) => (e.querySelector("dt")?.innerHTML ?? "").startsWith("CAS"))
                                 ?.querySelector("dd")?.innerHTML ?? ""
                         )
@@ -81,12 +81,12 @@ export const commands: BaseDiscordCommandDefinitions = {
                             .trim()
                     );
                     const sizes = Details.map((elim) =>
-                        [...elim.querySelectorAll("td.product-size")!.values()].map((e) =>
+                        [...elim.querySelectorAll("td.product-size").values()].map((e) =>
                             (e.querySelector("div.product-tbl-in")?.innerHTML ?? "").replaceAll("\t", "").replaceAll("\n", "").trim()
                         )
                     );
                     const prices = Details.map((elim) =>
-                        [...elim.querySelectorAll("td.product-price")!.values()].map((e) =>
+                        [...elim.querySelectorAll("td.product-price").values()].map((e) =>
                             (e.querySelector("div.product-tbl-in")!.querySelector("dd")?.innerHTML ?? "")
                                 .replaceAll("\t", "")
                                 .replaceAll("\n", "")
