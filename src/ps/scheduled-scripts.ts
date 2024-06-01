@@ -9,7 +9,13 @@ const schedulesFolder = "databases/schedules";
 export function getTournamentSchedules(roomid: string, year: number, month: number): ITournamentMonthlySchedule {
     const filePath = `${schedulesFolder}/${roomid}/${year}${String(month).padStart(2, "0")}.json`;
     if (!fs.existsSync(filePath)) return {};
-    return sortSchedules(JSON.parse(fs.readFileSync(filePath, "utf8")) as ITournamentMonthlySchedule);
+    let loadData: ITournamentMonthlySchedule = {};
+    try {
+        loadData = JSON.parse(fs.readFileSync(filePath, "utf8")) as ITournamentMonthlySchedule;
+    } catch (e) {
+        console.error(e);
+    }
+    return sortSchedules(loadData);
 }
 
 export function updateTournamentSchedules(roomid: string, year: number, month: number, data: ITournamentMonthlySchedule) {
@@ -21,7 +27,12 @@ export function updateTournamentSchedules(roomid: string, year: number, month: n
         fs.writeFileSync(filePath, JSON.stringify(data, null, 4));
         return data;
     } else {
-        const currentData = JSON.parse(fs.readFileSync(filePath, "utf-8")) as ITournamentMonthlySchedule;
+        let currentData: ITournamentMonthlySchedule = {};
+        try {
+            currentData = JSON.parse(fs.readFileSync(filePath, "utf8")) as ITournamentMonthlySchedule;
+        } catch (e) {
+            console.error(e);
+        }
         for (const day in data) {
             if (!(day in currentData)) {
                 currentData[day] = data[day]!;
