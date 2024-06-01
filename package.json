@@ -34,7 +34,7 @@
         "@types/ws": "^8.5.10",
         "@typescript-eslint/eslint-plugin": "7.9.0",
         "@typescript-eslint/parser": "7.9.0",
-        "discord-api-types": "^0.37.84",
+        "discord-api-types": "^0.37.86",
         "esbuild": "^0.21.3",
         "eslint": "8.56.0",
         "eslint-plugin-import": "2.29.1",
