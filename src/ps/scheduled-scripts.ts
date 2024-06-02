@@ -102,7 +102,10 @@ export function createScheduledTournament(roomid: string, tourData: IScheduledTo
     }
 }
 
-export function setNextScheduledTournament(roomid: string) {
+export function setNextScheduledTournament(roomid: string, force?: boolean) {
+    if (!force) {
+        setTimeout(() => setNextScheduledTournament(roomid), 1000 * 60 * 60 * 12); // 12 hours
+    }
     const mostRecent = getMostRecentTournamentToday(roomid);
     if (!mostRecent) return;
     const now = new Date();
