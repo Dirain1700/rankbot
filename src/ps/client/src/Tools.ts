@@ -3,6 +3,8 @@
 import { cloneDeep } from "lodash";
 
 import type { arrayOf } from "../../../../types/utils";
+import type { valueof } from "../types";
+
 import type { ModchatLevel } from "../types/Room";
 import type {
     ILogMessageDetails,
@@ -158,6 +160,24 @@ export class Tools {
         muted: "!",
         locked: "‽",
     };
+
+    static readonly generators = {
+        Single: 1,
+        Double: 2,
+        Triple: 3,
+        Quadruple: 4,
+        Quintuple: 5,
+        Sextuple: 6,
+    } as const;
+
+    static readonly numIndexGenerators = {
+        "1": "Single",
+        "2": "Double",
+        "3": "Triple",
+        "4": "Quadruple",
+        "5": "Quintuple",
+        "6": "Sextuple",
+    } as const;
 
     static toId(id: string): string {
         return id.toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -507,5 +527,10 @@ export class Tools {
         durationArray.push(intSec.toString() + (intSec > 1 ? " seconds" : " second"));
 
         return this.joinList(durationArray);
+    }
+
+    static matchGenerator(num: number): valueof<(typeof Tools)["numIndexGenerators"]>;
+    static matchGenerator(num: number): string {
+        return Tools.numIndexGenerators[num.toString() as keyof (typeof Tools)["numIndexGenerators"]] ?? num + "-tuple";
     }
 }

@@ -10,16 +10,6 @@ import type { Room } from "./Room";
 
 import type { TourUpdateData, TourEndData, EliminationBracket, RoundRobinBracket } from "../types/Tour";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Generators = {
-    Single: 1,
-    Double: 2,
-    Triple: 3,
-    Quadruple: 4,
-    Quintuple: 5,
-    Sextuple: 6,
-} as const;
-
 // T is wheather the tournament is Elimination or Round Robin
 export class Tournament<T extends EliminationBracket | RoundRobinBracket = EliminationBracket> extends Activity {
     data: TourUpdateData<T> & TourEndData<T>;
@@ -28,7 +18,7 @@ export class Tournament<T extends EliminationBracket | RoundRobinBracket = Elimi
     type: T extends EliminationBracket ? "Elimination" : "Round Robin";
     round: {
         // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-        name: keyof typeof Generators | string;
+        name: keyof typeof Tools.generators | string;
         number: number;
     };
     playerCap: number;
@@ -56,11 +46,11 @@ export class Tournament<T extends EliminationBracket | RoundRobinBracket = Elimi
             teambuilderFormat: "",
         };
         let gen = (generator.replace(this.type, "").trim() || "Single") as (typeof this)["round"]["name"];
-        if (!Object.keys(Generators).includes(gen)) gen = generator.replace(this.type, ""); // like 20-tuple
+        if (!Object.keys(Tools.generators).includes(gen)) gen = generator.replace(this.type, ""); // like 20-tuple
         this.data.generator = generator;
         this.round = {
             name: gen,
-            number: Generators[gen as keyof typeof Generators] ?? parseInt(gen.replace("-tuple", "")),
+            number: Tools.generators[gen as keyof (typeof Tools)["generators"]] ?? parseInt(gen.replace("-tuple", "")),
         };
         this.format = format;
         this.data.format = format;
@@ -73,10 +63,10 @@ export class Tournament<T extends EliminationBracket | RoundRobinBracket = Elimi
         if (data) Object.assign(this.data, data);
         this.type = (this.data.generator.endsWith("Elimination") ? "Elimination" : "Round Robin") as (typeof this)["type"];
         let gen = (this.data.generator.replace(this.type, "").trim() || "Single") as (typeof this)["round"]["name"] | string;
-        if (!Object.keys(Generators).includes(gen)) gen = this.data.generator.replace(this.type, ""); // like 20-tuple
+        if (!Object.keys(Tools.generators).includes(gen)) gen = this.data.generator.replace(this.type, ""); // like 20-tuple
         this.round = {
             name: gen,
-            number: Generators[gen as keyof typeof Generators] ?? parseInt(gen.replace("-tuple", "")),
+            number: Tools.generators[gen as keyof (typeof Tools)["generators"]] ?? parseInt(gen.replace("-tuple", "")),
         };
         this.started = !!this.data.bracketData;
         this.playerCap = this.data.playerCap;
