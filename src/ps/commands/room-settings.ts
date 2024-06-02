@@ -1,6 +1,7 @@
 "use strict";
 
 import { runModchatSetter } from "../chat/modchat/enable";
+import { getMostRecentTournamentToday, setNextScheduledTournament } from "../scheduled-scripts";
 
 import type { BasePSCommandDefinitions } from "../../../types/commands";
 import type { Room } from "../client/src";
@@ -45,5 +46,33 @@ export const commands: BasePSCommandDefinitions = {
         aliases: ["dam", "dm", "disablemodchat"],
         syntax: ["[minutes]"],
         pmSyntax: ["[room]", "[minutes]"],
+    },
+    reloadtournamentschedules: {
+        run() {
+            const targetRoom = this.inRoom() ? this.room : Rooms.get(this.argument);
+            if (!targetRoom) return this.sayError("INVALID_ROOM");
+            if (!targetRoom.isStaff(this.user)) return;
+            setNextScheduledTournament(targetRoom.id, true);
+            const recentTournament = getMostRecentTournamentToday(targetRoom.id);
+            if (!recentTournament) {
+                return void this.say(
+                    "Tournament schedules have been reloaded, but o tournaments scheduled for today or tomorrow. Make sure to schedule some!"
+                );
+            }
+            this.say("Tournament schedules have been reloaded.");
+            let nextMessage = "The next one will be:";
+            if (recentTournament.cap) nextMessage += ` (${recentTournament.cap}-players)`;
+            nextMessage += ` "${recentTournament.name ?? recentTournament.format}"`;
+            if (recentTournament.rounds && recentTournament.rounds !== 1 && recentTournament.type === "Elimination") {
+                const rounds = Tools.matchGenerator(recentTournament.rounds);
+                nextMessage += ` (${rounds} ${recentTournament.type})`;
+            }
+            nextMessage += `, at ${recentTournament.time} (UTC)`;
+            if (recentTournament.rules?.length) {
+                nextMessage += " with the custom rules:" + Tools.joinList(recentTournament.rules);
+            }
+            this.say(nextMessage + ".");
+        },
+        aliases: ["rts"],
     },
 };
