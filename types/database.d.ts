@@ -28,6 +28,7 @@ export interface IScheduledTournamentData {
     name?: string;
     rules?: string[];
     cap?: number;
+    rounds?: number;
 }
 
 export interface ITournamentMonthlySchedule {

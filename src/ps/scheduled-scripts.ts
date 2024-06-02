@@ -90,7 +90,7 @@ export function getMostRecentTournamentToday(roomid: string): IScheduledTourname
 export function createScheduledTournament(roomid: string, tourData: IScheduledTournamentData) {
     const targetRoom = Rooms.get(roomid);
     if (!targetRoom) return;
-    targetRoom.send(`/tour create ${tourData.format}, ${tourData.type}`);
+    targetRoom.send(`/tour create ${tourData.format}, ${tourData.type},, ${tourData.rounds ?? 1}`);
     if (tourData.rules?.length) {
         targetRoom.send(`/tour rules ${tourData.rules.join(", ")}`);
     }
