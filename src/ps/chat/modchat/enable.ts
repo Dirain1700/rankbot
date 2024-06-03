@@ -41,6 +41,7 @@ export function runModchatSetter(targetUser: User, targetRoom: Room): boolean {
     if (disabled) return false;
     /* eslint-disable @typescript-eslint/no-non-null-assertion */
     let isStaffOnline: boolean = false;
+    targetRoom.update();
     for (const u of targetRoom.getOnlineStaffs(!!ignoreGlobals, !!allowAlts).values()) {
         u.update();
         if (u.locked) continue;
@@ -65,6 +66,7 @@ export function runModchatSetter(targetUser: User, targetRoom: Room): boolean {
         break;
     }
     if (!isStaffOnline) {
+        if (!targetRoom.userCollection.size) return false;
         targetRoom.send("This room has no staffs so modchat will be set to +.");
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         targetRoom.setModchat(rank || "+");
