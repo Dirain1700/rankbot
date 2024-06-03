@@ -1,16 +1,12 @@
 "use strict";
 
 import * as fs from "node:fs";
-import { createServer } from "node:http";
 import * as path from "node:path";
-
-import { parse } from "node:querystring";
 
 import { Client as DiscordClient } from "discord.js";
 
 import { Client as PSClient } from "./ps/client/src/Client";
 
-const DISPLAY_HTML_PATH = "./config/index.html";
 const UNCAUGHT_ERR_PATH = "./logs/uncaught";
 const UNHANDLED_ERR_PATH = "./logs/unhandled";
 
@@ -43,31 +39,6 @@ export const DirectoryModulePaths = {
     discordcommands: "./discord/commands",
     chat: "./ps/chat",
 } as const;
-
-export function startServer() {
-    createServer((req, res) => {
-        if (req.method === "POST") {
-            let data = "";
-            req.on("data", (chunk) => {
-                data += chunk;
-            });
-            req.on("end", () => {
-                if (!data) {
-                    res.end("No post data");
-                    return;
-                }
-                const dataObject = parse(data);
-                if (dataObject.type === "wake") {
-                    res.end();
-                    return;
-                }
-            });
-        } else if (req.method === "GET") {
-            res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-            res.end(fs.existsSync(DISPLAY_HTML_PATH) ? fs.readFileSync(DISPLAY_HTML_PATH, "utf-8") : "Service available");
-        }
-    }).listen(3000);
-}
 
 export function setupErrorLogger() {
     process.on("unhandledRejection", (reason) => {
