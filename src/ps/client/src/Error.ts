@@ -62,6 +62,11 @@ export class PSAPIError extends Error {
                 break;
             }
 
+            case "CUSTOM": {
+                message = args[0]!;
+                break;
+            }
+
             default:
                 // prettier-ignore
                 throw new Error("Unknown PSAPIError type: " + (errorType satisfies never));
