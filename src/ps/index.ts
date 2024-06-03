@@ -64,16 +64,22 @@ export const onChatError = (err: string, room: Room | null) => {
     onError("NormalError", error.stack!);
 };
 
+export const onClientError = (err: string) => {
+    const error = new PSAPIError("CUSTOM", err + "\n" + " at " + new Date().toUTCString());
+    console.log(error.stack);
+    onError("NormalError", error.stack!);
+};
+
 /* eslint-enable */
 export function setEventListeners() {
-    PS.on("messageCreate", onMessage);
-    PS.on("roomUserAdd", onUserAdd);
-    PS.on("roomUserRemove", onUserRemove);
-    PS.on("clientRoomAdd", onClientRoomAdd);
-    PS.on("chatError", onChatError);
-    PS.on("clientError", console.log);
-    PS.on("modchat", onModchat);
-    PS.on("userRename", onUserRename);
-    PS.on("tourCreate", onTournamentCreate);
-    PS.on("ready", onReady);
+    PS.on(PS.events.MESSAGE_CREATE, onMessage);
+    PS.on(PS.events.ROOM_USER_ADD, onUserAdd);
+    PS.on(PS.events.ROOM_USER_REMOVE, onUserRemove);
+    PS.on(PS.events.CLIENT_ROOM_ADD, onClientRoomAdd);
+    PS.on(PS.events.CHAT_ERROR, onChatError);
+    PS.on(PS.events.CLIENT_ERROR, onClientError);
+    PS.on(PS.events.MODCHAT, onModchat);
+    PS.on(PS.events.USER_RENAME, onUserRename);
+    PS.on(PS.events.TOUR_CREATE, onTournamentCreate);
+    PS.on(PS.events.READY, onReady);
 }
