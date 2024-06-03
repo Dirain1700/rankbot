@@ -5,7 +5,10 @@ import { storeChat, sendModlog } from "./chat/logger";
 import announceModchat from "./chat/modchat/detect";
 import enableModchat from "./chat/modchat/enable";
 
+import { PSAPIError } from "./client/src";
+
 import { setNextScheduledTournament } from "./scheduled-scripts";
+import { onError } from "../setup";
 
 import type { Message, ModchatLevel, Room, User } from "./client/src";
 
@@ -55,14 +58,20 @@ export const onReady = () => {
     console.log("Logged in as", PS.user!.name);
 };
 
+export const onChatError = (err: string, room: Room | null) => {
+    const error = new PSAPIError("CUSTOM", err + "\n" + " in room " + Tools.toString(room) + "\n at " + new Date().toUTCString());
+    console.log(error.stack);
+    onError("NormalError", error.stack!);
+};
+
 /* eslint-enable */
 export function setEventListeners() {
     PS.on("messageCreate", onMessage);
     PS.on("roomUserAdd", onUserAdd);
     PS.on("roomUserRemove", onUserRemove);
     PS.on("clientRoomAdd", onClientRoomAdd);
-    PS.on("chatError", console.log);
-    PS.on("error", console.log);
+    PS.on("chatError", onChatError);
+    PS.on("clientError", console.log);
     PS.on("modchat", onModchat);
     PS.on("userRename", onUserRename);
     PS.on("tourCreate", onTournamentCreate);

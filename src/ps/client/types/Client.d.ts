@@ -55,7 +55,7 @@ export interface ClientEventNames {
     OPEN_HTML_PAGE: "openHtmlPage";
     CLOSE_HTML_PAGE: "closeHtmlPage";
     CHAT_ERROR: "chatError";
-    CLIENT_ERROR: "error";
+    CLIENT_ERROR: "clientError";
 }
 
 export interface ClientEvents {

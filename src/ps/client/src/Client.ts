@@ -73,7 +73,7 @@ const Events: ClientEventNames = {
     OPEN_HTML_PAGE: "openHtmlPage",
     CLOSE_HTML_PAGE: "closeHtmlPage",
     CHAT_ERROR: "chatError",
-    CLIENT_ERROR: "error",
+    CLIENT_ERROR: "clientError",
 };
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
@@ -1212,7 +1212,7 @@ export class Client extends EventEmitter {
 
             case "error": {
                 const error = event.join("|");
-                this.emit(Events.CHAT_ERROR, error, room ?? null);
+                this.emit(Events.CHAT_ERROR, error, room?.update() ?? null);
                 break;
             }
 
