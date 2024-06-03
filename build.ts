@@ -104,11 +104,6 @@ export function build() {
         tsconfig: path.resolve(__dirname, "tsconfig.json"),
     }));
 
-    if (unihanDataFiles.length === 2) {
-        fs.unlinkSync(mainUnihanFileName);
-        fs.unlinkSync(exportUnihanFileName);
-    }
-
     console.log(new Date().toLocaleString("ja-jp", { timeZone: "Asia/Tokyo" }), "Sucessfully built files!");
     console.log();
 }
