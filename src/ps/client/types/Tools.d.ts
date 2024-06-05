@@ -56,6 +56,7 @@ export interface IBlacklistDetails extends IBaseLogDetails {
     editRoom: false;
     target: string;
     duration: "a year" | "ten years";
+    nameBanned: boolean;
     room: string;
     reason?: string;
 }
