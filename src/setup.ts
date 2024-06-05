@@ -52,7 +52,7 @@ export function setupErrorLogger() {
     process.on("uncaughtException", (err, origin) => {
         if (origin === "uncaughtException") {
             console.error(err);
-            onError("NormalError", err.stack ?? err.toString());
+            onError("NormalError", err?.stack ?? err.toString());
         }
     });
 }
