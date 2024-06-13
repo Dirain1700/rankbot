@@ -13,7 +13,7 @@ export interface ModchatSetting {
     disabled?: NodeJS.Timer | undefined;
 }
 
-type ActionType = "punish" | "hidetext" | "notify";
+type ActionType = "punish" | "hidetext" | "log";
 
 export interface IRoomSettings {
     modchat?: ModchatSetting;

@@ -20,6 +20,8 @@ export const PSOptions: PSClientOptions = {
     autoJoin: [],
 };
 
+export const PerspectiveAPIKey = "";
+
 export const roomAliases: Dict<string> = {};
 
 export const commandPrefix = "";

@@ -1,5 +1,8 @@
 "use strict";
 
+import { analyzeComment } from "./detoxify";
+
+import type { IATTRIBUTES, IAttractiveScore } from "../../../types/perspective";
 import type { Message, Room } from "../client/src";
 import type { Channel } from "discord.js";
 
@@ -7,13 +10,14 @@ interface chatLogType {
     user: string;
     content: string;
     time: number;
+    scores: { [key in keyof IATTRIBUTES]: IAttractiveScore } | null;
 }
 
 const sortLogFunction = (a: chatLogType, b: chatLogType) => a.time - b.time;
 
 const MAX_STORED_MESSAGES_LENGTH = 50;
 
-export function storeChat(message: Message<Room>): void {
+export async function storeChat(message: Message<Room>) {
     if (!Config.roomSettings[message.target.id]?.["logChannel"] || !Discord.isReady()) return;
     if (message.content.startsWith("/") && !message.content.startsWith("/log")) return;
     const content = message.content.replace("/log ", "");
@@ -37,6 +41,7 @@ export function storeChat(message: Message<Room>): void {
         user: message.author.id,
         content,
         time: message.time,
+        scores: Config.roomSettings[message.target.roomid]?.["useAPI"] ? (await analyzeComment(content)).attributeScores : null,
     });
 
     fs.writeFileSync(filePath, JSON.stringify(chatlog, null, 4));

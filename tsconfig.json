@@ -27,5 +27,5 @@
         "noPropertyAccessFromIndexSignature": false,
         "typeRoots": ["node_modules/@types", "types"]
     },
-    "include": ["src/**/*.ts", "config/*.ts", "data/**/*.ts"]
+    "include": ["src/**/*.ts", "config/*.ts", "data/**/*.ts", "types/perspective.d.ts"]
 }
