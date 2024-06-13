@@ -204,13 +204,9 @@ export function reloadModule(modules: Array<keyof typeof SingleModulePaths | key
                     global.DiscordCommandParser = new DiscordCommandParser();
                     global.DiscordCommandContext = DiscordCommandContext;
                 }
-                global.DiscordCommandParser.setupGlobal()
-                    .then((data) => {
-                        global.DiscordCommands = data;
-                    })
-                    .catch((e) => {
-                        throw e;
-                    });
+                void global.DiscordCommandParser.setupGlobal().then((data) => {
+                    global.DiscordCommands = data;
+                });
                 break;
             }
             case "discordhandler": {

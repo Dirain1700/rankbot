@@ -157,7 +157,7 @@ export class Room {
     setModchat(rank: GroupSymbol): void {
         if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
         if (Tools.isHigherRank(rank, "%")) this.checkCan("roomban", PS.user, true);
-        else this.checkCan("warn", PS.user, true);
+        else this.checkCan("warn", PS.user, false);
         this.send("/modchat " + rank, { type: "command", measure: false });
     }
 

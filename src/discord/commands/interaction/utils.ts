@@ -168,10 +168,7 @@ export const commands: BaseDiscordCommandDefinitions = {
             if ([2, 4, 12, 13, 14, 15].includes(channel.type))
                 return void this.interaction.reply("Cannot send messages to Voice channels and Private Threads!");
 
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            this.interaction.reply(`Please send ${type} in 2 minutes!`).catch((e) => {
-                throw e;
-            });
+            void this.interaction.reply(`Please send ${type} in 2 minutes!`);
 
             const awaitMessageFilter = (m: Message) => m.author === this.interaction.user;
             const content: string[] | null = await this.interaction.channel

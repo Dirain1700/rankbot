@@ -110,7 +110,7 @@ export class Wordle {
                         }
                     }
 
-                    if (!square) throw new Error();
+                    if (!square) throw new Error("sqare should not be empty.");
 
                     line += square;
                 }
@@ -173,11 +173,11 @@ export class Wordle {
             this.correctedPl.set(id, { name, html, round });
             this.endedPl.push(user.id);
             this.pl.delete(id);
-        } else if (!correct) {
+        } else {
             this.eliminatedPl.set(id, { name, html, round });
             this.endedPl.push(user.id);
             this.pl.delete(id);
-        } else throw new Error();
+        }
     }
 
     destroyGame(): void {
