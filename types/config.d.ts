@@ -18,7 +18,7 @@ type ActionType = "punish" | "hidetext" | "log";
 export interface IRoomSettings {
     modchat?: ModchatSetting;
     stretchFilter?: ActionType;
-    floodFilter?: ActionType;
+    floodFilter?: boolean; // Mute or ignore
     useAPI?: ActionType;
     logChannel?: Snowflake;
 }

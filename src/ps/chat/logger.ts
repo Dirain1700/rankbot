@@ -11,11 +11,16 @@ interface chatLogType {
     content: string;
     time: number;
     scores: { [key in keyof IATTRIBUTES]: IAttractiveScore } | null;
+    spam?: boolean;
 }
 
 const sortLogFunction = (a: chatLogType, b: chatLogType) => a.time - b.time;
 
+const SEC = 1000;
+const TEN_SEC = 10 * SEC;
+
 const MAX_STORED_MESSAGES_LENGTH = 50;
+const MAX_MESSAGES_PER_TEN_SECONDS = 5;
 
 export async function storeChat(message: Message<Room>) {
     if (!Config.roomSettings[message.target.id]?.["logChannel"] || !Discord.isReady()) return;
@@ -37,11 +42,30 @@ export async function storeChat(message: Message<Room>) {
         fs.mkdirSync(dirPath);
     }
 
+    let flooding = false;
+
+    console.log(chatlog.filter((m) => m.time * SEC >= Date.now() - TEN_SEC && m.user === message.author.userid).length);
+
+    if (
+        !message.target.isStaff(message.author) &&
+        chatlog.filter((m) => m.time * SEC >= Date.now() - TEN_SEC && m.user === message.author.userid).length >=
+            MAX_MESSAGES_PER_TEN_SECONDS
+    ) {
+        if (Config.roomSettings[message.target.roomid]?.floodFilter) {
+            void message.target.mute(message.author, false, "Flooding");
+            flooding = true;
+        } else flooding = true;
+    }
+
     chatlog.push({
         user: message.author.id,
         content,
         time: message.time,
-        scores: Config.roomSettings[message.target.roomid]?.["useAPI"] ? (await analyzeComment(content)).attributeScores : null,
+        scores:
+            Config.roomSettings[message.target.roomid]?.["useAPI"] && !message.command
+                ? (await analyzeComment(content)).attributeScores
+                : null,
+        spam: flooding,
     });
 
     fs.writeFileSync(filePath, JSON.stringify(chatlog, null, 4));
