@@ -1,5 +1,6 @@
 import type { AxiosResponse } from "axios";
 
+/*
 import type { GaxiosResponse, GaxiosError } from "gaxios";
 
 declare module "googleapis-common" {
@@ -13,19 +14,20 @@ declare module "googleapis-common" {
     }
 }
 
-export interface IAxiosAnalyzeResponse extends AxiosResponse {
-    data: IAnalyzeResponseData;
-}
-
 export interface IGAxiosAnalyzeResponse extends GaxiosResponse {
     data: IAnalyzeResponseData;
 }
 
-export interface IAxiosSuggestResponse extends AxiosResponse {
+export interface IGAxiosSuggestResponse extends GaxiosResponse {
     data: ISuggestResponseData;
 }
+*/
 
-export interface IGAxiosSuggestResponse extends GaxiosResponse {
+export interface IAxiosAnalyzeResponse extends AxiosResponse {
+    data: IAnalyzeResponseData;
+}
+
+export interface IAxiosSuggestResponse extends AxiosResponse {
     data: ISuggestResponseData;
 }
 
