@@ -16,7 +16,7 @@ export const onMessage = (message: Message) => {
     if (message.inRoom()) {
         if (Config.roomSettings[message.target.id]) {
             checkChat(message);
-            storeChat(message);
+            void storeChat(message);
             sendModlog(message);
         }
         if (message.author.userid === PS.status.id) return;
