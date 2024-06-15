@@ -44,8 +44,6 @@ export async function storeChat(message: Message<Room>) {
 
     let flooding = false;
 
-    console.log(chatlog.filter((m) => m.time * SEC >= Date.now() - TEN_SEC && m.user === message.author.userid).length);
-
     if (
         !message.target.isStaff(message.author) &&
         chatlog.filter((m) => m.time * SEC >= Date.now() - TEN_SEC && m.user === message.author.userid).length >=
