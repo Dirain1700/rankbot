@@ -50,14 +50,9 @@ function wordStretchWithBlankFilter(str: string): boolean {
 
 export function stretchDetector(message: Message<Room>): boolean {
     if (!Config.roomSettings[message.target.id]?.["stretchFilter"]) return false;
-    if (message.target.isStaff(message.author) || message.content.length < STRETCH_LIMIT) return false;
+    if (message.command || message.target.isStaff(message.author) || message.content.length < STRETCH_LIMIT) return false;
 
-    if (
-        !message.command &&
-        !stretchFilter(message.content) &&
-        !wordStretchFilter(message.content) &&
-        !wordStretchWithBlankFilter(message.content)
-    )
+    if (!stretchFilter(message.content) && !wordStretchFilter(message.content) && !wordStretchWithBlankFilter(message.content))
         return false;
 
     if (Config.roomSettings[message.target.id]!["stretchFilter"] === "punish") {
