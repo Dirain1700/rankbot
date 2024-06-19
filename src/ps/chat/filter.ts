@@ -52,7 +52,12 @@ export function stretchDetector(message: Message<Room>): boolean {
     if (!Config.roomSettings[message.target.id]?.["stretchFilter"]) return false;
     if (message.target.isStaff(message.author) || message.content.length < STRETCH_LIMIT) return false;
 
-    if (!stretchFilter(message.content) && !wordStretchFilter(message.content) && !wordStretchWithBlankFilter(message.content))
+    if (
+        !message.command &&
+        !stretchFilter(message.content) &&
+        !wordStretchFilter(message.content) &&
+        !wordStretchWithBlankFilter(message.content)
+    )
         return false;
 
     if (Config.roomSettings[message.target.id]!["stretchFilter"] === "punish") {
