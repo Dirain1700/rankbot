@@ -27,7 +27,7 @@
     },
     "devDependencies": {
         "@types/jsdom": "^21.1.7",
-        "@types/lodash": "^4.17.5",
+        "@types/lodash": "^4.17.6",
         "@types/mocha": "^10.0.7",
         "@types/node": "^20.14.8",
         "@types/node-schedule": "^2.1.7",
