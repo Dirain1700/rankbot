@@ -55,9 +55,7 @@ export const commands: BasePSCommandDefinitions = {
             setNextScheduledTournament(targetRoom.id, true);
             const recentTournament = getMostRecentTournamentToday(targetRoom.id);
             if (!recentTournament) {
-                return void this.say(
-                    "Tournament schedules have been reloaded, but o tournaments scheduled for today or tomorrow. Make sure to schedule some!"
-                );
+                return void this.say("Tournament schedules have been reloaded, but no tournaments scheduled for today.");
             }
             this.say("Tournament schedules have been reloaded.");
             let nextMessage = "The next one will be:";
