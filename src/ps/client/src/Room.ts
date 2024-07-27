@@ -28,6 +28,8 @@ export class Room {
     visibility: "public" | "hidden" | "secret";
     modchat: ModchatLevel;
     modjoin: ModchatLevel;
+    tourTimer: NodeJS.Timeout | null = null;
+    tourSetter: NodeJS.Timeout | null = null;
     tour: Tournament | null = null;
     auth: {
         // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents

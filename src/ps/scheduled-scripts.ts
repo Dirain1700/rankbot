@@ -1,7 +1,5 @@
 "use strict";
 
-import { scheduleJob } from "node-schedule";
-
 import type { IScheduledTournamentData, ITournamentMonthlySchedule } from "../../types/database";
 
 const schedulesFolder = "databases/schedules";
@@ -90,6 +88,8 @@ export function getMostRecentTournamentToday(roomid: string): IScheduledTourname
 export function createScheduledTournament(roomid: string, tourData: IScheduledTournamentData) {
     const targetRoom = Rooms.get(roomid);
     if (!targetRoom) return;
+    targetRoom.tourTimer = null;
+    Rooms.set(targetRoom.roomid, targetRoom);
     targetRoom.send(`/tour create ${tourData.format}, ${tourData.type},, ${tourData.rounds ?? 1}`);
     if (tourData.rules?.length) {
         targetRoom.send(`/tour rules ${tourData.rules.join(", ")}`);
@@ -102,16 +102,20 @@ export function createScheduledTournament(roomid: string, tourData: IScheduledTo
     }
 }
 
-export function setNextScheduledTournament(roomid: string, force?: boolean) {
-    if (!force) {
-        setTimeout(() => setNextScheduledTournament(roomid), 1000 * 60 * 60 * 12); // 12 hours
-    }
+export function setNextScheduledTournament(roomid: string, force?: boolean): ReturnType<typeof getMostRecentTournamentToday> | null {
     const mostRecent = getMostRecentTournamentToday(roomid);
-    if (!mostRecent) return;
+    if (!mostRecent) return null;
+    const targetRoom = Rooms.get(roomid);
+    if (!targetRoom) return null;
     const now = new Date();
     const tournamentTime = new Date(`${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()} ${mostRecent.time}`);
-    scheduleJob(tournamentTime, () => {
+    if (targetRoom.tourTimer) {
+        if (force) clearTimeout(targetRoom.tourTimer);
+        else return null;
+    }
+    targetRoom.tourTimer = setTimeout(() => {
         createScheduledTournament(roomid, mostRecent);
         setNextScheduledTournament(roomid);
-    });
+    }, tournamentTime.getTime() - now.getTime());
+    return mostRecent;
 }

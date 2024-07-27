@@ -21,4 +21,5 @@ export interface IRoomSettings {
     floodFilter?: boolean; // Mute or ignore
     useAPI?: ActionType;
     logChannel?: Snowflake;
+    scheduledTours?: boolean;
 }

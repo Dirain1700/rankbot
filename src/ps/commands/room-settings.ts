@@ -1,7 +1,7 @@
 "use strict";
 
 import { runModchatSetter } from "../chat/modchat/enable";
-import { getMostRecentTournamentToday, setNextScheduledTournament } from "../scheduled-scripts";
+import { setNextScheduledTournament } from "../scheduled-scripts";
 
 import type { BasePSCommandDefinitions } from "../../../types/commands";
 import type { Room } from "../client/src";
@@ -52,10 +52,9 @@ export const commands: BasePSCommandDefinitions = {
             const targetRoom = this.inRoom() ? this.room : Rooms.get(this.argument);
             if (!targetRoom) return this.sayError("INVALID_ROOM");
             if (!targetRoom.isStaff(this.user)) return;
-            setNextScheduledTournament(targetRoom.id, true);
-            const recentTournament = getMostRecentTournamentToday(targetRoom.id);
+            const recentTournament = setNextScheduledTournament(targetRoom.id, true);
             if (!recentTournament) {
-                return void this.say("Tournament schedules have been reloaded, but no tournaments scheduled for today.");
+                return void this.say("Tournament schedules have been reloaded, but no tournaments scheduled today.");
             }
             this.say("Tournament schedules have been reloaded.");
             let nextMessage = "The next one will be:";

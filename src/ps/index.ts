@@ -41,7 +41,10 @@ export const onUserAdd = (room: Room, user: User): void => {
 };
 export const onUserRemove = (room: Room, user: User): boolean => enableModchat(user, room);
 export const onClientRoomAdd = (room: Room) => {
-    setNextScheduledTournament(room.id);
+    if (Config.roomSettings[room.roomid]?.scheduledTours) {
+        setNextScheduledTournament(room.id);
+        room.tourSetter = setInterval(() => setNextScheduledTournament(room.id), 30 * 60 * 1000); // 30 minutes
+    }
 };
 export const onModchat = (room: Room, currentModchatLevel: ModchatLevel, previousModchatLevel: ModchatLevel): void => {
     announceModchat(room, currentModchatLevel, previousModchatLevel);

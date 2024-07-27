@@ -814,6 +814,14 @@ export class Client extends EventEmitter {
 
                 if (global.Rooms.has(room.id)) global.Rooms.delete(room.id);
                 if (global.Rooms.has(room.id)) global.Rooms.delete(room.id);
+                if (room.tourTimer) {
+                    clearTimeout(room.tourTimer);
+                    room.tourTimer = null;
+                }
+                if (room.tourSetter) {
+                    clearInterval(room.tourSetter);
+                    room.tourSetter = null;
+                }
                 if (room.visibility === "public") void room.fetch();
                 break;
             }
