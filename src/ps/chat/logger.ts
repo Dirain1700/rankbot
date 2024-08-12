@@ -46,8 +46,7 @@ export async function storeChat(message: Message<Room>) {
 
     if (
         !message.target.isStaff(message.author) &&
-        chatlog.filter((m) => m.time * SEC >= Date.now() - TEN_SEC && m.user === message.author.userid).length >=
-            MAX_MESSAGES_PER_TEN_SECONDS
+        chatlog.filter((m) => m.time >= Date.now() - TEN_SEC && m.user === message.author.userid).length >= MAX_MESSAGES_PER_TEN_SECONDS
     ) {
         if (Config.roomSettings[message.target.roomid]?.floodFilter) {
             void message.target.mute(message.author, false, "Flooding");
