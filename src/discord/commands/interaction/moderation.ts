@@ -74,7 +74,7 @@ export const commands: BaseDiscordCommandDefinitions = {
     },
     forceban: {
         async run(): Promise<void> {
-            if (Config.admin.includes(this.interaction.user.id)) return void this.sayError("PERMISSION_DENIED", {});
+            if (!Config.admin.includes(this.interaction.user.id)) return void this.sayError("PERMISSION_DENIED", {});
 
             if (!this.interaction.guild || !this.interaction.inCachedGuild() || this.interaction.channel?.isDMBased()) {
                 return void this.interaction.reply({
