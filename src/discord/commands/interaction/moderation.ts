@@ -83,7 +83,7 @@ export const commands: BaseDiscordCommandDefinitions = {
                 });
             }
 
-            const targetID = this.interaction.options.getString("userid", true);
+            const targetID = this.interaction.options.getString("user", true);
             const targetUser = await Discord.users.fetch(targetID);
             const reasons = this.interaction.options.getString("reason", true);
 
