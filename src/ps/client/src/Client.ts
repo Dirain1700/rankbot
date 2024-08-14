@@ -87,6 +87,7 @@ export class Client extends EventEmitter {
     readonly loginURL = new url.URL("https://play.pokemonshowdown.com/api/login");
     readonly mainServer: string = "play.pokemonshowdown.com";
     readonly messageThrottle = 3;
+    private autoReconnectTimer: NodeJS.Timeout | null = null;
     throttleInterval: 25 | 100 | 600 = 600;
     ws: WebSocket | null = null;
     events = Events;
@@ -117,7 +118,7 @@ export class Client extends EventEmitter {
     constructor(options: ClientOptions) {
         super();
         options.retryLogin ||= 15 * 1000;
-        options.autoReconnect ||= 10 * 1000;
+        options.autoReconnect ||= 5 * 60 * 1000;
         this.options = options;
         const defineOptions = {
             enumerable: false,
@@ -250,7 +251,19 @@ export class Client extends EventEmitter {
                                 if (!this.closed) this.connect();
                             });
                         }
-                    } else console.log("Error: failed to get data for server " + this.serverURL);
+                    } else {
+                        console.log(
+                            `Error: failed to get data for server ${this.serverURL}; Retrying in ${(this.options.autoReconnect || 5 * 60 * 1000) / 1000}s...`
+                        );
+
+                        this.autoReconnectTimer = setTimeout(
+                            () => {
+                                this.autoReconnectTimer = null;
+                                this.connect();
+                            },
+                            this.options.autoReconnect || 5 * 60 * 1000
+                        );
+                    }
                 });
             })
             .on("error", (error) => {
