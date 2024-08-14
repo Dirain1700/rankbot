@@ -68,6 +68,7 @@ export const onChatError = (err: string, room: Room | null) => {
 };
 
 export const onClientError = (err: string) => {
+    if (err.trim() === "error code: 522") return;
     const error = new PSAPIError("CUSTOM", err + "\n" + " at " + new Date().toUTCString());
     console.log(error.stack);
     onError("NormalError", error.stack!);

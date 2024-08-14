@@ -449,13 +449,11 @@ export class Client extends EventEmitter {
             response.setEncoding("utf8");
 
             let data: string = "";
-            let ended: boolean = false;
             response.on("data", (chunk: string) => {
                 data += chunk;
             });
 
             response.on("end", () => {
-                ended = true;
                 if ((response.statusCode ?? 200) >= 400) {
                     this.emit(Events.CLIENT_ERROR, data);
                     this.disconnect();
@@ -464,15 +462,6 @@ export class Client extends EventEmitter {
                         // Never happens
                         .catch(console.error);
                 }
-            });
-
-            setTimeout(() => {
-                if (ended) return;
-                this.disconnect();
-                Tools.sleep(3000)
-                    .then(() => this.connect())
-                    // Never happens
-                    .catch(console.error);
             });
         });
     }
