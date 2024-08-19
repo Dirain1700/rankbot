@@ -327,7 +327,7 @@ export class Room {
             );
             r.awaitMessages({
                 filter: (m: Message<Room>) =>
-                    m.author.id === "&" && m.content.endsWith(`by ${PS.status.name}.${reason ? " (" + reason + ")" : ""}`),
+                    m.author.id === PS.user!.id && m.content.endsWith(`by ${PS.user!.name}.${reason ? " (" + reason + ")" : ""}`),
                 max: 1,
                 time: 10 * 1000,
             })
