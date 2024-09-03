@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$ref": "#/definitions/ITournamentMonthlySchedule",
+    "definitions": {
+        "ITournamentMonthlySchedule": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/IScheduledTournamentData"
+                }
+            }
+        },
+        "IScheduledTournamentData": {
+            "type": "object",
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "pattern": "^\\[Gen [0-9]\\] ."
+                },
+                "time": {
+                    "type": "string",
+                    "pattern": "^([0-2][0-3]|[0-1][0-9]):[0-5][0-9]$"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": ["Elimination", "Round Robin"]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rules": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "cap": {
+                    "type": "number"
+                },
+                "rounds": {
+                    "type": "number"
+                }
+            },
+            "required": ["format", "time", "type"]
+        }
+    }
+}
