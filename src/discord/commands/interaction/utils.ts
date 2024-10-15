@@ -39,41 +39,44 @@ export const commands: BaseDiscordCommandDefinitions = {
                     const isNoResult = dom.window.document.querySelectorAll("div.no-result").length > 0;
                     if (isNoResult) return void this.interaction.followUp("No reagents found.");
                     const LINK_REG = /\/jp\/product\/detail\/[A-Z0-9-]{6,}\.html/gmu;
+                    /*
                     let Descs = [...dom.window.document.querySelectorAll("div.product-name").values()].filter(
                         (e) => !e.querySelector(":scope > span.st")
                     );
+                    */
+                    let Descs = [...dom.window.document.querySelectorAll("div.product-name span.st")];
                     if (Descs.length > 10) Descs.length = 10;
                     Descs = Descs.slice(0, ~~(Descs.length / 2));
                     let Details = [...dom.window.document.querySelectorAll("div.product-list-in:not(div.st-discon)").values()];
                     if (Details.length > 10) Details.length = 10;
                     Details = Details.slice(0, ~~(Details.length / 2));
+                    /*
                     const links = Descs.map((elem) => (elem.innerHTML.match(LINK_REG) ?? [])[0] ?? "")
                         .map((e) => e.replaceAll("\t", "").replaceAll("\n", "").trim())
                         .map((e) => (e ? domain + e : null));
+                    */
+                    const links = Descs.map((elem) => (elem.innerHTML.match(LINK_REG) ?? [])[0] ?? "").map((e) => {
+                        const l = e.replaceAll("\t", "").replaceAll("\n", "").trim();
+                        return l ? domain + l : null;
+                    });
                     const manufactures = Descs.map((elim) =>
-                        (elim.querySelector("dl.manufacturer")!.querySelector("dd")?.innerHTML ?? "")
-                            .replaceAll("\t", "")
-                            .replaceAll("\n", "")
-                            .trim()
+                        (elim.querySelector("dl.manufacturer dd")?.innerHTML ?? "").replaceAll("\t", "").replaceAll("\n", "").trim()
                     );
                     const Grades = Descs.map((elim) =>
-                        ((elim.querySelector("p.grade")?.querySelector("b") ?? {})?.innerHTML ?? "")
-                            .replaceAll("\t", "")
-                            .replaceAll("\n", "")
-                            .trim()
+                        ((elim.querySelector("p.grade b") ?? {})?.innerHTML ?? "").replaceAll("\t", "").replaceAll("\n", "").trim()
                     );
                     const Names = Descs.map((elim) =>
                         elim.querySelector("em.name")!.innerHTML.replaceAll("\t", "").replaceAll("\n", "").split("<")[0]!.trim()
                     );
                     const codes = Details.map((elim) =>
-                        [...elim.querySelectorAll("div.lb-code").values()].map((e) =>
-                            (e.querySelector("dd")?.innerHTML ?? "").replaceAll("\t", "").replaceAll("\n", "").trim()
+                        [...elim.querySelectorAll("div.lb-code dd").values()].map((e) =>
+                            (e.innerHTML ?? "").replaceAll("\t", "").replaceAll("\n", "").trim()
                         )
                     );
                     const CAS = Details.map((elim) =>
                         (
-                            [...elim.querySelector("div.product-set1")!.querySelectorAll("dl").values()]
-                                .find((e) => (e.querySelector("dt")?.innerHTML ?? "").startsWith("CAS"))
+                            [...elim.querySelectorAll("div.product-set1 dl dt").values()]
+                                .find((e) => e.innerHTML.startsWith("CAS"))
                                 ?.querySelector("dd")?.innerHTML ?? ""
                         )
                             .replaceAll("\t", "")
@@ -81,16 +84,13 @@ export const commands: BaseDiscordCommandDefinitions = {
                             .trim()
                     );
                     const sizes = Details.map((elim) =>
-                        [...elim.querySelectorAll("td.product-size").values()].map((e) =>
-                            (e.querySelector("div.product-tbl-in")?.innerHTML ?? "").replaceAll("\t", "").replaceAll("\n", "").trim()
+                        [...elim.querySelectorAll("td.product-size div.product-tbl-in").values()].map((e) =>
+                            e.innerHTML.replaceAll("\t", "").replaceAll("\n", "").trim()
                         )
                     );
                     const prices = Details.map((elim) =>
-                        [...elim.querySelectorAll("td.product-price").values()].map((e) =>
-                            (e.querySelector("div.product-tbl-in")!.querySelector("dd")?.innerHTML ?? "")
-                                .replaceAll("\t", "")
-                                .replaceAll("\n", "")
-                                .trim()
+                        [...elim.querySelectorAll("td.product-price div.product-tbl-in dd").values()].map((e) =>
+                            e.innerHTML.replaceAll("\t", "").replaceAll("\n", "").trim()
                         )
                     ).map((e) => (e ? e : null));
                     const fields: APIEmbedField[] = [];
