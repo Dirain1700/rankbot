@@ -39,22 +39,12 @@ export const commands: BaseDiscordCommandDefinitions = {
                     const isNoResult = dom.window.document.querySelectorAll("div.no-result").length > 0;
                     if (isNoResult) return void this.interaction.followUp("No reagents found.");
                     const LINK_REG = /\/jp\/product\/detail\/[A-Z0-9-]{6,}\.html/gmu;
-                    /*
-                    let Descs = [...dom.window.document.querySelectorAll("div.product-name").values()].filter(
-                        (e) => !e.querySelector(":scope > span.st")
-                    );
-                    */
-                    let Descs = [...dom.window.document.querySelectorAll("div.product-name span.st")];
+                    let Descs = [...dom.window.document.querySelectorAll("div.product-name:not(span.st)")];
                     if (Descs.length > 10) Descs.length = 10;
                     Descs = Descs.slice(0, ~~(Descs.length / 2));
                     let Details = [...dom.window.document.querySelectorAll("div.product-list-in:not(div.st-discon)").values()];
                     if (Details.length > 10) Details.length = 10;
                     Details = Details.slice(0, ~~(Details.length / 2));
-                    /*
-                    const links = Descs.map((elem) => (elem.innerHTML.match(LINK_REG) ?? [])[0] ?? "")
-                        .map((e) => e.replaceAll("\t", "").replaceAll("\n", "").trim())
-                        .map((e) => (e ? domain + e : null));
-                    */
                     const links = Descs.map((elem) => (elem.innerHTML.match(LINK_REG) ?? [])[0] ?? "").map((e) => {
                         const l = e.replaceAll("\t", "").replaceAll("\n", "").trim();
                         return l ? domain + l : null;
