@@ -31,7 +31,6 @@ export const developers: string[] = [];
 export const admin: Snowflake[] = [];
 export const enableWordle: Dict<IWordleConfig> = {};
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 export function onConnectDiscord(this: DiscordClientUser): void {}
 
 export const onUserJoin: Dict<{ run: (this: User) => void; cooldown: number; lastTime: number }> = {};

@@ -10,7 +10,7 @@ import type { BasePSCommandDefinitions, BasePSCommandData, BasePSCommandGuide, P
 export class PSCommandParser {
     commandsDir = "./commands";
 
-    constructor() {} // eslint-disable-line @typescript-eslint/no-empty-function
+    constructor() {}
 
     async loadCommands(): Promise<PromiseSettledResult<void>[]> {
         const files = fs
@@ -34,7 +34,6 @@ export class PSCommandParser {
                                     cloneNeo.originalName = commandName;
                                     PSCommands[alias] = cloneNeo;
                                 }
-                            /* eslint-enable */
                         }
                     })
                     .catch(console.error);
@@ -123,7 +122,6 @@ export class PSCommandContext<T extends Room | User = Room | User> {
     }
 
     run(): void {
-        /* eslint-disable @typescript-eslint/no-non-null-assertion */
         const command = PSCommands[this.originalName];
         if (!command) return;
         if (command.developerOnly && !Config.developers.includes(this.user.userid)) return;

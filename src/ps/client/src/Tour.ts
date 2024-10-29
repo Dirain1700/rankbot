@@ -24,7 +24,6 @@ export class Tournament<T extends EliminationBracket | RoundRobinBracket = Elimi
     playerCap: number;
     forceEnded: boolean = false;
 
-    /* eslint-disable @typescript-eslint/no-non-null-assertion */
     constructor(format: string, generator: string, playerCap: number, room: Room) {
         super(room);
         this.name = "Tournament-" + format;

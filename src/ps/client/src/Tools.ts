@@ -55,7 +55,7 @@ const banwordRegex = /\(The banword(?<multiple>s)? (?<words>'.{1,}') (was|were) 
 const AND = "&";
 const LESS_THAN = "<";
 const GREATER_THAN = ">";
-const DOUBLE_QUOTE = '"'; // eslint-disable-line quotes
+const DOUBLE_QUOTE = '"';
 const SINGLE_QUOTE = "'";
 const SLASH = "/";
 const BACK_SLASH = "\\";
@@ -443,7 +443,7 @@ export class Tools {
                 if (multiple) {
                     try {
                         banwords = words.split(",").map((e) => e.trim().replace(/^'/, "").replace(/'$/, ""));
-                        // eslint-disable-next-line no-empty
+                        // eslint-disable-next-line no-empty, @typescript-eslint/no-unused-vars
                     } catch (e) {}
                 } else {
                     banwords = [words.trim().replace(/^'/, "").replace(/'$/, "")];
@@ -478,6 +478,7 @@ export class Tools {
             .map((str) => str.toLowerCase().replaceAll(/[^a-z0-9.]/g, ""));
         let time: number = 0;
         for (const t of targets) {
+            /* eslint-disable @typescript-eslint/no-non-null-assertion */
             if (t.includes("sec")) {
                 const possibleAmount = t.split("sec")[0]!;
                 if (!possibleAmount.includes("e")) {

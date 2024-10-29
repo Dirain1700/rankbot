@@ -33,9 +33,10 @@ export function updateTournamentSchedules(roomid: string, year: number, month: n
         }
         for (const day in data) {
             if (!(day in currentData)) {
+                /* eslint-disable @typescript-eslint/no-non-null-assertion */
                 currentData[day] = data[day]!;
-                if (currentData[day]!.length > 1) {
-                    currentData[day] = currentData[day]!.sort((a, b) => {
+                if (currentData[day].length > 1) {
+                    currentData[day] = currentData[day].sort((a, b) => {
                         const timeA = a.time.split(":");
                         const timeB = b.time.split(":");
                         if (timeA[0]! === timeB[0]) {
@@ -44,6 +45,7 @@ export function updateTournamentSchedules(roomid: string, year: number, month: n
                         return parseInt(timeA[0]!) - parseInt(timeB[0]!);
                     });
                 }
+                /* eslint-enable */
             }
         }
         fs.writeFileSync(filePath, JSON.stringify(currentData, null, 4));
@@ -54,6 +56,7 @@ export function updateTournamentSchedules(roomid: string, year: number, month: n
 function sortSchedules(data: ITournamentMonthlySchedule): ITournamentMonthlySchedule {
     for (const day in data) {
         if (day.length < 2) continue;
+        /* eslint-disable @typescript-eslint/no-non-null-assertion */
         data[day] = data[day]!.sort((a, b) => {
             const timeA = a.time.split(":");
             const timeB = b.time.split(":");
@@ -62,6 +65,7 @@ function sortSchedules(data: ITournamentMonthlySchedule): ITournamentMonthlySche
             }
             return parseInt(timeA[0]!) - parseInt(timeB[0]!);
         });
+        /* eslint-enable */
     }
     return data;
 }

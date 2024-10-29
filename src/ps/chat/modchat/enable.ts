@@ -34,9 +34,10 @@ export function runModchatSetter(targetUser: User, targetRoom: Room): boolean {
     if (!targetRoom.hasRank("%", targetUser) && !targetUser.alts.every((u) => targetRoom.hasRank("%", u))) return false;
     if (targetRoom.modchat && targetRoom.modchat !== "autoconfirmed") return false;
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-assignment
+    /* eslint-disable  @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-non-null-assertion */
     const { startTime, endTime, always, rank, ignoreGlobals, allowBusy, allowAlts, disabled } =
         Config.roomSettings[targetRoom.roomid]!["modchat"]!;
+    /* eslint-enable */
     if (!checkCondition(startTime, endTime, always, new Date().getHours())) return false;
     if (disabled) return false;
     /* eslint-disable @typescript-eslint/no-non-null-assertion */

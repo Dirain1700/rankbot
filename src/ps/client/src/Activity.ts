@@ -130,7 +130,6 @@ export abstract class Activity {
         const user = Users.raw.get(newId);
         if (!user) return;
         if (user.avatar === null) user.avatar = 1;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const newPlayer = new Player(user, this);
         newPlayer.eliminated = oldPlayer.eliminated;
         newPlayer.isPlayed = oldPlayer.isPlayed;

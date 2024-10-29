@@ -13,20 +13,18 @@ export interface MessageInput<T extends User | Room> {
     client: Client;
 }
 
-/* eslint-disable @typescript-eslint/ban-types, @typescript-eslint/no-explicit-any, no-unused-vars */
 export interface MessageWaits<T extends User | Room> {
     timestamp: string;
     roomid: T extends Room ? string : undefined;
     userid: T extends User ? string : undefined;
     messages: Array<Message<T>>;
-    filter: Function;
+    filter: (m: Message<T>) => boolean;
     max: number;
     time: number;
     resolve: (m: Message<T>[]) => void;
     reject: (m: Message<T>[] | null) => void;
     timeout: NodeJS.Timeout | undefined;
 }
-/* eslint-enable @typescript-eslint/ban-types */
 
 export interface awaitMessageOptions<T extends User | Room = User | Room> {
     filter: (message: Message<T>) => boolean;

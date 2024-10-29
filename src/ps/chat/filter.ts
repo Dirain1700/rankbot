@@ -34,7 +34,8 @@ function wordStretchWithBlankFilter(str: string): boolean {
             set.add(word);
             if (latestWord === word) count++;
             else if (set.size !== arr.length) {
-                duplicatedWords[word] ? duplicatedWords[word]++ : (duplicatedWords[word] = 1);
+                if (duplicatedWords[word]) duplicatedWords[word]++;
+                else duplicatedWords[word] = 1;
                 arr.slice(i);
                 i--;
             }
@@ -55,6 +56,7 @@ export function stretchDetector(message: Message<Room>): boolean {
     if (!stretchFilter(message.content) && !wordStretchFilter(message.content) && !wordStretchWithBlankFilter(message.content))
         return false;
 
+    /* eslint-disable @typescript-eslint/no-non-null-assertion */
     if (Config.roomSettings[message.target.id]!["stretchFilter"] === "punish") {
         message.target.mute(message.author, false, "Stretch");
     } else if (Config.roomSettings[message.target.id]!["stretchFilter"] === "hidetext") {
@@ -63,6 +65,7 @@ export function stretchDetector(message: Message<Room>): boolean {
         const content: string = "Bot moderation: this message have been caught by stretch filter.";
         message.target.modnote(content);
     }
+    /* eslint-enable */
 
     return true;
 }

@@ -374,7 +374,6 @@ export class Client extends EventEmitter {
         const client = this;
         const request = https.request(options, (response: IncomingMessage) => {
             response.setEncoding("utf8");
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             let data: string = "";
             let assertion: string;
             response.on("data", (chunk: string) => (data += chunk));
@@ -413,7 +412,7 @@ export class Client extends EventEmitter {
                         }
                         return;
                     }
-                    //eslint-disable-next-line no-empty
+                    //eslint-disable-next-line no-empty, @typescript-eslint/no-unused-vars
                 } catch (e) {}
                 console.log("Sending login trn...");
                 if (assertion) client.ws!.send(`|/trn ${name},0,${assertion}`);

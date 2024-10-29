@@ -93,7 +93,7 @@ export function onError(errType: string, err: string) {
     process.exit(1);
 }
 
-/* eslint-disable @typescript-eslint/consistent-type-imports, @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/consistent-type-imports, @typescript-eslint/no-require-imports */
 
 export function setupGlobal() {
     global.fs = fs;

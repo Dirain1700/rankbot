@@ -388,7 +388,8 @@ export class Room {
                             waits: room.waits.filter((wait: MessageWaits<Room>) => wait.timestamp !== timestamp),
                         }) as RoomOptions
                     );
-                    reject(m);
+                    // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
+                    reject(m ? m : []);
                 },
                 timeout: undefined,
             };
@@ -668,7 +669,7 @@ export class Rooms extends Collection<string, Room> {
     raw = new RawRoomData();
     battles = new BattleRooms();
 
-    constructor(iterable?: Iterable<readonly [string, Room]> | null | undefined) {
+    constructor(iterable?: Iterable<readonly [string, Room]> | null) {
         super(iterable);
         if (global.Config) {
             this.aliases = Config.roomAliases ? cloneDeep(Config.roomAliases) : {};

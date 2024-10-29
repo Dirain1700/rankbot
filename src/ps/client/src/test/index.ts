@@ -16,7 +16,7 @@ const PSClient = new Client({
 });
 
 declare global {
-    var client: typeof PSClient; // eslint-disable-line no-var
+    var client: typeof PSClient;
 }
 
 global.client = PSClient;

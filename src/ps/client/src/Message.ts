@@ -10,8 +10,6 @@ import type { MessageInput, MessageWaits } from "../types/Message";
 import type { RoomOptions } from "../types/Room";
 import type { UserOptions } from "../types/User";
 
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-
 export class Message<T extends Room | User = Room | User> {
     author: User;
     content: string;

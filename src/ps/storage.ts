@@ -40,7 +40,7 @@ export class Database extends Collection<string, IGeneralUserDataBase> {
     databasesDirectory = path.resolve("./databases");
     globalDataPath = path.join(this.databasesDirectory, "global.json");
 
-    constructor(iterable?: Iterable<readonly [string, IGeneralUserDataBase]> | null | undefined) {
+    constructor(iterable?: Iterable<readonly [string, IGeneralUserDataBase]> | null) {
         super(iterable);
         if (!fs.existsSync(this.databasesDirectory)) {
             fs.mkdirSync(this.databasesDirectory, { recursive: true });

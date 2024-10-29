@@ -228,7 +228,6 @@ export const commands: BasePSCommandDefinitions = {
                     return this.say("SubCommand " + (subCommand satisfies never) + " not found");
             }
         },
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         aliases: Array.of(...WORDLE_ALIASES),
     },
 };

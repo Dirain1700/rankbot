@@ -59,7 +59,6 @@ export interface IAttractiveSummaryScore {
 
 export interface IAnalyzeRequestBody {
     languages?: string[];
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     requestedAttributes: IATTRIBUTES;
     comment: { text: string };
     clientToken: string;
@@ -74,7 +73,7 @@ export interface ISuggestRequestBody {
     clientToken: string;
 }
 
-/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 export interface IATTRIBUTES {
     SEVERE_TOXICITY: {};
     TOXICITY: {};
@@ -85,6 +84,6 @@ export interface IATTRIBUTES {
     SEXUALLY_EXPLICIT?: {};
     FLIRTATION?: {};
 }
-/* eslint-enable @typescript-eslint/ban-types */
+/* eslint-enable @typescript-eslint/no-empty-object-type */
 
 export {};

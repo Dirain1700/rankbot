@@ -8,7 +8,7 @@ import type { BasePSCommandDefinitions } from "../../../types/commands";
 import type { SingleModulePaths, DirectoryModulePaths } from "../../setup";
 
 import type { ExecException } from "child_process";
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const loadableModules = ["games", "commands", "client", "handler", "config", "dex"] as const;
 
 export const commands: BasePSCommandDefinitions = {
@@ -101,7 +101,7 @@ export const commands: BasePSCommandDefinitions = {
                     return this.say("Module " + (possibleModule satisfies never) + " not found");
             }
             reloadModule(["build"]);
-            // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/consistent-type-imports
+            // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/consistent-type-imports
             (require("../../../../build.js") as typeof import("../../../build")).build();
             reloadModule(modules);
 

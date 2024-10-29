@@ -40,7 +40,6 @@ export class Tools extends PSTools {
                 return "undefined";
             }
             case "string": {
-                // eslint-disable-next-line quotes
                 if (!input) return '""';
                 else return input;
             }
@@ -63,7 +62,6 @@ export class Tools extends PSTools {
                 if (input === null) return "null";
                 if (input === undefined) return "undefined";
                 if (Array.isArray(input)) {
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                     return "[" + input.map((e) => this.toString(e, depth + 1)).join(", ") + "]";
                 }
                 return Tools.trim(inspect(input, { depth: depth ?? 1 }).replaceAll("\n", ""));

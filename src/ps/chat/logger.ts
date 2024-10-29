@@ -77,12 +77,11 @@ export function sendModlog(message: Message<Room>): void {
     let originalChatlog: chatLogType[] = JSON.parse(fs.readFileSync(filePath, "utf-8")) as chatLogType[];
     let targetMessages: chatLogType[] = [];
     const targetChannel: undefined | Channel = Discord.channels.cache.get(targetChannelId);
-    if (!targetChannel || !targetChannel.isTextBased()) return;
+    if (!targetChannel || !targetChannel.isTextBased() || !targetChannel.isSendable()) return;
 
     const logDetails = Tools.getLogDetails(log);
     let additionalMessage: string = "";
 
-    /* eslint-disable @typescript-eslint/no-non-null-assertion */
     switch (logDetails.action) {
         case "cleartext": {
             const userData = Database.get(logDetails.target);

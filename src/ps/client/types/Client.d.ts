@@ -7,7 +7,7 @@ import type { TourUpdateData, TourEndData } from "./Tour";
 import type { Dict } from "./utils";
 import type { RawData } from "ws";
 
-/* eslint-disable no-unused-vars, @typescript-eslint/no-explicit-any */
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 
 export interface ClientOptions {
     openListener?: OpenListener;
@@ -186,7 +186,6 @@ export interface PostLoginOptions {
     path: string;
     agent: false;
     method: string;
-    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     headers?: any;
 }
 

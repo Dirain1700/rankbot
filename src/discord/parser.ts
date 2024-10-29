@@ -11,7 +11,7 @@ import type {
     DiscordCommandSingleGuide,
     DiscordCommandErrorInputType,
 } from "../../types/commands";
-import type { Collection } from "discord.js";
+import type { Collection, SendableChannels, TextBasedChannel } from "discord.js";
 import type {
     ApplicationCommand,
     ApplicationCommandData,
@@ -27,7 +27,7 @@ const COMMAND_DATA_FILE_PATH = "./config/commands.json";
 export class DiscordCommandParser {
     commandsDir = "./commands/interaction";
 
-    constructor() {} // eslint-disable-line @typescript-eslint/no-empty-function
+    constructor() {}
 
     async loadCommands(): Promise<[BaseDiscordRunTimeCommandDefinitions, BaseDiscordRunTimeGuildCommandDefinitions]> {
         const files = fs
@@ -52,15 +52,13 @@ export class DiscordCommandParser {
                                     for (const [commandName, commandData] of Object.entries(guildCommands)) {
                                         const clone = cloneDeep(commandData);
                                         (clone as any as DiscordCommandSingleData).name = commandName;
-                                        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                                        loadedGuildCommands[guildId]![commandName] = clone as any as DiscordCommandSingleData;
+                                        loadedGuildCommands[guildId][commandName] = clone as any as DiscordCommandSingleData;
                                         if (commandData.aliases)
                                             for (const alias of commandData.aliases) {
                                                 const cloneNeo = cloneDeep(commandData);
                                                 (cloneNeo as any as DiscordCommandSingleData).name = alias;
                                                 (cloneNeo as any as DiscordCommandSingleData).resolvable.name = alias;
-                                                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                                                loadedGuildCommands[guildId]![alias] = cloneNeo as any as DiscordCommandSingleData;
+                                                loadedGuildCommands[guildId][alias] = cloneNeo as any as DiscordCommandSingleData;
                                             }
                                     }
                                 }
@@ -110,13 +108,11 @@ export class DiscordCommandParser {
                         guildCommandsCollection[guildId] = {};
                     }
                     for (const [commandName, commandData] of Object.entries(commands)) {
-                        /* eslint-disable @typescript-eslint/no-non-null-assertion */
-                        if (commandName in guildCommandsCollection[guildId]!) {
+                        if (commandName in guildCommandsCollection[guildId]) {
                             throw new Error("Duplication detected on loadCommands: " + commandName + " (Guild ID: " + guildId + ")");
                         } else {
-                            guildCommandsCollection[guildId]![commandName] = commandData;
+                            guildCommandsCollection[guildId][commandName] = commandData;
                         }
-                        /* eslint-enable */
                     }
                 }
             }
@@ -143,14 +139,12 @@ export class DiscordCommandParser {
             }
 
             if (uploadableGlobalCommandData.length) {
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 await Discord.application.commands
                     .set(uploadableGlobalCommandData)
                     .then((d) => returnObject.result.push(d))
                     .catch((e) => returnObject.errors.push(e));
             }
 
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-misused-promises
             let timer: NodeJS.Timeout | undefined = undefined;
 
             if (uploadableGuildCommandData) {
@@ -278,7 +272,6 @@ export class DiscordCommandContext {
     }
 
     run(): void {
-        /* eslint-disable @typescript-eslint/no-non-null-assertion */
         const command = DiscordCommands[this.interaction.commandId];
         if (!command || !this.interaction.channel) return;
         if (command.developerOnly && !Config.admin.includes(this.interaction.user.id)) return;
@@ -313,8 +306,8 @@ export class DiscordCommandContext {
     }
 
     sendChannel(content: string | BaseMessageOptions): void {
-        if (!this.interaction.channel) return;
-        void this.interaction.channel.send(this.checkChat(content));
+        if (this.interaction.channel && this.interaction.channel.isTextBased() && this.interaction.channel.isSendable())
+            void (this.interaction.channel as TextBasedChannel & SendableChannels).send(this.checkChat(content));
     }
 
     sayError(err: DiscordCommandErrorInputType, options: InteractionReplyOptions, ...args: string[]): void {

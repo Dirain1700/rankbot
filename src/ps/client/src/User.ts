@@ -184,7 +184,8 @@ export class User {
                             waits: user.waits.filter((wait: MessageWaits<User>) => wait.timestamp !== timestamp),
                         }) as UserOptions
                     );
-                    reject(m);
+                    // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
+                    reject(m ? m : []);
                 },
                 timeout: undefined,
             };
