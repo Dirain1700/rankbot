@@ -60,7 +60,11 @@ export async function storeChat(message: Message<Room>) {
         time: message.time,
         scores:
             Config.roomSettings[message.target.roomid]?.["useAPI"] && !message.command
-                ? (await analyzeComment(content)).attributeScores
+                ? (
+                      await analyzeComment(content).catch(() => {
+                          return { attributeScores: null };
+                      })
+                  ).attributeScores
                 : null,
         spam: flooding,
     });
