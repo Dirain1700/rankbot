@@ -36,7 +36,7 @@
         "@typescript-eslint/parser": "8.12.1",
         "discord-api-types": "^0.37.103",
         "esbuild": "^0.24.0",
-        "eslint": "9.13.0",
+        "eslint": "9.16.0",
         "eslint-plugin-import": "2.31.0",
         "glob": "^11.0.0",
         "jsdom": "^25.0.1",
