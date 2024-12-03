@@ -42,7 +42,7 @@
                     "type": "number"
                 }
             },
-            "required": ["format", "time", "type"]
+            "required": ["format", "time"]
         }
     }
 }
