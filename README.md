@@ -2,9 +2,9 @@
 
 # Development Environments
 
--   Windows10
--   Node.js v20.5.1
--   Visual Studio Code
+- Windows 11
+- Node.js v20.16.0
+- Visual Studio Code
 
 # Codes
 
