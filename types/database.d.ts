@@ -24,7 +24,7 @@ export interface IRoomDataBase {
 export interface IScheduledTournamentData {
     format: string;
     time: string; // HH:MM, in UTC
-    type: "Elimination" | "Round Robin";
+    type?: "Elimination" | "Round Robin";
     name?: string;
     rules?: string[];
     cap?: number;

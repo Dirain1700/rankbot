@@ -3,6 +3,7 @@
 import type { IScheduledTournamentData, ITournamentMonthlySchedule } from "../../types/database";
 
 const schedulesFolder = "databases/schedules";
+const DEFAULT_TOUR_TYPE = "Elimination";
 
 export function getTournamentSchedules(roomid: string, year: number, month: number): ITournamentMonthlySchedule {
     const filePath = `${schedulesFolder}/${roomid}/${year}${String(month).padStart(2, "0")}.json`;
@@ -94,7 +95,7 @@ export function createScheduledTournament(roomid: string, tourData: IScheduledTo
     if (!targetRoom) return;
     targetRoom.tourTimer = null;
     Rooms.set(targetRoom.roomid, targetRoom);
-    targetRoom.send(`/tour create ${tourData.format}, ${tourData.type},, ${tourData.rounds ?? 1}`);
+    targetRoom.send(`/tour create ${tourData.format}, ${tourData.type ?? DEFAULT_TOUR_TYPE},, ${tourData.rounds ?? 1}`);
     if (tourData.rules?.length) {
         targetRoom.send(`/tour rules ${tourData.rules.join(", ")}`);
     }
