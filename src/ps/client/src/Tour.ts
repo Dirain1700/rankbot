@@ -8,6 +8,7 @@ import { Tools } from "./Tools";
 import type { Player } from "./Activity";
 import type { Room } from "./Room";
 
+import type { IScheduledTournamentData } from "../../../../types/database";
 import type { TourUpdateData, TourEndData, EliminationBracket, RoundRobinBracket } from "../types/Tour";
 
 // T is wheather the tournament is Elimination or Round Robin
@@ -56,6 +57,11 @@ export class Tournament<T extends EliminationBracket | RoundRobinBracket = Elimi
         this.data.playerCap = playerCap;
         this.playerCap = playerCap;
         this.isSingleElimination = this.isElim() && this.round.number === 1;
+
+        if (Tools.toId(global.TournamentManager.schedules.get(room.id)?.format ?? "") === format) {
+            global.TournamentManager.schedules.delete(room.id);
+            global.TournamentManager.timers.delete(room.id);
+        }
     }
 
     update(data?: Partial<TourUpdateData<T> & TourEndData<T>>): this {
@@ -102,6 +108,10 @@ export class Tournament<T extends EliminationBracket | RoundRobinBracket = Elimi
     onEnd(force?: boolean): this {
         this.ended = true;
         this.forceEnded = !!force;
+
+        if (global.TournamentManager.schedules.has(this.room.id)) {
+            global.TournamentManager.setNextTimer(this.room.id);
+        }
         return this;
     }
 
@@ -110,5 +120,44 @@ export class Tournament<T extends EliminationBracket | RoundRobinBracket = Elimi
         const players = new Collection<string, Player>().concat(this.players, this.pastPlayers);
         const maxScore = players.map((e) => e.score).reduce((p, c) => Math.max(c, p), -1 * players.size);
         return [...players.filter((e) => e.score === maxScore).values()];
+    }
+}
+
+export class TournamentManager {
+    UntilNewTour = 15 * 1000;
+    Cooldown = 5 * 60 * 1000;
+    DefaultType: "Elimination" | "Round Robin" = "Elimination";
+
+    current = new Collection<string, Tournament | null>();
+    schedules = new Collection<string, IScheduledTournamentData>();
+    timers = new Collection<string, NodeJS.Timeout>();
+    past: string[] = [];
+
+    constructor() {}
+
+    create(targetRoom: Room, data: IScheduledTournamentData) {
+        targetRoom.send(
+            `/tour create ${data.format}, ${data.type ?? this.DefaultType},${data.cap && data.cap > 4 ? data.cap : ""}, ${data.rounds ?? 1}`
+        );
+        if (data.rules?.length) {
+            targetRoom.send(`/tour rules ${data.rules.join(", ")}`);
+        }
+        if (data.name) {
+            targetRoom.send(`/tour name ${data.name}`);
+        }
+    }
+
+    setNextTimer(roomid: string): this {
+        const targetRoom = Rooms.get(roomid);
+        const data = this.schedules.get(roomid);
+        if (!data || !targetRoom) return this;
+
+        this.timers.set(
+            roomid,
+            setTimeout(() => {
+                this.create(targetRoom, data);
+            }, this.Cooldown)
+        );
+        return this;
     }
 }

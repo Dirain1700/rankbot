@@ -23,7 +23,7 @@ export interface IRoomDataBase {
 
 export interface IScheduledTournamentData {
     format: string;
-    time: string; // HH:MM, in UTC
+    time?: string; // HH:MM, in UTC
     type?: "Elimination" | "Round Robin";
     name?: string;
     rules?: string[];
@@ -31,6 +31,10 @@ export interface IScheduledTournamentData {
     rounds?: number;
 }
 
+export interface IScheduledOfficialTournamentData extends IScheduledTournamentData {
+    time: string; // HH:MM, in UTC
+}
+
 export interface ITournamentMonthlySchedule {
-    [day: string]: IScheduledTournamentData[];
+    [day: string]: IScheduledOfficialTournamentData[];
 }

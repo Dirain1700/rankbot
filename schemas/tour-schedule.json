@@ -7,11 +7,11 @@
             "additionalProperties": {
                 "type": "array",
                 "items": {
-                    "$ref": "#/definitions/IScheduledTournamentData"
+                    "$ref": "#/definitions/IScheduledOfficialTournamentData"
                 }
             }
         },
-        "IScheduledTournamentData": {
+        "IScheduledOfficialTournamentData": {
             "type": "object",
             "properties": {
                 "format": {

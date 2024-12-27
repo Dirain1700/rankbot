@@ -1,6 +1,6 @@
 "use strict";
 
-import type { IScheduledTournamentData, ITournamentMonthlySchedule } from "../../types/database";
+import type { IScheduledOfficialTournamentData, ITournamentMonthlySchedule } from "../../types/database";
 
 const schedulesFolder = "databases/schedules";
 const DEFAULT_TOUR_TYPE = "Elimination";
@@ -71,7 +71,7 @@ function sortSchedules(data: ITournamentMonthlySchedule): ITournamentMonthlySche
     return data;
 }
 
-export function getMostRecentTournamentToday(roomid: string): IScheduledTournamentData | null {
+export function getMostRecentTournamentToday(roomid: string): IScheduledOfficialTournamentData | null {
     const year = new Date().getFullYear();
     const month = new Date().getMonth() + 1;
     const day = new Date().getDate();
@@ -90,7 +90,7 @@ export function getMostRecentTournamentToday(roomid: string): IScheduledTourname
     return null;
 }
 
-export function createScheduledTournament(roomid: string, tourData: IScheduledTournamentData) {
+export function createScheduledTournament(roomid: string, tourData: IScheduledOfficialTournamentData) {
     const targetRoom = Rooms.get(roomid);
     if (!targetRoom) return;
     targetRoom.tourTimer = null;

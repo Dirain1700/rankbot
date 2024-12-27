@@ -106,13 +106,14 @@ export function setupGlobal() {
     const { Dex } = require(SingleModulePaths.dex) as typeof import("./ps/dex");
     const { PSCommandContext, PSCommandParser } = require(SingleModulePaths.psparser) as typeof import("./ps/parser");
     const { DiscordCommandContext, DiscordCommandParser } = require(SingleModulePaths.discordparser) as typeof import("./discord/parser");
-    const { Rooms, Users } = require("./ps/client/src/index") as typeof import("./ps/client/src/index");
+    const { Rooms, Users, TournamentManager } = require("./ps/client/src/index") as typeof import("./ps/client/src/index");
 
     global.Tools = Tools;
     global.Config = Config;
     global.Dex = new Dex([...Object.entries(dexData)]);
     global.Rooms = new Rooms();
     global.Users = new Users();
+    global.TournamentManager = new TournamentManager();
     global.Discord = new DiscordClient(Config.DiscordOptions);
     global.PS = new PSClient(Config.PSOptions);
     (require(SingleModulePaths.psstorage) as typeof import("./ps/storage")).initializeGlobalDatabase();
