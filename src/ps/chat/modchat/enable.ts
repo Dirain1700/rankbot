@@ -62,7 +62,7 @@ export function runModchatSetter(targetUser: User, targetRoom: Room): boolean {
         }
         if (u.status.startsWith(IDLE_STATUS)) continue;
         if (!allowBusy && u.status.startsWith(BUSY_STATUS)) continue;
-        if (PS.user?.userid === u.userid) continue;
+        if (BotClient.ps.user?.userid === u.userid) continue;
         isStaffOnline = true;
         break;
     }

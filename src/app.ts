@@ -6,5 +6,5 @@ setupErrorLogger();
 setupGlobal();
 listenShutdown();
 
-void Discord.login(process.env.DISCORD as string);
-PS.connect();
+void BotClient.disc.login(process.env.DISCORD as string);
+BotClient.ps.connect();

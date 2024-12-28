@@ -20,7 +20,7 @@ export const commands: BasePSCommandDefinitions = {
         run(argument, room, user): void {
             if (this.inPm()) return;
             if (!room.checkCan("broadcast", user, false)) return;
-            if (!PS.user || room.checkCan("tour", PS.user, false)) return this.sayError("MISSING_BOT_RANK", "TOUR_GAME");
+            if (!BotClient.ps.user || room.checkCan("tour", BotClient.ps.user, false)) return this.sayError("MISSING_BOT_RANK", "TOUR_GAME");
             const [format, ...rules] = argument.split(",");
             Games.create(format, [...rules]);
         },
@@ -37,7 +37,7 @@ export const commands: BasePSCommandDefinitions = {
     */
     wordle: {
         run(): void {
-            if (this.inRoom()) this.room.checkCan("html", PS.status.id, true);
+            if (this.inRoom()) this.room.checkCan("html", BotClient.ps.status.id, true);
             if (this.inRoom() && !this.room.hasRank("+", this.user)) return;
 
             let [subCommand, roomId, guess] = this.argument.split(",");
@@ -252,7 +252,7 @@ function announce(this: PSCommandContext, r: Room): void {
     const announce =
         "<div class=\"infobox\">Today's Wordle is available now! " +
         "To play Wordle, push the bottom button!<br><button class=\"button\" " +
-        "name=\"send\" value=\"/msgroom " + r.roomid + ",/botmsg " + PS.status.id +
+        "name=\"send\" value=\"/msgroom " + r.roomid + ",/botmsg " + BotClient.ps.status.id +
         ",?wordle send," + r.roomid + "\">Play wordle!</button></div>";
     const id = "wordle-announce";
     r.sendUhtml(id, announce, false);

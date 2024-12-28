@@ -60,7 +60,7 @@ export class PSCommandParser {
     }
 
     parse(message: Message): boolean {
-        if (message.author.userid === PS.status.id || !this.isCommandMessage(message.content)) return false;
+        if (message.author.userid === BotClient.ps.status.id || !this.isCommandMessage(message.content)) return false;
 
         message.content = message.content.replace(Config.commandPrefix, "");
 
@@ -146,14 +146,14 @@ export class PSCommandContext<T extends Room | User = Room | User> {
     }
 
     sayError(err: PSCommandErrorInputType, ...args: string[]): void {
-        if (!PS.user) return;
+        if (!BotClient.ps.user) return;
         let message: string;
 
         switch (err) {
             case "INVALID_ROOM":
             case "INVALID_BOT_ROOM": {
-                if (args[0]) message = args[0] + " is not one of " + PS.user.name + "'s room.";
-                else message = "You must specifiy at least one of " + PS.user.name + "'s room.";
+                if (args[0]) message = args[0] + " is not one of " + BotClient.ps.user.name + "'s room.";
+                else message = "You must specifiy at least one of " + BotClient.ps.user.name + "'s room.";
                 break;
             }
 
@@ -199,19 +199,19 @@ export class PSCommandContext<T extends Room | User = Room | User> {
     }
 
     sayCommand(prefix: string, command: string, args: string): void {
-        if (!PS.user) return;
+        if (!BotClient.ps.user) return;
         command = Tools.toId(command);
         if (this.inRoom()) {
             if (prefix === "!") {
-                if (command === "show") this.room.hasRank("%", PS.user.id);
-                else this.room.hasRank("+", PS.user.id);
+                if (command === "show") this.room.hasRank("%", BotClient.ps.user.id);
+                else this.room.hasRank("+", BotClient.ps.user.id);
                 return this.say(prefix + command + " " + args);
             } else {
-                this.room.hasRank("+", PS.user.id);
+                this.room.hasRank("+", BotClient.ps.user.id);
                 return this.room.send(prefix + command + " " + args);
             }
         } else if (this.inPm()) {
-            if (prefix === "!" && command === "show") PS.user.hasRank("%");
+            if (prefix === "!" && command === "show") BotClient.ps.user.hasRank("%");
             return void this.user.send(prefix + command + " " + args);
         } else {
             // never happen

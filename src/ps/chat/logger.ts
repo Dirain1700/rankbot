@@ -23,7 +23,7 @@ const MAX_STORED_MESSAGES_LENGTH = 50;
 const MAX_MESSAGES_PER_TEN_SECONDS = 5;
 
 export async function storeChat(message: Message<Room>) {
-    if (!Config.roomSettings[message.target.id]?.["logChannel"] || !Discord.isReady()) return;
+    if (!Config.roomSettings[message.target.id]?.["logChannel"] || !BotClient.disc.isReady()) return;
     if (message.content.startsWith("/") && !message.content.startsWith("/log")) return;
     const content = message.content.replace("/log ", "");
     const dirPath = "./logs/chat";
@@ -74,13 +74,13 @@ export async function storeChat(message: Message<Room>) {
 
 export function sendModlog(message: Message<Room>): void {
     const targetChannelId = Config.roomSettings[message.target.roomid]?.["logChannel"];
-    if (!targetChannelId || !Discord.isReady()) return;
+    if (!targetChannelId || !BotClient.disc.isReady()) return;
     const log = message.content.replace("/log ", "");
     const filePath = `./logs/chat/${message.target.roomid}.json`;
     if (!fs.existsSync(filePath)) return;
     let originalChatlog: chatLogType[] = JSON.parse(fs.readFileSync(filePath, "utf-8")) as chatLogType[];
     let targetMessages: chatLogType[] = [];
-    const targetChannel: undefined | Channel = Discord.channels.cache.get(targetChannelId);
+    const targetChannel: undefined | Channel = BotClient.disc.channels.cache.get(targetChannelId);
     if (!targetChannel || !targetChannel.isTextBased() || !targetChannel.isSendable()) return;
 
     const logDetails = Tools.getLogDetails(log);
@@ -107,7 +107,7 @@ export function sendModlog(message: Message<Room>): void {
                 (m) => [Tools.toId(logDetails.target), ...userData.alts].includes(m.user) && message.time !== m.time
             );
             targetMessages.sort(sortLogFunction);
-            if (PS.user && message.target.checkCan("hidetext", PS.user, false)) {
+            if (BotClient.ps.user && message.target.checkCan("hidetext", BotClient.ps.user, false)) {
                 void message.target.hidetext(logDetails.target, true, null, true);
             }
             break;

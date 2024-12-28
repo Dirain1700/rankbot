@@ -19,13 +19,13 @@ export const onMessage = (message: Message) => {
             void storeChat(message);
             sendModlog(message);
         }
-        if (message.author.userid === PS.status.id) return;
+        if (message.author.userid === BotClient.ps.status.id) return;
         if (Config.onRoomMessage[message.target.roomid]) {
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             Config.onRoomMessage[message.target.roomid]!.call(message);
         }
     }
-    if (message.author.userid === PS.status.id) return;
+    if (message.author.userid === BotClient.ps.status.id) return;
     PSCommandParser.parse(message);
 };
 export const onUserAdd = (room: Room, user: User): void => {
@@ -58,7 +58,7 @@ export const onTournamentCreate = (room: Room) => {
 };
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 export const onReady = () => {
-    console.log("Logged in as", PS.user!.name);
+    console.log("Logged in as", BotClient.ps.user!.name);
 };
 
 export const onChatError = (err: string, room: Room | null) => {
@@ -76,14 +76,14 @@ export const onClientError = (err: string) => {
 
 /* eslint-enable */
 export function setEventListeners() {
-    PS.on(PS.events.MESSAGE_CREATE, onMessage);
-    PS.on(PS.events.ROOM_USER_ADD, onUserAdd);
-    PS.on(PS.events.ROOM_USER_REMOVE, onUserRemove);
-    PS.on(PS.events.CLIENT_ROOM_ADD, onClientRoomAdd);
-    PS.on(PS.events.CHAT_ERROR, onChatError);
-    PS.on(PS.events.CLIENT_ERROR, onClientError);
-    PS.on(PS.events.MODCHAT, onModchat);
-    PS.on(PS.events.USER_RENAME, onUserRename);
-    PS.on(PS.events.TOUR_CREATE, onTournamentCreate);
-    PS.on(PS.events.READY, onReady);
+    BotClient.ps.on(BotClient.ps.events.MESSAGE_CREATE, onMessage);
+    BotClient.ps.on(BotClient.ps.events.ROOM_USER_ADD, onUserAdd);
+    BotClient.ps.on(BotClient.ps.events.ROOM_USER_REMOVE, onUserRemove);
+    BotClient.ps.on(BotClient.ps.events.CLIENT_ROOM_ADD, onClientRoomAdd);
+    BotClient.ps.on(BotClient.ps.events.CHAT_ERROR, onChatError);
+    BotClient.ps.on(BotClient.ps.events.CLIENT_ERROR, onClientError);
+    BotClient.ps.on(BotClient.ps.events.MODCHAT, onModchat);
+    BotClient.ps.on(BotClient.ps.events.USER_RENAME, onUserRename);
+    BotClient.ps.on(BotClient.ps.events.TOUR_CREATE, onTournamentCreate);
+    BotClient.ps.on(BotClient.ps.events.READY, onReady);
 }

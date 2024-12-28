@@ -7,9 +7,9 @@ export const commands: BasePSCommandDefinitions = {
         run(): void {
             if (this.inRoom() && !this.user.hasRank("+")) return;
             if (!Config.readme.length) {
-                return this.say(`Sorry, documentation for ${PS.user?.name ?? ""} is unavailable now!`);
+                return this.say(`Sorry, documentation for ${BotClient.ps.user?.name ?? ""} is unavailable now!`);
             }
-            this.say(`${PS.user?.name ?? ""}'s Guide: ${Config.readme}`);
+            this.say(`${BotClient.ps.user?.name ?? ""}'s Guide: ${Config.readme}`);
         },
         aliases: ["commands"],
     },
@@ -22,7 +22,7 @@ export const commands: BasePSCommandDefinitions = {
             this.argument = Tools.toRoomId(this.argument);
             if (!this.argument) return this.say("Please specify the one valid room id.");
 
-            PS.joinRoom(this.argument);
+            BotClient.ps.joinRoom(this.argument);
         },
         pmOnly: true,
     },

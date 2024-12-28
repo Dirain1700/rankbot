@@ -24,7 +24,7 @@ export const commands: BaseDiscordCommandDefinitions = {
     },
     reagent: {
         run() {
-            if (!Discord.isReady() || !this.interaction.channel) return;
+            if (!BotClient.disc.isReady() || !this.interaction.channel) return;
 
             const name = this.interaction.options.getString("name", true);
             if (!name) this.interaction.reply("Error: No arguments provided.").catch(console.error);

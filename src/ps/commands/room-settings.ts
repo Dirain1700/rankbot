@@ -14,7 +14,7 @@ export const commands: BasePSCommandDefinitions = {
             let durationString: string | undefined;
             if (this.inPm()) {
                 if (!targets[0]) return this.sayError("INVALID_ROOM");
-                targetRoom = PS.getRoom(targets[0]);
+                targetRoom = BotClient.ps.getRoom(targets[0]);
                 if (!targetRoom) return this.sayError("INVALID_BOT_ROOM", targets[0]);
                 durationString = targets[1];
             } else {
