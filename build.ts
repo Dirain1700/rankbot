@@ -30,7 +30,7 @@ const config = {
     write: true,
 };
 
-export function build() {
+export function buildSrc() {
     console.log("Transpiling utility files...");
 
     // @ts-expect-error format should be assignable
@@ -108,4 +108,4 @@ export function build() {
     console.log();
 }
 
-build();
+buildSrc();
