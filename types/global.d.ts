@@ -15,10 +15,12 @@ declare global {
     var fs: typeof import("node:fs");
     var path: typeof import("node:path");
     var Config: typeof import("../config/config");
-    var Discord: DiscordClient<boolean>;
+    var BotClient: {
+        ps: Client;
+        disc: DiscordClient;
+    };
     var Rooms: Rooms;
     var Users: Users;
-    var PS: Client;
     var Database: Database;
     var Tools: typeof import("../src/Tools").Tools;
     var TournamentManager: TournamentManager;

@@ -84,7 +84,7 @@ export const commands: BaseDiscordCommandDefinitions = {
             }
 
             const targetID = this.interaction.options.getString("user", true);
-            const targetUser = await Discord.users.fetch(targetID);
+            const targetUser = await BotClient.disc.users.fetch(targetID);
             const reasons = this.interaction.options.getString("reason", true);
 
             /* eslint-disable @typescript-eslint/no-non-null-assertion */
@@ -142,7 +142,7 @@ export const commands: BaseDiscordCommandDefinitions = {
                 return void this.sayError("PERMISSION_DENIED", {});
 
             const targetID = this.interaction.options.getString("userid", true);
-            const targetUser = await Discord.users.fetch(targetID);
+            const targetUser = await BotClient.disc.users.fetch(targetID);
             const reasons = this.interaction.options.getString("reason");
             this.interaction.guild.bans
                 .remove(targetUser, Tools.generateModlog(this.interaction.user, targetUser, "UNBAN", reasons))
@@ -263,7 +263,7 @@ export const commands: BaseDiscordCommandDefinitions = {
 
             const targetID = this.interaction.options.getString("userid", true);
             const targetCount = this.interaction.options?.getInteger("lines") ?? 1;
-            const targetUser = await Discord.users.fetch(targetID);
+            const targetUser = await BotClient.disc.users.fetch(targetID);
 
             const messages = await this.interaction.channel.messages
                 .fetch({ limit: 100 })

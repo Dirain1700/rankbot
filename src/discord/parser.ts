@@ -125,7 +125,7 @@ export class DiscordCommandParser {
         return new Promise(async (resolve) => {
             const returnObject: { result: Collection<Snowflake, ApplicationCommand>[]; errors: unknown[] } = { result: [], errors: [] };
 
-            if (!Discord.application) return resolve(returnObject);
+            if (!BotClient.disc.application) return resolve(returnObject);
             const [globalCommands, guildCommands] = await this.loadCommands();
             const uploadableGlobalCommandData: ApplicationCommandData[] = Object.values(globalCommands).map((c) =>
                 this.getResolvableCommandData(c)
@@ -139,7 +139,7 @@ export class DiscordCommandParser {
             }
 
             if (uploadableGlobalCommandData.length) {
-                await Discord.application.commands
+                await BotClient.disc.application.commands
                     .set(uploadableGlobalCommandData)
                     .then((d) => returnObject.result.push(d))
                     .catch((e) => returnObject.errors.push(e));
@@ -171,7 +171,8 @@ export class DiscordCommandParser {
                 }
                 /* eslint-disable @typescript-eslint/no-non-null-assertion */
                 const command = uploadableGuildCommandData.shift()!;
-                await Discord.application!.commands.set(command[1], command[0])
+                await BotClient.disc
+                    .application!.commands.set(command[1], command[0])
                     .then((d) => returnObject.result.push(d))
                     .catch((e) => returnObject.errors.push(e));
                 /* eslint-enable */
@@ -311,19 +312,19 @@ export class DiscordCommandContext {
     }
 
     sayError(err: DiscordCommandErrorInputType, options: InteractionReplyOptions, ...args: string[]): void {
-        if (!Discord.user?.username) return;
+        if (!BotClient.disc.user?.username) return;
         let content: string;
 
         switch (err) {
             case "INVALID_CHANNEL": {
-                if (args[0]) content = args[0] + " is not one of " + Discord.user.username + "'s channel.";
-                else content = "You must specifiy at least one of " + Discord.user.username + "'s chennel.";
+                if (args[0]) content = args[0] + " is not one of " + BotClient.disc.user.username + "'s channel.";
+                else content = "You must specifiy at least one of " + BotClient.disc.user.username + "'s chennel.";
                 break;
             }
 
             case "INVALID_GUILD": {
-                if (args[0]) content = args[0] + " is not one of " + Discord.user.username + "'s guild.";
-                else content = "You must specifiy at least one of " + Discord.user.username + "'s guild.";
+                if (args[0]) content = args[0] + " is not one of " + BotClient.disc.user.username + "'s guild.";
+                else content = "You must specifiy at least one of " + BotClient.disc.user.username + "'s guild.";
                 break;
             }
 

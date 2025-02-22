@@ -85,7 +85,7 @@ export class Room {
             measure: options && options.measure ? options.measure : undefined,
         };
 
-        PS.send(outgoingMessage);
+        BotClient.ps.send(outgoingMessage);
     }
 
     setupMessage(content: string): string {
@@ -151,86 +151,86 @@ export class Room {
     }
 
     announce(text: string): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("warn", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("warn", BotClient.ps.user, true);
         this.send("/announce " + text, { type: "command", measure: false });
     }
 
     setModchat(rank: GroupSymbol): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        if (Tools.isHigherRank(rank, "%")) this.checkCan("roomban", PS.user, true);
-        else this.checkCan("warn", PS.user, false);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        if (Tools.isHigherRank(rank, "%")) this.checkCan("roomban", BotClient.ps.user, true);
+        else this.checkCan("warn", BotClient.ps.user, false);
         this.send("/modchat " + rank, { type: "command", measure: false });
     }
 
     setAnnounce(content?: string | null): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("announcement", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("announcement", BotClient.ps.user, true);
         if (content) this.send("/announcement create " + content);
         else this.send("/announcement end", { type: "command", measure: false });
     }
 
     sendUhtml(id: string, html: string, change?: boolean): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         if (change) this.changeUhtml(id, html);
         if (!id || !html) throw new PSAPIError("EMPTY", !id ? "ID" : "HTML");
         this.send(`/adduhtml ${id},${html}`, { type: "command", measure: false });
     }
 
     changeUhtml(id: string, html: string): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         if (!id || !html) throw new PSAPIError("EMPTY", !id ? "ID" : "HTML");
         this.send(`/changeuhtml ${id},${html}`, { type: "command", measure: false });
     }
 
     clearUhtml(id: string): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         if (!id) throw new PSAPIError("EMPTY", "ID");
         this.send(`/changeuhtml ${id},<div></div>`, { type: "command", measure: false });
     }
 
     sendHtmlBox(html: string): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         if (!html) throw new PSAPIError("EMPTY", "HTML");
         this.send(`/addhtmlbox ${html}`, { type: "command", measure: false });
     }
 
     sendAuthUhtml(rank: GroupSymbol, id: string, html: string, change?: boolean): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         if (change) this.changeAuthUhtml(rank, id, html);
         if (!id || !html) throw new PSAPIError("EMPTY", !id ? "ID" : "HTML");
         this.send(`/addrankuhtml ${rank},${id},${html}`, { type: "command", measure: false });
     }
 
     changeAuthUhtml(rank: GroupSymbol, id: string, html: string): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         if (!id || !html) throw new PSAPIError("EMPTY", !id ? "ID" : "HTML");
         this.send(`/changerankuhtml ${rank},${id},${html}`, { type: "command", measure: false });
     }
 
     clearAuthUhtml(rank: GroupSymbol, id: string): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         if (!id) throw new PSAPIError("EMPTY", "ID");
         this.send(`/changeuhtml ${rank},${id},<div></div>`, { type: "command", measure: false });
     }
 
     sendAuthHtmlBox(rank: GroupSymbol, html: string): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         if (!html) throw new PSAPIError("EMPTY", "HTML");
         this.send(`/addrankhtmlbox ${rank},${html}`, { type: "command", measure: false });
     }
 
     sendPrivateUhtml(user: string, id: string, html: string, change?: boolean): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         if (change) return this.changePrivateUhtml(user, id, html);
         user = Tools.toId(user);
         if (!user || !id || !html) throw new PSAPIError("EMPTY", !user ? "User" : !id ? "ID" : "HTML");
@@ -238,32 +238,32 @@ export class Room {
     }
 
     changePrivateUhtml(user: string, id: string, html: string): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         user = Tools.toId(user);
         if (!user || !html || !id) throw new PSAPIError("EMPTY", !user ? "User" : !id ? "uhtml ID" : "HTML");
         this.send(`/changeprivateuhtml ${user},${id},${html}`, { type: "command", measure: false });
     }
 
     clearPrivateUhtml(user: string, id: string): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         user = Tools.toId(user);
         if (!user || !id) throw new PSAPIError("EMPTY", !user ? "User" : "ID");
         this.send(`/changeprivateuhtml ${user},${id},<div></div>`, { type: "command", measure: false });
     }
 
     sendPrivateHtmlBox(user: string, html: string): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         user = Tools.toId(user);
         if (!user || !html) throw new PSAPIError("EMPTY", !user ? "User" : "HTML");
         this.send(`/sendprivatehtmlbox ${user},${html}`, { type: "command", measure: false });
     }
 
     sendPmUhtml(user: string, id: string, html: string, change?: boolean): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         if (change) return this.changePmUhtml(user, id, html);
         user = Tools.toId(user);
         if (!user || !id || !html) throw new PSAPIError("EMPTY", !user ? "User" : !id ? "ID" : "HTML");
@@ -271,49 +271,49 @@ export class Room {
     }
 
     changePmUhtml(user: string, id: string, html: string): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         user = Tools.toId(user);
         if (!user || !id || !html) throw new PSAPIError("EMPTY", !user ? "User" : !id ? "ID" : "HTML");
         this.send(`/pmuhtmlchange ${user},${id},${html}`, { type: "command", measure: false });
     }
 
     clearPmUhtml(user: string, id: string): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         user = Tools.toId(user);
         if (!user || !id) throw new PSAPIError("EMPTY", !user ? "User" : "ID");
         this.send(`/pmuhtmlchange ${user},${id},<div></div>`, { type: "command", measure: false });
     }
 
     sendPmHtmlBox(user: string, html: string): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         user = Tools.toId(user);
         if (!user || !html) throw new PSAPIError("EMPTY", !user ? "User" : "ID");
         this.send(`/pminfobox ${user},${html}`, { type: "command", measure: false });
     }
 
     sendHtmlPage(user: string, id: string, html: string): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("html", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("html", BotClient.ps.user, true);
         user = Tools.toId(user);
         if (!user || !id || !html) throw new PSAPIError("EMPTY", !user ? "User" : !id ? "ID" : "HTML");
         this.send(`/sendhtmlpage ${user},${id},${html}`, { type: "command", measure: false });
     }
 
     modnote(text: string): void {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("warn", PS.user);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("warn", BotClient.ps.user);
         this.send("/modnote " + text, { type: "command", measure: false });
     }
 
     hidetext(user: string, clear: boolean, lines?: number | null, alts?: false, reason?: string): Promise<Message<Room> | null>;
     hidetext(user: string, clear: boolean, lines: null, alts: true, reason?: string): Promise<Message<Room> | null>;
     hidetext(user: string, clear: boolean, lines?: number | null, alts?: boolean, reason?: string): Promise<Message<Room> | null> {
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
         if (lines && alts) throw new PSAPIError("INVALID_ARGUMENT", "alts and lines can't be specified at the same time");
-        this.checkCan("hidetext", PS.user);
+        this.checkCan("hidetext", BotClient.ps.user);
         const r = this;
         return new Promise((resolve, reject) => {
             r.send(
@@ -327,7 +327,8 @@ export class Room {
             );
             r.awaitMessages({
                 filter: (m: Message<Room>) =>
-                    m.author.id === PS.user!.id && m.content.endsWith(`by ${PS.user!.name}.${reason ? " (" + reason + ")" : ""}`),
+                    m.author.id === BotClient.ps.user!.id &&
+                    m.content.endsWith(`by ${BotClient.ps.user!.name}.${reason ? " (" + reason + ")" : ""}`),
                 max: 1,
                 time: 10 * 1000,
             })
@@ -338,16 +339,16 @@ export class Room {
 
     warn(targetUser: User, reason?: string): void {
         if (!targetUser.online) return;
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("warn", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("warn", BotClient.ps.user, true);
         if (this.isStaff(targetUser)) return;
         this.send("/warn " + targetUser.userid + (reason ? "," + reason : ""), { type: "command", measure: false });
     }
 
     mute(targetUser: User, hour?: boolean, reason?: string): void {
         if (!targetUser.online) return;
-        if (!PS.user) throw new PSAPIError("NOT_LOGGED_IN");
-        this.checkCan("mute", PS.user, true);
+        if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
+        this.checkCan("mute", BotClient.ps.user, true);
         if (this.isStaff(targetUser)) return;
         this.send("/mute " + targetUser.userid + (reason ? "," + reason : ""), { type: "command", measure: false });
     }
@@ -375,7 +376,7 @@ export class Room {
                 max: options.max,
                 time: options.time,
                 resolve: (m: Message<Room>[]): void => {
-                    PS.addRoom(
+                    BotClient.ps.addRoom(
                         Object.assign(room, {
                             waits: room.waits.filter((wait: MessageWaits<Room>) => wait.timestamp !== timestamp),
                         }) as RoomOptions
@@ -383,7 +384,7 @@ export class Room {
                     resolve(m);
                 },
                 reject: (m: Message<Room>[] | null): void => {
-                    PS.addRoom(
+                    BotClient.ps.addRoom(
                         Object.assign(room, {
                             waits: room.waits.filter((wait: MessageWaits<Room>) => wait.timestamp !== timestamp),
                         }) as RoomOptions
@@ -434,7 +435,7 @@ export class Room {
             if (strict) throw new PSAPIError("EMPTY", "Room");
             else return false;
         }
-        if (!PS.status.loggedIn) {
+        if (!BotClient.ps.status.loggedIn) {
             if (strict) throw new PSAPIError("NOT_LOGGED_IN");
             else return false;
         }
@@ -618,7 +619,7 @@ export class BattleRoom extends Room {
     }
 
     fetch(force?: boolean): Promise<BattleRoom> {
-        return PS.fetchBattleRoom(this.roomid, !!force);
+        return BotClient.ps.fetchBattleRoom(this.roomid, !!force);
     }
 }
 
@@ -660,7 +661,7 @@ export class BattleRooms extends Collection<string, BattleRoom> {
     }
 
     fetch(roomid: string, force?: boolean): ReturnType<Client["fetchRoom"]> {
-        return PS.fetchRoom.call(PS, roomid, !!force);
+        return BotClient.ps.fetchRoom.call(BotClient.ps, roomid, !!force);
     }
 }
 
@@ -699,7 +700,7 @@ export class Rooms extends Collection<string, Room> {
     }
 
     fetch(roomid: string, force?: boolean): ReturnType<Client["fetchRoom"]> {
-        return PS.fetchRoom.call(PS, roomid, !!force);
+        return BotClient.ps.fetchRoom.call(BotClient.ps, roomid, !!force);
     }
 }
 

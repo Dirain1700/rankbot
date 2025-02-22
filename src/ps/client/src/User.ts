@@ -80,7 +80,7 @@ export class User {
             measure: options && options.measure ? options.measure : undefined,
         };
 
-        PS.send(outgoingMessage);
+        BotClient.ps.send(outgoingMessage);
     }
 
     setupMessage(content: string): string {
@@ -171,7 +171,7 @@ export class User {
                 max: options.max,
                 time: options.time,
                 resolve: (m: Message<User>[]): void => {
-                    PS.addUser(
+                    BotClient.ps.addUser(
                         Object.assign(user, {
                             waits: user.waits.filter((wait: MessageWaits<User>) => wait.timestamp !== timestamp),
                         }) as UserOptions
@@ -179,7 +179,7 @@ export class User {
                     resolve(m);
                 },
                 reject: (m: Message<User>[] | null): void => {
-                    PS.addUser(
+                    BotClient.ps.addUser(
                         Object.assign(user, {
                             waits: user.waits.filter((wait: MessageWaits<User>) => wait.timestamp !== timestamp),
                         }) as UserOptions
@@ -330,7 +330,7 @@ export class Users extends Collection<string, User> {
     }
 
     fetch(userid: string, useCache?: boolean): ReturnType<Client["fetchUser"]> {
-        return PS.fetchUser.call(PS, userid, useCache);
+        return BotClient.ps.fetchUser.call(BotClient.ps, userid, useCache);
     }
 }
 

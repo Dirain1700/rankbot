@@ -1606,5 +1606,5 @@ export class Client extends EventEmitter {
 }
 
 export const initializeGlobalClient = () => {
-    global.PS = new Client(Config.PSOptions);
+    global.BotClient.ps = new Client(Config.PSOptions);
 };

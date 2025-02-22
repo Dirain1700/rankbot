@@ -9,7 +9,7 @@ export const closeDiv = "</div>";
 export const partsHead = "<div style=\"display: flex; flex-wrap: wrap\">";
 
 // prettier-ignore
-export const form = (room: string) => `<div style="max-height: 5%; margin: 3%; box-sizing: border-box"><form data-submitsend="/msgroom ${room},/botmsg ${PS.status.id},${Config.commandPrefix}wordle guess,${room},{guess}" id="guess"><input type="text" id="guess" name="guess"><button class="button" type="send">Guess!</button></form></div>`;
+export const form = (room: string) => `<div style="max-height: 5%; margin: 3%; box-sizing: border-box"><form data-submitsend="/msgroom ${room},/botmsg ${BotClient.ps.status.id},${Config.commandPrefix}wordle guess,${room},{guess}" id="guess"><input type="text" id="guess" name="guess"><button class="button" type="send">Guess!</button></form></div>`;
 
 export const correctNotice = (time: number) =>
     `<span style="font-weight: bold; font-size: 1.2vw;">You guessed correctly in ${time}${

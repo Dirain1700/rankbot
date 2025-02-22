@@ -35,9 +35,10 @@ export class Message<T extends Room | User = Room | User> {
         this.time = init.time;
         this.type = this.target instanceof Room ? "Room" : "PM";
         this.client = init.client;
-        if (PS.user) {
-            if (this.type === "Room") this.deletable = (this.target as Room).isRoomStaff(PS.user.userid) || PS.user.isGlobalStaff;
-            else if (this.type === "PM") this.deletable = PS.user.isGlobalStaff;
+        if (BotClient.ps.user) {
+            if (this.type === "Room")
+                this.deletable = (this.target as Room).isRoomStaff(BotClient.ps.user.userid) || BotClient.ps.user.isGlobalStaff;
+            else if (this.type === "PM") this.deletable = BotClient.ps.user.isGlobalStaff;
         } else this.deletable = false;
         if (this.command && this.command.startsWith("/")) this.deletable = false;
 

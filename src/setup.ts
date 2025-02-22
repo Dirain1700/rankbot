@@ -114,8 +114,8 @@ export function setupGlobal() {
     global.Rooms = new Rooms();
     global.Users = new Users();
     global.TournamentManager = new TournamentManager();
-    global.Discord = new DiscordClient(Config.DiscordOptions);
-    global.PS = new PSClient(Config.PSOptions);
+    global.BotClient.disc = new DiscordClient(Config.DiscordOptions);
+    global.BotClient.ps = new PSClient(Config.PSOptions);
     (require(SingleModulePaths.psstorage) as typeof import("./ps/storage")).initializeGlobalDatabase();
     (require(SingleModulePaths.pshandler) as typeof import("./ps/index")).setEventListeners();
     (require(SingleModulePaths.discordhandler) as typeof import("./discord/index")).setEventListeners();
@@ -180,7 +180,7 @@ export function reloadModule(modules: Array<keyof typeof SingleModulePaths | key
                 break;
             }
             case "pshandler": {
-                PS.removeAllListeners();
+                BotClient.ps.removeAllListeners();
                 (require(SingleModulePaths.pshandler) as typeof import("./ps/index")).setEventListeners();
                 break;
             }
@@ -211,7 +211,7 @@ export function reloadModule(modules: Array<keyof typeof SingleModulePaths | key
                 break;
             }
             case "discordhandler": {
-                Discord.removeAllListeners();
+                BotClient.disc.removeAllListeners();
                 (require(SingleModulePaths.discordhandler) as typeof import("./discord/index")).setEventListeners();
                 break;
             }
