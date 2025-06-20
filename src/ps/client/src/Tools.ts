@@ -188,7 +188,8 @@ export class Tools {
     }
 
     static joinList(list: string[]): string {
-        if (list.length < 2) return "";
+        if (!list.length) return "";
+        else if (list.length === 1) return list[0] as string;
         const last = list.pop();
         return list.join(", ") + " and " + last;
     }
