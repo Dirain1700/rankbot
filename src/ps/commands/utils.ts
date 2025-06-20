@@ -26,4 +26,12 @@ export const commands: BasePSCommandDefinitions = {
         },
         pmOnly: true,
     },
+    uptime: {
+        run(): void {
+            if (this.inRoom()) return;
+            const uptimeString = Tools.toDurationString(Math.floor(process.uptime() * 1000));
+            this.say(`Client uptime: ${uptimeString}`);
+        },
+        pmOnly: true,
+    },
 };
