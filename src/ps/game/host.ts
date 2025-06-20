@@ -70,7 +70,7 @@ export class HostGame extends Game {
             return this.room.send("Number must be smaller than the current remaining time or bigger than 5 sec.");
 
         if (this.timeout) clearTimeout(this.timeout);
-        this.room.send("Timer set for: " + Tools.toDurationString(limit) + (label ? ". (label: " + label + ")" : "."));
+        this.room.send("Timer set for: " + Tools.toDurationString(limit, false) + (label ? ". (label: " + label + ")" : "."));
         this.timeout = setTimeout(() => this.onTimeout(label), limit);
     }
 

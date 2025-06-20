@@ -499,22 +499,34 @@ export class Tools {
         return time;
     }
 
-    static toDurationString(durationNum: number): string {
+    static toDurationString(durationNum: number, compact: boolean): string {
         const durationArray: string[] = [];
         if (durationNum >= this.year) {
             const intYear = ~~(durationNum / this.year);
             durationNum -= this.year * intYear;
             durationArray.push(intYear.toString() + (intYear > 1 ? " years" : " year"));
+
+            if (compact) {
+                durationNum = durationNum - (durationNum % this.day);
+            }
         }
         if (durationNum >= this.month) {
             const intMonth = ~~(durationNum / this.month);
             durationNum -= this.month * intMonth;
             durationArray.push(intMonth.toString() + (intMonth > 1 ? " months" : " month"));
+
+            if (compact && durationNum < this.year) {
+                durationNum = durationNum - (durationNum % this.day);
+            }
         }
         if (durationNum >= this.day) {
             const intDay = ~~(durationNum / this.day);
             durationNum -= this.day * intDay;
             durationArray.push(intDay.toString() + (intDay > 1 ? " days" : " day"));
+
+            if (compact && durationNum < this.month) {
+                durationNum = durationNum - (durationNum % this.hour);
+            }
         }
         if (durationNum >= this.hour) {
             const intHour = ~~(durationNum / this.hour);
@@ -527,7 +539,7 @@ export class Tools {
             durationArray.push(intMin.toString() + (intMin > 1 ? " minutes" : " minute"));
         }
         const intSec = ~~(durationNum / this.second);
-        durationArray.push(intSec.toString() + (intSec > 1 ? " seconds" : " second"));
+        if (intSec) durationArray.push(intSec.toString() + (intSec > 1 ? " seconds" : " second"));
 
         return this.joinList(durationArray);
     }
