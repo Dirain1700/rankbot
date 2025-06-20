@@ -114,8 +114,10 @@ export function setupGlobal() {
     global.Rooms = new Rooms();
     global.Users = new Users();
     global.TournamentManager = new TournamentManager();
-    global.BotClient.disc = new DiscordClient(Config.DiscordOptions);
-    global.BotClient.ps = new PSClient(Config.PSOptions);
+    global.BotClient = {
+        disc: new DiscordClient(Config.DiscordOptions),
+        ps: new PSClient(Config.PSOptions),
+    };
     (require(SingleModulePaths.psstorage) as typeof import("./ps/storage")).initializeGlobalDatabase();
     (require(SingleModulePaths.pshandler) as typeof import("./ps/index")).setEventListeners();
     (require(SingleModulePaths.discordhandler) as typeof import("./discord/index")).setEventListeners();
