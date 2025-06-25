@@ -29,7 +29,8 @@ lerna-debug.log*
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Runtime data
-data/Unihan/*
+data/*
+!data/dex/*
 config/*
 !config/config-example.ts
 src/detect-zh/setup/config.ts
