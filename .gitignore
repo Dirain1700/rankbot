@@ -33,9 +33,7 @@ data/*
 !data/dex/*
 config/*
 !config/config-example.ts
-src/detect-zh/setup/config.ts
-src/detect-zh/src/detect.ts
-src/detect-zh/src/index.ts
+unihan_data/*
 pids
 *.pid
 *.seed
