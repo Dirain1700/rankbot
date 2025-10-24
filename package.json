@@ -18,7 +18,7 @@
         "ncu": "npx -p npm-check-updates  -c \"ncu -u\""
     },
     "dependencies": {
-        "@dirain/cjkdetector": "^1.0.0",
+        "@dirain/cjkdetector": "^1.0.1",
         "@discordjs/collection": "^2.1.1",
         "axios": "^1.11.0",
         "discord.js": "^14.22.1",
