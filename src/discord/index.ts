@@ -7,7 +7,6 @@ const onReady = () => {
     if (!BotClient.disc.isReady() || !BotClient.disc.user) return;
     console.log(`Logged in as ${BotClient.disc.user.tag}`);
     Config.onConnectDiscord.call(BotClient.disc.user);
-    BotClient.disc.user.setPresence({ activities: [{ name: "素顔のピクセル", type: 2 }], status: "online" });
 };
 
 const onInteractionCreate = (interaction: BaseInteraction): void => {
