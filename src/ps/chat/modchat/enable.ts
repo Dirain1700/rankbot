@@ -73,7 +73,7 @@ export function tryElevateModchat(targetUser: User, targetRoom: Room): boolean {
     if (!checkTimeCondition(startTime, endTime, always, new Date().getHours())) return false;
     if (disabled) return false;
 
-    if (!isStaffOnline) {
+    if (!isStaffOnline(targetRoom)) {
         if (!targetRoom.userCollection.size) return false;
         targetRoom.send("This room has no staffs so modchat will be set to +.");
 
