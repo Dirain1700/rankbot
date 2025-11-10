@@ -9,7 +9,7 @@ export interface ModchatSetting {
     ignoreGlobals?: boolean;
     allowBusy?: boolean;
     allowAlts?: boolean;
-    showRfaq?: boolean;
+    announce?: string[];
     disabled?: NodeJS.Timeout | undefined;
 }
 
