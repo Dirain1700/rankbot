@@ -156,10 +156,10 @@ export class Room {
         this.send("/announce " + text, { type: "command", measure: false });
     }
 
-    setModchat(rank: GroupSymbol): void {
+    setModchat(rank: ModchatLevel): void {
         if (!BotClient.ps.user) throw new PSAPIError("NOT_LOGGED_IN");
-        if (Tools.isHigherRank(rank, "%")) this.checkCan("roomban", BotClient.ps.user, true);
-        else this.checkCan("warn", BotClient.ps.user, false);
+        if (Tools.isHigherAuth(rank, "%")) this.checkCan("roomban", BotClient.ps.user, true);
+        else this.checkCan("warn", BotClient.ps.user, true);
         this.send("/modchat " + rank, { type: "command", measure: false });
     }
 
