@@ -1,6 +1,6 @@
 "use strict";
 
-import { runModchatSetter } from "../chat/modchat/enable";
+import { tryElevateModchat } from "../chat/modchat/enable";
 import { setNextScheduledTournament } from "../scheduled-scripts";
 
 import type { BasePSCommandDefinitions } from "../../../types/commands";
@@ -35,7 +35,7 @@ export const commands: BasePSCommandDefinitions = {
             Config.roomSettings[targetRoom.roomid]!["modchat"]!.disabled = setTimeout(
                 () => {
                     Config.roomSettings[targetRoom.roomid]!["modchat"]!.disabled = undefined;
-                    runModchatSetter(staff, targetRoom.update());
+                    tryElevateModchat(staff, targetRoom.update());
                 },
                 amount * 60 * 1000
             );

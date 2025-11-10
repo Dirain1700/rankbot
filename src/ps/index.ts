@@ -2,8 +2,8 @@
 
 import { checkChat } from "./chat/filter";
 import { storeChat, sendModlog } from "./chat/logger";
-import announceModchat from "./chat/modchat/detect";
-import enableModchat from "./chat/modchat/enable";
+import { announceModchat } from "./chat/modchat/detect";
+import { tryElevateModchatForUser } from "./chat/modchat/enable";
 
 import { PSAPIError } from "./client/src";
 
@@ -39,7 +39,7 @@ export const onUserAdd = (room: Room, user: User): void => {
         }
     }
 };
-export const onUserRemove = (room: Room, user: User): boolean => enableModchat(user, room);
+export const onUserRemove = (room: Room, user: User): boolean => tryElevateModchatForUser(user, room);
 export const onClientRoomAdd = (room: Room) => {
     if (Config.roomSettings[room.roomid]?.scheduledTours) {
         setNextScheduledTournament(room.id);
@@ -49,7 +49,7 @@ export const onClientRoomAdd = (room: Room) => {
 export const onModchat = (room: Room, currentModchatLevel: ModchatLevel, previousModchatLevel: ModchatLevel): void => {
     announceModchat(room, currentModchatLevel, previousModchatLevel);
 };
-export const onUserRename = (NewU: User) => enableModchat(NewU);
+export const onUserRename = (NewU: User) => tryElevateModchatForUser(NewU);
 export const onTournamentCreate = (room: Room) => {
     if (Config.onTournamentCreate[room.roomid] && room.tour) {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

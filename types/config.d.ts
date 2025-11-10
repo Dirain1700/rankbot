@@ -1,4 +1,4 @@
-import type { GroupSymbol } from "../src/ps/client/index";
+import type { GroupSymbol } from "../src/ps/client/types/index";
 import type { Snowflake } from "discord.js";
 
 export interface ModchatSetting {
