@@ -68,7 +68,7 @@ export function tryElevateModchat(targetUser: User, targetRoom: Room): boolean {
     if (targetRoom.modchat && targetRoom.modchat !== "autoconfirmed") return false;
 
     /* eslint-disable  @typescript-eslint/no-non-null-assertion */
-    const { startTime, endTime, always, rank, disabled } = Config.roomSettings[targetRoom.roomid]!["modchat"]!;
+    const { startTime, endTime, always, elevatedRank, disabled } = Config.roomSettings[targetRoom.roomid]!["modchat"]!;
     /* eslint-enable */
     if (!checkTimeCondition(startTime, endTime, always, new Date().getHours())) return false;
     if (disabled) return false;
@@ -77,7 +77,7 @@ export function tryElevateModchat(targetUser: User, targetRoom: Room): boolean {
         if (!targetRoom.userCollection.size) return false;
         targetRoom.send("This room has no staffs so modchat will be set to +.");
 
-        targetRoom.setModchat(rank || "+");
+        targetRoom.setModchat(elevatedRank || "+");
         return true;
     } else return false;
 }

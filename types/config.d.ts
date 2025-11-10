@@ -1,16 +1,19 @@
-import type { GroupSymbol } from "../src/ps/client/types/index";
+import type { ModchatLevel } from "../src/ps/client/types/index";
 import type { Snowflake } from "discord.js";
 
 export interface ModchatSetting {
     startTime: number;
     endTime: number;
     always: boolean;
-    rank?: GroupSymbol;
+    baseRank: ModchatLevel;
+    elevatedRank?: ModchatLevel;
     ignoreGlobals?: boolean;
     allowBusy?: boolean;
     allowAlts?: boolean;
     announce?: string[];
+    autoReset?: boolean;
     disabled?: NodeJS.Timeout | undefined;
+    timeout?: NodeJS.Timeout | undefined;
 }
 
 type ActionType = "punish" | "hidetext" | "log";
