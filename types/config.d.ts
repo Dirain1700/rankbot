@@ -10,7 +10,7 @@ export interface ModchatSetting {
     allowBusy?: boolean;
     allowAlts?: boolean;
     showRfaq?: boolean;
-    disabled?: NodeJS.Timer | undefined;
+    disabled?: NodeJS.Timeout | undefined;
 }
 
 type ActionType = "punish" | "hidetext" | "log";
