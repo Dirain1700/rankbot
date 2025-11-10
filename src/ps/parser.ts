@@ -19,26 +19,25 @@ export class PSCommandParser {
             .map((f) => f.trim());
         if (!global.PSCommands) global.PSCommands = {};
 
-        return Promise.allSettled(
-            files.map((file) => {
-                const filePath = this.commandsDir + "/" + file.trim();
-                import(filePath)
-                    .then(({ commands }) => {
-                        for (const [commandName, commandData] of Object.entries(commands as BasePSCommandDefinitions)) {
-                            const clone = cloneDeep(commandData) as BasePSCommandData;
-                            clone.originalName = commandName;
-                            PSCommands[commandName] = clone;
-                            if (commandData.aliases)
-                                for (const alias of commandData.aliases) {
-                                    const cloneNeo = cloneDeep(commandData) as BasePSCommandData;
-                                    cloneNeo.originalName = commandName;
-                                    PSCommands[alias] = cloneNeo;
-                                }
-                        }
-                    })
-                    .catch(console.error);
-            })
-        );
+        const promises = files.map((file) => {
+            const filePath = this.commandsDir + "/" + file.trim();
+            return import(filePath)
+                .then(({ commands }) => {
+                    for (const [commandName, commandData] of Object.entries(commands as BasePSCommandDefinitions)) {
+                        const clone = cloneDeep(commandData) as BasePSCommandData;
+                        clone.originalName = commandName;
+                        PSCommands[commandName] = clone;
+                        if (commandData.aliases)
+                            for (const alias of commandData.aliases) {
+                                const cloneNeo = cloneDeep(commandData) as BasePSCommandData;
+                                cloneNeo.originalName = commandName;
+                                PSCommands[alias] = cloneNeo;
+                            }
+                    }
+                })
+                .catch(console.error);
+        });
+        return Promise.allSettled(promises);
     }
 
     getCommandData(name: string): BasePSCommandData | null {

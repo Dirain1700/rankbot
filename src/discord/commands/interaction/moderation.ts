@@ -213,7 +213,7 @@ export const commands: BaseDiscordCommandDefinitions = {
                 )
                 .catch(() => {
                     const deleteMessages = messages.map((m) => m.delete());
-                    Promise.all([deleteMessages])
+                    Promise.all(deleteMessages)
                         .then(() => {
                             void this.interaction.reply({
                                 content: log,
