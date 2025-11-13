@@ -1,6 +1,6 @@
 import { GatewayIntentBits } from "discord.js";
 
-import type { ClientOptions as PSClientOptions, Tournament, Message, User } from "../src/ps/client/src";
+import type { ClientOptions as PSClientOptions, Tournament, Message, User, ClientUser } from "../src/ps/client/src";
 import type { ClientOptions as DiscordClientOptions, ClientUser as DiscordClientUser, Snowflake } from "discord.js";
 
 import type { IRoomSettings } from "../types/config";
@@ -32,6 +32,7 @@ export const admin: Snowflake[] = [];
 export const enableWordle: Dict<IWordleConfig> = {};
 
 export function onConnectDiscord(this: DiscordClientUser): void {}
+export function onConnectPS(this: ClientUser): void {}
 
 export const onUserJoin: Dict<{ run: (this: User) => void; cooldown: number; lastTime: number }> = {};
 export const onRoomMessage: Dict<(this: Message) => void> = {};

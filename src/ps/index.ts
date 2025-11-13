@@ -56,10 +56,14 @@ export const onTournamentCreate = (room: Room) => {
         Config.onTournamentCreate[room.roomid]!.call(room.tour);
     }
 };
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 export const onReady = () => {
-    console.log("Logged in as", BotClient.ps.user!.name);
+    if (!BotClient.ps.user) return;
+    console.log("Logged in as", BotClient.ps.user.name);
+    Config.onConnectPS.call(BotClient.ps.user);
 };
+
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 export const onChatError = (err: string, room: Room | null) => {
     const error = new PSAPIError("CUSTOM", err + "\n" + " in room " + Tools.toString(room) + "\n at " + new Date().toUTCString());
