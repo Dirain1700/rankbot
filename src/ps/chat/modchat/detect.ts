@@ -6,9 +6,9 @@ import { checkTimeCondition } from "./enable";
 import type { Room, ModchatLevel } from "../../client/src";
 
 export function announceModchat(targetRoom: Room, currentModchatLevel: ModchatLevel, previousModchatLevel: ModchatLevel): void {
-    if (!Config.roomSettings[targetRoom.roomid]?.["modchat"]) return;
+    if (!Config.roomSettings[targetRoom.roomid]?.modchat) return;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const { startTime, endTime, always, elevatedRank, announce, autoReset } = Config.roomSettings[targetRoom.roomid]!["modchat"]!;
+    const { startTime, endTime, always, elevatedRank, announce, autoReset } = Config.roomSettings[targetRoom.roomid]!.modchat!;
     if (
         currentModchatLevel === elevatedRank &&
         checkTimeCondition(startTime, endTime, !!always, new Date().getHours()) &&
@@ -26,9 +26,9 @@ export function announceModchat(targetRoom: Room, currentModchatLevel: ModchatLe
 }
 
 function setModchatResetTimer(targetRoom: Room): void {
-    if (!Config.roomSettings[targetRoom.roomid]?.["modchat"]?.["autoReset"]) return;
+    if (!Config.roomSettings[targetRoom.roomid]?.modchat?.autoReset) return;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const { startTime, endTime, always, elevatedRank } = Config.roomSettings[targetRoom.roomid]!["modchat"]!;
+    const { startTime, endTime, always, elevatedRank } = Config.roomSettings[targetRoom.roomid]!.modchat!;
 
     targetRoom.update();
     const now = new Date();
@@ -45,7 +45,7 @@ function setModchatResetTimer(targetRoom: Room): void {
     if (resetDate <= now) resetDate.setDate(resetDate.getDate() + 1);
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    Config.roomSettings[targetRoom.roomid]!["modchat"]!["timeout"] = setTimeout(() => {
+    Config.roomSettings[targetRoom.roomid]!.modchat!.timeout = setTimeout(() => {
         disableModchat(targetRoom);
     });
 }

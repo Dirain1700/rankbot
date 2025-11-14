@@ -28,7 +28,7 @@ export function checkTimeCondition(startTime: number, endTime: number, always: b
 }
 
 function isStaffOnline(targetRoom: Room): boolean {
-    const { ignoreGlobals, allowBusy, allowAlts } = Config.roomSettings[targetRoom.roomid]?.["modchat"] || {};
+    const { ignoreGlobals, allowBusy, allowAlts } = Config.roomSettings[targetRoom.roomid]?.modchat || {};
     let isStaffOnline: boolean = false;
     targetRoom.update();
     for (const u of targetRoom.getOnlineStaffs(!!ignoreGlobals, !!allowAlts).values()) {
@@ -62,13 +62,13 @@ function isStaffOnline(targetRoom: Room): boolean {
 }
 
 export function tryElevateModchat(targetUser: User, targetRoom: Room): boolean {
-    if (!Config.roomSettings[targetRoom.roomid]?.["modchat"]) return false;
+    if (!Config.roomSettings[targetRoom.roomid]?.modchat) return false;
     targetRoom.removeUser(targetUser.userid);
     if (!targetRoom.hasRank("%", targetUser) && !targetUser.alts.every((u) => targetRoom.hasRank("%", u))) return false;
     if (targetRoom.modchat && targetRoom.modchat !== "autoconfirmed") return false;
 
     /* eslint-disable  @typescript-eslint/no-non-null-assertion */
-    const { startTime, endTime, always, elevatedRank, disabled } = Config.roomSettings[targetRoom.roomid]!["modchat"]!;
+    const { startTime, endTime, always, elevatedRank, disabled } = Config.roomSettings[targetRoom.roomid]!.modchat!;
     /* eslint-enable */
     if (!checkTimeCondition(startTime, endTime, always, new Date().getHours())) return false;
     if (disabled) return false;
