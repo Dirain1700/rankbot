@@ -47,5 +47,5 @@ function setModchatResetTimer(targetRoom: Room): void {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     Config.roomSettings[targetRoom.roomid]!.modchat!.timeout = setTimeout(() => {
         disableModchat(targetRoom);
-    });
+    }, resetDate.getTime() - now.getTime());
 }
