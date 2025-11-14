@@ -34,7 +34,7 @@ export const commands: BasePSCommandDefinitions = {
             /* eslint-disable @typescript-eslint/no-non-null-assertion */
             Config.roomSettings[targetRoom.roomid]!.modchat!.disabled = setTimeout(
                 () => {
-                    Config.roomSettings[targetRoom.roomid]!.modchat!.disabled = undefined;
+                    Config.roomSettings[targetRoom.roomid]!.modchat!.disabled = null;
                     tryElevateModchat(staff, targetRoom.update());
                 },
                 amount * 60 * 1000

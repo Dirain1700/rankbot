@@ -12,7 +12,7 @@ export interface ModchatSetting {
     allowAlts?: boolean;
     announce?: string[];
     autoReset?: boolean;
-    disabled?: NodeJS.Timeout | undefined;
+    disabled?: NodeJS.Timeout | null;
     timeout?: NodeJS.Timeout | null;
 }
 
