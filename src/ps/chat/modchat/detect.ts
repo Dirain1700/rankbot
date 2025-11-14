@@ -8,7 +8,7 @@ import type { Room, ModchatLevel } from "../../client/src";
 export function announceModchat(targetRoom: Room, currentModchatLevel: ModchatLevel, previousModchatLevel: ModchatLevel): void {
     if (!Config.roomSettings[targetRoom.roomid]?.modchat) return;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const { startTime, endTime, always, elevatedRank, announce, autoReset } = Config.roomSettings[targetRoom.roomid]!.modchat!;
+    const { startTime, endTime, always, baseRank, elevatedRank, announce, autoReset } = Config.roomSettings[targetRoom.roomid]!.modchat!;
     if (
         currentModchatLevel === elevatedRank &&
         checkTimeCondition(startTime, endTime, !!always, new Date().getHours()) &&
@@ -22,6 +22,15 @@ export function announceModchat(targetRoom: Room, currentModchatLevel: ModchatLe
                 targetRoom.send(line);
             }
         }
+        return;
+    }
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const timeout = Config.roomSettings[targetRoom.roomid]!.modchat!.timeout;
+    if (Tools.isHigherAuth(baseRank, currentModchatLevel, false) && timeout) {
+        // Clear any existing modchat reset timers if modchat is lowered manually.
+        clearTimeout(timeout);
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        Config.roomSettings[targetRoom.roomid]!.modchat!.timeout = null;
     }
 }
 

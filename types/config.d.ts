@@ -13,7 +13,7 @@ export interface ModchatSetting {
     announce?: string[];
     autoReset?: boolean;
     disabled?: NodeJS.Timeout | undefined;
-    timeout?: NodeJS.Timeout | undefined;
+    timeout?: NodeJS.Timeout | null;
 }
 
 type ActionType = "punish" | "hidetext" | "log";
