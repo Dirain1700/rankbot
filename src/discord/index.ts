@@ -16,6 +16,6 @@ const onInteractionCreate = (interaction: BaseInteraction): void => {
 };
 
 export function setEventListeners() {
-    BotClient.disc.on("ready", onReady);
+    BotClient.disc.on("clientReady", onReady);
     BotClient.disc.on("interactionCreate", onInteractionCreate);
 }
