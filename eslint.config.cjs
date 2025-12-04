@@ -2,26 +2,21 @@ const globals = require("globals");
 const typescriptEslint = require("@typescript-eslint/eslint-plugin");
 const _import = require("eslint-plugin-import");
 
-const { fixupPluginRules, includeIgnoreFile } = require("@eslint/compat");
-
 const tsParser = require("@typescript-eslint/parser");
 const js = require("@eslint/js");
 
 const { FlatCompat } = require("@eslint/eslintrc");
 
-const path = require("node:path");
 const compat = new FlatCompat({
     baseDirectory: __dirname,
     recommendedConfig: js.configs.recommended,
     allConfig: js.configs.all,
 });
-const gitignorePath = path.resolve(__dirname, ".gitignore");
 
 module.exports = [
     {
         ignores: ["dist/*", "**/*.js", "!**/get-dex.js"],
     },
-    includeIgnoreFile(gitignorePath),
     ...compat.extends("eslint:recommended"),
     {
         languageOptions: {
@@ -73,7 +68,7 @@ module.exports = [
 
         plugins: {
             "@typescript-eslint": typescriptEslint,
-            import: fixupPluginRules(_import),
+            import: _import,
         },
 
         languageOptions: {
