@@ -7,7 +7,7 @@ import type { StoredWordleDataType, GuessType, WordlePlayer, EndedPlData } from 
 import type { Room, User } from "../client/src";
 
 export class Wordle {
-    readonly path = path.resolve(__dirname, "words");
+    readonly path = "./data/words";
     pl: Map<string, WordlePlayer>;
     room: Room;
     answer: string;
