@@ -50,7 +50,7 @@ export class Wordle {
     setup(): string {
         const str = "abcdefghijklmnopqrstuvwxyz";
         const pick = (arr: string[]): string => arr[~~(Math.random() * arr.length)] as string;
-        const words = fs.readFileSync(this.path + pick(str.split("")) + ".txt", "utf-8").split("\n");
+        const words = fs.readFileSync(path.join(this.path, pick(str.split("")) + ".txt"), "utf-8").split("\n");
         this.answer = pick(words);
         return this.answer;
     }
